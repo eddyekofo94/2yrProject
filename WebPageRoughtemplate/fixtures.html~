@@ -37,8 +37,8 @@
             <ul class="navbar-nav nav">
                 <li><a href="index.html">Home</a></li>
 				<li><a href="manageTeam.html">Squad</a></li>
-                <li><a href="fixtures.html">Fixtures</a></li>
-				 <li><a href="league.html">League</a></li>
+                <li><a href="#">Fixtures</a></li>
+				 <li><a href="#">League</a></li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">
       <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -48,19 +48,9 @@
     </div>
 	
 	
-    <div class="banner">
-    <div class="container">
-       <h1>Welcome to football manager</h1></n> 
-	   <p> A exciting game of two halfs . Sign up and get your own team here.</p> 
-    </div>
-</div>
-    
-</header>
-<ul>
-<div class="content">
-<li>Easy to get started</li>
-<li>No pay-to-win features</li>
-<li>Large active soccer community</li>
+
+
+				
 </div>
 </body>
 <!-- Latest compiled JavaScript -->
