@@ -36,14 +36,13 @@
         <nav class="navbar-collapse collapse " role="navigation">
             <ul class="navbar-nav nav">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">Training</a></li>
-				<li><a href="#">Squad</a></li>
+				<li><a href="manageTeam.html">Squad</a></li>
                 <li><a href="#">Fixtures</a></li>
 				 <li><a href="#">League</a></li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">
-      <li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="register.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
         </nav>
     </div>
@@ -57,30 +56,37 @@
 </div>
     
 </header>
-
-<div class="text-center" style="padding:50px 0">
-	<div class="logo">login</div>
-	<!-- Main Form -->
-	<div class="login-form-1">
-		<form id="login-form" class="text-left">
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<label for="lg_username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
-					</div>
-					<div class="form-group">
-						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
-					</div>
-					<div class="form-group login-group-checkbox">
-						<input type="checkbox" id="lg_remember" name="lg_remember">
-						<label for="lg_remember">remember</label>
-					</div>
-				</div>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Teams
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">ManUntied</a></li>
+    <li><a href="#">Chelsea</a></li>
+    <li><a href="#">Ireland</a></li>
+  </ul>
 </div>
-<button type="submit" class="btn btn-default">Submit</button>
+
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Users
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Phill</a></li>
+    <li><a href="#">Graham</a></li>
+    <li><a href="#">Yurri</a></li>
+	<li><a href="#">Eddie</a></li>
+	<li><a href="#">Admin</a></li>
+  </ul>
+  </div>
+  
+Results returned here . 
+  
+  
+  
+  
+</div>
+
+				
+</div>
 </body>
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

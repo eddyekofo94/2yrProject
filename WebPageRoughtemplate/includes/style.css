@@ -1,0 +1,34 @@
+#.pic.img {
+height:auto;
+width:100%;
+
+}
+.top .container {
+    padding: 0;
+   
+
+}
+.pic{
+padding-left:20%
+}
+.banner .container {
+
+    min-height: 5%;
+    padding: 5%
+	}
+.content {
+
+margin-left:10%;
+}
+
+#h1{
+font-weight:300;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
