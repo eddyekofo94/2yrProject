@@ -280,7 +280,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="indexLeague.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                            <a href="news.html"><i class="fa fa-list-alt fa-fw"></i> News</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Player statics<span class="fa arrow"></span></a>
@@ -295,7 +295,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> League Table</a>
+                            <a href="leagueTable.html"><i class="fa fa-table fa-fw"></i> League Table</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Edit team</a>
