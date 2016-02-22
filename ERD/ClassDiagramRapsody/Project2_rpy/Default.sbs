@@ -1,0 +1,2436 @@
+I-Logix-RPY-Archive version 8.9.0 C++ 7155907
+{ ISubsystem 
+	- _id = GUID 225ed30e-7787-47d5-8d08-650aa9159214;
+	- _myState = 8192;
+	- _name = "Default";
+	- _modifiedTimeWeak = 2.8.2016::14:41:15;
+	- _lastID = 9;
+	- weakCGTime = 2.8.2016::14:41:15;
+	- strongCGTime = 1.2.1990::0:0:0;
+	- AssociationElements = { IRPYRawContainer 
+		- size = 10;
+		- value = 
+		{ IAssociationClass 
+			- _id = GUID c326b784-5c46-43d0-8606-e066b7604a07;
+			- _myState = 8192;
+			- _name = "appointed";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID e3247605-fca3-4cbb-ab88-cb9c5dcab6ca;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 97a35761-2905-4264-9432-0a3db1c3e502;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID 8741e87e-3e00-4d02-aaa9-41f6ba55e7a0;
+			- _myState = 8192;
+			- _name = "Played";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 6caf5fc8-f91e-4ec4-a3ca-5c4ba92670c2;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 926c3109-dd5f-441b-8512-6f6917b7e5d5;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID e947c78f-9376-4f83-94d6-ca1e3c30b0bb;
+			- _myState = 8192;
+			- _name = "Plays";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 1872ca80-b7f4-4976-a321-565ac0944f68;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID b05e60fc-c4db-4526-82b0-4a4f2d91fba1;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID 20e92b55-b6b1-4120-bbfd-a571829e8dd5;
+			- _myState = 8192;
+			- _name = "owns";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 077f4f14-dca0-4b6e-8c93-62af732e14f8;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID f06a11bc-7c2e-49bf-8080-adc98420100e;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID fe4d0ef0-c5d4-4379-8bef-36e4a28deec6;
+			- _myState = 8192;
+			- _name = "Plays";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID b0bd017c-0a9b-44ec-86be-7bdc7fe74f33;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID be03f4af-3488-4674-918b-ac447553bc68;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID e0ee299d-a910-412b-91e5-bbbb4f949b09;
+			- _myState = 8192;
+			- _name = "features";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 6960a3a8-1b56-47d7-9f8b-5d43f37b2a3d;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 136d3e6c-a466-427c-bf0d-991610fe1106;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID 1215c935-445e-40b4-b9f9-e52ac6cc38ad;
+			- _myState = 8192;
+			- _name = "contain";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID e0055ec0-736b-4367-a968-f87294dcaf45;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID f1e5574c-1193-4940-a9b0-68d75b460bf9;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID dc131fb1-665e-4f29-ac59-abea9fd10987;
+			- _myState = 8192;
+			- _name = "describes";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID e2e4f901-edd2-4d7f-9f34-97bfeafd8e1d;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 1bf540e6-9931-4e0a-8ee6-6e3ef9bfb626;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID 8f9f3fee-bf93-43e0-9fec-d6d48b41ccf5;
+			- _myState = 8192;
+			- _name = "Plays";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 8a03d414-294e-4cdf-a926-72190b132f91;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID f2e99dda-3687-473b-af17-1dace5d60f30;
+			}
+		}
+		{ IAssociationClass 
+			- _id = GUID 67adfc5f-3ecb-4850-a5f9-1d0117270ab2;
+			- _myState = 8192;
+			- _name = "appointed";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+			- _isClass = 0;
+			- m_end1 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 31af1cbe-2f6d-4823-b685-e36e0dc7398d;
+			}
+			- m_end2 = { IHandle 
+				- _m2Class = "IAssociationEnd";
+				- _id = GUID 412cff1a-487a-4c62-8ca0-26e5202bed8a;
+			}
+		}
+	}
+	- _defaultComposite = GUID 797362ce-30fe-4286-a731-53423e260bee;
+	- _eventsBaseID = -1;
+	- Classes = { IRPYRawContainer 
+		- size = 10;
+		- value = 
+		{ IClass 
+			- _id = GUID 797362ce-30fe-4286-a731-53423e260bee;
+			- _myState = 40960;
+			- _name = "TopLevel";
+			- _modifiedTimeWeak = 2.8.2016::9:4:12;
+			- weakCGTime = 2.8.2016::9:4:12;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+			- _myState = 8192;
+			- _name = "Team";
+			- _modifiedTimeWeak = 2.8.2016::14:41:15;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 10;
+			- weakCGTime = 2.8.2016::14:41:15;
+			- strongCGTime = 2.5.2016::14:18:2;
+			- Operations = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 1e5abc75-b1ba-4d0e-93de-55d16434f8fc;
+					- _myState = 8192;
+					- _name = "PlayMatch";
+					- _modifiedTimeWeak = 2.5.2016::14:28:6;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 24b69227-dc92-45d0-a54a-311fa8d29a93;
+					- _myState = 8192;
+					- _name = "ManageTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:43:47;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID d1eafd8f-b2cc-4bcd-9987-3f38315a4c9b;
+					- _myState = 8192;
+					- _name = "CalcTeamScore";
+					- _modifiedTimeWeak = 2.5.2016::16:1:3;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 4;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 84b69f53-46f8-43f3-ac70-764baee00cc0;
+					- _myState = 8192;
+					- _name = "teamID";
+					- _modifiedTimeWeak = 2.5.2016::14:26:20;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID ef2e19a5-d281-4356-9c73-b3745616c49e;
+					- _myState = 8192;
+					- _name = "teamName";
+					- _modifiedTimeWeak = 2.5.2016::14:30:19;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 8bed9533-a705-4c0d-8219-8976bb5e4978;
+					- _myState = 8192;
+					- _name = "userID";
+					- _modifiedTimeWeak = 2.5.2016::14:31:35;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 5eb07055-f26c-4c45-911e-cf98904eacf7;
+					- _myState = 8192;
+					- _name = "teamScore";
+					- _modifiedTimeWeak = 2.5.2016::16:0:34;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 10;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID be58385e-5e27-49cd-83a4-922f31852056;
+					- _myState = 10240;
+					- _name = "itsPlayer";
+					- _modifiedTimeWeak = 2.5.2016::15:27:16;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 0c430570-69f3-4d84-ada7-a37ee782699b;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 57b3b3d1-e4f6-4bc4-9648-d1c09f61666d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID a60edbc9-add5-4021-94e6-ccc59c00517d;
+					- _myState = 10240;
+					- _name = "itsPlayer_1";
+					- _modifiedTimeWeak = 2.5.2016::15:29:20;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 0c430570-69f3-4d84-ada7-a37ee782699b;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 47bac896-4bb8-4f44-beb1-e1356773148c;
+					}
+					- _linkName = "";
+					- _linkType = Aggreg;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID aebb5936-c5e8-4c62-a06f-642b7d28860b;
+					- _myState = 10240;
+					- _name = "itsLeague";
+					- _modifiedTimeWeak = 2.5.2016::15:30:0;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID ef08e066-625d-4da7-8119-a75ab317b89d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 0dcc179f-7b15-451a-a58c-8306d4bef29f;
+					- _myState = 10240;
+					- _name = "itsUser";
+					- _modifiedTimeWeak = 2.5.2016::15:30:30;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID eadfe9da-f52e-4cde-99b2-3f549c3ebc44;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 9aa19cb3-b55b-46fb-a27e-6a7cccce8252;
+					}
+					- Qualifiers = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 97a35761-2905-4264-9432-0a3db1c3e502;
+					- _myState = 10240;
+					- _name = "itsUser_1";
+					- _modifiedTimeWeak = 2.5.2016::15:31:13;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID eadfe9da-f52e-4cde-99b2-3f549c3ebc44;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID e3247605-fca3-4cbb-ab88-cb9c5dcab6ca;
+					}
+					- Qualifiers = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID c326b784-5c46-43d0-8606-e066b7604a07;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 2d317015-3ee3-46c9-bea2-94eafe1664ee;
+					- _myState = 8192;
+					- _name = "Plays";
+					- _modifiedTimeWeak = 2.5.2016::15:34:34;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "";
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 1872ca80-b7f4-4976-a321-565ac0944f68;
+					- _myState = 10240;
+					- _name = "itsMatch";
+					- _modifiedTimeWeak = 2.5.2016::15:35:25;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID b05e60fc-c4db-4526-82b0-4a4f2d91fba1;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID e947c78f-9376-4f83-94d6-ca1e3c30b0bb;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 077f4f14-dca0-4b6e-8c93-62af732e14f8;
+					- _myState = 10240;
+					- _name = "itsStadium";
+					- _modifiedTimeWeak = 2.5.2016::15:36:0;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 8d959518-8140-414a-a6ca-27ef49c51726;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID f06a11bc-7c2e-49bf-8080-adc98420100e;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 20e92b55-b6b1-4120-bbfd-a571829e8dd5;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 8a03d414-294e-4cdf-a926-72190b132f91;
+					- _myState = 10240;
+					- _name = "itsFixtures";
+					- _modifiedTimeWeak = 2.8.2016::14:32:44;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID f2e99dda-3687-473b-af17-1dace5d60f30;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 8f9f3fee-bf93-43e0-9fec-d6d48b41ccf5;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 412cff1a-487a-4c62-8ca0-26e5202bed8a;
+					- _myState = 10240;
+					- _name = "itsManager";
+					- _modifiedTimeWeak = 2.8.2016::14:41:15;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 46aca044-7b02-4858-8ccd-6467af8941e9;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 31af1cbe-2f6d-4823-b685-e36e0dc7398d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 67adfc5f-3ecb-4850-a5f9-1d0117270ab2;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+			- _myState = 8192;
+			- _name = "Match";
+			- _modifiedTimeWeak = 2.5.2016::16:14:5;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 9;
+			- weakCGTime = 2.5.2016::16:14:5;
+			- strongCGTime = 2.5.2016::14:18:26;
+			- Operations = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID d6029a3c-08f1-4536-991a-e3c6c4ab5d68;
+					- _myState = 8192;
+					- _name = "CalcMatch";
+					- _modifiedTimeWeak = 2.5.2016::15:50:50;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 4;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 3621bca5-7dd8-49b0-9719-549f90e09e41;
+					- _myState = 8192;
+					- _name = "matchID";
+					- _modifiedTimeWeak = 2.5.2016::15:10:20;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 936744d0-e386-4ed5-a97c-6efcd42d7aa6;
+					- _myState = 8192;
+					- _name = "venue";
+					- _modifiedTimeWeak = 2.5.2016::15:10:39;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 786de25d-5e99-4cd6-9bbd-6fcd7d7cee75;
+					- _myState = 8192;
+					- _name = "startTime";
+					- _modifiedTimeWeak = 2.5.2016::15:14:3;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID f29d7d4e-0bd2-4d94-b775-7f7759d642d2;
+					- _myState = 8192;
+					- _name = "endTime";
+					- _modifiedTimeWeak = 2.5.2016::15:14:10;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 5;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 6caf5fc8-f91e-4ec4-a3ca-5c4ba92670c2;
+					- _myState = 10240;
+					- _name = "itsStadium";
+					- _modifiedTimeWeak = 2.5.2016::15:33:5;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 8d959518-8140-414a-a6ca-27ef49c51726;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 926c3109-dd5f-441b-8512-6f6917b7e5d5;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 8741e87e-3e00-4d02-aaa9-41f6ba55e7a0;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID b05e60fc-c4db-4526-82b0-4a4f2d91fba1;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:35:7;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 1872ca80-b7f4-4976-a321-565ac0944f68;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID e947c78f-9376-4f83-94d6-ca1e3c30b0bb;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID be03f4af-3488-4674-918b-ac447553bc68;
+					- _myState = 10240;
+					- _name = "itsPlayer";
+					- _modifiedTimeWeak = 2.5.2016::15:37:2;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 0c430570-69f3-4d84-ada7-a37ee782699b;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID b0bd017c-0a9b-44ec-86be-7bdc7fe74f33;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID fe4d0ef0-c5d4-4379-8bef-36e4a28deec6;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 136d3e6c-a466-427c-bf0d-991610fe1106;
+					- _myState = 10240;
+					- _name = "itsLeague";
+					- _modifiedTimeWeak = 2.5.2016::15:40:21;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 6960a3a8-1b56-47d7-9f8b-5d43f37b2a3d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID e0ee299d-a910-412b-91e5-bbbb4f949b09;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 1bf540e6-9931-4e0a-8ee6-6e3ef9bfb626;
+					- _myState = 10240;
+					- _name = "itsFixtures";
+					- _modifiedTimeWeak = 2.5.2016::16:14:5;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID e2e4f901-edd2-4d7f-9f34-97bfeafd8e1d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID dc131fb1-665e-4f29-ac59-abea9fd10987;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 8d959518-8140-414a-a6ca-27ef49c51726;
+			- _myState = 8192;
+			- _name = "Stadium";
+			- _modifiedTimeWeak = 2.5.2016::15:36:0;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 5;
+			- weakCGTime = 2.5.2016::15:36:0;
+			- strongCGTime = 2.5.2016::14:18:55;
+			- Operations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 4b5a72ba-3efd-4ae2-ba7f-a6b5e7d4831c;
+					- _myState = 8192;
+					- _name = "Open";
+					- _modifiedTimeWeak = 2.5.2016::15:17:28;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID e001597f-1275-4530-a851-21f12f5544a4;
+					- _myState = 8192;
+					- _name = "Close";
+					- _modifiedTimeWeak = 2.5.2016::15:17:35;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 922584f2-a10d-49e5-9bcb-3f4da2aca0bf;
+					- _myState = 8192;
+					- _name = "stadiumID";
+					- _modifiedTimeWeak = 2.5.2016::15:15:57;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID a08de654-9dfc-422b-985e-6810d4e3a7d2;
+					- _myState = 8192;
+					- _name = "stadiumName";
+					- _modifiedTimeWeak = 2.5.2016::15:16:10;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID ddf0522a-4277-4985-a372-5752a26ee8ed;
+					- _myState = 8192;
+					- _name = "capacity";
+					- _modifiedTimeWeak = 2.5.2016::15:17:6;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 926c3109-dd5f-441b-8512-6f6917b7e5d5;
+					- _myState = 10240;
+					- _name = "itsMatch";
+					- _modifiedTimeWeak = 2.5.2016::15:33:5;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 6caf5fc8-f91e-4ec4-a3ca-5c4ba92670c2;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 8741e87e-3e00-4d02-aaa9-41f6ba55e7a0;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID f06a11bc-7c2e-49bf-8080-adc98420100e;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:36:0;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 077f4f14-dca0-4b6e-8c93-62af732e14f8;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 20e92b55-b6b1-4120-bbfd-a571829e8dd5;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+			- _myState = 8192;
+			- _name = "League";
+			- _modifiedTimeWeak = 2.5.2016::16:13:0;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 6;
+			- weakCGTime = 2.5.2016::16:13:0;
+			- strongCGTime = 2.5.2016::14:19:12;
+			- Operations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 06598883-d1d4-41a4-97ed-2ba651148a84;
+					- _myState = 8192;
+					- _name = "CalcResult";
+					- _modifiedTimeWeak = 2.5.2016::15:25:49;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID b1081730-d6d8-4531-9ebf-8a0ba8df740c;
+					- _myState = 8192;
+					- _name = "ShowResult";
+					- _modifiedTimeWeak = 2.5.2016::15:26:7;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 23eae89b-a4dc-4db0-a154-8c74fcc8829c;
+					- _myState = 8192;
+					- _name = "status";
+					- _modifiedTimeWeak = 2.5.2016::15:19:9;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 12f68e4b-e17e-4143-afe2-77a9cffb3777;
+					- _myState = 8192;
+					- _name = "numOfTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:24:34;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 087138a7-56e1-417d-8901-3204c2e203f3;
+					- _myState = 8192;
+					- _name = "name";
+					- _modifiedTimeWeak = 2.5.2016::15:24:54;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 6;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID ef08e066-625d-4da7-8119-a75ab317b89d;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:30:14;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID aebb5936-c5e8-4c62-a06f-642b7d28860b;
+					}
+					- _linkName = "";
+					- _linkType = Aggreg;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID ee47c230-3d2d-461e-81c5-9f238be227b7;
+					- _myState = 10240;
+					- _name = "itsMatch";
+					- _modifiedTimeWeak = 2.5.2016::15:39:46;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "";
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 6960a3a8-1b56-47d7-9f8b-5d43f37b2a3d;
+					- _myState = 10240;
+					- _name = "itsMatch_1";
+					- _modifiedTimeWeak = 2.5.2016::15:40:33;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 136d3e6c-a466-427c-bf0d-991610fe1106;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID e0ee299d-a910-412b-91e5-bbbb4f949b09;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID e0055ec0-736b-4367-a968-f87294dcaf45;
+					- _myState = 10240;
+					- _name = "itsFixtures";
+					- _modifiedTimeWeak = 2.5.2016::16:10:5;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID f1e5574c-1193-4940-a9b0-68d75b460bf9;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 1215c935-445e-40b4-b9f9-e52ac6cc38ad;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID 41ea3ade-3cc0-4447-acde-e92a4faf1382;
+					- _myState = 10240;
+					- _name = "itsFixtures_1";
+					- _modifiedTimeWeak = 2.5.2016::16:12:34;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID b836bbc1-9986-4f39-8a05-6509b10d0e32;
+					}
+					- _linkName = "";
+					- _linkType = Composition;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID b174fc30-cf5a-4c52-9360-b0afbc8b257f;
+					- _myState = 10240;
+					- _name = "itsFixtures_2";
+					- _modifiedTimeWeak = 2.5.2016::16:13:0;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 81bdaddc-bd32-4885-8511-9a374a8a6002;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 0c430570-69f3-4d84-ada7-a37ee782699b;
+			- _myState = 8192;
+			- _name = "Player";
+			- _modifiedTimeWeak = 2.5.2016::15:48:42;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 15;
+			- weakCGTime = 2.5.2016::15:48:42;
+			- strongCGTime = 2.5.2016::14:19:29;
+			- Operations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 5a299771-e870-4aa1-8994-0ea15bb856c9;
+					- _myState = 8192;
+					- _name = "GetInjured";
+					- _modifiedTimeWeak = 2.5.2016::14:39:23;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 89f3ba28-6890-4216-b20e-4665aa1f46dd;
+					- _myState = 8192;
+					- _name = "GetTrained";
+					- _modifiedTimeWeak = 2.5.2016::15:48:42;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 9;
+				- value = 
+				{ IAttribute 
+					- _id = GUID ff0badd0-d629-4bb7-a2da-eb348e3d154c;
+					- _myState = 8192;
+					- _name = "playerID";
+					- _modifiedTimeWeak = 2.5.2016::14:35:24;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 1ba1d78e-39ae-408b-9a07-407c2574ba66;
+					- _myState = 8192;
+					- _name = "playerName";
+					- _modifiedTimeWeak = 2.5.2016::14:35:35;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID eb6f3484-4465-44e5-8a96-e9607dd38ff4;
+					- _myState = 8192;
+					- _name = "position";
+					- _modifiedTimeWeak = 2.5.2016::14:35:52;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 77e4d69b-787b-4b55-9106-db4a534eb35d;
+					- _myState = 8192;
+					- _name = "injury";
+					- _modifiedTimeWeak = 2.5.2016::14:36:25;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMBoolean";
+						- _id = GUID acbdc4af-48eb-46da-b59c-929d016f0498;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 5828c8d8-cebf-4185-b8d0-3da2935c1ed2;
+					- _myState = 8192;
+					- _name = "jerseyNum";
+					- _modifiedTimeWeak = 2.5.2016::14:37:34;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 3915335a-14f1-4abe-b6f1-6c0a76ac130e;
+					- _myState = 8192;
+					- _name = "gkVal";
+					- _modifiedTimeWeak = 2.5.2016::14:46:43;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 2f586c22-af4c-42e7-9162-1135dd29c21a;
+					- _myState = 8192;
+					- _name = "defVal";
+					- _modifiedTimeWeak = 2.5.2016::14:46:37;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID ded3ed6e-680e-4409-9419-165302e92ee4;
+					- _myState = 8192;
+					- _name = "midFVal";
+					- _modifiedTimeWeak = 2.5.2016::14:47:6;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID bb288eda-bcdc-45e5-a171-6c992abdc2ce;
+					- _myState = 8192;
+					- _name = "attVal";
+					- _modifiedTimeWeak = 2.5.2016::14:47:18;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 57b3b3d1-e4f6-4bc4-9648-d1c09f61666d;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.5.2016::15:27:16;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID be58385e-5e27-49cd-83a4-922f31852056;
+					}
+					- _linkName = "";
+					- _linkType = Aggreg;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 47bac896-4bb8-4f44-beb1-e1356773148c;
+					- _myState = 10240;
+					- _name = "itsTeam_1";
+					- _modifiedTimeWeak = 2.5.2016::15:27:53;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID a60edbc9-add5-4021-94e6-ccc59c00517d;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID b0bd017c-0a9b-44ec-86be-7bdc7fe74f33;
+					- _myState = 10240;
+					- _name = "itsMatch";
+					- _modifiedTimeWeak = 2.5.2016::15:37:26;
+					- _multiplicity = "1..n";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID be03f4af-3488-4674-918b-ac447553bc68;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID fe4d0ef0-c5d4-4379-8bef-36e4a28deec6;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID eadfe9da-f52e-4cde-99b2-3f549c3ebc44;
+			- _myState = 8192;
+			- _name = "User";
+			- _modifiedTimeWeak = 2.8.2016::14:40:47;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 12;
+			- weakCGTime = 2.8.2016::14:40:47;
+			- strongCGTime = 2.5.2016::14:19:36;
+			- Operations = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 907ef09a-2d86-41b0-aeec-3a49793ad493;
+					- _myState = 8192;
+					- _name = "Login";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID b59620e0-5125-42dc-b96f-2fafbb743ec1;
+					- _myState = 8192;
+					- _name = "Register";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 5a95e85f-67b0-4b76-baa8-dbd1a07f8f48;
+					- _myState = 10240;
+					- _name = "Operation_11";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 4;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 3975b4ec-3c65-4b8b-83e2-6e6b0716b053;
+					- _myState = 8192;
+					- _name = "userID";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 2f7e033e-64c2-4f27-ae4b-32cc5044cde3;
+					- _myState = 8192;
+					- _name = "name";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 6b952373-55a9-4545-a1e8-cd8a8edbe122;
+					- _myState = 8192;
+					- _name = "password";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 39f518fc-7da8-428e-9a56-87bf519dbe06;
+					- _myState = 8192;
+					- _name = "loginName";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 9aa19cb3-b55b-46fb-a27e-6a7cccce8252;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 0dcc179f-7b15-451a-a58c-8306d4bef29f;
+					}
+					- Qualifiers = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID e3247605-fca3-4cbb-ab88-cb9c5dcab6ca;
+					- _myState = 10240;
+					- _name = "itsTeam_1";
+					- _modifiedTimeWeak = 2.5.2016::15:31:13;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 97a35761-2905-4264-9432-0a3db1c3e502;
+					}
+					- Qualifiers = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID c326b784-5c46-43d0-8606-e066b7604a07;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 1c5cc9ce-4b22-4d7d-ac9c-e20a426342e2;
+			- _myState = 8192;
+			- _name = "Fixtures";
+			- _modifiedTimeWeak = 2.8.2016::14:33:53;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 13;
+			- weakCGTime = 2.8.2016::14:33:53;
+			- strongCGTime = 2.5.2016::16:4:0;
+			- Operations = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 4826571f-2f5e-47ea-b740-9196377a1a38;
+					- _myState = 8192;
+					- _name = "CalcFixtures";
+					- _modifiedTimeWeak = 2.5.2016::16:8:3;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 983527c1-605e-4f49-b3f9-3e47cfb91b66;
+					- _myState = 8192;
+					- _name = "PrintFixtures";
+					- _modifiedTimeWeak = 2.5.2016::16:8:19;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID f0ad32eb-0dd8-4f2f-b590-1b9bc62662ff;
+					- _myState = 8192;
+					- _name = "CalcMatch";
+					- _modifiedTimeWeak = 2.8.2016::14:32:19;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 9;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 56d3c0a4-f169-445f-ac44-cd8d27e6fdc9;
+					- _myState = 8192;
+					- _name = "homeTeam";
+					- _modifiedTimeWeak = 2.5.2016::16:6:13;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 600c5e2e-b49c-4177-bc49-18dd9c761f3f;
+					- _myState = 8192;
+					- _name = "date";
+					- _modifiedTimeWeak = 2.5.2016::16:5:50;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 770b6f96-a61c-4ed3-8eb4-d6befe104c91;
+					- _myState = 8192;
+					- _name = "awayTeam";
+					- _modifiedTimeWeak = 2.5.2016::16:6:27;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 705b8942-b807-4992-93bd-3081c5436097;
+					- _myState = 8192;
+					- _name = "homeScore";
+					- _modifiedTimeWeak = 2.5.2016::16:6:35;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID aa21f133-a30d-4f56-8e80-836e151786ae;
+					- _myState = 8192;
+					- _name = "awayScore";
+					- _modifiedTimeWeak = 2.5.2016::16:6:44;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 634ab880-e4d3-4f23-8ea7-0aa92e27016b;
+					- _myState = 8192;
+					- _name = "played";
+					- _modifiedTimeWeak = 2.5.2016::16:6:58;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMBoolean";
+						- _id = GUID acbdc4af-48eb-46da-b59c-929d016f0498;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 15de9879-e6fe-48f7-b58f-eaed7d2e4cf6;
+					- _myState = 8192;
+					- _name = "startTime";
+					- _modifiedTimeWeak = 2.8.2016::14:31:13;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 8ecfc6e9-6185-4b3c-87ca-c26ed2ea8344;
+					- _myState = 8192;
+					- _name = "endTime";
+					- _modifiedTimeWeak = 2.8.2016::14:31:33;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID d90985df-9e92-4067-be48-afc5e9b9b891;
+					- _myState = 8192;
+					- _name = "matchID";
+					- _modifiedTimeWeak = 2.8.2016::14:32:3;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 6;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID f1e5574c-1193-4940-a9b0-68d75b460bf9;
+					- _myState = 10240;
+					- _name = "itsLeague";
+					- _modifiedTimeWeak = 2.5.2016::16:9:50;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID e0055ec0-736b-4367-a968-f87294dcaf45;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 1215c935-445e-40b4-b9f9-e52ac6cc38ad;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID c111118d-8316-435c-bb7e-750668297df0;
+					- _myState = 10240;
+					- _name = "itsMatch";
+					- _modifiedTimeWeak = 2.5.2016::16:12:9;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "";
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID b836bbc1-9986-4f39-8a05-6509b10d0e32;
+					- _myState = 10240;
+					- _name = "itsLeague_1";
+					- _modifiedTimeWeak = 2.5.2016::16:12:34;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 41ea3ade-3cc0-4447-acde-e92a4faf1382;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID 81bdaddc-bd32-4885-8511-9a374a8a6002;
+					- _myState = 10240;
+					- _name = "itsLeague_2";
+					- _modifiedTimeWeak = 2.5.2016::16:12:52;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 82bb8011-39d7-4a7e-a95c-faca35cf067e;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID b174fc30-cf5a-4c52-9360-b0afbc8b257f;
+					}
+					- _linkName = "";
+					- _linkType = Composition;
+					- _navigability = Navigable;
+				}
+				{ IAssociationEnd 
+					- _id = GUID e2e4f901-edd2-4d7f-9f34-97bfeafd8e1d;
+					- _myState = 10240;
+					- _name = "itsMatch_1";
+					- _modifiedTimeWeak = 2.5.2016::16:14:5;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID 9e77614f-35dd-4da4-9336-40b40bae76fb;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 1bf540e6-9931-4e0a-8ee6-6e3ef9bfb626;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID dc131fb1-665e-4f29-ac59-abea9fd10987;
+					}
+				}
+				{ IAssociationEnd 
+					- _id = GUID f2e99dda-3687-473b-af17-1dace5d60f30;
+					- _myState = 10240;
+					- _name = "itsTeam";
+					- _modifiedTimeWeak = 2.8.2016::14:33:53;
+					- _multiplicity = "2";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 8a03d414-294e-4cdf-a926-72190b132f91;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = NonNavigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 8f9f3fee-bf93-43e0-9fec-d6d48b41ccf5;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 46aca044-7b02-4858-8ccd-6467af8941e9;
+			- _myState = 8192;
+			- _name = "Manager";
+			- _modifiedTimeWeak = 2.8.2016::14:42:49;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 2;
+			- weakCGTime = 2.8.2016::14:42:49;
+			- strongCGTime = 2.8.2016::14:36:35;
+			- Operations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 360730c7-760e-41af-ab97-7b0c7145bc57;
+					- _myState = 8192;
+					- _name = "PlayMatch";
+					- _modifiedTimeWeak = 2.8.2016::14:42:39;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 7955c9e9-1d92-48cb-bf87-2f35f2605ce8;
+					- _myState = 8192;
+					- _name = "ManageTeam";
+					- _modifiedTimeWeak = 2.8.2016::14:42:49;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Inheritances = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IGeneralization 
+					- _id = GUID b6e0e47c-6e26-40a9-ada8-f93c24bcdfc4;
+					- _modifiedTimeWeak = 2.8.2016::14:40:47;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _id = GUID eadfe9da-f52e-4cde-99b2-3f549c3ebc44;
+					}
+					- _inheritanceType = iPublic;
+					- _isVirtual = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 31af1cbe-2f6d-4823-b685-e36e0dc7398d;
+					- _myState = 10240;
+					- _name = "itsTeam_2";
+					- _modifiedTimeWeak = 2.8.2016::14:41:15;
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _id = GUID ffe8d1a0-34d2-44a4-abb2-593d2475ddaa;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _id = GUID 412cff1a-487a-4c62-8ca0-26e5202bed8a;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+					- m_associationClass = { IHandle 
+						- _m2Class = "IAssociationClass";
+						- _id = GUID 67adfc5f-3ecb-4850-a5f9-1d0117270ab2;
+					}
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID fd2d98c4-cf99-4db6-8063-fc6f5e7afe3c;
+			- _myState = 8192;
+			- _name = "Admin";
+			- _modifiedTimeWeak = 2.8.2016::14:43:56;
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Football Mgt System";
+				- _id = GUID 89b137bd-0bb5-4b31-8bd9-601863b9eb95;
+			}
+			- _lastID = 1;
+			- weakCGTime = 2.8.2016::14:43:56;
+			- strongCGTime = 2.8.2016::14:36:44;
+			- Operations = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 93bcc92c-c3bf-46fc-9ffe-247663d1ce29;
+					- _myState = 8192;
+					- _name = "EditSystem";
+					- _modifiedTimeWeak = 2.8.2016::14:43:56;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Inheritances = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IGeneralization 
+					- _id = GUID aa62845b-33f9-4f58-8167-5c3a636dcc8c;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _id = GUID eadfe9da-f52e-4cde-99b2-3f549c3ebc44;
+					}
+					- _inheritanceType = iPublic;
+					- _isVirtual = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+	}
+	- _configurationRelatedTime = 1.2.1990::0:0:0;
+}
+
