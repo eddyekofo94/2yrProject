@@ -1,41 +1,42 @@
 package controllers;
-
+import java.util.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.*;
 
 
 import views.html.*;
-
+import models.*;
 
  public class Application extends Controller {
 
-      public static  Result index() {
+      public Result index() {
 
         return ok(index.render());
     }
 
-    public static Result fixtures() {
+    public Result fixtures() {
 
         return ok(fixtures.render());
     }
 
-    public static Result leagueTable() {
+    public Result leagueTable() {
 
         return ok(leagueTable.render());
     }
 
-    public static Result squad() {
-
-        return ok(squad.render());
+    public Result squad() {
+        // get the list of team attributes
+        List<Player> players = Player.findAll();
+        return ok(squad.render(players));
     }
     
-    public static Result login() {
+    public Result login() {
 
         return ok(login.render());
     }
     
-    public static Result register() {
+    public Result register() {
 
         return ok(register.render());
     }

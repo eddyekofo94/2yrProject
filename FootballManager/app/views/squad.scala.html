@@ -1,3 +1,4 @@
+@(players: List[models.Player])
 @main("Squad") {
             <!-- /.row -->
             <div class="row">
@@ -9,7 +10,7 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Jersey Number</th>
                                     <th>Player Name</th>
                                     <th>GK</th>
                                     <th>Def</th>
@@ -22,273 +23,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for(p <- players){
                                 <tr>
-                                    <td>1</td>
-                                    <td>Joe Hart</td>
-                                    <td>5</td>
-                                    <td>5</td>
-                                    <th>5</th>
-                                    <td>5</td>
+                                    <td>@p.jerseyNum</td>
+                                    <td>@p.playerName</td>
+                                    <td>@p.gkVal</td>
+                                    <td>@p.defVal</td>
+                                    <td>@p.midFVal</td>
+                                    <td>@p.attVal</td>
                                     <th class="training">
-                                        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li>GoalKeeper</a>
-                                            </li>
-                                            <li>Defense</a>
-                                            </li>
-                                            <li>Midfield</a>
-                                            </li>
-                                            <li>Stricker (attacker)</a>
-                                            </li>
-                                        </ul>
-                                    </th>
-                                    <th class="position">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li>GoalKeeper</a>
-                                            </li>
-                                            <li>Defense</a>
-                                            </li>
-                                            <li>Midfield</a>
-                                            </li>
-                                            <li>Stricker (attacker)</a>
-                                            </li>
-                                        </ul>
-                                    </th>
-                                    <div class="col-md-6">
-                                    </div>
-                                    <td>
-                                        <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
-                        class="glyphicon glyphicon-trash"></span></a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                    </div>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>John Terry</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <th>5</th>
-                        <td>5</td>
-                        <th class="training">
-                            <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li>GoalKeeper</a>
-                                </li>
-                                <li>Defense</a>
-                                </li>
-                                <li>Midfield</a>
-                                </li>
-                                <li>Stricker (attacker)</a>
-                                </li>
-                            </ul>
-                        </th>
-                        <th class="position">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li>GoalKeeper</a>
-                                </li>
-                                <li>Defense</a>
-                                </li>
-                                <li>Midfield</a>
-                                </li>
-                                <li>Stricker (attacker)</a>
-                                </li>
-                            </ul>
-                        </th>
-                        <div class="col-md-6">
-                        </div>
-                        <td>
-                            <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
-                        class="glyphicon glyphicon-trash"></span></a>
-                        </td>
-                        <td>
-                            <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </td>
-
-                    </tr>
-
-                    </tbody>
-
-                </div>
-                </tr>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Frank Lampard</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <th>5</th>
-                    <td>5</td>
-                    <th class="training">
-                        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>GoalKeeper</a>
-                            </li>
-                            <li>Defense</a>
-                            </li>
-                            <li>Midfield</a>
-                            </li>
-                            <li>Stricker (attacker)</a>
-                            </li>
-                        </ul>
-                    </th>
-                    <th class="position">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>GoalKeeper</a>
-                            </li>
-                            <li>Defense</a>
-                            </li>
-                            <li>Midfield</a>
-                            </li>
-                            <li>Stricker (attacker)</a>
-                            </li>
-                        </ul>
-                    </th>
-                    <div class="col-md-6">
-                    </div>
-                    <td>
-                        <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
-                        class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-
-                </tr>
-
-                </tbody>
-
-            </div>
-            </tr>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Christiano Ronaldo</td>
-                <td>5</td>
-                <td>5</td>
-                <th>5</th>
-                <td>5</td>
-                <th class="training">
-                    <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li>GoalKeeper</a>
-                        </li>
-                        <li>Defense</a>
-                        </li>
-                        <li>Midfield</a>
-                        </li>
-                        <li>Stricker (attacker)</a>
-                        </li>
-                    </ul>
-                </th>
-                <th class="position">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li>GoalKeeper</a>
-                        </li>
-                        <li>Defense</a>
-                        </li>
-                        <li>Midfield</a>
-                        </li>
-                        <li>Stricker (attacker)</a>
-                        </li>
-                    </ul>
-                </th>
-                <div class="col-md-6">
-                </div>
-                <td>
-                    <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
-                        class="glyphicon glyphicon-trash"></span></a>
-                </td>
-                <td>
-                    <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-                </td>
-
-            </tr>
-
-            </tbody>
-
-        </div>
-        </tr>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Neymar Jr. Da Silva</td>
-            <td>5</td>
-            <td>5</td>
-            <th>5</th>
-            <td>5</td>
-            <th class="training">
-                <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>GoalKeeper</a>
-                    </li>
-                    <li>Defense</a>
-                    </li>
-                    <li>Midfield</a>
-                    </li>
-                    <li>Stricker (attacker)</a>
-                    </li>
-                </ul>
-            </th>
-            <th class="position">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>GoalKeeper</a>
-                    </li>
-                    <li>Defense</a>
-                    </li>
-                    <li>Midfield</a>
-                    </li>
-                    <li>Stricker (attacker)</a>
-                    </li>
-                </ul>
-            </th>
-            <div class="col-md-6">
-            </div>
-            <td>
-                <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
-                        class="glyphicon glyphicon-trash"></span></a>
-            </td>
-            <td>
-                <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-
-        </tr>
-
-        </tbody>
-
-    </div>
-    </tr>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>Steven Gerrard</td>
-        <td>5</td>
-        <td>5</td>
-        <th>5</th>
-        <td>5</td>
-        <th class="training">
             <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
@@ -303,7 +46,7 @@
             </ul>
         </th>
         <th class="position">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Position
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">@p.position
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li>GoalKeeper</a>
@@ -327,13 +70,9 @@
         </td>
 
     </tr>
-
-    </tbody>
-
-    </div>
-    </tr>
-    </tr>
-
+                                    }
+                                    
+    
     </tbody>
     </table>
     <!-- /.panel-body -->

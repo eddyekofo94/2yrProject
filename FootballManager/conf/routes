@@ -3,12 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /fixtures                           controllers.Application.fixtures
-GET     /leagueTable                           controllers.Application.leagueTable
-GET     /squad                           controllers.Application.squad
-GET     /login                           controllers.Application.login
-GET     /register                           controllers.Application.register
+GET     /                           controllers.Application.index()
+GET     /fixtures                   controllers.Application.fixtures()
+GET     /leagueTable                controllers.Application.leagueTable()
+GET     /squad                      controllers.Application.squad()
+GET     /login                      controllers.Application.login()
+GET     /register                   controllers.Application.register()
 
 
 # Map static resources from the /public folder to the /assets URL path

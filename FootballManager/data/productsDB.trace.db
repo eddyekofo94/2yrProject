@@ -1,0 +1,6 @@
+02-27 20:04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * TEAM[*] "; SQL statement:
+select * team [42000-187]
+02-27 20:04:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TEAM" not found; SQL statement:
+select *from team [42102-187]
