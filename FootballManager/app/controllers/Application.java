@@ -16,8 +16,8 @@ import models.*;
     }
 
     public Result fixtures() {
-
-        return ok(fixtures.render());
+List<Fixtures> fixture = Fixtures.findAll();
+        return ok(fixtures.render(fixture));
     }
 
     public Result leagueTable() {
@@ -40,4 +40,5 @@ import models.*;
 
         return ok(register.render());
     }
+ 
 }

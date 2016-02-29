@@ -1,3 +1,4 @@
+@(fixtures : List[models.Fixtures])
 @main("Fixtures") {
 
         <div id="page-wrapper">
@@ -17,17 +18,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
+                                            <th>League Name</th>
                                             <th>Opposition</th>
-                                            <th>TV</th>
-                                            <th>Venue</th>
-                                            <th>Result</th>
-                                            <th>Competition</th>
+                                            <th>Away Team Score</th>
+                                            <th>Home Team Score</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Played</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     stuff goes here
+                                     @for(f <- fixtures){
+                                     <tr>
+                                     <td>@f.matchID</td>
+                                     <td>@f.leagueName</td>
+                                     <td>@f.teamID</td>
+                                     <td>@f.awayScore</td>
+                                     <td>@f.homeScore</td>
+                                     <td>@f.startTime</td>
+                                     <td>@f.endTime</td>
+                                     <td>@f.played</td>
+                                     </tr>
+                                     }
 
                                     </tbody>
                                 </table>
