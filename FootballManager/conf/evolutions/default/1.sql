@@ -12,6 +12,7 @@ create table player (
   def_val                   integer,
   mid_fval                  integer,
   gk_val                    integer,
+  health                    integer,
   constraint pk_player primary key (player_id))
 ;
 

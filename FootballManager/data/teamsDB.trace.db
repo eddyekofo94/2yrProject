@@ -760,3 +760,67 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
 	at org.h2.mvstore.FileStore.open(FileStore.java:164)
 	... 102 more
+02-29 13:15:26 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: INJURY_HEALTH INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","INJURY_HEALTH","MAX_PALYER_STAT")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-187]
+02-29 13:15:26 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: INJURY_HEALTH INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","INJURY_HEALTH","MAX_PALYER_STAT")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-187]
+02-29 13:16:54 jdbc[25]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: INJURY_HEALTH INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","INJURY_HEALTH","MAX_PALYER_STAT")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-187]
+02-29 13:16:54 jdbc[25]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: INJURY_HEALTH INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","INJURY_HEALTH","MAX_PALYER_STAT")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-187]
+02-29 13:27:08 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "REMOVE[*] ROW 2 "; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE, REPLACE, {"; SQL statement:
+remove row 2 [42001-187]
+02-29 13:27:09 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "REMOVE[*] ROW 2 "; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE, REPLACE, {"; SQL statement:
+remove row 2 [42001-187]
+02-29 13:28:02 jdbc[26]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID" not found; SQL statement:
+DELETE FROM player WHERE ID=2 [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:178)
+	at org.h2.command.dml.Delete.prepare(Delete.java:130)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1390)
+	at org.h2.server.web.WebApp.query(WebApp.java:1063)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1025)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1012)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:745)
+02-29 13:28:20 jdbc[26]: exception
+org.h2.jdbc.JdbcSQLException: Column "PLAYER" not found; SQL statement:
+DELETE FROM player WHERE PLAYER [42122-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Delete.prepare(Delete.java:130)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1390)
+	at org.h2.server.web.WebApp.query(WebApp.java:1063)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1025)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1012)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:745)
+02-29 13:28:49 jdbc[26]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "REMOVE[*] INJURY_HEALTH "; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE, REPLACE, {"; SQL statement:
+remove INJURY_HEALTH [42001-187]

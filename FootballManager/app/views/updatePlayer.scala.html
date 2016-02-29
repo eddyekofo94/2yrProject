@@ -1,0 +1,31 @@
+@(id: Long, updatePlayerForm: Form[models.Player]) 
+
+@import helper._ 
+
+@main("Update Player"){
+
+
+<h3>Update Player</h3>
+<section id="updatePlayer" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-center">
+                <h2 class="section-heading">Update Player</h2>
+                
+                @form(action = routes.PlayersDB.updatePlayerSubmit(id),'class -> "form-horizontal", 'role->"form", 'enctype -> "multipart/form-data"){
+                @inputText(updatePlayerForm("jerseyNum"),'_label -> "Jersey Number",'class -> "form-control")
+                @inputText(updatePlayerForm("playerName"),'_label -> "Player Name",'class -> "form-control")
+                @inputText(updatePlayerForm("position"),'_label -> "Position",'class -> "form-control")
+                
+                @inputText(updatePlayerForm("attVal"),'_label -> "Attacking Value",'class -> "form-control")
+                @inputText(updatePlayerForm("defVal"),'_label -> "Defensive Value",'class -> "form-control")
+                @inputText(updatePlayerForm("midFVal"),'_label -> "Midfield Value",'class -> "form-control")
+                @inputText(updatePlayerForm("gkVal"),'_label -> "Goalkeeping Value",'class -> "form-control")
+                @inputText(updatePlayerForm("health"),'_label -> "Health",'class -> "form-control")
+               
+                <div class="actions">
+                    <input type="submit" value="Save" class="btn primary">
+                    <a href="@routes.Application.squad()"><input  value="Cancel" class="btn primary"></a>
+                </div>    
+                }            
+} 
