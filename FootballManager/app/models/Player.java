@@ -21,8 +21,8 @@ public class Player extends Model{
      public int jerseyNum;
      @Constraints.Required
      public String playerName;
-     @Constraints.Required
-     public String position;
+     @ManyToOne
+     public Position position;
      @Constraints.Required
      public int attVal; //attacking strength 
      @Constraints.Required
@@ -45,7 +45,7 @@ public class Player extends Model{
          
      }  
      //Overloaded constructor 
-     public Player(Long playerID, int jerseyNum, String playerName, String position, int attVal, int defVal,
+     public Player(Long playerID, int jerseyNum, String playerName, Position position, int attVal, int defVal,
        int midFVal, int gkVal){
          this.playerID = playerID;
          this.jerseyNum = jerseyNum;

@@ -25,10 +25,23 @@ List<Fixtures> fixture = Fixtures.findAll();
         return ok(leagueTable.render());
     }
 
-    public Result squad() {
+    public Result squad(Long position) {
+        
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
         // get the list of team attributes
-        List<Player> players = Player.findAll();
-        return ok(squad.render(players));
+        List<Player> players = new ArrayList<Player>();
+        if(position == 0){
+            players = Player.findAll();
+        }
+        else{
+            for(int i = 0; i< positions.size();i++){
+                if(positions.get(i).id == position){
+                    players = positions.get(i).players;
+                    break;
+                }
+            }
+        }
+        return ok(squad.render(positions, players));
     }
     
     public Result login() {
