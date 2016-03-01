@@ -17,7 +17,7 @@ import models.*;
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render(fixture));
+        return ok(fixtures.render());
     }
 
     public Result leagueTable() {
