@@ -26,6 +26,9 @@ create table player (
   gk_val                    integer,
   health                    integer,
   team_id_team_id           bigint,
+  injury                    boolean,
+  salary                    double,
+  transfer_value            double,
   constraint pk_player primary key (player_id))
 ;
 
@@ -40,6 +43,7 @@ create table team (
   user_id                   integer,
   team_name                 varchar(255),
   team_score                integer,
+  league_name               varchar(255),
   constraint pk_team primary key (team_id))
 ;
 
