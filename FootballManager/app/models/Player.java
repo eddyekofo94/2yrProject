@@ -21,7 +21,7 @@ public class Player extends Model{
      public int jerseyNum;
      @Constraints.Required
      public String playerName;
-     @ManyToOne
+     @ManyToOne //many players to one position
      public Position position;
      @Constraints.Required
      public int attVal; //attacking strength 
@@ -33,7 +33,11 @@ public class Player extends Model{
      public int gkVal; // goal keeping strength 
      @Constraints.Required
      public int health;
-
+     @ManyToOne
+     public Team teamID;
+     public boolean injury;
+     public double salary;
+     public double transferValue;
      
      //constants for getTrained and getInjured methods
      

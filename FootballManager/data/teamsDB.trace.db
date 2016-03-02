@@ -996,3 +996,9 @@ select t0.id c0, t0.position c1 from position t0 order by name [42122-187]
 	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
 	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
 	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+03-02 11:50:38 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'Striker' (PLAYER: POSITION_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID")VALUES(?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10) [22018-187]
+03-02 11:50:38 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'Striker' (PLAYER: POSITION_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID")VALUES(?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10) [22018-187]
