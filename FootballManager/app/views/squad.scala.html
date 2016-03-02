@@ -1,8 +1,18 @@
-@(players: List[models.Player])
+@(positions: List[models.Position], players: List[models.Player])
 @main("Squad") {
+
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-2">
+      <div class="list-group">
+				<!-- Start of For loop - For each c in categories add a link -->
+				<a href="@routes.Application.squad(0)" class="list-group-item">All Positions</a>
+				@for(p <- positions) {
+          <a href="@routes.Application.squad(p.id)" class="list-group-item">@p.position</a>
+				}
+      </div>
+  </div>
+                <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             This is your current squad
@@ -16,10 +26,10 @@
                                     <th>Def</th>
                                     <th>Mid</th>
                                     <th>Atck</th>
+                                    <th>Health</th>
                                     <th>Training</th>
                                     <th>Position</th>
-                                    <th>Delete</th>
-                                    <th>Edit</th>
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,6 +41,7 @@
                                     <td>@p.defVal</td>
                                     <td>@p.midFVal</td>
                                     <td>@p.attVal</td>
+                                    <td>@p.health</td>
                                     <th class="training">
             <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                 <span class="caret"></span></button>
@@ -46,17 +57,12 @@
             </ul>
         </th>
         <th class="position">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">@p.position
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @p.position.position
                 <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li>GoalKeeper</a>
-                </li>
-                <li>Defense</a>
-                </li>
-                <li>Midfield</a>
-                </li>
-                <li>Stricker (attacker)</a>
-                </li>
+            <ul class="dropdown-menu" >
+				@for(p <- positions) {
+                <li>@p.position</li>
+				}
             </ul>
         </th>
         <div class="col-md-6">
@@ -65,9 +71,7 @@
             <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
                         class="glyphicon glyphicon-trash"></span></a>
         </td>
-        <td>
-            <a href="#" class="btn-xs btn-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-        </td>
+        
 
     </tr>
                                     }
