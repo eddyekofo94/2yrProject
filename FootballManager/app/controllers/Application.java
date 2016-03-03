@@ -59,4 +59,32 @@ List<Fixtures> fixture = Fixtures.findAll();
 
         return ok(register.render());
     }
+    
+    //fixtures upload
+    public static Result uploadFixtures(){
+//get file data 
+MultipartFormData data = request().body().asMultipartFormData();
+FilePart uploaded = data.getFile("upload");
+String fileResult = saveFile(uploaded);
+flash("success","Fixtures has been created"+fileResult);
+}
+
+//save file data
+public static String saveFile(FilePart uploaded){
+if(uploaded !=null){
+String fileName = "fixtures";
+String extension ="txt";
+String mimeType = uploaded.getContentType();
+if(mimeType.startsWith("text/")){
+//create file from data
+File file = uploaded.getFile();
+//save as fixtures.txt
+file.renameTo(new File("public/fixtures/",fileName + "."+ extension));
+return "/file uploaded";
+
+}
+}
+return "no file";
+}
+
 }

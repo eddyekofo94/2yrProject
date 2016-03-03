@@ -54,9 +54,19 @@
                 
                 </div>
                 <!-- /.row -->
+     
 <!--Fixture upload input-->
 <label>Fixture File upload</label>
 <input class = "btn-sm btn-default" type="file" name="upload">   
-<br><br>             
+<br><br>          
+
+<!-- add a submit button -->
+<div class="actions">
+      <input type="submit" value="Save" class="btn btn-primary">
+			<a href="@routes.Application.uploadFixtures()" 
+				<button class="btn btn-warning" role="button">Cancel</button>
+			</a>
+  </div>
+
                 
             }
