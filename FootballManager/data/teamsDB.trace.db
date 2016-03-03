@@ -1002,3 +1002,9 @@ INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_I
 03-02 11:50:38 jdbc[33]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "'Striker' (PLAYER: POSITION_ID BIGINT)"; SQL statement:
 INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID")VALUES(?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10) [22018-187]
+03-03 20:53:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."PLAYER" SET "PLAYER_ID"=? ,"JERSEY_NUM"=? ,"PLAYER_NAME"=? ,"POSITION_ID"=? ,"ATT_VAL"=? ,"DEF_VAL"=? ,"MID_FVAL"=? ,"GK_VAL"=? ,"HEALTH"=? ,"TEAM_ID_TEAM_ID"=? ,"INJURY"=? ,"SALARY"=? ,"TRANSFER_VALUE"=?  WHERE "PLAYER_ID"=? [22018-187]
+03-03 20:53:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."PLAYER" SET "PLAYER_ID"=? ,"JERSEY_NUM"=? ,"PLAYER_NAME"=? ,"POSITION_ID"=? ,"ATT_VAL"=? ,"DEF_VAL"=? ,"MID_FVAL"=? ,"GK_VAL"=? ,"HEALTH"=? ,"TEAM_ID_TEAM_ID"=? ,"INJURY"=? ,"SALARY"=? ,"TRANSFER_VALUE"=?  WHERE "PLAYER_ID"=? [22018-187]
