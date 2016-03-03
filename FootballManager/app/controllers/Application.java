@@ -2,6 +2,10 @@ package controllers;
 import java.util.*;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.data.*;
+import play.data.Form.*;
+
+
 import play.*;
 
 
@@ -49,8 +53,18 @@ List<Fixtures> fixture = Fixtures.findAll();
         return ok(login.render());
     }
     
+         //REGISTER!!!!!!!!!!!
+    
     public Result register() {
+            Form<User> registerForm = Form.form(User.class);
 
-        return ok(register.render());
+        return ok(register.render(registerForm));
     }
+
+
+     public Result registerFormSubmit() {
+
+         return ok("user registered");
+     }
+
 }
