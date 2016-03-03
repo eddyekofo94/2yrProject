@@ -1,4 +1,5 @@
 @(fixtures : List[models.Fixtures])
+@import helper._
 @main("Fixtures") {
 
         
@@ -54,7 +55,9 @@
                 
                 </div>
                 <!-- /.row -->
-     
+ 
+    
+
 <!--Fixture upload input-->
 <label>Fixture File upload</label>
 <input class = "btn-sm btn-default" type="file" name="upload">   
@@ -62,11 +65,15 @@
 
 <!-- add a submit button -->
 <div class="actions">
-      <input type="submit" value="Save" class="btn btn-primary">
+   @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
+ <p>
+ <input class = "btn-sm btn-default" type="submit" value="upload">
+ </p>
+}
+     
 			
-				<button class="btn btn-warning" role="button">Cancel</button>
-			</a>
-  </div>
+}			
+
 
                 
-            }
+            
