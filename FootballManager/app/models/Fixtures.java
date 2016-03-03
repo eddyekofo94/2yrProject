@@ -50,4 +50,14 @@ public static Model.Finder<Long,Fixtures> find = new Model.Finder<Long,Fixtures>
 public static List<Fixtures> findAll(){
 return Fixtures.find.all();
 }
+
+public static void uploadFixtures(){
+//get file data 
+
+}
+
+public static void updateFixtures(int MatchID , String leagueName, String startTime,String endTime, int teamID , int homeScore,int awayScore,Boolean Played ){
+ 
+}
+
 }

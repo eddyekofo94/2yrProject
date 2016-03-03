@@ -3,6 +3,12 @@ import java.util.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.*;
+//fixture upload imports
+import play.mvc.Http.*;
+import play.mvc.Http.MultipartFormData.FilePart;
+import java.io.*;
+import java.io.File;
+import javax.activation.MimetypesFileTypeMap;
 
 
 import views.html.*;
