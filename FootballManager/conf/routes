@@ -5,19 +5,24 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /fixtures                   controllers.Application.fixtures()
-POST    /upload 	controllers.Application.upload()
-GET     /leagueTable                 controllers.Application.leagueTable()
+GET     /leagueTable                controllers.Application.leagueTable()
 GET     /squad                      controllers.Application.squad(position: Long=0)
 GET     /squad/:position            controllers.Application.squad(position: Long)
 GET     /login                      controllers.Application.login()
-GET     /register                   controllers.Application.register()
+
+#Register
+GET     /register                               controllers.Application.register
+
+#Register User
+#GET         /registerForm                    controllers.RegisterCtrl.registerForm()
+POST         /registerFormSubmit                      controllers.RegisterCtrl.registerFormSubmit()
+
+#GET         /listUsers                  controllers.RegisterCtrl.listUsers()
+
+
 
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
-
-#file upload for fixtures
-
-
 
     
