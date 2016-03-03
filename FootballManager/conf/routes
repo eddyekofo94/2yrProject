@@ -17,6 +17,6 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 #file upload for fixtures
 
-POST		/uploadFixtures						controllers.Application.uploadFixtures()
+
 
     
