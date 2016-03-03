@@ -61,7 +61,7 @@ List<Fixtures> fixture = Fixtures.findAll();
     }
     
     //fixtures upload
-    public static Result uploadFixtures(){
+    public static void uploadFixtures(){
 //get file data 
 MultipartFormData data = request().body().asMultipartFormData();
 FilePart uploaded = data.getFile("upload");
