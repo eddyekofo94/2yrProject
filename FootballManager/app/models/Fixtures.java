@@ -8,6 +8,9 @@ import com.avaje.ebean.Model;
 import play.data.format.*;
 import play.data.validation.*;
 
+
+
+
 @Entity
 public class Fixtures extends Model{
 @Id
@@ -28,6 +31,8 @@ public int awayScore;
 
 @Constraints.Required
 public Boolean played;
+@ManyToMany(cascade = CascadeType.ALL)
+List<Team> tlist = new ArrayList<Team>();
 
 public Fixtures(){
 }
@@ -48,4 +53,12 @@ public static Model.Finder<Long,Fixtures> find = new Model.Finder<Long,Fixtures>
 public static List<Fixtures> findAll(){
 return Fixtures.find.all();
 }
+
+
+
+
+public static void updateFixtures(int MatchID , String leagueName, String startTime,String endTime, int teamID , int homeScore,int awayScore,Boolean Played ){
+ 
+}
+
 }

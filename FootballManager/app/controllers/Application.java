@@ -3,6 +3,12 @@ import java.util.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.*;
+//fixture upload imports
+import play.mvc.Http.*;
+import play.mvc.Http.MultipartFormData.FilePart;
+import java.io.*;
+import java.io.File;
+import javax.activation.MimetypesFileTypeMap;
 
 
 import views.html.*;
@@ -17,7 +23,7 @@ import models.*;
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render());
+        return ok(fixtures.render(fixture));
     }
 
     public Result leagueTable() {
@@ -53,4 +59,32 @@ List<Fixtures> fixture = Fixtures.findAll();
 
         return ok(register.render());
     }
+    
+    //fixtures upload
+    public static Result uploadFixtures(){
+//get file data 
+MultipartFormData data = request().body().asMultipartFormData();
+FilePart uploaded = data.getFile("upload");
+String fileResult = saveFile(uploaded);
+flash("success","Fixtures has been created"+fileResult);
+}
+
+//save file data
+public static String saveFile(FilePart uploaded){
+if(uploaded !=null){
+String fileName = "fixtures";
+String extension ="txt";
+String mimeType = uploaded.getContentType();
+if(mimeType.startsWith("text/")){
+//create file from data
+File file = uploaded.getFile();
+//save as fixtures.txt
+file.renameTo(new File("public/fixtures/",fileName + "."+ extension));
+return "/file uploaded";
+
+}
+}
+return "no file";
+}
+
 }
