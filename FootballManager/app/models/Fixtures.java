@@ -28,6 +28,8 @@ public int awayScore;
 
 @Constraints.Required
 public Boolean played;
+@ManyToMany(cascade = CascadeType.ALL)
+List<Team> tlist = new ArrayList<Team>();
 
 public Fixtures(){
 }

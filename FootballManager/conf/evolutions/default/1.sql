@@ -26,6 +26,9 @@ create table player (
   gk_val                    integer,
   health                    integer,
   team_id_team_id           bigint,
+  injury                    boolean,
+  salary                    double,
+  transfer_value            double,
   constraint pk_player primary key (player_id))
 ;
 
@@ -37,12 +40,21 @@ create table position (
 
 create table team (
   team_id                   bigint not null,
+  max_players               integer,
+  max_on_field              integer,
+  max_subs                  integer,
   user_id                   integer,
   team_name                 varchar(255),
   team_score                integer,
   constraint pk_team primary key (team_id))
 ;
 
+
+create table fixtures_team (
+  fixtures_match_id              integer not null,
+  team_team_id                   bigint not null,
+  constraint pk_fixtures_team primary key (fixtures_match_id, team_team_id))
+;
 create sequence fixtures_seq;
 
 create sequence player_seq;
@@ -58,11 +70,17 @@ create index ix_player_teamID_2 on player (team_id_team_id);
 
 
 
+alter table fixtures_team add constraint fk_fixtures_team_fixtures_01 foreign key (fixtures_match_id) references fixtures (match_id) on delete restrict on update restrict;
+
+alter table fixtures_team add constraint fk_fixtures_team_team_02 foreign key (team_team_id) references team (team_id) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists fixtures;
+
+drop table if exists fixtures_team;
 
 drop table if exists player;
 
