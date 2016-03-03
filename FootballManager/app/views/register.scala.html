@@ -1,3 +1,7 @@
+@(registerForm: Form[models.User])
+
+@import helper._
+
 @main("Register") {
             <!-- /.row -->
             <div class="row">
@@ -9,7 +13,9 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+
+                                @form(action = routes.RegisterCtrl.registerFormSubmit()) {
+                                    <!--<form role="form">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">user_name</span>
                                             <input type="text" class="form-control" placeholder="Username">
@@ -29,17 +35,24 @@
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">examplemail.com</span>
                                             <input type="text" class="form-control" placeholder="email">
-                                        </div>
-                                       
-                                       
-                                       
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
+                                        </div>-->
+                                    @inputText(registerForm("userID"), '_label -> "User ID", 'class -> "form-control")
+                                    @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
+                                    @inputText(registerForm("name"), '_label -> "Name", 'class -> "form-control")
+                                    @inputText(registerForm("loginName"), '_label -> "login Name", 'class -> "form-control")
+
+                                        <!-- Add a submit button -->
+                                    <div class="actions">
+                                    <input type="submit" value="Submit"  class="btn btn-primary">
+                                        <a href="@routes.Application.register()">
+                                        <button class="btn btn-warning">Cancel</button>
+                                        </a>
+
+                                    <!--</form>-->
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 
-                                    </form>
+
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -50,6 +63,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
+        }
+
 }
