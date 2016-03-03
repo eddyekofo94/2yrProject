@@ -30,7 +30,13 @@ List<Fixtures> fixture = Fixtures.findAll();
 
         return ok(leagueTable.render());
     }
+public Result upload(){
 
+uploadFixtures();
+List<Fixtures> fixture = Fixtures.findAll();
+ return ok(fixtures.render(fixture));
+
+}
     public Result squad(Long position) {
         
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -61,12 +67,13 @@ List<Fixtures> fixture = Fixtures.findAll();
     }
     
     //fixtures upload
-    public static void uploadFixtures(){
+ public static void uploadFixtures(){
 //get file data 
 MultipartFormData data = request().body().asMultipartFormData();
 FilePart uploaded = data.getFile("upload");
 String fileResult = saveFile(uploaded);
 flash("success","Fixtures has been created"+fileResult);
+
 }
 
 //save file data
@@ -79,12 +86,13 @@ if(mimeType.startsWith("text/")){
 //create file from data
 File file = uploaded.getFile();
 //save as fixtures.txt
-file.renameTo(new File("public/fixtures/",fileName + "."+ extension));
-return "/file uploaded";
+file.renameTo(new File("fixtures/",fileName + "."+ extension));
 
+return "ok";
 }
 }
-return "no file";
+
+return "not ok";
 }
 
 }
