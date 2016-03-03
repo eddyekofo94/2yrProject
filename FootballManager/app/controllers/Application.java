@@ -10,6 +10,8 @@ import java.io.*;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 
+import play.data.*;
+import play.data.Form.*;
 
 import views.html.*;
 import models.*;
@@ -59,6 +61,25 @@ List<Fixtures> fixture = Fixtures.findAll();
 
         return ok(register.render());
     }
+    
+    public Result addPlayer(){
+        Form<Player> addPlayerForm = Form.form(Player.class);
+        return ok(addPlayer.render(addPlayerForm));
+    }
+    public Result addPlayerSubmit(){
+        Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
+        
+        if(newPlayerForm.hasErrors()){
+            flash("sadf");
+            return badRequest(addPlayer.render(newPlayerForm));
+            
+        }
+        newPlayerForm.get().save();
+        flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
+        
+        return redirect("/");
+    }
+    
     
     //fixtures upload
     public static void uploadFixtures(){
