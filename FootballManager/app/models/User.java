@@ -43,10 +43,12 @@ public class User extends Model {
     }
 
     public static User getLoggedIn(String userID){
-        if(userID == null)
+        if(userID == null){
         return null;
-        else
+        }
+        else{
         return find.byId(userID);
+        }
     }
 //    public static User authenticate(String email, String password){
 //        return find.where().eq("email", email).eq("password", password).findUnique();
