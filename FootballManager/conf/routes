@@ -13,14 +13,13 @@ GET     /squad                     controllers.Application.squad(position: Long=
 GET     /squad/:position            controllers.Application.squad(position: Long)
 GET     /login                      controllers.Application.login()
 
-<<<<<<< HEAD
+
 #Add a player
 GET     /addPlayer                 controllers.Application.addPlayer()
 POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
-=======
+
 #Register
 GET     /register                               controllers.Application.register
->>>>>>> master
 
 #Register User
 #GET         /registerForm                    controllers.RegisterCtrl.registerForm()
