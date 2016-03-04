@@ -6,7 +6,6 @@
     <h3> Add a new Player</h3>
     
     @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){
-    @inputText(addPlayerForm("playerID"),'_label -> "ID")
     @inputText(addPlayerForm("playerName"),'_label -> "Name")
     @inputText(addPlayerForm("jerseyNum"),'_label -> "Jersey Number")
    <!-- @inputText(addPlayerForm("s"),'_label -> "Jersey Number")-->
@@ -21,7 +20,7 @@
     @inputText(addPlayerForm("midFVal"),'_label -> "Midfield Value")
     @inputText(addPlayerForm("gkVal"),'_label -> "Goalkeeping Value")
     @inputText(addPlayerForm("health"),'_label -> "Health")
-    @inputText(addPlayerForm("teamID"),'_label -> "Team ID (must be set to null)")
+
     @inputText(addPlayerForm("injury"),'_label -> "Injury Status (boolean true or false)")
     @inputText(addPlayerForm("salary"),'_label -> "Salary")
     @inputText(addPlayerForm("transferValue"),'_label -> "Transfer Value (selling price)")
