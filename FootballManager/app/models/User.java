@@ -21,7 +21,8 @@ public class User extends Model {
 
     @Constraints.Required
     public String loginName;
-
+    @OneToOne
+    public int teamID;
 
     public User() {
 
@@ -41,6 +42,12 @@ public class User extends Model {
         return User.find.all();
     }
 
+    public static User getLoggedIn(String userID){
+        if(userID == null)
+        return null;
+        else
+        return find.byId(userID);
+    }
 //    public static User authenticate(String email, String password){
 //        return find.where().eq("email", email).eq("password", password).findUnique();
 //    }

@@ -1,4 +1,4 @@
-@(pageID: String)(content: play.twirl.api.Html)
+@(pageID: String,user: models.User)(content: play.twirl.api.Html)
 
 <!DOCTYPE html>
 <html id="@pageID">
@@ -92,7 +92,7 @@
 
                             <a href="@routes.Application.index()"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
-                        <li><a href="@routes.Application.squad(0)">Squad</a></li>
+                                        <li><a href="@routes.Application.playerDB(0)">Players Database</a></li>
                         <li>
                             <a href="@routes.Application.fixtures()"><i class="fa fa-bar-chart-o fa-fw"></i> Fixtures</a>
 
@@ -103,7 +103,7 @@
                         </li>
 
                         <li>
-                            <a href="@routes.Application.playerDB(0)"><i class="fa fa-wrench fa-fw"></i> Players Database</span></a>
+                            <a href="@routes.Application.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
 
                             <!-- /.nav-second-level -->
                         </li>

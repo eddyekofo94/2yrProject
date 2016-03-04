@@ -20,7 +20,8 @@ import com.avaje.ebean.Model;
      @Id
      private Long teamID;
      @Constraints.Required
-     private int userID;
+     @OneToOne
+     public int userID;
      @Constraints.Required
      private String teamName;
      private int teamScore;   
