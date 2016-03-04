@@ -2,7 +2,9 @@ package controllers;
 import java.util.*;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.*;
+import play.data.*;
+import play.data.Form.*;
+
 //fixture upload imports
 import play.mvc.Http.*;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -10,10 +12,11 @@ import java.io.*;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
 
+import play.*;
+
 
 import views.html.*;
 import models.*;
-
  public class Application extends Controller {
 
       public Result index() {
@@ -30,6 +33,13 @@ List<Fixtures> fixture = Fixtures.findAll();
 
         return ok(leagueTable.render());
     }
+    public Result upload(){
+
+generateFixtures();
+List<Fixtures> fixture = Fixtures.findAll();
+ return ok(fixtures.render(fixture));
+
+}
 
     public Result squad(Long position) {
         
@@ -56,35 +66,63 @@ List<Fixtures> fixture = Fixtures.findAll();
     }
     
     public Result register() {
+        
+            Form<User> registerForm = Form.form(User.class);
 
-        return ok(register.render());
+        return ok(register.render(registerForm));
     }
-    
-    //fixtures upload
-    public static void uploadFixtures(){
+       public Result registerFormSubmit() {
+
+         return ok("user registered");
+     }
+     
+       //fixtures upload
+ public static void generateFixtures(){
 //get file data 
-MultipartFormData data = request().body().asMultipartFormData();
-FilePart uploaded = data.getFile("upload");
-String fileResult = saveFile(uploaded);
-flash("success","Fixtures has been created"+fileResult);
+		long[] teams = {1,2,3,4,5,6};
+		int count = 1;
+		long id = 2;
+		int week = 1;
+		
+		int hScore=0;
+		int aScore=0;
+		models.Fixtures f1 ;
+		models.Fixtures[] weekFixtures = new models.Fixtures[teams.length-1];
+		ArrayList<models.Fixtures> fixtures = new ArrayList();
+		
+		for(int i = 0;i < teams.length;i++)
+		{
+			for(int j = count; j < teams.length;j++)
+			{
+			
+			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
+				f1=new models.Fixtures(id,"bing",week,teams[j],hScore,teams[i],aScore);
+				f1.save();
+				
+				
+				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
+				
+				if(week == 7)
+				{
+				week=1;
+				}
+				else
+				{
+				week++;
+				}
+			
+			}
+		
+			count++;
+			id++;
+		}
+		
+		}
+
 }
 
-//save file data
-public static String saveFile(FilePart uploaded){
-if(uploaded !=null){
-String fileName = "fixtures";
-String extension ="txt";
-String mimeType = uploaded.getContentType();
-if(mimeType.startsWith("text/")){
-//create file from data
-File file = uploaded.getFile();
-//save as fixtures.txt
-file.renameTo(new File("public/fixtures/",fileName + "."+ extension));
-return "/file uploaded";
 
-}
-}
-return "no file";
-}
 
-}
+
+
+

@@ -4,14 +4,13 @@
 # --- !Ups
 
 create table fixtures (
-  match_id                  integer not null,
+  match_id                  bigint not null,
   league_name               varchar(255),
-  start_time                varchar(255),
-  end_time                  varchar(255),
-  team_id                   integer,
+  week                      integer,
+  home_team_id              bigint,
+  away_team_id              bigint,
   home_score                integer,
   away_score                integer,
-  played                    boolean,
   constraint pk_fixtures primary key (match_id))
 ;
 
@@ -49,9 +48,17 @@ create table team (
   constraint pk_team primary key (team_id))
 ;
 
+create table user (
+  user_id                   integer not null,
+  password                  varchar(255),
+  name                      varchar(255),
+  login_name                varchar(255),
+  constraint pk_user primary key (user_id))
+;
+
 
 create table fixtures_team (
-  fixtures_match_id              integer not null,
+  fixtures_match_id              bigint not null,
   team_team_id                   bigint not null,
   constraint pk_fixtures_team primary key (fixtures_match_id, team_team_id))
 ;
@@ -62,6 +69,8 @@ create sequence player_seq;
 create sequence position_seq;
 
 create sequence team_seq;
+
+create sequence user_seq;
 
 alter table player add constraint fk_player_position_1 foreign key (position_id) references position (id) on delete restrict on update restrict;
 create index ix_player_position_1 on player (position_id);
@@ -88,6 +97,8 @@ drop table if exists position;
 
 drop table if exists team;
 
+drop table if exists user;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists fixtures_seq;
@@ -97,4 +108,6 @@ drop sequence if exists player_seq;
 drop sequence if exists position_seq;
 
 drop sequence if exists team_seq;
+
+drop sequence if exists user_seq;
 
