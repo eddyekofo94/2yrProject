@@ -31,7 +31,13 @@ public class Position extends Model{
         this.position = position;
         this.players = players;
     }
-    
+    public static Map<String,String> options(){
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Position p: Position.find.orderBy("id").findList()){
+            options.put(p.id.toString(), p.position);
+        }
+        return options;
+    }
     public static Finder<Long, Position> find = new Finder<Long, Position>(Long.class, Position.class);
-
+    
 }
