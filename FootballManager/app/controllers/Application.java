@@ -35,7 +35,7 @@ List<Fixtures> fixture = Fixtures.findAll();
     }
     public Result upload(){
 
-    uploadFixtures();
+    
     List<Fixtures> fixture = Fixtures.findAll();
  return ok(fixtures.render(fixture, User.getLoggedIn(session().get("userID"))));
 
@@ -46,7 +46,7 @@ List<Fixtures> fixture = Fixtures.findAll();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
         // get the list of team attributes
         List<Player> players = new ArrayList<Player>();
-        Team team;
+        Team team =  new Team();
 
         if(position == 0){
             players = Player.findAll();
@@ -71,7 +71,7 @@ List<Fixtures> fixture = Fixtures.findAll();
         
             Form<User> registerForm = Form.form(User.class);
 
-        return ok(register.render(registerForm);
+        return ok(register.render(User.getLoggedIn(session().get("userID")),registerForm));
     }
        public Result registerFormSubmit() {
 
@@ -94,17 +94,17 @@ List<Fixtures> fixture = Fixtures.findAll();
                 }
             }
         }
-        return ok(playerDB.render(positions, players));
+        return ok(playerDB.render(User.getLoggedIn(session().get("userID")),positions, players));
     }
      public Result addPlayer(){
         Form<Player> addPlayerForm = Form.form(Player.class);
-        return ok(addPlayer.render(addPlayerForm));
+        return ok(addPlayer.render(User.getLoggedIn(session().get("userID")),addPlayerForm));
     }
     public Result addPlayerSubmit(){
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
         
         if(newPlayerForm.hasErrors()){
-            return badRequest(addPlayer.render(newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("userID")),newPlayerForm));
             
         }
         newPlayerForm.get().save();
