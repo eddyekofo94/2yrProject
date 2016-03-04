@@ -20,25 +20,24 @@
                                         <tr>
                                             <th>#</th>
                                             <th>League Name</th>
-                                            <th>Opposition</th>
+                                            <th>week</th>
+                                            <th>Home Team </th>
+                                            <th>Home team Score</th>
+                                            <th>Away Team</th>
                                             <th>Away Team Score</th>
-                                            <th>Home Team Score</th>
-                                            <th>Start Time</th>
-                                            <th>End Time</th>
-                                            <th>Played</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                      @for(f <- fixtures){
                                      <tr>
-                                     <td>@f.matchID</td>
+                                      <td>@f.matchID</td> 
                                      <td>@f.leagueName</td>
-                                     <td>@f.teamID</td>
-                                     <td>@f.awayScore</td>
-                                     <td>@f.homeScore</td>
-                                     <td>@f.startTime</td>
-                                     <td>@f.endTime</td>
-                                     <td>@f.played</td>
+                                     <td>@f.week</td>                              
+                                    <td>@f.homeTeamID</td>
+                                    <td>@f.homeScore</td>
+                                    <td>@f.awayTeamID</td>
+                                    <td>@f.awayScore</td>
+                                     
                                      </tr>
                                      }
 
@@ -59,15 +58,16 @@
     
 
 <!--Fixture upload input-->
-<label>Fixture File upload</label>
-<input class = "btn-sm btn-default" type="file" name="upload">   
-<br><br>          
+       
 
 <!-- add a submit button -->
 <div class="actions">
-   @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
+
+   @helper.form(action = routes.Application.upload) {
  <p>
- <input class = "btn-sm btn-default" type="submit" value="upload">
+ 
+ <input class="btn btn-primary" type="submit" value="Generate Fixtures">
+ </div>
  </p>
 }
      
