@@ -38,6 +38,10 @@ public class Position extends Model{
         }
         return options;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
     public static Finder<Long, Position> find = new Finder<Long, Position>(Long.class, Position.class);
     
 }

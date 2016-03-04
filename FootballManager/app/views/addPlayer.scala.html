@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 @(user: models.User,addPlayerForm: Form[models.Player])
 
 @import helper._
 
 @main("New Player",user) {
+=======
+@(addPlayerForm: Form[models.Player])
+
+@import helper._
+
+@main("New Player") {
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
     <h3> Add a new Player</h3>
     
     @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){

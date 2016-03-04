@@ -50,7 +50,7 @@ public class Player extends Model{
      }  
      //Overloaded constructor 
      public Player(Long playerID, int jerseyNum, String playerName, Position position, int attVal, int defVal,
-       int midFVal, int gkVal){
+       int midFVal, int gkVal, int health,double salary,double transferValue){
          this.playerID = playerID;
          this.jerseyNum = jerseyNum;
          this.playerName = playerName;
@@ -59,6 +59,9 @@ public class Player extends Model{
          this.defVal = defVal;
          this.midFVal = midFVal;
          this.gkVal = gkVal;
+         this.health = health;
+         this.salary = salary;
+         this.transferValue = transferValue;
      }
      // Generic wuery helper for entity Computer with id Long
      public static Model.Finder<Long, Player> find = new Model.Finder<Long, Player>(Long.class, Player.class);

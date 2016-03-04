@@ -7,14 +7,25 @@ GET     /                           controllers.Application.index()
 GET     /fixtures                   controllers.Application.fixtures()
 POST    /upload 	controllers.Application.upload()
 GET     /leagueTable                controllers.Application.leagueTable()
-GET     /squad                      controllers.Application.squad(position: Long=0)
+GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
+GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+GET     /squad                     controllers.Application.squad(position: Long=0)
 GET     /squad/:position            controllers.Application.squad(position: Long)
 GET     /login                      controllers.Application.login()
+<<<<<<< HEAD
 GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
 GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
 #Add a player
 GET     /addPlayer                 controllers.Application.addPlayer()
 POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+=======
+
+
+#Add a player
+GET     /addPlayer                 controllers.Application.addPlayer()
+POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
 #Register
 GET     /register                               controllers.Application.register
 

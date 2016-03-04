@@ -35,9 +35,15 @@ List<Fixtures> fixture = Fixtures.findAll();
     }
     public Result upload(){
 
+<<<<<<< HEAD
     uploadFixtures();
     List<Fixtures> fixture = Fixtures.findAll();
  return ok(fixtures.render(fixture, User.getLoggedIn(session().get("userID"))));
+=======
+generateFixtures();
+List<Fixtures> fixture = Fixtures.findAll();
+ return ok(fixtures.render(fixture));
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
 
 }
 
@@ -78,6 +84,7 @@ List<Fixtures> fixture = Fixtures.findAll();
          return ok("user registered");
      }
      
+<<<<<<< HEAD
      public Result playerDB(Long position) {
         
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -112,5 +119,55 @@ List<Fixtures> fixture = Fixtures.findAll();
         
         return redirect("/");
     }
+=======
+       //fixtures upload
+ public static void generateFixtures(){
+//get file data 
+		long[] teams = {1,2,3,4,5,6};
+		int count = 1;
+		long id = 2;
+		int week = 1;
+		
+		int hScore=0;
+		int aScore=0;
+		models.Fixtures f1 ;
+		models.Fixtures[] weekFixtures = new models.Fixtures[teams.length-1];
+		ArrayList<models.Fixtures> fixtures = new ArrayList();
+		
+		for(int i = 0;i < teams.length;i++)
+		{
+			for(int j = count; j < teams.length;j++)
+			{
+			
+			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
+				f1=new models.Fixtures(id,"bing",week,teams[j],hScore,teams[i],aScore);
+				f1.save();
+				
+				
+				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
+				
+				if(week == 7)
+				{
+				week=1;
+				}
+				else
+				{
+				week++;
+				}
+			
+			}
+		
+			count++;
+			id++;
+		}
+		
+		}
 
 }
+
+
+
+
+
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
+

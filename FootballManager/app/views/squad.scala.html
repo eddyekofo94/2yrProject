@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 @(positions: List[models.Position], players: List[models.Player],team: models.Team, user: models.User)
 @main("Squad",user) {
+=======
+@(positions: List[models.Position], players: List[models.Player])
+@main("squad") {
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
 
             <!-- /.row -->
             <div class="row">
@@ -35,7 +40,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 
+=======
+                                @if(user)
+>>>>>>> 6c61e51e70807439bcc8e52a50d34bf5af775f0f
                                 @for(p <- players){
                                 <tr>
                                     <td>@p.jerseyNum</td>
