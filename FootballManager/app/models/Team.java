@@ -25,7 +25,7 @@ import com.avaje.ebean.Model;
      @Constraints.Required
      private String teamName;
      private int teamScore;   
-     @ManyToMany(mappedBy = "tlist")
+     @ManyToMany(mappedBy = "tList")
     public List<Fixtures> flist = new ArrayList<Fixtures>();
      //Default constructor
      public Team(){
