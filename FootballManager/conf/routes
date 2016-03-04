@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /fixtures                   controllers.Application.fixtures()
+POST    /upload 	controllers.Application.upload()
+GET     /leagueTable                controllers.Application.leagueTable()
+GET     /squad                      controllers.Application.squad(position: Long=0)
+GET     /squad/:position            controllers.Application.squad(position: Long)
+GET     /login                      controllers.Application.login()
+GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
+GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+#Add a player
+GET     /addPlayer                 controllers.Application.addPlayer()
+POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+#Register
+GET     /register                               controllers.Application.register
+
+#Register User
+#GET         /registerForm                    controllers.RegisterCtrl.registerForm()
+POST         /registerFormSubmit                      controllers.RegisterCtrl.registerFormSubmit()
+
+#GET         /listUsers                  controllers.RegisterCtrl.listUsers()
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+    
