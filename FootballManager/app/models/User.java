@@ -6,12 +6,31 @@ import play.data.format.*;
 import play.data.validation.*;
 import com.avaje.ebean.*;
 
+/*
+@OneToOne(mappedBy="part")
+public VendorPart getVendorPart() {
+    return vendorPart;
+}
+Here is the relationship mapping in VendorPart:
+
+@OneToOne
+@JoinColumns({
+    @JoinColumn(name="PARTNUMBER",
+        referencedColumnName="PARTNUMBER"),
+    @JoinColumn(name="PARTREVISION",
+        referencedColumnName="REVISION")
+})
+public Part getPart() {
+    return part;
+}
+ */
+
 
 @Entity
 public class User extends Model {
 
     @Id
-    public int userID;
+    public Long userID;
 
     @Constraints.Required
     public String password;
@@ -27,7 +46,7 @@ public class User extends Model {
 
     }
 
-    public User(int userID, String password, String name, String loginName) {
+    public User(Long userID, String password, String name, String loginName) {
         this.userID = userID;
         this.password = password;
         this.name = name;
