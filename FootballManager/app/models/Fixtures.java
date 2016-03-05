@@ -8,44 +8,51 @@ import com.avaje.ebean.Model;
 import play.data.format.*;
 import play.data.validation.*;
 
+
+
+
 @Entity
 public class Fixtures extends Model{
 @Id
-public int matchID;
+public long matchID;
 
 @Constraints.Required
 public String leagueName;
 
 @Constraints.Required
-public String startTime;
+public int week;
+
 @Constraints.Required
-public String endTime;
+public long homeTeamID;
 @Constraints.Required
-public int teamID;
+public long awayTeamID;
 
 public int homeScore;
 public int awayScore;
 
-@Constraints.Required
-public Boolean played;
+
+@ManyToMany(cascade = CascadeType.ALL)
+public List<Team> tList = new ArrayList<Team>();
+
 
 public Fixtures(){
 }
 
-public Fixtures(int MatchID , String leagueName, String startTime,String endTime, int teamID , int homeScore,int awayScore,Boolean Played )
+public Fixtures(long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore )
 {
 this.matchID = matchID;
 this.leagueName = leagueName;
-this.startTime = startTime;
-this.endTime = endTime;
-this.teamID = teamID;
+this.week = week;
+this.homeTeamID = homeTeamID;
 this.homeScore = homeScore;
+this.awayTeamID = awayTeamID;
 this.awayScore = awayScore;
-this.played = played;
+
 }
 public static Model.Finder<Long,Fixtures> find = new Model.Finder<Long,Fixtures>(Long.class,Fixtures.class);
 
 public static List<Fixtures> findAll(){
 return Fixtures.find.all();
 }
+
 }

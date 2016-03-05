@@ -5,11 +5,22 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /fixtures                   controllers.Application.fixtures()
+POST    /upload 	controllers.Application.upload()
 GET     /leagueTable                controllers.Application.leagueTable()
-GET     /squad                      controllers.Application.squad(position: Long=0)
+GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
+GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+GET     /squad                     controllers.Application.squad(position: Long=0)
 GET     /squad/:position            controllers.Application.squad(position: Long)
 GET     /login                      controllers.Application.login()
 
+<<<<<<< HEAD
+=======
+
+#Add a player
+GET     /addPlayer                 controllers.Application.addPlayer()
+POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+
+>>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
 #Register
 GET     /register                               controllers.Application.register
 
@@ -19,6 +30,10 @@ POST         /registerFormSubmit                      controllers.RegisterCtrl.r
 
 #GET         /listUsers                  controllers.RegisterCtrl.listUsers()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
 
 
 # Map static resources from the /public folder to the /assets URL path
