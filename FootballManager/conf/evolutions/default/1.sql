@@ -50,7 +50,7 @@ create table team (
 ;
 
 create table user (
-  user_id                   integer not null,
+  user_id                   bigint not null,
   password                  varchar(255),
   name                      varchar(255),
   login_name                varchar(255),

@@ -67,10 +67,10 @@ public class RegisterCtrl extends Controller {
         Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
-//        if (newRegisterForm.hasErrors()) {
-//            // Display the form again
-//            return badRequest(register().render(newRegisterForm));
-//        }
+        if (newRegisterForm.hasErrors()) {
+            // Display the form again
+            return badRequest(register.render(newRegisterForm));
+        }
         /*
         Map<String,String> anyData = new HashMap();
         anyData.put("email", "bob@gmail.com");
