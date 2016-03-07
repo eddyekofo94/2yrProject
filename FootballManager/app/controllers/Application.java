@@ -5,15 +5,12 @@ import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
 
-<<<<<<< HEAD
-=======
 //fixture upload imports
 import play.mvc.Http.*;
 import play.mvc.Http.MultipartFormData.FilePart;
 import java.io.*;
 import java.io.File;
 import javax.activation.MimetypesFileTypeMap;
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
 
 import play.*;
 
@@ -62,6 +59,41 @@ List<Fixtures> fixture = Fixtures.findAll();
         }
         return ok(squad.render(positions, players));
     }
+     public Result playerDB(Long position) {
+
+         List<Position> positions = Position.find.where().orderBy("position asc").findList();
+         // get the list of team attributes
+         List<Player> players = new ArrayList<Player>();
+         if(position == 0){
+             players = Player.findAll();
+         }
+         else{
+             for(int i = 0; i< positions.size();i++){
+                 if(positions.get(i).id == position){
+                     players = positions.get(i).players;
+                     break;
+                 }
+             }
+         }
+         return ok(squad.render(positions, players));
+     }
+
+     public Result addPlayer(){
+         Form<Player> addPlayerForm = Form.form(Player.class);
+         return ok(addPlayer.render(User.getLoggedIn(session().get("userID")),addPlayerForm));
+     }
+     public Result addPlayerSubmit(){
+         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
+
+         if(newPlayerForm.hasErrors()){
+             return badRequest(addPlayer.render(User.getLoggedIn(session().get("userID")),newPlayerForm));
+
+         }
+         newPlayerForm.get().save();
+         flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
+
+         return redirect("/");
+     }
     
     public Result login() {
 
@@ -71,15 +103,11 @@ List<Fixtures> fixture = Fixtures.findAll();
          //REGISTER!!!!!!!!!!!
     
     public Result register() {
-<<<<<<< HEAD
-=======
-        
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
+
             Form<User> registerForm = Form.form(User.class);
 
         return ok(register.render(registerForm));
     }
-<<<<<<< HEAD
 
 
      public Result registerFormSubmit() {
@@ -87,12 +115,8 @@ List<Fixtures> fixture = Fixtures.findAll();
          return ok("user registered");
      }
 
-}
-=======
-       public Result registerFormSubmit() {
 
-         return ok("user registered");
-     }
+
      
        //fixtures upload
  public static void generateFixtures(){
@@ -139,9 +163,3 @@ List<Fixtures> fixture = Fixtures.findAll();
 
 }
 
-
-
-
-
-
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09

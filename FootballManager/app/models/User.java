@@ -45,11 +45,11 @@ public class User extends Model {
 //        return find.where().eq("email", email).eq("password", password).findUnique();
 //    }
 
-//    public static User getLoggedIn(String id){
-//        if(id == null)
-//            return null;
-//
-//        else
-//            return find.byId(id);
-//    }
+    public static User getLoggedIn(String id){
+        if(id == null)
+            return null;
+
+        else
+            return find.byId(id);
+  }
 }
