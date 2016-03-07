@@ -69,7 +69,7 @@ public class RegisterCtrl extends Controller {
         // Check for errors (based on Product class annotations)
         if (newRegisterForm.hasErrors()) {
             // Display the form again
-            return badRequest(register.render(newRegisterForm));
+            return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
         }
         /*
         Map<String,String> anyData = new HashMap();
