@@ -4,14 +4,13 @@
 # --- !Ups
 
 create table fixtures (
-  match_id                  integer not null,
+  match_id                  bigint not null,
   league_name               varchar(255),
-  start_time                varchar(255),
-  end_time                  varchar(255),
-  team_id                   integer,
+  week                      integer,
+  home_team_id              bigint,
+  away_team_id              bigint,
   home_score                integer,
   away_score                integer,
-  played                    boolean,
   constraint pk_fixtures primary key (match_id))
 ;
 
@@ -54,12 +53,13 @@ create table user (
   password                  varchar(255),
   name                      varchar(255),
   login_name                varchar(255),
+  team_id                   integer,
   constraint pk_user primary key (user_id))
 ;
 
 
 create table fixtures_team (
-  fixtures_match_id              integer not null,
+  fixtures_match_id              bigint not null,
   team_team_id                   bigint not null,
   constraint pk_fixtures_team primary key (fixtures_match_id, team_team_id))
 ;

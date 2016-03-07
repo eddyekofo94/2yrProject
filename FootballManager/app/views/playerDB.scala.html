@@ -1,23 +1,21 @@
-@(positions: List[models.Position], players: List[models.Player],team: models.Team, user: models.User)
-@main("Squad",user) {
+@(user: models.User,positions: List[models.Position], players: List[models.Player])
+@main("PlayerDB",user) {
 
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-2">
       <div class="list-group">
 				<!-- Start of For loop - For each c in categories add a link -->
-				<a href="@routes.Application.squad(0)" class="list-group-item">All Positions</a>
-				
-                
-                @for(p <- positions) {
-          <a href="@routes.Application.squad(p.id)" class="list-group-item">@p.position</a>
+				<a href="@routes.Application.playerDB(0)" class="list-group-item">All Positions</a>
+				@for(p <- positions) {
+          <a href="@routes.Application.playerDB(p.id)" class="list-group-item">@p.position</a>
 				}
       </div>
   </div>
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            This is your current squad
+                            This is all the players in the Database
                         </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
@@ -35,7 +33,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(user.userID == team.userID){
                                 @for(p <- players){
                                 <tr>
                                     <td>@p.jerseyNum</td>
@@ -78,8 +75,7 @@
 
     </tr>
                                     }
-       }
-                                   
+                                    
     
     </tbody>
     </table>

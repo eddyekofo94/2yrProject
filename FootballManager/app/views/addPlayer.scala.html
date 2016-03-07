@@ -1,0 +1,38 @@
+@(user: models.User,addPlayerForm: Form[models.Player])
+
+@import helper._
+
+@main("New Player",user) {
+    <h3> Add a new Player</h3>
+    
+    @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){
+    @inputText(addPlayerForm("playerName"),'_label -> "Name")
+    @inputText(addPlayerForm("jerseyNum"),'_label -> "Jersey Number")
+   <!-- @inputText(addPlayerForm("s"),'_label -> "Jersey Number")-->
+   @select(
+   addPlayerForm("position.id"),
+   options(Position.options),
+   '_label -> "Position", '_dfault -> "--Choose a Position --",
+   '_showConstraints -> false, 'class -> "form-control"
+   )
+    @inputText(addPlayerForm("attVal"),'_label -> "Attacking Value")
+    @inputText(addPlayerForm("defVal"),'_label -> "Defensive Value")
+    @inputText(addPlayerForm("midFVal"),'_label -> "Midfield Value")
+    @inputText(addPlayerForm("gkVal"),'_label -> "Goalkeeping Value")
+    @inputText(addPlayerForm("health"),'_label -> "Health")
+
+    @inputText(addPlayerForm("injury"),'_label -> "Injury Status (boolean true or false)")
+    @inputText(addPlayerForm("salary"),'_label -> "Salary")
+    @inputText(addPlayerForm("transferValue"),'_label -> "Transfer Value (selling price)")
+    
+    <div class="actions">
+        <input type="submit" value="Add Player" class="btn primary">
+        <a href="@routes.Application.index()">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+     </div>       
+
+         
+ 
+    }
+}

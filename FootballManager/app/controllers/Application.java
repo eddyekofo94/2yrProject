@@ -21,27 +21,64 @@ import models.*;
 
       public Result index() {
 
-        return ok(index.render());
+        return ok(index.render(User.getLoggedIn(session().get("userID"))));
     }
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render(fixture));
+        return ok(fixtures.render(fixture, User.getLoggedIn(session().get("userID"))));
     }
 
     public Result leagueTable() {
 
-        return ok(leagueTable.render());
+        return ok(leagueTable.render(User.getLoggedIn(session().get("userID"))));
     }
     public Result upload(){
 
-uploadFixtures();
-List<Fixtures> fixture = Fixtures.findAll();
- return ok(fixtures.render(fixture));
+    
+    List<Fixtures> fixture = Fixtures.findAll();
+ return ok(fixtures.render(fixture, User.getLoggedIn(session().get("userID"))));
 
 }
 
     public Result squad(Long position) {
+        
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
+        // get the list of team attributes
+        List<Player> players = new ArrayList<Player>();
+        Team team =  new Team();
+
+        if(position == 0){
+            players = Player.findAll();
+        }
+        else{
+            for(int i = 0; i< positions.size();i++){
+                if(positions.get(i).id == position){
+                    players = positions.get(i).players;
+                    break;
+                }
+            }
+        }
+        return ok(squad.render(positions, players,team, User.getLoggedIn(session().get("userID"))));
+    }
+    
+    public Result login() {
+
+        return ok(login.render(User.getLoggedIn(session().get("userID"))));
+    }
+    
+    public Result register() {
+        
+            Form<User> registerForm = Form.form(User.class);
+
+        return ok(register.render(User.getLoggedIn(session().get("userID")),registerForm));
+    }
+       public Result registerFormSubmit() {
+
+         return ok("user registered");
+     }
+     
+     public Result playerDB(Long position) {
         
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
         // get the list of team attributes
@@ -57,54 +94,23 @@ List<Fixtures> fixture = Fixtures.findAll();
                 }
             }
         }
-        return ok(squad.render(positions, players));
+        return ok(playerDB.render(User.getLoggedIn(session().get("userID")),positions, players));
     }
-    
-    public Result login() {
-
-        return ok(login.render());
+     public Result addPlayer(){
+        Form<Player> addPlayerForm = Form.form(Player.class);
+        return ok(addPlayer.render(User.getLoggedIn(session().get("userID")),addPlayerForm));
     }
-    
-    public Result register() {
+    public Result addPlayerSubmit(){
+        Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
         
-            Form<User> registerForm = Form.form(User.class);
-
-        return ok(register.render(registerForm));
+        if(newPlayerForm.hasErrors()){
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("userID")),newPlayerForm));
+            
+        }
+        newPlayerForm.get().save();
+        flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
+        
+        return redirect("/");
     }
-       public Result registerFormSubmit() {
-
-         return ok("user registered");
-     }
-     
-       //fixtures upload
- public static void uploadFixtures(){
-//get file data 
-MultipartFormData data = request().body().asMultipartFormData();
-FilePart uploaded = data.getFile("upload");
-String fileResult = saveFile(uploaded);
-flash("success","Fixtures has been created"+fileResult);
-
-}
-
-
-//save file data
-public static String saveFile(FilePart uploaded){
-if(uploaded !=null){
-String fileName = "fixtures";
-String extension ="txt";
-String mimeType = uploaded.getContentType();
-if(mimeType.startsWith("text/")){
-//create file from data
-File file = uploaded.getFile();
-//save as fixtures.txt
-file.renameTo(new File("fixtures/",fileName + "."+ extension));
-
-return "ok";
-}
-}
-
-return "not ok";
-}
-
 
 }
