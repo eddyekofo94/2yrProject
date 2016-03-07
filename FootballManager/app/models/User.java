@@ -22,7 +22,7 @@ public class User extends Model {
     @Constraints.Required
     public String loginName;
     @OneToOne
-    public int teamID;
+    public Long teamID;
 
     public User() {
 
@@ -35,30 +35,23 @@ public class User extends Model {
         this.loginName = loginName;
     }
 
-    public static Finder<String, User> find = new Finder <String, User> (String.class, User.class); //Not Ure
+    public static Finder<String, User> find = new Finder<String, User>(String.class, User.class); //Not Ure
 
     public static List<User> findAll(){
 
         return User.find.all();
     }
 
-    public static User getLoggedIn(String userID){
-        if(userID == null){
-        return null;
-        }
-        else{
-        return find.byId(userID);
-        }
-    }
-//    public static User authenticate(String email, String password){
-//        return find.where().eq("email", email).eq("password", password).findUnique();
-//    }
+   
+  public static User authenticate(String userID, String password){
+       return find.where().eq("userID", userID).eq("password", password).findUnique();
+   }
 
-//    public static User getLoggedIn(String id){
-//        if(id == null)
-//            return null;
-//
-//        else
-//            return find.byId(id);
-//    }
+  public static User getLoggedIn(String id){
+     if(id == null)
+          return null;
+
+      else
+          return find.byId(id);
+   }
 }

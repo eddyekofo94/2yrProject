@@ -53,7 +53,7 @@ create table user (
   password                  varchar(255),
   name                      varchar(255),
   login_name                varchar(255),
-  team_id                   integer,
+  team_id                   bigint,
   constraint pk_user primary key (user_id))
 ;
 

@@ -18,7 +18,7 @@ import com.avaje.ebean.Model;
      private final int MAX_SUBS = 4;
      
      @Id
-     private Long teamID;
+     public Long teamID;
      @Constraints.Required
      @OneToOne
      public int userID;
@@ -55,6 +55,8 @@ import com.avaje.ebean.Model;
       
      // public boolean manageTeam(String newTeamName,String newPlayerPosition, String oldPlayerPosition, int newPlayerID,
      // int oldPlayerID){
-          
+     public Long getTeamID(){
+         return teamID;
+     }
       
  }
