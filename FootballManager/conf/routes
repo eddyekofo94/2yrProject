@@ -13,6 +13,10 @@ GET     /login                      controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
 GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
 GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+#Transfer Player
+GET     /transferPlayer/:id                     controllers.Application.transferPlayer(position: Long=0,id:Long)
+GET     /transferPlayer/:position/:id            controllers.Application.transferPlayer(position: Long,id:Long)
+POST    /transferPlayerSubmit/:id             controllers.Application.transferPlayerSubmit(id: Long)
 #Add a player
 GET     /addPlayer                 controllers.Application.addPlayer()
 POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()

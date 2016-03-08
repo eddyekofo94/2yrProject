@@ -44,6 +44,7 @@ import com.avaje.ebean.Model;
      public static List<Team> findAll(){
          return Team.find.all();
      }
+    
       
       //public void playMatch(){
       //    calculateMatch(); //simulates the match

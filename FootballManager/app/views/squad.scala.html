@@ -32,7 +32,7 @@
                                     <th>Health</th>
                                     <th>Training</th>
                                     <th>Position</th>
-                                    <th>Remove</th>
+                                    <th>Transfer</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,16 +76,13 @@
             <div class="col-md-6">
             </div>
             <td>
-                <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span 
+                <a href="@routes.Application.transferPlayer(0,p.playerID)" class="btn-xs btn-danger" ><span 
                             class="glyphicon glyphicon-trash"></span></a>
             </td>
             
 
         </tr>
-                                    }else{
-                      <h3>@user.name</h3>
-                      <a href="@routes.Application.login()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                      }
+                                    }
        
                                 }
     
