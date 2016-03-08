@@ -3,7 +3,7 @@
 *.log
 tmp
 dump
-
+data/teamsDB.nv.db
 # Eclipse
 .settings
 .cache
