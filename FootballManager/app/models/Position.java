@@ -38,7 +38,6 @@ public class Position extends Model{
         }
         return options;
     }
-    
     public static Finder<Long, Position> find = new Finder<Long, Position>(Long.class, Position.class);
-
+    
 }

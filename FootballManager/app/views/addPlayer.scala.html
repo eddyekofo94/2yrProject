@@ -1,8 +1,8 @@
-@(addPlayerForm: Form[models.Player])
+@(user: models.User,addPlayerForm: Form[models.Player])
 
 @import helper._
 
-@main("New Player") {
+@main("New Player",user) {
     <h3> Add a new Player</h3>
     
     @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){

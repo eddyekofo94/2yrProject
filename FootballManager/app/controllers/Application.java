@@ -21,27 +21,81 @@ import models.*;
 
       public Result index() {
 
-        return ok(index.render());
+        return ok(index.render(User.getLoggedIn(session().get("loginName"))));
     }
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render(fixture));
+        return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
     }
 
     public Result leagueTable() {
 
-        return ok(leagueTable.render());
+        return ok(leagueTable.render(User.getLoggedIn(session().get("loginName"))));
     }
     public Result upload(){
 
-generateFixtures();
-List<Fixtures> fixture = Fixtures.findAll();
- return ok(fixtures.render(fixture));
+    
+    List<Fixtures> fixture = Fixtures.findAll();
+ return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
 
 }
 
     public Result squad(Long position) {
+        
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
+        // get the list of team attributes
+        List<Player> players = new ArrayList<Player>();
+        List<Team> teams = Team.findAll();
+        List<User> users = User.findAll();
+        Team team = new Team();
+
+        
+        if(position == 0){
+            players = Player.findAll();
+        }
+        else{
+            for(int i = 0; i< positions.size();i++){
+                if(positions.get(i).id == position){
+                    players = positions.get(i).players;
+                    break;
+                }
+            }
+        }
+        
+        return ok(squad.render(positions, players,team, User.getLoggedIn(session().get("loginName"))));
+    }
+    
+    public Result login() {
+
+        return ok(login.render(Form.form(Login.class),User.getLoggedIn(session().get("loginName"))));
+    }
+    
+    public Result authenticate(){
+        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+        
+        if(loginForm.hasErrors()){
+            return badRequest(login.render(loginForm,User.getLoggedIn(session().get("loginName"))));
+        }
+        else{
+            session().clear();
+            session("userID", loginForm.get().userID);
+            return redirect(routes.Application.index());
+        }
+    }
+    
+    public Result register() {
+        
+            Form<User> registerForm = Form.form(User.class);
+
+        return ok(register.render(User.getLoggedIn(session().get("loginName")),registerForm));
+    }
+       public Result registerFormSubmit() {
+
+         return ok("user registered");
+     }
+     
+     public Result playerDB(Long position) {
         
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
         // get the list of team attributes
@@ -57,72 +111,23 @@ List<Fixtures> fixture = Fixtures.findAll();
                 }
             }
         }
-        return ok(squad.render(positions, players));
+        return ok(playerDB.render(User.getLoggedIn(session().get("loginName")),positions, players));
     }
-    
-    public Result login() {
-
-        return ok(login.render());
+     public Result addPlayer(){
+        Form<Player> addPlayerForm = Form.form(Player.class);
+        return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")),addPlayerForm));
     }
-    
-    public Result register() {
+    public Result addPlayerSubmit(){
+        Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
         
-            Form<User> registerForm = Form.form(User.class);
-
-        return ok(register.render(registerForm));
+        if(newPlayerForm.hasErrors()){
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")),newPlayerForm));
+            
+        }
+        newPlayerForm.get().save();
+        flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
+        
+        return redirect("/");
     }
-       public Result registerFormSubmit() {
-
-         return ok("user registered");
-     }
-     
-       //fixtures upload
- public static void generateFixtures(){
-//get file data 
-		long[] teams = {1,2,3,4,5,6};
-		int count = 1;
-		long id = 2;
-		int week = 1;
-		
-		int hScore=0;
-		int aScore=0;
-		models.Fixtures f1 ;
-		models.Fixtures[] weekFixtures = new models.Fixtures[teams.length-1];
-		ArrayList<models.Fixtures> fixtures = new ArrayList();
-		
-		for(int i = 0;i < teams.length;i++)
-		{
-			for(int j = count; j < teams.length;j++)
-			{
-			
-			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
-				f1=new models.Fixtures(id,"bing",week,teams[j],hScore,teams[i],aScore);
-				f1.save();
-				
-				
-				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
-				
-				if(week == 7)
-				{
-				week=1;
-				}
-				else
-				{
-				week++;
-				}
-			
-			}
-		
-			count++;
-			id++;
-		}
-		
-		}
 
 }
-
-
-
-
-
-
