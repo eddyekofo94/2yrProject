@@ -709,3 +709,15 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-187]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 82 more
+03-08 21:28:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM FIXTURES "; expected "identifier"; SQL statement:
+delete * from fixtures [42001-187]
+03-08 21:28:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM FIXTURES "; expected "identifier"; SQL statement:
+delete * from fixtures [42001-187]
+03-08 22:41:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+03-08 22:41:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
