@@ -4,15 +4,12 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
+import java.sql.*;
 
-//fixture upload imports
-import play.mvc.Http.*;
-import play.mvc.Http.MultipartFormData.FilePart;
-import java.io.*;
-import java.io.File;
-import javax.activation.MimetypesFileTypeMap;
+import play.db.*;
 
-import play.*;
+
+
 
 
 import views.html.*;
@@ -26,20 +23,109 @@ import models.*;
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
+List<Team> teams = Team.findAll();
+        return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
     }
 
     public Result leagueTable() {
 
         return ok(leagueTable.render(User.getLoggedIn(session().get("loginName"))));
     }
+    
+    
     public Result upload(){
 
-    
-    List<Fixtures> fixture = Fixtures.findAll();
- return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
+generateFixtures();
+List<Fixtures> fixture = Fixtures.findAll();
+List<Team> teams = Team.findAll();
 
+return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
 }
+
+   
+ public static void generateFixtures(){
+ 
+
+//the following statment is destructive and needs validation and admin only .
+
+for(Fixtures f : Fixtures.<Fixtures>findAll()) {
+    f.delete();
+}
+
+ //to here
+      
+ 
+      
+		ArrayList<models.Team> teams = new ArrayList() ;
+		int count = 1;
+		long id = 2;
+		int week = 1;
+		int hScore=0;
+		int aScore=0;
+		models.Fixtures f1 ;
+		
+		
+		     for(Team t : Team.<Team>findAll()) {
+		     teams.add(t);
+    		    
+		}
+		
+		
+		models.Fixtures[] weekFixtures = new models.Fixtures[teams.size()];
+		
+		
+		ArrayList<models.Fixtures> fixtures = new ArrayList();
+		
+		for(int i = 0;i < teams.size();i++)
+		{
+			for(int j = count; j < teams.size();j++)
+			{
+			
+			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
+				f1=new models.Fixtures(id,"bing",week,teams.get(i).getTeamID(),hScore,teams.get(j).getTeamID(),aScore);
+				 	
+				 	teams.get(i).flist.add(f1);
+				 	teams.get(j).flist.add(f1);
+				 	f1.tList.add(teams.get(i));
+				 	f1.tList.add(teams.get(j));
+				 	f1.save();
+				
+				
+				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
+				
+				
+				
+				f1=new models.Fixtures(id,"bing",(week+teams.size()),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
+				 	
+				 	teams.get(i).flist.add(f1);
+				 	teams.get(j).flist.add(f1);
+				 	f1.tList.add(teams.get(i));
+				 	f1.tList.add(teams.get(j));
+				 	
+				 	f1.save();
+				
+				
+				
+				
+				
+				
+				if(week == ((teams.size())))
+				{
+				week=1;
+				}
+				else
+				{
+				week++;
+				}
+			
+			}
+		
+			count++;
+			id++;
+		}
+		
+		}
+		
 
     public Result squad(Long position) {
         
