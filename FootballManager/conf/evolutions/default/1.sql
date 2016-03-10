@@ -45,19 +45,17 @@ create table team (
   user_id                   integer,
   team_name                 varchar(255),
   team_score                integer,
-  league_name               varchar(255),
   constraint pk_team primary key (team_id))
 ;
 
 create table user (
-  user_id                   bigint not null,
+  user_id                   integer not null,
   password                  varchar(255),
   name                      varchar(255),
   login_name                varchar(255),
   team_id                   bigint,
   constraint pk_user primary key (user_id))
 ;
-
 
 
 create table fixtures_team (
