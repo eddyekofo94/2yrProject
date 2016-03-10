@@ -1,23 +1,8 @@
-@(registerForm: Form[models.User])
+@(user: models.User,registerForm: Form[models.User])
 
 @import helper._
 
-@main("Register") {
-<<<<<<< HEAD
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Please enter the following details
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-
-                        @form(action = routes.RegisterCtrl.registerFormSubmit()) {
-                                <!--<form role="form">
-=======
+@main("Register",user) {
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
@@ -31,7 +16,6 @@
 
                                 @form(action = routes.RegisterCtrl.registerFormSubmit()) {
                                     <!--<form role="form">
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">user_name</span>
                                             <input type="text" class="form-control" placeholder="Username">
@@ -52,25 +36,12 @@
                                             <span class="input-group-addon">examplemail.com</span>
                                             <input type="text" class="form-control" placeholder="email">
                                         </div>-->
-<<<<<<< HEAD
-                            @inputText(registerForm("userID"), '_label -> "User ID", 'class -> "form-control")
-                            @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
-                            @inputText(registerForm("name"), '_label -> "Name", 'class -> "form-control")
-                            @inputText(registerForm("loginName"), '_label -> "login Name", 'class -> "form-control")
 
-                                <!-- Add a submit button -->
-                            <div class="actions">
-                                <input type="submit" value="Submit"  class="btn btn-primary">
-                                <a href="@routes.Application.register()">
-                                    <button class="btn btn-warning">Cancel</button>
-                                </a>
 
                                     <!--</form>-->
-=======
-                                    @inputText(registerForm("userID"), '_label -> "User ID", 'class -> "form-control")
-                                    @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
                                     @inputText(registerForm("name"), '_label -> "Name", 'class -> "form-control")
                                     @inputText(registerForm("loginName"), '_label -> "login Name", 'class -> "form-control")
+                                    @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
 
                                         <!-- Add a submit button -->
                                     <div class="actions">
@@ -86,7 +57,6 @@
 
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
                             </div>
                                 <!-- /.col-lg-6 (nested) -->
 
@@ -95,19 +65,14 @@
                             <!-- /.col-lg-6 (nested) -->
                     </div>
                         <!-- /.row (nested) -->
-                </div>
-<<<<<<< HEAD
                     <!-- /.panel-body -->
             </div>
                 <!-- /.panel -->
         </div>
             <!-- /.col-lg-12 -->
 
-}
-=======
                 <!-- /.col-lg-12 -->
 
         }
->>>>>>> 347b00272a2985f6a36c3fa5bbb02e4441ab0d09
 
 }

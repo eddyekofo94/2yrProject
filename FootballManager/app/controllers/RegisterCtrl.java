@@ -54,7 +54,7 @@ public class RegisterCtrl extends Controller {
         Form<User> registerForm = Form.form(User.class);
 
         // Render the Add User View, passing the form object
-        return ok(register.render(registerForm));   //, User.getLoggedIn(session().get("userName")))
+        return ok(register.render(User.getLoggedIn(session().get("userID")),registerForm));   //, User.getLoggedIn(session().get("userName")))
     }
 
     // Handle the form data when a new user is submitted

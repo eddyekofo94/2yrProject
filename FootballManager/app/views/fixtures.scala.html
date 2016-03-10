@@ -1,6 +1,6 @@
-@(fixtures : List[models.Fixtures])
+@(fixtures : List[models.Fixtures],team: List[models.Team],user: models.User)
 @import helper._
-@main("Fixtures") {
+@main("Fixtures",user) {
 
         
             <div class="row">
@@ -18,28 +18,43 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>League Name</th>
-                                            <th>week</th>
-                                            <th>Home Team </th>
-                                            <th>Home team Score</th>
+                                            <th>MatchID</th>
+                                             <th>Week</th>
+                                            <th>Home Team</th>
+                                            <th>Home Team Score</th>
                                             <th>Away Team</th>
                                             <th>Away Team Score</th>
+                                           
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                      @for(f <- fixtures){
                                      <tr>
-                                      <td>@f.matchID</td> 
-                                     <td>@f.leagueName</td>
-                                     <td>@f.week</td>                              
-                                    <td>@f.homeTeamID</td>
-                                    <td>@f.homeScore</td>
-                                    <td>@f.awayTeamID</td>
-                                    <td>@f.awayScore</td>
+                                     <td>@f.matchID</td>
+                                     <td>@f.week</td>
+                                     @for(t <- team){	
                                      
-                                     </tr>
+                                     	@if(t.teamID == f.homeTeamID){
+                                     	
+                                     	<td>@t.teamName</td>
+
+                                     	}
+                                     	}
+                                     
+                                     <td>@f.homeScore</td>
+                                     @for(t <- team){
+                                     @if(t.teamID == f.awayTeamID){
+                                     <td>@t.teamName</td>
                                      }
+                                     }
+                                     <td>@f.awayScore</td>
+                                     }
+                                     
+                      
+                
+                                     </tr>
+                                     
 
                                     </tbody>
                                 </table>
@@ -58,16 +73,14 @@
     
 
 <!--Fixture upload input-->
-       
+<label>Generate Fixtures</label>
+         
 
 <!-- add a submit button -->
 <div class="actions">
-
    @helper.form(action = routes.Application.upload) {
  <p>
- 
- <input class="btn btn-primary" type="submit" value="Generate Fixtures">
- </div>
+ <input class = "btn-sm btn-primary" type="submit" value="Generate Fixtures">
  </p>
 }
      
