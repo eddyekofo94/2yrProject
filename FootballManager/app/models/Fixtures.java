@@ -3,7 +3,7 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 
-import com.avaje.ebean.*;
+
 import com.avaje.ebean.Model;
 import play.data.format.*;
 import play.data.validation.*;
@@ -35,6 +35,7 @@ public int awayScore;
 public List<Team> tList = new ArrayList<Team>();
 
 
+
 public Fixtures(){
 }
 
@@ -49,10 +50,32 @@ this.awayTeamID = awayTeamID;
 this.awayScore = awayScore;
 
 }
+
+
 public static Model.Finder<Long,Fixtures> find = new Model.Finder<Long,Fixtures>(Long.class,Fixtures.class);
 
 public static List<Fixtures> findAll(){
 return Fixtures.find.all();
 }
+
+public long getHomeTeamID()
+{
+return homeTeamID;
+}
+
+public long getAwayTeamID(){
+return awayTeamID;
+
+}
+
+public int getawayScore(){
+return awayScore;
+}
+
+public int gethomeScore(){
+return homeScore;
+}
+
+
 
 }
