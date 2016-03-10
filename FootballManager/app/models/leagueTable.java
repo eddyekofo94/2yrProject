@@ -59,7 +59,7 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 {
 	for(int i = 0;i < league.size();i ++)
 	{
-	if(league.get(i).teamID == teamID)
+	if((league.get(i).teamID == teamID))
 	{
 	  league.get(i).wins += wins;
 	  league.get(i).loses += loses;
@@ -70,7 +70,10 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 	}
    }
 }
- 
+ public static void clearLeague()
+ {
+ league.clear();
+ }
  public static List<leagueTable> getLeague()
  {
  return league;

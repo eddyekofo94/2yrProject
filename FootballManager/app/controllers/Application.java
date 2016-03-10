@@ -143,6 +143,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		}
 		
 		}
+		
+		
 	public void startLeague(List<models.Team> teams)
 	{
 	
@@ -168,6 +170,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     int awayGoalDifference;
     
     
+    
+    
     	List<Fixtures> fixtureCurrent = new ArrayList();
     
    	 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
@@ -176,10 +180,13 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 
    	 for(int i = 0 ; i < fixtureCurrent.size();i++)
    	 {
+   	 if((fixtureCurrent.get(i).played ) && (fixtureCurrent.get(i).added == false) )
+   	 {
    	 homeTeamID = fixtureCurrent.get(i).getHomeTeamID();
    	 awayTeamID = fixtureCurrent.get(i).getAwayTeamID();
    	 homeScore = fixtureCurrent.get(i).gethomeScore();
    	 awayScore = fixtureCurrent.get(i).getawayScore();
+   	 
    	 
    	
    	 homeGoalDifference = homeScore- awayScore;
@@ -192,6 +199,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 
    	 models.leagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
    	 models.leagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
+   	 fixtureCurrent.get(i).added = true;
+   	 fixtureCurrent.get(i).save();
    	 }
    	 else if (homeScore < awayScore)
    	 {
@@ -199,15 +208,22 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 homePts = 0;
    	 models.leagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
    	 models.leagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
-   	 
+   	 fixtureCurrent.get(i).added = true;
+   	 fixtureCurrent.get(i).save();
    	 }
    	 else{
    	 awayPts = 0;
    	 homePts = 0;
-   	 models.leagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,0);
-   	 models.leagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,0);
+   	 models.leagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
+   	 models.leagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
+   	 fixtureCurrent.get(i).added = true;
+   	 fixtureCurrent.get(i).save();
    	 }
-   	 
+   	 }
+   	 else
+   	 {
+   	 break;
+   	 }
    	 
    	 
    	 
