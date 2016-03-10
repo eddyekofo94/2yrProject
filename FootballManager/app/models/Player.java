@@ -64,7 +64,9 @@ public class Player extends Model{
      public static Model.Finder<Long, Player> find = new Model.Finder<Long, Player>(Long.class, Player.class);
      
      public static List<Player> findAll(){
+
          return Player.find.all();
+     
      }
      /*
      public boolean getTrained(String position, int playerID){
