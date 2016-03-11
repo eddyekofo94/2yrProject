@@ -139,7 +139,7 @@ List<Fixtures> fixture = Fixtures.findAll();
         List<Player> players = new ArrayList<Player>();
       
         if(transferPlayerForm.hasErrors()){
-            return redirect("/squad/4");
+            return redirect("/squad/0");
  
         }
         int pID = 0;
@@ -151,7 +151,7 @@ List<Fixtures> fixture = Fixtures.findAll();
         Player p = transferPlayerForm.get();
         p.teamID = players.get(pID).getTeamID();
       
-        p.save();
+        p.update();
         flash("Success", "Player "+ transferPlayerForm.get().playerName+" has added to your team");
         
         return redirect("/squad/0");

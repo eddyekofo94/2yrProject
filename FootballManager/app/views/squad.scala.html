@@ -39,44 +39,39 @@
                                 
                                
                                 
-                                    @for(p <- players ){
+                                    @for(player <- players ){
                                     @if(1 == 1){
                                     <tr>
-                                        <td>@p.jerseyNum</td>
-                                        <td>@p.playerName</td>
-                                        <td>@p.teamID</td>
-                                        <td>@p.gkVal</td>
-                                        <td>@p.defVal</td>
-                                        <td>@p.midFVal</td>
-                                        <td>@p.attVal</td>
-                                        <td>@p.health</td>
+                                        <td>@player.jerseyNum</td>
+                                        <td>@player.playerName</td>
+                                        <td>@player.teamID</td>
+                                        <td>@player.gkVal</td>
+                                        <td>@player.defVal</td>
+                                        <td>@player.midFVal</td>
+                                        <td>@player.attVal</td>
+                                        <td>@player.health</td>
                                         <th class="training">
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>GoalKeeper</a>
-                    </li>
-                    <li>Defense</a>
-                    </li>
-                    <li>Midfield</a>
-                    </li>
-                    <li>Stricker (attacker)</a>
-                    </li>
+                 <ul class="dropdown-menu" >
+                    @for(p <- positions) {
+                    <li><a href="">@p.position</a></li>
+                    }
                 </ul>
             </th>
             <th class="position">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @p.position.position
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" >
                     @for(p <- positions) {
-                    <li>@p.position</li>
+                    <li><a href="@player.setPosition(p)">@p.position</a></li>
                     }
                 </ul>
             </th>
             <div class="col-md-6">
             </div>
             <td>
-                <a href="@routes.Application.transferPlayer(0,p.playerID)" class="btn-xs btn-danger" ><span 
+                <a href="@routes.Application.transferPlayer(0,player.playerID)" class="btn-xs btn-danger" ><span 
                             class="glyphicon glyphicon-trash"></span></a>
             </td>
             

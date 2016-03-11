@@ -66,11 +66,16 @@ public class Player extends Model{
      public static List<Player> findAll(){
 
          return Player.find.all();
-     
+        
      }
      
      public Team getTeamID(){
          return teamID;
+     }
+     
+     public void setPosition(Position p){
+         position = p;
+         update();
      }
      
      public static Map<String,String> options(){
@@ -82,31 +87,36 @@ public class Player extends Model{
         }
         return options;
     }
-     /*
+     
      public String getTrained(String position, int playerID){
          //train value earned to be added to position value
-         private int randomTrainVal = ranNum.nextInt(5)+1;
-         if(playerMaxed(playerID) == true){
+         int randomTrainVal = ranNum.nextInt(5)+1;
+         if(playerMaxed() == true){
+             
              return "Player already fully trained in this position "+position;
          }
          else if(randomTrainVal <= 2){
              return "Unable to train this player this time!";
-         }
+            
+        }
          else if(randomTrainVal <= 4){
-             addTrainVal(randomTrainVal);
+             addTrainVal(position,randomTrainVal);
              deductHealth(ranNum.nextInt(4)+1);;
              injury = getInjured(health);
-             return true;
+             save();
+             return "Player trained";
          }
          else{
-             addTrainVal(randomTrainVal);
+             addTrainVal(position,randomTrainVal);
              deductHealth(ranNum.nextInt(4 - 5)+1);
              injury = getInjured(health);
-             return true;
+             save();
+              return "Player trained";
          }
-     }*/
+         
+     }
      
-     /*public boolean getInjured(int health){
+     public boolean getInjured(int health){
          final int INJURY_LEVEL = 4;
          if(health <= INJURY_LEVEL ){
              return true;
@@ -114,8 +124,8 @@ public class Player extends Model{
          else{
              return false;
          }
-     }*/
-     /*public void addTrainVal(String position,int trainVal){
+     }
+     public void addTrainVal(String position,int trainVal){
          final int MAX_VAL = 10;
          int overMaxVal;
          int positionVal = getPositionVal(position);
@@ -128,21 +138,24 @@ public class Player extends Model{
                  setPositionVal((trainVal-overMaxVal),position);
              }
          }
-     }*/
-     /*public int getPositionVal(String position){
-         Switch(position){
-             case "Goalkeeper": return gkVal;
-                                break;
-             case "Defense": return defVal;
-                            break;
-              case "Midfield": return midFVal;
-                                break;
-              case "Striker": return attVal;
-                                break;                                             
-         }  
-     }*/
-    /* public void setPositionVal(int trainVal, String position){
-         Switch(position){
+     }
+     public int getPositionVal(String position){
+         
+             if(position.equals("Goalkeeper")){
+                  return gkVal;
+             }
+             else if(position.equals("Defense")){
+                 return defVal;
+             }
+              else if(position.equals("Midfield")){
+                 return midFVal;
+             }
+             else{
+                 return attVal;
+             }                                            
+     }
+    public void setPositionVal(int trainVal, String position){
+         switch(position){
              case "Goalkeeper": gkVal += trainVal;
                                 break;
              case "Defense":  defVal+= trainVal;
@@ -152,9 +165,9 @@ public class Player extends Model{
               case "Striker":  attVal+= trainVal;
                                 break;                                             
          }  
-     }*/
+     }
      
-   /* public void deductHealth(int healthLose){
+   public void deductHealth(int healthLose){
          int negativeHealth;
          if((health - healthLose) < 0){
              negativeHealth = health - healthLose;
@@ -163,8 +176,8 @@ public class Player extends Model{
          else{
              health -= healthLose;
          }
-     }*/
-     /*public void playerHealthyTest(){
+     }
+     public void playerHealthyTest(){
          final int INJURY_LEVEL =4;
          final int MAX_HEALTH = 10;
          if(health > 4 && health < MAX_HEALTH){
@@ -173,5 +186,15 @@ public class Player extends Model{
          else{
              injury = true;
          }
-     }*/
+     }
+     public boolean playerMaxed(){
+         final int MAX_HEALTH = 10;
+         if(health == MAX_HEALTH){
+             return true;
+         }
+         else{
+             return false;
+             
+         }
+     }
 }   
