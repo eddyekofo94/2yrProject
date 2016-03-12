@@ -14,7 +14,10 @@ import play.db.*;
 
 import views.html.*;
 import models.*;
- public class Application extends Controller {
+
+import static models.leagueTable.clearLeague;
+
+public class Application extends Controller {
 
       public Result index() {
 
@@ -30,6 +33,10 @@ List<Team> teams = Team.findAll();
     public Result leagueTable() {
     List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
+        startLeague(teams);
+        updateLeague();
+
+
 
         return ok(views.html.leagueTable.render(fixture,teams,models.leagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
     }
@@ -42,7 +49,7 @@ generateFixtures();
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
 
-startLeague(teams);
+
 
 return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
 }
@@ -68,6 +75,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
 
 
+
  //to here
       
  
@@ -87,7 +95,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		     teams.add(t);
     		    
 		}
-		
+
 		
 		models.Fixtures[] weekFixtures = new models.Fixtures[teams.size()];
 		
@@ -168,19 +176,26 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     
      int awayPts;
     int awayGoalDifference;
-    
+
     
     
     
     	List<Fixtures> fixtureCurrent = new ArrayList();
-    
+
+
+        for(int l =0; l < models.leagueTable.getLeague().size();l++)
+        {
+            models.leagueTable.getLeague().get(l).resetLeague();
+        }
+
    	 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     	fixtureCurrent.add(f);
    	 }
-   	 
+
+
    	 for(int i = 0 ; i < fixtureCurrent.size();i++)
    	 {
-   	 if((fixtureCurrent.get(i).played ) && (fixtureCurrent.get(i).added == false) )
+   	 if((fixtureCurrent.get(i).played )== true )
    	 {
    	 homeTeamID = fixtureCurrent.get(i).getHomeTeamID();
    	 awayTeamID = fixtureCurrent.get(i).getAwayTeamID();
@@ -199,7 +214,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 
    	 models.leagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
    	 models.leagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
-   	 fixtureCurrent.get(i).added = true;
+
    	 fixtureCurrent.get(i).save();
    	 }
    	 else if (homeScore < awayScore)
@@ -208,7 +223,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 homePts = 0;
    	 models.leagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
    	 models.leagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
-   	 fixtureCurrent.get(i).added = true;
+
    	 fixtureCurrent.get(i).save();
    	 }
    	 else{
@@ -216,7 +231,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 homePts = 0;
    	 models.leagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
    	 models.leagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
-   	 fixtureCurrent.get(i).added = true;
+
    	 fixtureCurrent.get(i).save();
    	 }
    	 }

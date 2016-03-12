@@ -57,6 +57,7 @@ league.add(this);
 
 public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,int pts)
 {
+
 	for(int i = 0;i < league.size();i ++)
 	{
 	if((league.get(i).teamID == teamID))
@@ -70,6 +71,15 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 	}
    }
 }
+
+	public  void resetLeague()
+	{
+		this.wins = 0;
+		this.loses = 0;
+		this.draws = 0;
+		this.goalDifference = 0;
+		this.pts = 0;
+	}
  public static void clearLeague()
  {
  league.clear();

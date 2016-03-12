@@ -3,7 +3,11 @@
 *.log
 tmp
 dump
-data/teamsDB.nv.db
+data/teamsDB.mv.db
+FootballManager/data/teamsDB.trace.db
+data/teamsDB
+
+
 # Eclipse
 .settings
 .cache
@@ -11,6 +15,8 @@ data/teamsDB.nv.db
 .classpath
 .scala_dependencies
 bin
+nbproject
+.idea
 
 # SBT
 project/boot
@@ -22,3 +28,5 @@ target
 # Play
 logs
 RUNNING_PID
+
+data/

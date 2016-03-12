@@ -12,7 +12,6 @@ create table fixtures (
   home_score                integer,
   away_score                integer,
   played                    boolean,
-  added                     boolean,
   constraint pk_fixtures primary key (match_id))
 ;
 

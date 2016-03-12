@@ -30,7 +30,7 @@ public long awayTeamID;
 public int homeScore;
 public int awayScore;
 public boolean played;
-public boolean added;
+
 
 
 @ManyToMany(cascade = CascadeType.ALL)
@@ -51,7 +51,7 @@ this.homeScore = homeScore;
 this.awayTeamID = awayTeamID;
 this.awayScore = awayScore;
 this.played = false;
-this.added = false;
+
 
 }
 
