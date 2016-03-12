@@ -2,7 +2,7 @@ package models;
 import com.avaje.ebean.Model;
 import java.util.*;
 
-public class leagueTable extends Model {
+public class LeagueTable extends Model {
 
 public Long teamID;
 public String teamName;
@@ -11,10 +11,10 @@ public int loses ;
 public int draws;
 public int goalDifference;
 public int pts;
-public static List<leagueTable> league = new ArrayList();
+public static List<LeagueTable> league = new ArrayList();
 
 
-public leagueTable(Long teamID)
+public LeagueTable(Long teamID)
 {
 this.teamID = teamID;
 this.wins = 0;
@@ -24,7 +24,7 @@ this.goalDifference = 0;
 this.pts = 0;
 
 }
-public leagueTable(Long teamID,int wins,int loses,int draws,int goalDifference,int pts)
+public LeagueTable(Long teamID,int wins,int loses,int draws,int goalDifference,int pts)
 {
 this.teamID = teamID;
 this.wins = wins;
@@ -84,7 +84,7 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
  {
  league.clear();
  }
- public static List<leagueTable> getLeague()
+ public static List<LeagueTable> getLeague()
  {
  return league;
  }

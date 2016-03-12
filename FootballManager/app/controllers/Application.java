@@ -15,7 +15,7 @@ import play.db.*;
 import views.html.*;
 import models.*;
 
-import static models.leagueTable.clearLeague;
+import static models.LeagueTable.clearLeague;
 
 public class Application extends Controller {
 
@@ -38,7 +38,7 @@ List<Team> teams = Team.findAll();
 
 
 
-        return ok(views.html.leagueTable.render(fixture,teams,models.leagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
+        return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
     }
     
     
@@ -58,7 +58,7 @@ public Result LeagueUpdate(){
 updateLeague();
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
-return ok(views.html.leagueTable.render(fixture,teams,models.leagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
+return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
 
 }
    
@@ -158,7 +158,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 	
 	for(int i = 0;i < teams.size();i++)
 	{
-	models.leagueTable league = new models.leagueTable(teams.get(i).getTeamID());
+	models.LeagueTable league = new models.LeagueTable(teams.get(i).getTeamID());
 	league.addTeam();
 	}
 	 
@@ -183,9 +183,9 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     	List<Fixtures> fixtureCurrent = new ArrayList();
 
 
-        for(int l =0; l < models.leagueTable.getLeague().size();l++)
+        for(int l =0; l < models.LeagueTable.getLeague().size();l++)
         {
-            models.leagueTable.getLeague().get(l).resetLeague();
+            models.LeagueTable.getLeague().get(l).resetLeague();
         }
 
    	 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
@@ -212,8 +212,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 homePts = 2;
    	 awayPts = 0;
    	 
-   	 models.leagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
-   	 models.leagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
+   	 models.LeagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
+   	 models.LeagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
 
    	 fixtureCurrent.get(i).save();
    	 }
@@ -221,16 +221,16 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 {
    	 awayPts = 2;
    	 homePts = 0;
-   	 models.leagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
-   	 models.leagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
+   	 models.LeagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
+   	 models.LeagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
 
    	 fixtureCurrent.get(i).save();
    	 }
    	 else{
    	 awayPts = 0;
    	 homePts = 0;
-   	 models.leagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
-   	 models.leagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
+   	 models.LeagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
+   	 models.LeagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
 
    	 fixtureCurrent.get(i).save();
    	 }
