@@ -28,7 +28,7 @@ public class Match {
     {
         this.homeTeamScore = homeTeamScore;
         this.awayTeamScore = awayTeamScore;
-        this.currWeek = week;
+        this.curWeek = week;
     }
 
     public int[] calcMatch()
