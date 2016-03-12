@@ -113,6 +113,8 @@ List<Fixtures> fixture = Fixtures.findAll();
         }
         return ok(playerDB.render(User.getLoggedIn(session().get("loginName")),positions, players));
     }
+    
+   
     public Result transferPlayer(Long position,Long id) {
         Form<Player> transferPlayerForm = Form.form(Player.class);
         List<Position> positions = Position.find.where().orderBy("position asc").findList();

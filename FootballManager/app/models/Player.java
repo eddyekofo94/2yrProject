@@ -75,7 +75,7 @@ public class Player extends Model{
      
      public void setPosition(Position p){
          position = p;
-         update();
+         save();
      }
      
      public static Map<String,String> options(){
@@ -88,15 +88,15 @@ public class Player extends Model{
         return options;
     }
      
-     public String getTrained(String position, int playerID){
+     public void getTrained(String position){
          //train value earned to be added to position value
          int randomTrainVal = ranNum.nextInt(5)+1;
          if(playerMaxed() == true){
              
-             return "Player already fully trained in this position "+position;
+             //return "Player already fully trained in this position "+position;
          }
          else if(randomTrainVal <= 2){
-             return "Unable to train this player this time!";
+            // return "Unable to train this player this time!";
             
         }
          else if(randomTrainVal <= 4){
@@ -104,14 +104,14 @@ public class Player extends Model{
              deductHealth(ranNum.nextInt(4)+1);;
              injury = getInjured(health);
              save();
-             return "Player trained";
+            // return "Player trained";
          }
          else{
              addTrainVal(position,randomTrainVal);
-             deductHealth(ranNum.nextInt(4 - 5)+1);
+             deductHealth(ranNum.nextInt(5)+2);
              injury = getInjured(health);
              save();
-              return "Player trained";
+             // return "Player trained";
          }
          
      }

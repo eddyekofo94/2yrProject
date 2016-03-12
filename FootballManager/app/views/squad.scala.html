@@ -55,7 +55,7 @@
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
                     @for(p <- positions) {
-                    <li><a href="">@p.position</a></li>
+                    <li><a href="@player.getTrained(p.position)">@p.position</a></li>
                     }
                 </ul>
             </th>
