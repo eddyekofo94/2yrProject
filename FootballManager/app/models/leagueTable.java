@@ -2,7 +2,7 @@ package models;
 import com.avaje.ebean.Model;
 import java.util.*;
 
-public class leagueTable extends Model {
+public class LeagueTable extends Model implements Comparable<LeagueTable> {
 
 public Long teamID;
 public String teamName;
@@ -11,10 +11,10 @@ public int loses ;
 public int draws;
 public int goalDifference;
 public int pts;
-public static List<leagueTable> league = new ArrayList();
+public static List<LeagueTable> league = new ArrayList();
 
 
-public leagueTable(Long teamID)
+public LeagueTable(Long teamID)
 {
 this.teamID = teamID;
 this.wins = 0;
@@ -24,7 +24,7 @@ this.goalDifference = 0;
 this.pts = 0;
 
 }
-public leagueTable(Long teamID,int wins,int loses,int draws,int goalDifference,int pts)
+public LeagueTable(Long teamID,int wins,int loses,int draws,int goalDifference,int pts)
 {
 this.teamID = teamID;
 this.wins = wins;
@@ -57,6 +57,7 @@ league.add(this);
 
 public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,int pts)
 {
+
 	for(int i = 0;i < league.size();i ++)
 	{
 	if((league.get(i).teamID == teamID))
@@ -66,18 +67,36 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 	  league.get(i).draws += draws;
 	  league.get(i).goalDifference += gd;
 	  league.get(i).pts += pts;
+
+
 	  
 	}
+
    }
+	Collections.sort(league);
 }
+
+	public  void resetLeague()
+	{
+		this.wins = 0;
+		this.loses = 0;
+		this.draws = 0;
+		this.goalDifference = 0;
+		this.pts = 0;
+	}
  public static void clearLeague()
  {
  league.clear();
  }
- public static List<leagueTable> getLeague()
+ public static List<LeagueTable> getLeague()
  {
  return league;
  }
+
+	public int compareTo(LeagueTable l1)
+	{
+		return l1.pts - this.pts;
+	}
 
 }
 

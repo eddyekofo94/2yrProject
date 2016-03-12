@@ -12,7 +12,7 @@ import play.data.validation.*;
 
 
 @Entity
-public class Fixtures extends Model{
+public class Fixtures extends Model implements Comparable<Fixtures>{
 @Id
 public long matchID;
 
@@ -30,7 +30,7 @@ public long awayTeamID;
 public int homeScore;
 public int awayScore;
 public boolean played;
-public boolean added;
+
 
 
 @ManyToMany(cascade = CascadeType.ALL)
@@ -51,7 +51,7 @@ this.homeScore = homeScore;
 this.awayTeamID = awayTeamID;
 this.awayScore = awayScore;
 this.played = false;
-this.added = false;
+
 
 }
 
@@ -80,6 +80,12 @@ public int gethomeScore(){
 return homeScore;
 }
 
+@Override
+    public int compareTo (Fixtures f1) {
+
+
+        return  this.week-f1.week;
+    }
 
 
 }
