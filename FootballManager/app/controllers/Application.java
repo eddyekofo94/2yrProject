@@ -7,6 +7,7 @@ import play.data.Form.*;
 import java.sql.*;
 
 import play.db.*;
+import java.util.*;
 
 
 
@@ -27,6 +28,7 @@ public class Application extends Controller {
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
+        Collections.sort(fixture);
         return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
     }
 
@@ -57,7 +59,10 @@ return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginNa
 public Result LeagueUpdate(){
 updateLeague();
 List<Fixtures> fixture = Fixtures.findAll();
-List<Team> teams = Team.findAll();
+
+    Collections.sort(fixture);
+
+            List < Team > teams = Team.findAll();
 return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
 
 }
@@ -121,7 +126,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 				
 				
 				
-				f1=new models.Fixtures(id,"bing",(week+teams.size()),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
+				f1=new models.Fixtures(id,"bing",(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
 				 	
 				 	teams.get(i).flist.add(f1);
 				 	teams.get(j).flist.add(f1);
@@ -135,7 +140,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 				
 				
 				
-				if(week == ((teams.size())))
+				if(week == ((teams.size()+1)))
 				{
 				week=1;
 				}

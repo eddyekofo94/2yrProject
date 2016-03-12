@@ -12,7 +12,7 @@ import play.data.validation.*;
 
 
 @Entity
-public class Fixtures extends Model{
+public class Fixtures extends Model implements Comparable<Fixtures>{
 @Id
 public long matchID;
 
@@ -80,6 +80,12 @@ public int gethomeScore(){
 return homeScore;
 }
 
+@Override
+    public int compareTo (Fixtures f1) {
+
+
+        return  this.week-f1.week;
+    }
 
 
 }

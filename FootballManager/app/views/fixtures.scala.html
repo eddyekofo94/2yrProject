@@ -24,42 +24,69 @@
                             <th>Home Team Score</th>
                             <th>Away Team</th>
                             <th>Away Team Score</th>
-                            <th>Played</th>
+
 
 
                         </tr>
                         </thead>
                         <tbody>
-                        @for(f <- fixtures){
-                        <tr>
+                        @for(f <- fixtures) {
+                            @if(f.played ){
 
 
-                            <td>@f.matchID</td>
-                            <td>@f.week</td>
-                            @for(t <- team){
+                            <tr>
 
-                            @if(t.teamID == f.homeTeamID){
+                                <td id="redfont">@f.matchID</td>
+                            <td id="redfont">@f.week</td>
+                            @for(t <- team) {
 
-                            <td>@t.teamName</td>
+                                @if(t.teamID == f.homeTeamID) {
 
-                            }
-                            }
+                                    <td id = "redfont">@t.teamName</td>
 
-                            <td>@f.homeScore</td>
-                            @for(t <- team){
-                            @if(t.teamID == f.awayTeamID){
-                            <td>@t.teamName</td>
-                            }
-                            }
-                            <td>@f.awayScore</td>
-                            <td>@f.played</td>
-
+                                }
                             }
 
+                            <td id = "redfont">@f.homeScore</tdid>
+                            @for(t <- team) {
+                                @if(t.teamID == f.awayTeamID) {
+                                    <td id = "redfont">@t.teamName</td>
+                                }
+                            }
+                            <td id = "redfont">@f.awayScore</td>
 
-                        </tr>
+                            </tr>
+                                </div>
+
+                            }else{
+                                <tr>
+
+                                    <td>@f.matchID</td>
+                                    <td>@f.week</td>
+                                    @for(t <- team) {
+
+                                        @if(t.teamID == f.homeTeamID) {
+
+                                            <td>@t.teamName</td>
+
+                                        }
+                                    }
+
+                                    <td>@f.homeScore</td>
+                                    @for(t <- team) {
+                                        @if(t.teamID == f.awayTeamID) {
+                                            <td>@t.teamName</td>
+                                        }
+                                    }
+                                    <td>@f.awayScore</td>
+
+                                </tr>
+
+                            }
 
 
+
+                        }
                         </tbody>
                     </table>
                 </div>
