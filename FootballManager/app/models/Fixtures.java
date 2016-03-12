@@ -82,10 +82,10 @@ return homeScore;
 
 @Override
     public int compareTo (Fixtures f1) {
+    //sort by week
+        return this.week - f1.week;
+}
 
-
-        return  this.week-f1.week;
-    }
 
 
 }

@@ -68,8 +68,6 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 	  league.get(i).goalDifference += gd;
 	  league.get(i).pts += pts;
 
-
-	  
 	}
 
    }
@@ -84,6 +82,8 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 		this.goalDifference = 0;
 		this.pts = 0;
 	}
+
+
  public static void clearLeague()
  {
  league.clear();
@@ -95,7 +95,18 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 
 	public int compareTo(LeagueTable l1)
 	{
-		return l1.pts - this.pts;
+		int result;
+		//check if points are the same
+		if(l1.pts != this.pts) {
+			result = l1.pts - this.pts;
+		}
+        //if they are sort by goalDifference
+		else
+		{
+			result = l1.goalDifference - this.goalDifference;
+		}
+		return result;
+
 	}
 
 }

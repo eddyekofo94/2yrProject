@@ -3,7 +3,8 @@ package models;
 import java.util.Random;
 
 /**
- * Created by cytex on 12/03/2016.
+ * Created by Phillip on 12/03/2016.
+ * to calc the match result
  */
 public class Match {
 
@@ -13,16 +14,11 @@ public class Match {
     private int homeTeamScore;
     private int awayTeamScore;
     private int[] scores = new int[2];
-    private int winnerScore;
-    private int loserScore;
     private int homeTeamRand;
     private int awayTeamRand;
     private int drawScoreRand;
-    private int loserRandScore;
-    private int finalHomeScore;
-    private int finalAwayScore;
 
-    Random rand = new Random();
+     private Random rand = new Random();
 
     public Match(int homeTeamScore,int awayTeamScore)
     {
@@ -35,7 +31,7 @@ public class Match {
     {
         homeTeamRand = rand.nextInt((99)+1)+homeTeamScore;
         awayTeamRand = rand.nextInt((99)+1)+awayTeamScore;
-//check if the two numbers are the same if so it is a draw
+        //check if the two numbers are the same if so it is a draw
         if(homeTeamRand == awayTeamRand )
         {
           drawScoreRand = rand.nextInt(3);
@@ -44,7 +40,7 @@ public class Match {
         }
         //else it is not a draw so find out who won check if homeTeam won
         else if(homeTeamRand > awayTeamRand){
-            scores[0] = homeTeamRand -awayTeamRand;
+            scores[0] = homeTeamRand - awayTeamRand;
             scores[1] = rand.nextInt(scores[0]);
         }
         //else away team won
