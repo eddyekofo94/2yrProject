@@ -2,7 +2,7 @@ package models;
 import com.avaje.ebean.Model;
 import java.util.*;
 
-public class LeagueTable extends Model {
+public class LeagueTable extends Model implements Comparable<LeagueTable> {
 
 public Long teamID;
 public String teamName;
@@ -67,9 +67,13 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
 	  league.get(i).draws += draws;
 	  league.get(i).goalDifference += gd;
 	  league.get(i).pts += pts;
+
+
 	  
 	}
+
    }
+	Collections.sort(league);
 }
 
 	public  void resetLeague()
@@ -88,6 +92,11 @@ public static void updateLeague(Long teamID,int wins,int loses,int draws,int gd,
  {
  return league;
  }
+
+	public int compareTo(LeagueTable l1)
+	{
+		return l1.pts - this.pts;
+	}
 
 }
 

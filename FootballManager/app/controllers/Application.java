@@ -40,6 +40,7 @@ List<Team> teams = Team.findAll();
 
 
 
+
         return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
     }
     
@@ -51,7 +52,7 @@ generateFixtures();
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
 
-
+Collections.sort(fixture);
 
 return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
 }
@@ -60,7 +61,7 @@ public Result LeagueUpdate(){
 updateLeague();
 List<Fixtures> fixture = Fixtures.findAll();
 
-    Collections.sort(fixture);
+
 
             List < Team > teams = Team.findAll();
 return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
