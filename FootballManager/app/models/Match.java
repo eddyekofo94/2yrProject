@@ -9,8 +9,8 @@ import java.util.Random;
 public class Match {
 
 
-    private static int week = 1;
-    private int curWeek;
+
+
     private int homeTeamScore;
     private int awayTeamScore;
     private int[] scores = new int[2];
@@ -24,13 +24,17 @@ public class Match {
     {
         this.homeTeamScore = homeTeamScore;
         this.awayTeamScore = awayTeamScore;
-        this.curWeek = week;
+
     }
 
-    public int[] calcMatch()
+    public int[] getScores() {
+        return scores;
+    }
+
+    public void calcMatch()
     {
-        homeTeamRand = rand.nextInt((99)+1)+homeTeamScore;
-        awayTeamRand = rand.nextInt((99)+1)+awayTeamScore;
+        homeTeamRand = rand.nextInt((10))+homeTeamScore;
+        awayTeamRand = rand.nextInt((10))+awayTeamScore;
         //check if the two numbers are the same if so it is a draw
         if(homeTeamRand == awayTeamRand )
         {
@@ -51,8 +55,6 @@ public class Match {
             scores[0] = rand.nextInt(scores[1]);
         }
 
-
-        return scores;
     }
 
 
