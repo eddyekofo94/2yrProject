@@ -67,7 +67,12 @@ public long getHomeTeamID()
 return homeTeamID;
 }
 
-public long getAwayTeamID(){
+    public int getWeek() {
+        return week;
+    }
+
+    public long getAwayTeamID(){
+
 return awayTeamID;
 
 }
@@ -82,10 +87,23 @@ return homeScore;
 
 @Override
     public int compareTo (Fixtures f1) {
+    //sort by week
+        return this.week - f1.week;
+}
 
-
-        return  this.week-f1.week;
+    public void setWeek(int week) {
+        this.week = week;
     }
 
+    public void setHomeScore(int homeScore) {
+        this.homeScore = homeScore;
+    }
 
+    public void setAwayScore(int awayScore) {
+        this.awayScore = awayScore;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
+    }
 }

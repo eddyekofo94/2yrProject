@@ -58,5 +58,8 @@ import com.avaje.ebean.Model;
      public Long getTeamID(){
          return teamID;
      }
-      
- }
+
+    public int getTeamScore() {
+        return teamScore;
+    }
+}
