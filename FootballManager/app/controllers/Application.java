@@ -11,12 +11,12 @@ import java.util.*;
 
 
 
-
-
 import views.html.*;
+
+
 import models.*;
 
-import static models.LeagueTable.clearLeague;
+
 
 public class Application extends Controller {
 
@@ -76,6 +76,7 @@ return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeag
 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     f.delete();
 }
+     MatchCtrl.setCurWeek(1);
 
 
 
