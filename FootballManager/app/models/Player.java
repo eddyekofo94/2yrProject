@@ -73,8 +73,14 @@ public class Player extends Model{
          return teamID;
      }
      
-     public void setPosition(Position p){
-         position = p;
+     public void setPosition(String p){
+         List<Position> positions = Position.findAll();
+         for(int i=0; i<positions.size();i++){
+             if(positions.get(i).position.equals(p)){
+                 position = positions.get(i);
+             }
+         }
+         
          save();
      }
      
@@ -91,12 +97,12 @@ public class Player extends Model{
      public void getTrained(String position){
          //train value earned to be added to position value
          int randomTrainVal = ranNum.nextInt(5)+1;
-         if(playerMaxed() == true){
+         if(playerMaxed(position) == true && injury == true){
              
              //return "Player already fully trained in this position "+position;
          }
          else if(randomTrainVal <= 2){
-            // return "Unable to train this player this time!";
+            //return "Unable to train this player this time!";
             
         }
          else if(randomTrainVal <= 4){
@@ -104,14 +110,14 @@ public class Player extends Model{
              deductHealth(ranNum.nextInt(4)+1);;
              injury = getInjured(health);
              save();
-            // return "Player trained";
+           // return "Player trained";
          }
          else{
              addTrainVal(position,randomTrainVal);
              deductHealth(ranNum.nextInt(5)+2);
              injury = getInjured(health);
              save();
-             // return "Player trained";
+            // return "Player trained";
          }
          
      }
@@ -187,14 +193,28 @@ public class Player extends Model{
              injury = true;
          }
      }
-     public boolean playerMaxed(){
+     public boolean playerMaxed(String position){
          final int MAX_HEALTH = 10;
-         if(health == MAX_HEALTH){
-             return true;
+         if(position.equals("Goalkeeper")){
+                  if(gkVal == MAX_HEALTH){
+                      return true;
+             }
+             else if(position.equals("Defense")){
+                   if(defVal == MAX_HEALTH){
+                      return true;
+             }
+             }
+              else if(position.equals("Midfield")){
+                   if(midFVal == MAX_HEALTH){
+                      return true;
+             }
+             }
+             else if(position.equals("Striker")){
+                  if(attVal == MAX_HEALTH){
+                      return true;
+                }
+             }
          }
-         else{
-             return false;
-             
-         }
+         return false;    
      }
 }   

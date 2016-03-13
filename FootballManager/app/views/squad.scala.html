@@ -50,22 +50,24 @@
                                         <td>@player.midFVal</td>
                                         <td>@player.attVal</td>
                                         <td>@player.health</td>
-                                        <th class="training">
+                                        <th>
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
-                    @for(p <- positions) {
-                    <li><a href="@player.getTrained(p.position)">@p.position</a></li>
-                    }
+                   <li><a href="@player.getTrained("Goalkeeper")">Goalkeeper</a></li>
+                    <li><a href="@player.getTrained("Defence")">Defence</a></li>
+                    <li><a href="@player.getTrained("Midfield")">Midfield</a></li>
+                    <li><a href="@player.getTrained("Striker")">Striker</a></li>
                 </ul>
             </th>
             <th class="position">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" >
-                    @for(p <- positions) {
-                    <li><a href="@player.setPosition(p)">@p.position</a></li>
-                    }
+                    <li><a href="@player.setPosition("Goalkeeper")">Goalkeeper</a></li>
+                    <li><a href="@player.setPosition("Defence")">Defence</a></li>
+                    <li><a href="@player.setPosition("Midfield")">Midfield</a></li>
+                    <li><a href="@player.setPosition("Striker")">Striker</a></li>
                 </ul>
             </th>
             <div class="col-md-6">
