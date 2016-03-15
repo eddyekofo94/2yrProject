@@ -58,7 +58,6 @@ List<Fixtures> fixture = Fixtures.findAll();
             for(int i = 0; i< positions.size();i++){
                 if(positions.get(i).id == position){
                     players = positions.get(i).players;
-                    break;
                 }
             }
         }

@@ -29,8 +29,11 @@ POST         /registerFormSubmit                      controllers.RegisterCtrl.r
 
 #GET         /listUsers                  controllers.RegisterCtrl.listUsers()
 
+#getTrained
+GET     /getTrained/:position/:player         controllers.PlayerCtrl.getTrained(position:String , player: Long)
 
-
+#setPosition
+GET     /setPosition/:position/:player         controllers.PlayerCtrl.setPosition(position:String , player: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -17,7 +17,7 @@
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            This is your current squad 
+                            is your current squad 
                         </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
@@ -30,6 +30,7 @@
                                     <th>Mid</th>
                                     <th>Atck</th>
                                     <th>Health</th>
+                                    <th>Injured</th>
                                     <th>Training</th>
                                     <th>Position</th>
                                     <th>Transfer</th>
@@ -50,30 +51,35 @@
                                         <td>@player.midFVal</td>
                                         <td>@player.attVal</td>
                                         <td>@player.health</td>
+                                        <th>@if(player.injury == true){
+                                            Yes
+                                            }else{
+                                            No
+                                            }
                                         <th>
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
-                   <li><a href="@player.getTrained("Goalkeeper")">Goalkeeper</a></li>
-                    <li><a href="@player.getTrained("Defence")">Defence</a></li>
-                    <li><a href="@player.getTrained("Midfield")">Midfield</a></li>
-                    <li><a href="@player.getTrained("Striker")">Striker</a></li>
+                   <li><a href="@routes.PlayerCtrl.getTrained("Goalkeeper",player.playerID)">Goalkeeper</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Defense",player.playerID)">Defense</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Midfield",player.playerID)">Midfield</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Striker",player.playerID)">Striker</a></li>
                 </ul>
             </th>
             <th class="position">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" >
-                    <li><a href="@player.setPosition("Goalkeeper")">Goalkeeper</a></li>
-                    <li><a href="@player.setPosition("Defence")">Defence</a></li>
-                    <li><a href="@player.setPosition("Midfield")">Midfield</a></li>
-                    <li><a href="@player.setPosition("Striker")">Striker</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper",player.playerID)">Goalkeeper</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Defense",player.playerID)">Defense</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Midfield",player.playerID)">Midfield</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Striker",player.playerID)">Striker</a></li>
                 </ul>
             </th>
             <div class="col-md-6">
             </div>
             <td>
-                <a href="@routes.Application.transferPlayer(0,player.playerID)" class="btn-xs btn-danger" ><span 
+                <a href="@routes.Application.transferPlayer(player.position.id,player.playerID)" class="btn-xs btn-danger" ><span 
                             class="glyphicon glyphicon-trash"></span></a>
             </td>
             
@@ -85,6 +91,8 @@
     
     </tbody>
     </table>
+   
+    
     <!-- /.panel-body -->
     </div>
     <!-- /.panel -->
