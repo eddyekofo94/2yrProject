@@ -5,7 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /fixtures                   controllers.Application.fixtures()
-POST    /upload 	controllers.Application.upload()
+GET    /upload 				controllers.Application.fixtures()
+POST    /upload 		controllers.Application.upload()
+POST    /match 		controllers.MatchCtrl.Match()
+GET   /LeagueUpdate        	controllers.Application.leagueTable()
+POST    /LeagueUpdate        	controllers.Application.LeagueUpdate()
 GET     /leagueTable                controllers.Application.leagueTable()
 GET     /squad                      controllers.Application.squad(position: Long=0)
 GET     /squad/:position            controllers.Application.squad(position: Long)
