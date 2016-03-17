@@ -18,10 +18,14 @@ import com.avaje.ebean.Model;
      private final int MAX_SUBS = 4;
      
      @Id
+     @OneToOne(mappedBy = "teamID")
      public Long teamID;
-     @Constraints.Required
-     @OneToOne
-     public int userID;
+     
+    public Long userID;
+    
+     public ArrayList <User> user = new ArrayList<>();
+     public ArrayList <Team> teamList = new ArrayList<>();
+     
      @Constraints.Required
      public String teamName;
      private int teamScore;   
@@ -32,9 +36,8 @@ import com.avaje.ebean.Model;
          
      }  
      //Overloaded constructor 
-     public Team(Long teamID, int userID, String TeamName, int teamScore){
+     public Team(Long teamID, String TeamName, int teamScore){
          this.teamID = teamID;
-         this.userID = userID;
          this.teamName = teamName;
          this.teamScore = teamScore;
      }
@@ -57,6 +60,10 @@ import com.avaje.ebean.Model;
      // int oldPlayerID){
      public Long getTeamID(){
          return teamID;
+     }
+
+    public Long getUserID(){
+         return userID;
      }
 
     public int getTeamScore() {

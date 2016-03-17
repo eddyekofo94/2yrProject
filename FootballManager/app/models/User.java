@@ -11,7 +11,7 @@ import com.avaje.ebean.*;
 public class User extends Model {
 
     @Id
-    public int userID;
+    public Long userID;
 
     @Constraints.Required
     public String password;
@@ -21,14 +21,18 @@ public class User extends Model {
 
     @Constraints.Required
     public String loginName;
+    
     @OneToOne
-    public Long teamID;
+    @JoinColumn(name = "team_id")
+    public Long team_id;
+    
+    public ArrayList <Team> team = new ArrayList<>();
 
     public User() {
 
     }
 
-    public User(int userID, String password, String name, String loginName) {
+    public User(Long userID, String password, String name, String loginName) {
         this.userID = userID;
         this.password = password;
         this.name = name;
@@ -53,5 +57,28 @@ public class User extends Model {
 
         else
             return find.byId(id);
+    }
+    public Long getTeamID(){
+         return team_id;
+     }
+
+    public Long getUserID(){
+         return userID;
+     }
+    
+     public void RegisterUser(){
+        for(Team t : Team.<Team>findAll()){
+        this.team.add(t);
+    }
+
+    for(int i = 0;i < team.size();i++)
+    {
+        if(team.get(i).getUserID() == null)
+        {
+            
+            this.team_id = team.get(i).getTeamID();
+            break;
+        }
+    }
     }
 }

@@ -81,11 +81,13 @@ public class RegisterCtrl extends Controller {
 
         User user = userForm.bindFromRequest().get();
          */
-        newRegisterForm.get().save();
+        User user = newRegisterForm.get();
+        user.RegisterUser();
+        user.save();
 
         flash("success", "User " + newRegisterForm.get().name + " has been registered");
 
-        return redirect("/register");
+        return redirect("/squad/0");
     }
 
 }

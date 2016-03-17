@@ -43,14 +43,14 @@ create table team (
   max_players               integer,
   max_on_field              integer,
   max_subs                  integer,
-  user_id                   integer,
+  user_id                   bigint,
   team_name                 varchar(255),
   team_score                integer,
   constraint pk_team primary key (team_id))
 ;
 
 create table user (
-  user_id                   integer not null,
+  user_id                   bigint not null,
   password                  varchar(255),
   name                      varchar(255),
   login_name                varchar(255),
