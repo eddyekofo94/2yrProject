@@ -4,20 +4,21 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
+import java.sql.*;
 
-//fixture upload imports
-import play.mvc.Http.*;
-import play.mvc.Http.MultipartFormData.FilePart;
-import java.io.*;
-import java.io.File;
-import javax.activation.MimetypesFileTypeMap;
+import play.db.*;
+import java.util.*;
 
-import play.*;
 
 
 import views.html.*;
+
+
 import models.*;
- public class Application extends Controller {
+
+
+
+public class Application extends Controller {
 
       public Result index() {
 
@@ -26,20 +27,236 @@ import models.*;
 
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
-        return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
+List<Team> teams = Team.findAll();
+        Collections.sort(fixture);
+        return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
     }
 
     public Result leagueTable() {
+    List<Fixtures> fixture = Fixtures.findAll();
+List<Team> teams = Team.findAll();
+        startLeague(teams);
+        updateLeague();
 
-        return ok(leagueTable.render(User.getLoggedIn(session().get("loginName"))));
+
+
+
+        return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
     }
+    
+    
     public Result upload(){
 
-    
-    List<Fixtures> fixture = Fixtures.findAll();
- return ok(fixtures.render(fixture, User.getLoggedIn(session().get("loginName"))));
+generateFixtures();
+
+List<Fixtures> fixture = Fixtures.findAll();
+List<Team> teams = Team.findAll();
+
+Collections.sort(fixture);
+
+return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
+}
+
+public Result LeagueUpdate(){
+updateLeague();
+List<Fixtures> fixture = Fixtures.findAll();
+
+
+
+            List < Team > teams = Team.findAll();
+return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
 
 }
+   
+ public static void generateFixtures(){
+ 
+
+//the following statment is destructive and needs validation and admin only .
+
+for(Fixtures f : Fixtures.<Fixtures>findAll()) {
+    f.delete();
+}
+     MatchCtrl.setCurWeek(1);
+
+
+
+
+
+
+ //to here
+      
+ 
+      
+		ArrayList<models.Team> teams = new ArrayList() ;
+		int count = 1;
+		long id = 2;
+		int week = 1;
+		int hScore=0;
+		int aScore=0;
+		models.Fixtures f1 ;
+		
+		
+		
+		
+		     for(Team t : Team.<Team>findAll()) {
+		     teams.add(t);
+    		    
+		}
+
+		
+		models.Fixtures[] weekFixtures = new models.Fixtures[teams.size()];
+		
+		
+		ArrayList<models.Fixtures> fixtures = new ArrayList();
+		
+		for(int i = 0;i < teams.size();i++)
+		{
+			for(int j = count; j < teams.size();j++)
+			{
+			
+			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
+				f1=new models.Fixtures(id,"bing",week,teams.get(i).getTeamID(),hScore,teams.get(j).getTeamID(),aScore);
+				 	
+				 	teams.get(i).flist.add(f1);
+				 	teams.get(j).flist.add(f1);
+				 	f1.tList.add(teams.get(i));
+				 	f1.tList.add(teams.get(j));
+				 	f1.save();
+				
+				
+				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
+				
+				
+				
+				f1=new models.Fixtures(id,"bing",(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
+				 	
+				 	teams.get(i).flist.add(f1);
+				 	teams.get(j).flist.add(f1);
+				 	f1.tList.add(teams.get(i));
+				 	f1.tList.add(teams.get(j));
+				 	
+				 	f1.save();
+				
+				
+				
+				
+				
+				
+				if(week == ((teams.size()+1)))
+				{
+				week=1;
+				}
+				else
+				{
+				week++;
+				}
+			
+			}
+		
+			count++;
+			id++;
+		}
+		
+		}
+		
+		
+	public void startLeague(List<models.Team> teams)
+	{
+	
+	for(int i = 0;i < teams.size();i++)
+	{
+	models.LeagueTable league = new models.LeagueTable(teams.get(i).getTeamID());
+	league.addTeam();
+	}
+	 
+	}
+    public void updateLeague()
+    {
+    Long homeTeamID;
+    Long awayTeamID;
+    int homeScore;
+    int awayScore;
+
+    int homePts;
+    int homeGoalDifference;
+    
+    
+     int awayPts;
+    int awayGoalDifference;
+
+    
+    
+    
+    	List<Fixtures> fixtureCurrent = new ArrayList();
+
+
+        for(int l =0; l < models.LeagueTable.getLeague().size();l++)
+        {
+            models.LeagueTable.getLeague().get(l).resetLeague();
+        }
+
+   	 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
+    	fixtureCurrent.add(f);
+   	 }
+
+
+   	 for(int i = 0 ; i < fixtureCurrent.size();i++)
+   	 {
+   	 if((fixtureCurrent.get(i).played )== true )
+   	 {
+   	 homeTeamID = fixtureCurrent.get(i).getHomeTeamID();
+   	 awayTeamID = fixtureCurrent.get(i).getAwayTeamID();
+   	 homeScore = fixtureCurrent.get(i).gethomeScore();
+   	 awayScore = fixtureCurrent.get(i).getawayScore();
+   	 
+   	 
+   	
+   	 homeGoalDifference = homeScore- awayScore;
+   	 awayGoalDifference = awayScore - homeScore;
+   	 
+   	 if(homeScore > awayScore)
+   	 {   	 
+   	 homePts = 2;
+   	 awayPts = 0;
+   	 
+   	 models.LeagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
+   	 models.LeagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
+
+   	 fixtureCurrent.get(i).save();
+   	 }
+   	 else if (homeScore < awayScore)
+   	 {
+   	 awayPts = 2;
+   	 homePts = 0;
+   	 models.LeagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
+   	 models.LeagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
+
+   	 fixtureCurrent.get(i).save();
+   	 }
+   	 else{
+   	 awayPts = 0;
+   	 homePts = 0;
+   	 models.LeagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
+   	 models.LeagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
+
+   	 fixtureCurrent.get(i).save();
+   	 }
+   	 }
+   	 else
+   	 {
+   	 break;
+   	 }
+   	 
+   	 
+   	 
+   	 
+   	 
+   	 
+   	 
+   	 }
+    
+    }
+		
 
     public Result squad(Long position) {
         
