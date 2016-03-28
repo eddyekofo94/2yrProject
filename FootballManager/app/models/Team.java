@@ -23,7 +23,7 @@ import com.avaje.ebean.Model;
      @OneToOne
      public int userID;
      @Constraints.Required
-     private String teamName;
+     public String teamName;
      private int teamScore;   
      @ManyToMany(mappedBy = "tList")
     public List<Fixtures> flist = new ArrayList<Fixtures>();
@@ -58,5 +58,8 @@ import com.avaje.ebean.Model;
      public Long getTeamID(){
          return teamID;
      }
-      
- }
+
+    public int getTeamScore() {
+        return teamScore;
+    }
+}
