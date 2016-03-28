@@ -275,7 +275,6 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             for(int i = 0; i< positions.size();i++){
                 if(positions.get(i).id == position){
                     players = positions.get(i).players;
-                    break;
                 }
             }
         }
@@ -329,6 +328,51 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             }
         }
         return ok(playerDB.render(User.getLoggedIn(session().get("loginName")),positions, players));
+    }
+    
+   
+    public Result transferPlayer(Long position,Long id) {
+        Form<Player> transferPlayerForm = Form.form(Player.class);
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
+        // get the list of team attributes
+        List<Player> players = new ArrayList<Player>();
+        if(position == 0){
+            players = Player.findAll();
+        }
+        else{
+            for(int i = 0; i< positions.size();i++){
+                if(positions.get(i).id == position){
+                    players = positions.get(i).players;
+                    break;
+                }
+            }
+        }
+        return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),positions, players,transferPlayerForm,id));
+    }
+     
+    public Result transferPlayerSubmit(Long id){
+        Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
+        // get the list of team attributes
+        List<Player> players = new ArrayList<Player>();
+      
+        if(transferPlayerForm.hasErrors()){
+            return redirect("/squad/0");
+ 
+        }
+        int pID = 0;
+        for(int i =0 ; i < players.size();i++){
+            if(id == (i+1)){
+                pID = i;
+            }
+        }
+        Player p = transferPlayerForm.get();
+        p.teamID = players.get(pID).getTeamID();
+      
+        p.update();
+        flash("Success", "Player "+ transferPlayerForm.get().playerName+" has added to your team");
+        
+        return redirect("/squad/0");
     }
      public Result addPlayer(){
         Form<Player> addPlayerForm = Form.form(Player.class);

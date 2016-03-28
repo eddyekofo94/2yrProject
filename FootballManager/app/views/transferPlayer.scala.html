@@ -1,0 +1,90 @@
+@(user: models.User,positions: List[models.Position], players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
+
+@import helper._
+
+@main("Transfer Player",user) {
+    <h3> Pick a new Player</h3>
+    <!-- /.row -->
+            <div class="row">
+                <div class="col-md-2">
+      <div class="list-group">
+				<!-- Start of For loop - For each c in categories add a link -->
+				<a href="@routes.Application.transferPlayer(0,id)" class="list-group-item">All Positions</a>
+				@for(p <- positions) {
+          <a href="@routes.Application.transferPlayer(p.id,id)" class="list-group-item">@p.position</a>
+				}
+      </div>
+  </div>
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            This is all the players in the Database
+                        </div>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Jersey Number</th>
+                                    <th>Player Name</th>
+                                    <th>GK</th>
+                                    <th>Def</th>
+                                    <th>Mid</th>
+                                    <th>Atck</th>
+                                    <th>Health</th>
+                                    <th>Position</th>
+                                    <th>Injured</th>
+                                    <th>Salary</th>
+                                    <th>Transfer Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for(p <- players){
+                                @if(p.teamID == null){
+                                <tr>
+                                    <td>@p.jerseyNum</td>
+                                    <td>@p.playerName</td>
+                                    <td>@p.gkVal</td>
+                                    <td>@p.defVal</td>
+                                    <td>@p.midFVal</td>
+                                    <td>@p.attVal</td>
+                                    <td>@p.health</td>
+                                    <th>@p.position.position</th>
+                                    <th>@if(p.injury == true){
+                                        Yes
+                                        }else{
+                                        No
+                                        }
+                                    </th>
+                                    <th>@p.salary</th>
+                                    <th>@p.transferValue</th>
+       
+                                </tr>
+                                    }
+                                    }
+    
+    </tbody>
+    </table>
+    <!-- /.panel-body -->
+    </div>
+    
+    @form(action = routes.Application.transferPlayerSubmit(id), 'class -> "form-horizontal", 'role->"form"){
+  
+   <!-- @inputText(transferPlayerForm("teamID"),'_label -> "Team ID")-->
+   @select(
+   transferPlayerForm("player.teamID"),
+   options(Player.options),
+   '_label -> "Player", '_dfault -> "--Choose a Player --",
+   '_showConstraints -> false, 'class -> "form-control"
+   )
+   
+    
+    <div class="actions">
+        <input type="submit" value="Save" class="btn primary">
+        <a href="@routes.Application.squad(0)">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+     </div>       
+
+         
+ 
+    }
+}
