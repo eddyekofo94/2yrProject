@@ -1772,3 +1772,39 @@ Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the ap
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 93 more
 >>>>>>> master
+03-29 14:20:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+03-29 14:20:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+03-29 14:24:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: TEAM_SCORE INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+03-29 14:24:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: TEAM_SCORE INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+03-29 14:25:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'f' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:25:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'f' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:25:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:25:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:26:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:26:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:28:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+03-29 14:28:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_ID_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
