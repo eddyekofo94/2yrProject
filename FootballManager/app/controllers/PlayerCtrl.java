@@ -11,6 +11,12 @@ import play.*;
 import views.html.*;
 import models.*;
  public class PlayerCtrl extends Controller {
+      //injury health value once reached player is injured
+      final int INJURY_LEVEL =4;
+      //Max value for health
+      final int MAX_HEALTH = 10;
+      //Max attribute value
+      final int MAX_VALUE = 10;
  //random number generator
      Random ranNum = new Random();
      
@@ -46,14 +52,14 @@ import models.*;
                 }
                 else if(randomTrainVal <= 4){
                     addTrainVal(position,randomTrainVal,p);
-                    deductHealth(ranNum.nextInt(4)+1,p);;
+                    deductHealth(ranNum.nextInt(2),p);;
                     p.injury = getInjured(p.health,p);
                     p.save();
                 flash(p.playerName+" trained");
                 }
                 else{
                     addTrainVal(position,randomTrainVal,p);
-                    deductHealth(ranNum.nextInt(5)+2,p);
+                    deductHealth(ranNum.nextInt(3),p);
                     p.injury = getInjured(p.health,p);
                     p.save();
                     flash(p.playerName+" trained");
@@ -64,7 +70,7 @@ import models.*;
      }
      
      public boolean getInjured(int health, Player player){
-         final int INJURY_LEVEL = 4;
+
          if(player.health <= INJURY_LEVEL ){
              return true;
          }
@@ -127,8 +133,7 @@ import models.*;
          }
      }
      public void playerHealthyTest(Player player){
-         final int INJURY_LEVEL =4;
-         final int MAX_HEALTH = 10;
+        
          if(player.health > 4 && player.health < MAX_HEALTH){
             player.injury = false;
          }
@@ -137,7 +142,7 @@ import models.*;
          }
      }
      public boolean playerMaxed(String position, Player player){
-         final int MAX_VALUE = 10;
+        
          if(player.position.equals("Goalkeeper")){
                   if(player.gkVal == MAX_VALUE){
                       return true;
@@ -160,6 +165,29 @@ import models.*;
          }
          return false;    
      }
+     public boolean checkHealthMax(int health){
+         if(health == MAX_HEALTH){
+             return true;
+         }
+         else{
+             return false;
+         }
+     }
+     
+     public void calculateInjuredHealthIncrease(Player player){
+         int healthIncrease = ranNum.nextInt(3);
+         int positiveHealth;
+         
+         if((player.health + healthIncrease) > MAX_HEALTH){
+             positiveHealth = player.health + healthIncrease;
+             healthIncrease = MAX_HEALTH - player.health;
+             player.health += healthIncrease;
+         }
+         else{
+             player.health += healthIncrease;
+         }
+     }
+     }
  
- }
+ 
  
