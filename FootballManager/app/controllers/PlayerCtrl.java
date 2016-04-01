@@ -165,7 +165,7 @@ import models.*;
          }
          return false;    
      }
-     public boolean checkHealthMax(health){
+     public boolean checkHealthMax(int health){
          if(health == MAX_HEALTH){
              return true;
          }
@@ -189,5 +189,5 @@ import models.*;
      }
      }
  
- }
+ 
  
