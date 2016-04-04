@@ -12,8 +12,6 @@ import com.avaje.ebean.Model;
 
 @Entity
 public class Player extends Model{
-     //private final int INJURY_HEALTH = 4;
-    // private final int MAX_PALYER_STAT = 10;
      
      @Id
      public Long playerID;
@@ -60,23 +58,31 @@ public class Player extends Model{
          this.midFVal = midFVal;
          this.gkVal = gkVal;
      }
+     
+     
      // Generic wuery helper for entity Computer with id Long
      public static Model.Finder<Long, Player> find = new Model.Finder<Long, Player>(Long.class, Player.class);
      
      public static List<Player> findAll(){
 
          return Player.find.all();
-     
+        
      }
-     /*
-     public boolean getTrained(String position, int playerID){
-         //train value earned to be added to position value
-         private int trainVal = ranNum.nextInt(5)+1;
-         //health lost from training
-         private int healthLose = ranNum.nextInt(4)+1;
-         
-         if(playerMaxed(playerID) == true){
-             
-         }
-     }*/
+     
+     public Team getTeamID(){
+         return teamID;
+     }
+     
+     
+     public static Map<String,String> options(){
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Player p: Player.find.orderBy("playerID").findList()){
+            if(p.teamID == null){
+                options.put(p.playerID.toString(), p.playerName.toString());
+            }    
+        }
+        return options;
+    }
+     
+    
 }   

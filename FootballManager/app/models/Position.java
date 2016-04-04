@@ -40,4 +40,9 @@ public class Position extends Model{
     }
     public static Finder<Long, Position> find = new Finder<Long, Position>(Long.class, Position.class);
     
+    public static List<Position> findAll(){
+
+         return Position.find.all();
+        
+     }
 }

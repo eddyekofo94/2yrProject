@@ -17,6 +17,10 @@ GET     /login                      controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
 GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
 GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+#Transfer Player
+GET     /transferPlayer/:id                     controllers.Application.transferPlayer(position: Long=0,id:Long)
+GET     /transferPlayer/:position/:id            controllers.Application.transferPlayer(position: Long,id:Long)
+POST    /transferPlayerSubmit/:id             controllers.Application.transferPlayerSubmit(id: Long)
 #Add a player
 GET     /addPlayer                 controllers.Application.addPlayer()
 POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
@@ -29,8 +33,11 @@ POST         /registerFormSubmit                      controllers.RegisterCtrl.r
 
 #GET         /listUsers                  controllers.RegisterCtrl.listUsers()
 
+#getTrained
+GET     /getTrained/:position/:player         controllers.PlayerCtrl.getTrained(position:String , player: Long)
 
-
+#setPosition
+GET     /setPosition/:position/:player         controllers.PlayerCtrl.setPosition(position:String , player: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

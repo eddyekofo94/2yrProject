@@ -4,6 +4,8 @@ import play.*;
 import play.mvc.*;
 import play.data.*;
 import play.data.Form.*;
+import play.data.validation.*;
+
 import play.mvc.Http.Context;
 
 import play.mvc.Http.*;
@@ -31,25 +33,10 @@ import models.*;
 
 public class RegisterCtrl extends Controller {
 
-//    // Show a list of all products
-//    public Result listUsers() {
-//        // Instansiate products, an Arraylist of products
-//        List<User> users = new ArrayList<User>();
-//
-//         // Each category object contains a list of products
-//            for (int i = 0; i < users.size(); i++) {
-//                // Get the list of ALL products
-//                users = User.findAll();
-//                    break;
-//                }
-//
-//
-//        // Pass the list to the index view and render
-//        return ok(listUsers.render(users));
-//    }
 
     // Display an empty form in the view
     public Result register() {
+
         // Instantiate a form object based on the User class
         Form<User> registerForm = Form.form(User.class);
 
@@ -69,7 +56,7 @@ public class RegisterCtrl extends Controller {
         // Check for errors (based on Product class annotations)
         if (newRegisterForm.hasErrors()) {
             // Display the form again
-            return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+            return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
         }
         /*
         Map<String,String> anyData = new HashMap();
@@ -81,9 +68,14 @@ public class RegisterCtrl extends Controller {
 
         User user = userForm.bindFromRequest().get();
          */
+
+
+
         User user = newRegisterForm.get();
-        user.RegisterUser();
+        // Team team = new Team(k,"2",3);
+        // team =  user.RegisterUser(team);
         user.save();
+        // team.save();
 
         flash("success", "User " + newRegisterForm.get().name + " has been registered");
 

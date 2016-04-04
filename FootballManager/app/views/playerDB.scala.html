@@ -27,9 +27,7 @@
                                     <th>Mid</th>
                                     <th>Atck</th>
                                     <th>Health</th>
-                                    <th>Training</th>
                                     <th>Position</th>
-                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,28 +40,10 @@
                                     <td>@p.midFVal</td>
                                     <td>@p.attVal</td>
                                     <td>@p.health</td>
-                                    <th class="training">
-            <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li>GoalKeeper</a>
-                </li>
-                <li>Defense</a>
-                </li>
-                <li>Midfield</a>
-                </li>
-                <li>Stricker (attacker)</a>
-                </li>
-            </ul>
-        </th>
+                
         <th class="position">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @p.position.position
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu" >
-				@for(p <- positions) {
-                <li>@p.position</li>
-				}
-            </ul>
+            @p.position.position
+             
         </th>
         <div class="col-md-6">
         </div>

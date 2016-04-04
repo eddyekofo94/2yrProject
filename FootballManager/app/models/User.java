@@ -10,23 +10,33 @@ import com.avaje.ebean.*;
 @Entity
 public class User extends Model {
 
-    @Id
-    public Long userID;
+  @Id
+  public Long userID;
 
-    @Constraints.Required
-    public String password;
+  @Constraints.Required
+  @Constraints.MaxLength(15)
+  @Constraints.MinLength(4)
+  public String name;
 
-    @Constraints.Required
-    public String name;
+  @Constraints.Required
+  @Constraints.MaxLength(15)
+  @Constraints.MinLength(4)
+  //Minimum 8 characters at least 1 Alphabet and 1 Number:
+  @Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
+  public String loginName;
 
-    @Constraints.Required
-    public String loginName;
-    
-    @OneToOne
-    @JoinColumn(name = "team_id")
-    public Long team_id;
-    
-    public ArrayList <Team> team = new ArrayList<>();
+
+  @Constraints.Required
+  @Constraints.MaxLength(15)
+  @Constraints.MinLength(4)
+  //Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
+  @Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
+  public String password;
+
+
+
+  @OneToOne(mappedBy = "user")
+  public Team team;
 
     public User() {
 
@@ -58,27 +68,27 @@ public class User extends Model {
         else
             return find.byId(id);
     }
-    public Long getTeamID(){
-         return team_id;
-     }
+    // public Long getTeamID(){
+    //      return team_id;
+    //  }
 
     public Long getUserID(){
          return userID;
      }
-    
-     public void RegisterUser(){
-        for(Team t : Team.<Team>findAll()){
-        this.team.add(t);
-    }
 
-    for(int i = 0;i < team.size();i++)
-    {
-        if(team.get(i).getUserID() == null)
-        {
-            
-            this.team_id = team.get(i).getTeamID();
-            break;
-        }
-    }
-    }
+    //  public void RegisterUser(){
+    //     for(Team t : Team.<Team>findAll()){
+    //     this.team.add(t);
+    // }
+    //
+    // for(int i = 0;i < team.size();i++)
+    // {
+    //     if(team.get(i).getUserID() == null)
+    //     {
+    //
+    //         this.team_id = team.get(i).getTeamID();
+    //         break;
+    //     }
+    // }
+    // }
 }
