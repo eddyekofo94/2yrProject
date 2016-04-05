@@ -6,6 +6,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import com.avaje.ebean.*;
 
+import java.security.MessageDigest;
+
+
 
 @Entity
 public class User extends Model {
