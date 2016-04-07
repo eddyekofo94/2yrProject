@@ -1,4 +1,4 @@
-@(user: models.User,registerForm: Form[models.User])
+@(user: models.users.User,registerForm: Form[models.users.User])
 
 @import helper._
 
@@ -36,10 +36,10 @@
                                             <span class="input-group-addon">examplemail.com</span>
                                             <input type="text" class="form-control" placeholder="email">
                                         </div>-->
-                                    @inputText(registerForm("userID"), '_label -> "User ID", 'class -> "form-control")
+                                    @inputText(registerForm("userid"), '_label -> "User ID", 'class -> "form-control")
                                     @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
                                     @inputText(registerForm("name"), '_label -> "Name", 'class -> "form-control")
-                                    @inputText(registerForm("loginName"), '_label -> "login Name", 'class -> "form-control")
+                                    @inputText(registerForm("loginname"), '_label -> "login Name", 'class -> "form-control")
 
                                         <!-- Add a submit button -->
                                     <div class="actions">

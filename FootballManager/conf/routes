@@ -13,8 +13,16 @@ POST    /LeagueUpdate        	controllers.Application.LeagueUpdate()
 GET     /leagueTable                controllers.Application.leagueTable()
 GET     /squad                      controllers.Application.squad(position: Long=0)
 GET     /squad/:position            controllers.Application.squad(position: Long)
-GET     /login                      controllers.Application.login()
-POST    /login                      controllers.Application.authenticate()
+# GET     /login                      controllers.Application.login()
+# POST    /login                      controllers.Application.authenticate()
+
+
+
+GET         /login                     controllers.security.LoginCtrl.login()
+POST        /login                     controllers.security.LoginCtrl.authenticate()
+GET         /logout                    controllers.security.LoginCtrl.logout()
+
+
 GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
 GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
 #Transfer Player

@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.*;
 
-import models.User;
+import models.users.User;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.*;
