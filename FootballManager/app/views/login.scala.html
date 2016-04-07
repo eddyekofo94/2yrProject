@@ -1,32 +1,36 @@
-@(form: Form[models.Login],user: models.User)
- @main("Login",user) {
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In</h3>
-                    @if(form.hasGlobalErrors){
-                        <p class="alert alert-info">
-                            @form.globalError.message
-                         </p>
-                    }
-                    @helper.form(action = routes.Application.authenticate()){
-                        <div class = "form-group">
-			<input type="text" name="Login Name" class="form-control input-xs" placeholder="Login Name" value="@form("userID").value">
-		</div>
-		<div class = "form-group">
-			<input type="password" name="password" class="form-control input-xs" placeholder="Password">
-		</div>
-		
-		<div class="form-group">
-			<input type="submit" value="Sign In" class="btn btn-primary">
-		</div>		
-                    }
-                </div>
-                
+@import models.users.SuperUser
+@import models.users.Login
+
+@(form: Form[models.users.Login], user: models.users.SuperUser)
+
+@main("Login Required", user) {
+    <div class="col-xs-4">
+        <h3>Sign in</h3>
+            <!-- Display login errors if they exist -->
+        @if(form.hasGlobalErrors) {
+            <p class="alert alert-warning">
+            @form.globalError.message
+            </p>
+        }
+        @if(flash.containsKey("error")) {
+            <div class="alert alert-warning">
+            @flash.get("loginRequired")
             </div>
-        </div>
+        }
+            <!-- The login form -->
+        @helper.form(action = controllers.security.routes.LoginCtrl.authenticate) {
+
+            <div class="form-group">
+                <input type="text" name="suserid" class="form-control input-xs" placeholder="User ID" value="@form("suserid").value">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control input-xs" placeholder="Password">
+            </div>
+
+                <!-- Add a submit button -->
+            <div class="form-group">
+                <input type="submit" value="Sign In" class="btn btn-primary">
+            </div>
+        }
     </div>
-</div>
 }
