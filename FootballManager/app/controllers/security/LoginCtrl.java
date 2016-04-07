@@ -1,7 +1,7 @@
 package controllers.security;
 
 import models.users.Login;
-import models.users.SuperUser;
+import models.users.*;
 import play.data.Form;
 import play.mvc.Controller;
             import play.mvc.Result;
@@ -14,7 +14,7 @@ import play.mvc.Controller;
 
                 public Result login() {
                     // Pass a login form to the login view and render
-                    return ok(login.render(Form.form(Login.class), SuperUser.getLoggedIn(session().get("suserid"))));
+                    return ok(login.render(Form.form(Login.class), User.getLoggedIn(session().get("userid"))));
                 }
 
                 // Process the user login form
@@ -26,17 +26,17 @@ import play.mvc.Controller;
                     // Uses the validate method defined in the Login class
                     if (loginForm.hasErrors()) {
                         // If errors, show the form again
-                        return badRequest(login.render(loginForm, SuperUser.getLoggedIn(session().get("suserid"))));
+                        return badRequest(login.render(loginForm, User.getLoggedIn(session().get("userid"))));
                     }
                     else {
             // SuperUser Logged in sucessfully
             // Clear the existing session
             session().clear();
             // Store the logged in email in the session
-            session("suserid", loginForm.get().suserid);
+            session("userid", loginForm.get().userid);
             
             // Check user type
-            SuperUser u = SuperUser.getLoggedIn(loginForm.get().suserid);
+            User u = User.getLoggedIn(loginForm.get().userid);
             // If admin - go to admin section
             if (u != null && "admin".equals(u.getUserType())) {
                 return redirect(controllers.routes.Application.index());

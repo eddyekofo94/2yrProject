@@ -1,4 +1,4 @@
-@(pageID: String,user: models.User)(content: play.twirl.api.Html)
+@(pageID: String,user: models.users.User)(content: play.twirl.api.Html)
 
 <!DOCTYPE html>
 <html id="@pageID">
@@ -76,7 +76,7 @@
                         <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Help</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="@routes.Application.login()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="controllers.security.LoginCtrl.login()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

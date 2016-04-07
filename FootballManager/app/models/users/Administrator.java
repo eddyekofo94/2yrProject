@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("admin")
 
 // Administrator inherits from the SuperUser class
-public class Administrator extends SuperUser {
+public class Administrator extends User {
 	
 	public Administrator(String id, String password, String name, String loginName)
 	{

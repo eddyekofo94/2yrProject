@@ -5,6 +5,7 @@ import play.mvc.*;
 import play.data.*;
 import play.data.Form.*;
 import play.mvc.Http.Context;
+import models.users.*;
 
 import play.mvc.Http.*;
 import play.mvc.Http.MultipartFormData.FilePart;

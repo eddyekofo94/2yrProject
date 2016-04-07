@@ -1,6 +1,6 @@
 package controllers.security;
 
-import models.users.SuperUser;
+import models.users.User;
 import play.libs.F;
 import play.mvc.Action;
 import play.mvc.Http;
@@ -21,9 +21,9 @@ public class CheckIfCustomer extends Action.Simple {
     public F.Promise<Result> call(Http.Context ctx) throws Throwable {
         
         // Check if current user (in session) is an admin
-        String id = ctx.session().get("suserid");
+        String id = ctx.session().get("userid");
         if (id != null) {
-            SuperUser u = SuperUser.getLoggedIn(id);
+            User u = User.getLoggedIn(id);
             if ("user".equals(u.getUserType())) {
                 
                 // SuperUser admin sp continue with the http request

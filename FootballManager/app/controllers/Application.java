@@ -1,13 +1,14 @@
 package controllers;
 import java.util.*;
 import play.mvc.Controller;
+import play.mvc.*;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
 import java.sql.*;
 
 import models.users.Login;
-import models.users.SuperUser;
+import models.users.*;
 import controllers.security.*;
 
 import play.db.*;
@@ -24,14 +25,14 @@ import models.*;
 
 public class Application extends Controller {
     
-      private SuperUser getCurrentUser() {
-        SuperUser u = SuperUser.getLoggedIn(session().get("suserid"));
+      private User getCurrentUser() {
+        User u = User.getLoggedIn(session().get("userid"));
         return u;
     }
 
       public Result index() {
 
-        return ok(index.render(User.getLoggedIn(session().get("loginName"))));
+        return ok(index.render(User.getLoggedIn(session().get("loginname"))));
     }
 // Authenticate user needs to be added start of each method to be secured
 @Security.Authenticated(Secured.class)
@@ -300,18 +301,18 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
         return ok(login.render(Form.form(Login.class),User.getLoggedIn(session().get("loginName"))));
     }
     
-    public Result authenticate(){
-        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+    // public Result authenticate(){
+    //     Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
         
-        if(loginForm.hasErrors()){
-            return badRequest(login.render(loginForm,User.getLoggedIn(session().get("loginName"))));
-        }
-        else{
-            session().clear();
-            session("userID", loginForm.get().userID);
-            return redirect(routes.Application.index());
-        }
-    }
+    //     if(loginForm.hasErrors()){
+    //         return badRequest(login.render(loginForm,User.getLoggedIn(session().get("loginName"))));
+    //     }
+    //     else{
+    //         session().clear();
+    //         session("userid", loginForm.get().userid);
+    //         return redirect(routes.Application.index());
+    //     }
+    // }
     
     public Result register() {
         

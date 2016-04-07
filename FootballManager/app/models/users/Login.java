@@ -1,11 +1,11 @@
 package models.users;
 
 public class Login{
-    public String suserid;
+    public String userid;
     public String password;
     
     public String validate(){
-        if(SuperUser.authenticate(suserid, password) == null){
+        if(SuperUser.authenticate(userid, password) == null){
             return "Invalid user or password";
         }
         else{

@@ -1,88 +1,99 @@
 package models.users;
 
-import java.util.*;
+import com.avaje.ebean.Model;
+import play.data.validation.Constraints;
+
 import javax.persistence.*;
-import models.*;
+import java.util.List;
 
-import play.data.validation.*;
-import com.avaje.ebean.*;
+//https://www.playframework.com/documentation/2.2.x/JavaGuide4
 
-
+// Product entity managed by Ebean
 @Entity
+// specify mapped table name
+@Table(name = "user")
 // Map inherited classes to a single table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-// This is a Customer of type admin
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
+// Discriminator column used to define user type
+@DiscriminatorColumn(name = "userType")
+// This user type is user
 @DiscriminatorValue("user")
 
-// Customer inherits from the SuperUser class
+public class User extends Model {
 
-public class User extends SuperUser {
+    //@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	//public Long id;
+	
+	@Constraints.Required
+    @Id
+    public String userid;
+
+    @Constraints.Required
+    public String password;
+
+    @Constraints.Required
+    public String name;
+
+    @Constraints.Required
+    public String loginname;
 
 
-//    @OneToOne
-//    public Long teamID;
-
-    // Customer has one basket.
-    // Customer is the owner (forieng key will be added to Basket table)
-    // All changes to Customer are cascaded.
-    @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
-    public Team team;
 
 
-
+    // Default constructor
     public User() {
-
     }
-
-    public User(String suserid, String password, String name, String loginName) {
-
-        super(suserid, password, name, loginName);
-//        this.suserid = suserid;
-//        this.password = password;
-//        this.name = name;
-//        this.loginname = loginname;
+    // Constructor to initialise object
+    public User(String userid, String password, String name, String loginname) {
+        this.userid = userid;
+        this.password = password;
+        this.name = name;
+        this.loginname = loginname;
     }
-
-//    public static Finder<String, User> find = new Finder<String, User>(String.class, User.class); //Not Ure
-
-    //Generic query helper for entity SuperUser with unique id String
-    public static Finder<String,User> find = new Finder<String,User>(User.class);
-
-    public static List<User> findAll(){
+public static List<User> findAll(){
 
         return User.find.all();
     }
+	//Generic query helper for entity SuperUser with unique id String
+    public static Finder<String,User> find = new Finder<String,User>(String.class, User.class);
 
 
-    // Check if a user is logged in (by id - email address)
+//    public static List<SuperUser> findAny(){
+//
+//        return SuperUser.find.all();
+//    }
+    
+    // Static method to authenticate based on username and password
+    // Returns user object if found, otherwise NULL
+    //public	static SuperUser authenticate(String email, String password)
+    public	static User authenticate(String userid, String password) {
+        // If found return the user object with matching username and password
+        return find.where().eq("userid", userid).eq("password", password).findUnique();
+    }
+
+    // Check if a user is logged in (by id - suserid)
     public static User getLoggedIn(String id) {
         if (id == null)
-            return null;
+                return null;
         else
             // Find user by id and return object
             return find.byId(id);
     }
-
-
-    // Check if a user is logged in (by id - email address)
-//    public static User getLoggedIn(String id) {
-//        if (id == null)
-//            return null;
-//        else
-//            // Find user by id and return object
-//            return find.byId(id);
-//    }
-
-   
-//  public static User authenticate(String suserid, String password){
-//       return find.where().eq("suserid", suserid).eq("password", password).findUnique();
-//   }
-//
-//  public static User getLoggedIn(String id){
-//     if(id == null)
-//          return null;
-//
-//      else
-//          return find.byId(id);
-//   }
+    
+    public String getid()
+    {
+        return this.userid;
+    }
+		
+    // Get the user type - from the discriminator value
+    // http://stackoverflow.com/questions/3005383/how-to-get-the-discriminatorvalue-at-run-time
+    // http://stackoverflow.com/questions/541749/how-to-determine-an-objects-class-in-java
+    @Transient
+    public String getUserType(){
+        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
+        return val == null ? null : val.value();
+    }
+        
 }
+
