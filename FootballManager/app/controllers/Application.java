@@ -6,6 +6,10 @@ import play.data.*;
 import play.data.Form.*;
 import java.sql.*;
 
+import models.users.Login;
+import models.users.SuperUser;
+import controllers.security.*;
+
 import play.db.*;
 import java.util.*;
 
@@ -19,12 +23,21 @@ import models.*;
 
 
 public class Application extends Controller {
+    
+      private SuperUser getCurrentUser() {
+        SuperUser u = SuperUser.getLoggedIn(session().get("suserid"));
+        return u;
+    }
 
       public Result index() {
 
         return ok(index.render(User.getLoggedIn(session().get("loginName"))));
     }
-
+// Authenticate user needs to be added start of each method to be secured
+@Security.Authenticated(Secured.class)
+// Authorise user (check if user)
+//needs to be configed to admin and manager. 
+@With(CheckIfCustomer.class)
     public Result fixtures() {
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
