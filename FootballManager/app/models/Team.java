@@ -25,7 +25,7 @@ import models.users.*;
      public Long teamID;
 
      @OneToOne
-     public Manager manager;
+     public Long userid;
 
      @Constraints.Required
      public String teamName;
@@ -43,9 +43,9 @@ import models.users.*;
 
      }
      //Overloaded constructor
-     public Team(Long teamID, Manager m, String TeamName, int teamScore){
+     public Team(Long teamID, Long userid, String TeamName, int teamScore){
          this.teamID = teamID;
-         this.userID = m.getUserid() ;
+         this.userID = userid ;
          this.teamName = teamName;
          this.teamScore = teamScore;
      }
@@ -71,8 +71,8 @@ import models.users.*;
          return teamID;
      }
 
-     public Manager getManagerID(){
-          return manager;
+     public Long getuserid(){
+          return userid;
       }
 
     public int getTeamScore() {

@@ -20,7 +20,7 @@ import java.util.List;
 @DiscriminatorValue("user")
 
 public class User extends Model {
-
+ @OneToOne(mappedBy="userid", cascade = CascadeType.ALL)
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long userid;
@@ -34,6 +34,7 @@ public class User extends Model {
     //@Constraints.MinLength(4)
     public String name;
 
+    
     @Constraints.Required
 	//	@Constraints.MaxLength(15)
    // @Constraints.MinLength(4)
