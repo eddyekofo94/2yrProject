@@ -34,9 +34,8 @@ public class Manager extends User {
 
     }
 
-    public Manager(String userid, String password, String name, String loginName) {
-
-        super(userid, password, name, loginName);
+    public Manager(String password, String name, String loginName) {
+        super("sdasdqfsdf", password, name, loginName);
 //        this.suserid = suserid;
 //        this.password = password;
 //        this.name = name;
@@ -76,7 +75,7 @@ public String getUserid()
 //            return find.byId(id);
 //    }
 
-   
+
 //  public static User authenticate(String suserid, String password){
 //       return find.where().eq("suserid", suserid).eq("password", password).findUnique();
 //   }

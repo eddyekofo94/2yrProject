@@ -4,6 +4,8 @@ import play.*;
 import play.mvc.*;
 import play.data.*;
 import play.data.Form.*;
+import play.data.validation.*;
+
 import play.mvc.Http.Context;
 import models.users.*;
 
@@ -32,27 +34,12 @@ import models.*;
 
 public class RegisterCtrl extends Controller {
 
-//    // Show a list of all products
-//    public Result listUsers() {
-//        // Instansiate products, an Arraylist of products
-//        List<User> users = new ArrayList<User>();
-//
-//         // Each category object contains a list of products
-//            for (int i = 0; i < users.size(); i++) {
-//                // Get the list of ALL products
-//                users = User.findAll();
-//                    break;
-//                }
-//
-//
-//        // Pass the list to the index view and render
-//        return ok(listUsers.render(users));
-//    }
 
     // Display an empty form in the view
     public Result register() {
+
         // Instantiate a form object based on the User class
-        Form<User> registerForm = Form.form(User.class);
+        Form<Manager> registerForm = Form.form(Manager.class);
 
         // Render the Add User View, passing the form object
         return ok(register.render(User.getLoggedIn(session().get("userID")),registerForm));   //, User.getLoggedIn(session().get("userName")))
@@ -65,28 +52,32 @@ public class RegisterCtrl extends Controller {
 
         // Create a user form object (to hold submitted data)
         // 'Bind' the object to the submitted form (this copies the filled form)
-        Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
+        
+        Form<Manager> newRegisterForm = Form.form(Manager.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
-//        if (newRegisterForm.hasErrors()) {
-//            // Display the form again
-//            return badRequest(register().render(newRegisterForm));
-//        }
-        /*
-        Map<String,String> anyData = new HashMap();
-        anyData.put("email", "bob@gmail.com");
-        anyData.put("password", "secret");
+        if (newRegisterForm.hasErrors()) {
+            // Display the form again
+            return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+        }
 
-        User user = userForm.bind(anyData).get();
-        If you have a request available in the scope, you can bind directly from the request content:
 
-        User user = userForm.bindFromRequest().get();
-         */
-        newRegisterForm.get().save();
 
-        flash("success", "User " + newRegisterForm.get().name + " has been registered");
+         CalcSHA cs = new CalcSHA();
 
-        return redirect("/register");
+         Manager manager = newRegisterForm.get();
+         String md = cs.calcPassword(manager.password);
+
+         manager.password = md;
+         // Team team = new Team(k,"2",3);
+         // team =  user.RegisterUser(team);
+         // user.save();
+         // user.en(user.password);
+         manager.save();
+
+        flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
+
+        return redirect("/squad/0");
     }
 
 }

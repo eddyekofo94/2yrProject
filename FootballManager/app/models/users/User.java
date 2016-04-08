@@ -13,7 +13,7 @@ import java.util.List;
 // specify mapped table name
 @Table(name = "user")
 // Map inherited classes to a single table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 // Discriminator column used to define user type
 @DiscriminatorColumn(name = "userType")
 // This user type is user
@@ -22,22 +22,31 @@ import java.util.List;
 public class User extends Model {
 
     //@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	//public Long id;
-	
+
 	@Constraints.Required
     @Id
     public String userid;
 
     @Constraints.Required
-    public String password;
-
-    @Constraints.Required
+		@Constraints.MaxLength(15)
+    @Constraints.MinLength(4)
     public String name;
 
     @Constraints.Required
+		@Constraints.MaxLength(15)
+    @Constraints.MinLength(4)
+		//Minimum 8 characters at least 1 Alphabet and 1 Number:
+		@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     public String loginname;
 
+		@Constraints.Required
+		@Constraints.MaxLength(15)
+		@Constraints.MinLength(4)
+		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
+    @Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
+    public String password;
 
 
 
@@ -63,7 +72,7 @@ public static List<User> findAll(){
 //
 //        return SuperUser.find.all();
 //    }
-    
+
     // Static method to authenticate based on username and password
     // Returns user object if found, otherwise NULL
     //public	static SuperUser authenticate(String email, String password)
@@ -80,12 +89,12 @@ public static List<User> findAll(){
             // Find user by id and return object
             return find.byId(id);
     }
-    
+
     public String getid()
     {
         return this.userid;
     }
-		
+
     // Get the user type - from the discriminator value
     // http://stackoverflow.com/questions/3005383/how-to-get-the-discriminatorvalue-at-run-time
     // http://stackoverflow.com/questions/541749/how-to-determine-an-objects-class-in-java
@@ -94,6 +103,5 @@ public static List<User> findAll(){
         DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
         return val == null ? null : val.value();
     }
-        
-}
 
+}

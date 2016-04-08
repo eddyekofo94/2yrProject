@@ -1,4 +1,4 @@
-@(user: models.users.User,registerForm: Form[models.users.User])
+@(user: models.users.User,registerForm: Form[models.users.Manager])
 
 @import helper._
 
@@ -36,10 +36,26 @@
                                             <span class="input-group-addon">examplemail.com</span>
                                             <input type="text" class="form-control" placeholder="email">
                                         </div>-->
-                                    @inputText(registerForm("userid"), '_label -> "User ID", 'class -> "form-control")
-                                    @inputText(registerForm("password"), '_label -> "Password", 'class -> "form-control")
-                                    @inputText(registerForm("name"), '_label -> "Name", 'class -> "form-control")
-                                    @inputText(registerForm("loginname"), '_label -> "login Name", 'class -> "form-control")
+
+
+                                    <!--</form>-->
+                                    @inputText(registerForm("name"),
+                                      '_label -> "Name",
+                                      '_showConstraints -> false,
+                                      '_help -> "Example: John Doe",
+                                      '_error -> "Invalid",
+                                      'class -> "form-control")
+                                    @inputText(registerForm("loginName"),
+                                      '_label -> "Login Name",
+                                      '_showConstraints -> false,
+                                      '_help -> "Minimum 8 characters at least 1 Alphabet and 1 Number",
+                                      'class -> "form-control")
+                                    @inputPassword(registerForm("password"),
+                                      '_label -> "Password",
+                                      '_showConstraints -> false,
+                                      '_help -> "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character",
+                                      'class -> "form-control")
+
 
                                         <!-- Add a submit button -->
                                     <div class="actions">
@@ -51,17 +67,24 @@
                                     <!--</form>-->
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                                
+
 
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
-                            <!-- /.row (nested) -->
+                                <!-- /.col-lg-6 (nested) -->
+
+
                         </div>
-                        <!-- /.panel-body -->
+                            <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.panel -->
-                </div>
+                        <!-- /.row (nested) -->
+                    <!-- /.panel-body -->
+            </div>
+                <!-- /.panel -->
+        </div>
+            <!-- /.col-lg-12 -->
+
                 <!-- /.col-lg-12 -->
 
         }
