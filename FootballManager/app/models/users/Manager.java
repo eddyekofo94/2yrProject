@@ -34,13 +34,18 @@ public class Manager extends User {
 
     }
 
-    public Manager(String password, String name, String loginName) {
-        super("sdasdqfsdf", password, name, loginName);
+    public Manager(Long userid,String password, String name, String loginName) {
+        super(userid, password, name, loginName);
 //        this.suserid = suserid;
 //        this.password = password;
 //        this.name = name;
 //        this.loginname = loginname;
     }
+	
+	public Manager(User user)
+	{
+		super(user.userid,user.name,user.loginname,user.password);
+	}
 
 //    public static Finder<String, User> find = new Finder<String, User>(String.class, User.class); //Not Ure
 
@@ -61,7 +66,7 @@ public class Manager extends User {
             // Find user by id and return object
             return find.byId(id);
     }
-public String getUserid()
+public Long getUserid()
 {
    return  super.getid();
 }

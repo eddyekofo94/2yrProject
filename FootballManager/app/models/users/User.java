@@ -21,31 +21,31 @@ import java.util.List;
 
 public class User extends Model {
 
-    //@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//public Long id;
-
-	@Constraints.Required
     @Id
-    public String userid;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long userid;
+
+	//@Constraints.Required
+   // @Id
+    //public String userid;
 
     @Constraints.Required
-		@Constraints.MaxLength(15)
-    @Constraints.MinLength(4)
+		//@Constraints.MaxLength(15)
+    //@Constraints.MinLength(4)
     public String name;
 
     @Constraints.Required
-		@Constraints.MaxLength(15)
-    @Constraints.MinLength(4)
+	//	@Constraints.MaxLength(15)
+   // @Constraints.MinLength(4)
 		//Minimum 8 characters at least 1 Alphabet and 1 Number:
-		@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
+	//	@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     public String loginname;
 
 		@Constraints.Required
-		@Constraints.MaxLength(15)
-		@Constraints.MinLength(4)
+		//@Constraints.MaxLength(15)
+		//@Constraints.MinLength(4)
 		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
-    @Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
+    //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
     public String password;
 
 
@@ -54,7 +54,7 @@ public class User extends Model {
     public User() {
     }
     // Constructor to initialise object
-    public User(String userid, String password, String name, String loginname) {
+    public User(Long userid,  String name, String loginname,String password) {
         this.userid = userid;
         this.password = password;
         this.name = name;
@@ -76,21 +76,21 @@ public static List<User> findAll(){
     // Static method to authenticate based on username and password
     // Returns user object if found, otherwise NULL
     //public	static SuperUser authenticate(String email, String password)
-    public	static User authenticate(String userid, String password) {
+    public	static User authenticate(String loginname, String password) {
         // If found return the user object with matching username and password
-        return find.where().eq("userid", userid).eq("password", password).findUnique();
+        return find.where().eq("loginname", loginname).eq("password", password).findUnique();
     }
 
     // Check if a user is logged in (by id - suserid)
-    public static User getLoggedIn(String id) {
-        if (id == null)
+    public static User getLoggedIn(String loginname) {
+        if (loginname == null)
                 return null;
         else
             // Find user by id and return object
-            return find.byId(id);
+            return find.where().eq("loginname", loginname).findUnique();
     }
 
-    public String getid()
+    public Long getid()
     {
         return this.userid;
     }

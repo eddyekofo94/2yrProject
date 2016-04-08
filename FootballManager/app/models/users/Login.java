@@ -1,11 +1,17 @@
 package models.users;
+import models.*;
 
 public class Login{
-    public String userid;
+    public String loginname;
     public String password;
     
     public String validate(){
-        if(User.authenticate(userid, password) == null){
+		
+		CalcSHA cs = new CalcSHA();
+						String md = cs.calcPassword(this.password);
+						this.password = md;
+		 
+        if(User.authenticate(loginname, password) == null){
             return "Invalid user or password";
         }
         else{
