@@ -7,6 +7,7 @@ import play.data.Form.*;
 import play.data.validation.*;
 
 import play.mvc.Http.Context;
+import models.users.*;
 
 import play.mvc.Http.*;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -38,7 +39,7 @@ public class RegisterCtrl extends Controller {
     public Result register() {
 
         // Instantiate a form object based on the User class
-        Form<User> registerForm = Form.form(User.class);
+        Form<Manager> registerForm = Form.form(Manager.class);
 
         // Render the Add User View, passing the form object
         return ok(register.render(User.getLoggedIn(session().get("userID")),registerForm));   //, User.getLoggedIn(session().get("userName")))
@@ -51,33 +52,30 @@ public class RegisterCtrl extends Controller {
 
         // Create a user form object (to hold submitted data)
         // 'Bind' the object to the submitted form (this copies the filled form)
-        Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
+        
+        Form<Manager> newRegisterForm = Form.form(Manager.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
         if (newRegisterForm.hasErrors()) {
             // Display the form again
             return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
         }
-        /*
-        Map<String,String> anyData = new HashMap();
-        anyData.put("email", "bob@gmail.com");
-        anyData.put("password", "secret");
-
-        User user = userForm.bind(anyData).get();
-        If you have a request available in the scope, you can bind directly from the request content:
-
-        User user = userForm.bindFromRequest().get();
-         */
 
 
 
-        User user = newRegisterForm.get();
-        // Team team = new Team(k,"2",3);
-        // team =  user.RegisterUser(team);
-        user.save();
-        // team.save();
+         CalcSHA cs = new CalcSHA();
 
-        flash("success", "User " + newRegisterForm.get().name + " has been registered");
+         Manager manager = newRegisterForm.get();
+         String md = cs.calcPassword(manager.password);
+
+         manager.password = md;
+         // Team team = new Team(k,"2",3);
+         // team =  user.RegisterUser(team);
+         // user.save();
+         // user.en(user.password);
+         manager.save();
+
+        flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
 
         return redirect("/squad/0");
     }

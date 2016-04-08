@@ -1,10 +1,10 @@
-@(user: models.User,addPlayerForm: Form[models.Player])
+@(user: models.users.User,addPlayerForm: Form[models.Player])
 
 @import helper._
 
 @main("New Player",user) {
     <h3> Add a new Player</h3>
-    
+
     @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){
     @inputText(addPlayerForm("playerName"),'_label -> "Name")
     @inputText(addPlayerForm("jerseyNum"),'_label -> "Jersey Number")
@@ -23,27 +23,27 @@
     @inputText(addPlayerForm("health"),'_label -> "Health")
 
     <!--@inputText(addPlayerForm("injury"),'_label -> "Injury Status (boolean true or false)")-->
-    
+
 			@inputRadioGroup(
 				addPlayerForm("injury"),
 				options = Seq("True"->"Yes","False"->"No"),
 				'_label -> "Injured",
-				'_error -> addPlayerForm("injury").error.map(_.withMessage("injured")))	
+				'_error -> addPlayerForm("injury").error.map(_.withMessage("injured")))
     @inputText(addPlayerForm("salary"),'_label -> "Salary")
     @inputText(addPlayerForm("transferValue"),'_label -> "Transfer Value (selling price)")
-    
+
     <div class="actions">
         <input type="submit" value="Add Player" class="btn primary">
         <a href="@routes.Application.index()">
             <button class="btn btn-warning">Cancel</button>
          </a>
-         
-         
-         
-         
-     </div>       
 
-         
- 
+
+
+
+     </div>
+
+
+
     }
 }

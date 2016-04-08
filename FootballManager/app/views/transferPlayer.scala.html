@@ -1,4 +1,4 @@
-@(user: models.User,positions: List[models.Position], players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
+@(user: models.users.User,positions: List[models.Position], players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
 
 @import helper._
 
@@ -56,18 +56,18 @@
                                     </th>
                                     <th>@p.salary</th>
                                     <th>@p.transferValue</th>
-       
+
                                 </tr>
                                     }
                                     }
-    
+
     </tbody>
     </table>
     <!-- /.panel-body -->
     </div>
-    
+
     @form(action = routes.Application.transferPlayerSubmit(id), 'class -> "form-horizontal", 'role->"form"){
-  
+
    <!-- @inputText(transferPlayerForm("teamID"),'_label -> "Team ID")-->
    @select(
    transferPlayerForm("player.teamID"),
@@ -75,16 +75,16 @@
    '_label -> "Player", '_dfault -> "--Choose a Player --",
    '_showConstraints -> false, 'class -> "form-control"
    )
-   
-    
+
+
     <div class="actions">
         <input type="submit" value="Save" class="btn primary">
         <a href="@routes.Application.squad(0)">
             <button class="btn btn-warning">Cancel</button>
          </a>
-     </div>       
+     </div>
 
-         
- 
+
+
     }
 }

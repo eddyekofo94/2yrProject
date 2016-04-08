@@ -9,6 +9,9 @@ import play.data.validation.*;
 import com.avaje.ebean.*;
 import com.avaje.ebean.Model;
 
+import models.users.*;
+
+
 
 @Entity
  public class Team extends Model{
@@ -22,22 +25,27 @@ import com.avaje.ebean.Model;
      public Long teamID;
 
      @OneToOne
-     public User user;
-
-     public ArrayList <Team> teamList = new ArrayList<>();
+     public Manager manager;
 
      @Constraints.Required
      public String teamName;
+
      private int teamScore;
      @ManyToMany(mappedBy = "tList")
-    public List<Fixtures> flist = new ArrayList<Fixtures>();
+     public List<Fixtures> flist = new ArrayList<Fixtures>();
+     @Transient
+     String userID;
+
+     public ArrayList <Team> teamList = new ArrayList<>();
+
      //Default constructor
      public Team(){
 
      }
      //Overloaded constructor
-     public Team(Long teamID, String TeamName, int teamScore){
+     public Team(Long teamID, Manager m, String TeamName, int teamScore){
          this.teamID = teamID;
+         this.userID = m.getUserid() ;
          this.teamName = teamName;
          this.teamScore = teamScore;
      }
@@ -63,8 +71,8 @@ import com.avaje.ebean.Model;
          return teamID;
      }
 
-     public Long getUserID(){
-          return this.user.userID;
+     public Manager getManagerID(){
+          return manager;
       }
 
     public int getTeamScore() {
