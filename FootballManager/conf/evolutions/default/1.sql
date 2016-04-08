@@ -43,7 +43,7 @@ create table team (
   max_players               integer,
   max_on_field              integer,
   max_subs                  integer,
-  manager_userid            varchar(255),
+  manager_userid            bigint,
   team_name                 varchar(255),
   team_score                integer,
   constraint uq_team_manager_userid unique (manager_userid),
@@ -52,7 +52,7 @@ create table team (
 
 create table user (
   usertype                  varchar(31) not null,
-  userid                    varchar(255) not null,
+  userid                    bigint auto_increment not null,
   name                      varchar(255),
   loginname                 varchar(255),
   password                  varchar(255),
@@ -72,8 +72,6 @@ create sequence player_seq;
 create sequence position_seq;
 
 create sequence team_seq;
-
-create sequence user_seq;
 
 alter table player add constraint fk_player_position_1 foreign key (position_id) references position (id) on delete restrict on update restrict;
 create index ix_player_position_1 on player (position_id);
@@ -113,6 +111,4 @@ drop sequence if exists player_seq;
 drop sequence if exists position_seq;
 
 drop sequence if exists team_seq;
-
-drop sequence if exists user_seq;
 

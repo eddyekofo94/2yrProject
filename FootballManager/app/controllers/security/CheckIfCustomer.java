@@ -21,10 +21,10 @@ public class CheckIfCustomer extends Action.Simple {
     public F.Promise<Result> call(Http.Context ctx) throws Throwable {
         
         // Check if current user (in session) is an admin
-        String id = ctx.session().get("userid");
-        if (id != null) {
-            User u = User.getLoggedIn(id);
-            if ("user".equals(u.getUserType())) {
+        String loginname = ctx.session().get("loginname");
+        if (loginname != null) {
+            User u = User.getLoggedIn(loginname);
+            if ("manager".equals(u.getUserType())) {
                 
                 // SuperUser admin sp continue with the http request
                 return delegate.call(ctx);
@@ -34,5 +34,6 @@ public class CheckIfCustomer extends Action.Simple {
         // Unauthorised - redirect to login page
        ctx.flash().put("error", "Customer Login Required.");
         return F.Promise.pure(redirect(routes.LoginCtrl.login()));
+		
     }
 }

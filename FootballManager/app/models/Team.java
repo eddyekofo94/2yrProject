@@ -34,7 +34,7 @@ import models.users.*;
      @ManyToMany(mappedBy = "tList")
      public List<Fixtures> flist = new ArrayList<Fixtures>();
      @Transient
-     String userID;
+    Long userID;
 
      public ArrayList <Team> teamList = new ArrayList<>();
 

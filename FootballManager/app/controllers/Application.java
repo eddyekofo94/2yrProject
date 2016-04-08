@@ -315,7 +315,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
     public Result register() {
 
-        Form<Manager> registerForm = Form.form(Manager.class);
+        Form<User> registerForm = Form.form(User.class);
 
         return ok(register.render(User.getLoggedIn(session().get("loginName")),registerForm));
     }

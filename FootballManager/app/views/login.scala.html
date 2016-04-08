@@ -21,7 +21,7 @@
         @helper.form(action = controllers.security.routes.LoginCtrl.authenticate) {
 
             <div class="form-group">
-                <input type="text" name="userid" class="form-control input-xs" placeholder="User ID" value="@form("userid").value">
+                <input type="text" name="loginname" class="form-control input-xs" placeholder="Login name" value="@form("loginname").value">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control input-xs" placeholder="Password">

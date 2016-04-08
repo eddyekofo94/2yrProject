@@ -1,4 +1,4 @@
-@(user: models.users.User,registerForm: Form[models.users.Manager])
+@(user: models.users.User,registerForm: Form[models.users.User])
 
 @import helper._
 
@@ -45,15 +45,13 @@
                                       '_help -> "Example: John Doe",
                                       '_error -> "Invalid",
                                       'class -> "form-control")
-                                    @inputText(registerForm("loginName"),
+                                    @inputText(registerForm("loginname"),
                                       '_label -> "Login Name",
-                                      '_showConstraints -> false,
-                                      '_help -> "Minimum 8 characters at least 1 Alphabet and 1 Number",
+                                   
                                       'class -> "form-control")
                                     @inputPassword(registerForm("password"),
                                       '_label -> "Password",
-                                      '_showConstraints -> false,
-                                      '_help -> "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character",
+                                     
                                       'class -> "form-control")
 
 
