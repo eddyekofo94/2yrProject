@@ -83,6 +83,25 @@ public class Player extends Model{
         }
         return options;
     }
+          public void setGkVal(int gkVal)
+     {
+     this.gkVal = gkVal;
+     }
      
+       public void setDefVal(int defVal)
+     {
+     this.defVal = defVal;
+     }
+     
+     
+        public void setMidVal(int midVal)
+     {
+     this.midFVal = midVal;
+     }
+     
+           public void setAtkVal(int atkVal)
+     {
+     this.attVal = atkVal;
+     }
     
 }   

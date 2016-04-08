@@ -43,10 +43,9 @@ create table team (
   max_players               integer,
   max_on_field              integer,
   max_subs                  integer,
-  manager_userid            bigint,
+  userid                    bigint,
   team_name                 varchar(255),
   team_score                integer,
-  constraint uq_team_manager_userid unique (manager_userid),
   constraint pk_team primary key (team_id))
 ;
 
@@ -77,8 +76,6 @@ alter table player add constraint fk_player_position_1 foreign key (position_id)
 create index ix_player_position_1 on player (position_id);
 alter table player add constraint fk_player_teamID_2 foreign key (team_id_team_id) references team (team_id) on delete restrict on update restrict;
 create index ix_player_teamID_2 on player (team_id_team_id);
-alter table team add constraint fk_team_manager_3 foreign key (manager_userid) references user (userid) on delete restrict on update restrict;
-create index ix_team_manager_3 on team (manager_userid);
 
 
 

@@ -22,11 +22,9 @@ public class Manager extends User {
 //    @OneToOne
 //    public Long teamID;
 
-    // Customer has one basket.
-    // Customer is the owner (forieng key will be added to Basket table)
-    // All changes to Customer are cascaded.
-    @OneToOne(mappedBy="manager", cascade = CascadeType.ALL)
-    public Team team;
+    
+ //   @OneToOne(mappedBy="manager", cascade = CascadeType.ALL)
+   // public Team team;
 
 
 

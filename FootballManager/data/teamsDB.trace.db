@@ -1820,3 +1820,15 @@ INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","M
 04-08 20:05:22 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: MANAGER_USERID BIGINT)"; SQL statement:
 INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","MANAGER_USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+04-08 20:45:28 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+04-08 20:45:28 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+04-08 20:47:16 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+04-08 20:47:16 jdbc[43]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","MAX_PLAYERS","MAX_ON_FIELD","MAX_SUBS","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]

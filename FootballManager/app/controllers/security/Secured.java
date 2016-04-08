@@ -12,7 +12,7 @@ public class Secured extends Security.Authenticator {
 	// null returned if no user logged in - onUnauthorized
     @Override
     public String getUsername(Context ctx) {
-        return ctx.session().get("suserid");
+        return ctx.session().get("loginname");
     }
 
 	// If not logged in then open the login page

@@ -187,6 +187,82 @@ import models.*;
              player.health += healthIncrease;
          }
      }
+	 
+	  public static void randomStats()
+     {
+     Random rand = new Random();
+     int count = 0;
+     //get all the teams
+     List<Team> teams = models.Team.findAll();
+     
+     //get all the players 
+      List<Player> players = Player.findAll();
+      
+      //for each of the teams assign all the players random stats
+      
+      for(int i = 0 ; i < teams.size();i++)
+      	{
+      
+      		for(int j = 0 ; j < players.size();j++)
+      		{
+      			if(teams.get(i).getTeamID() == players.get(j).getTeamID().getTeamID())
+      			{
+      			//11 players in team 1 gk 4 def 4 mid 2 attk guarenteed rest is random
+      			//set goalkeeper
+      			
+      				if(count == 0)
+      				{
+      			         players.get(j).setGkVal(rand.nextInt(3)+1+6);
+      			         players.get(j).setDefVal(rand.nextInt(10)+1);
+      			         players.get(j).setMidVal(rand.nextInt(10)+1);
+      			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+      			         
+      				}
+      				else if((count >=1)&&(count<= 4))
+      				{
+      				players.get(j).setGkVal(rand.nextInt(10)+1);
+      			         players.get(j).setDefVal(rand.nextInt(3)+1+6);
+      			         players.get(j).setMidVal(rand.nextInt(10)+1);
+      			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+      			         
+      				}
+      				else if((count >=5)&&(count<=9))
+      				{
+      				players.get(j).setGkVal(rand.nextInt(10)+1);
+      			         players.get(j).setDefVal(rand.nextInt(10)+1);
+      			         players.get(j).setMidVal(rand.nextInt(3)+1+6);
+      			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+      				}
+      				else if((count >=10)&&(count <= 11))
+      				{
+      				players.get(j).setGkVal(rand.nextInt(10)+1);
+      			         players.get(j).setDefVal(rand.nextInt(10)+1);
+      			         players.get(j).setMidVal(rand.nextInt(10)+1);
+      			         players.get(j).setAtkVal(rand.nextInt(3)+1+6);
+      				}
+      				else
+      				{
+      				 players.get(j).setGkVal(rand.nextInt(10)+1);
+      			         players.get(j).setDefVal(rand.nextInt(10)+1);
+      			         players.get(j).setMidVal(rand.nextInt(10)+1);
+      			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+      				}
+      				count++;
+      				players.get(j).save();
+      				
+      			}
+      
+      		}
+      	}
+     
+     }
+     
+       public Result genStats() {
+
+       randomStats();
+
+        return redirect("/squad/0");
+    }
      }
  
  
