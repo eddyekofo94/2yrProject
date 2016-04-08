@@ -16,7 +16,7 @@ GET     /squad/:position            controllers.Application.squad(position: Long
 # GET     /login                      controllers.Application.login()
 # POST    /login                      controllers.Application.authenticate()
 
-
+POST    /genStats                    controllers.PlayerCtrl.genStats()
 
 GET         /login                     controllers.security.LoginCtrl.login()
 POST        /login                     controllers.security.LoginCtrl.authenticate()
