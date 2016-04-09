@@ -40,7 +40,7 @@ import models.users.*;
 
      //Default constructor
      public Team(){
-
+		
      }
      //Overloaded constructor
      public Team(Long teamID, Long userid, String TeamName, int teamScore){

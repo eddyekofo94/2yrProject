@@ -86,11 +86,28 @@ public class Player extends Model{
      public Team getTeamID(){
          return teamID;
      }
+	 public String getPlayerName()
+	 {
+		 return playerName;
+	 }
+	 public void setPlayerName(String platerName)
+	 {
+		 this.playerName = playerName;
+	 }
+	 
+	 public int getJerseyNum()
+	 {
+		 return jerseyNum;
+	 }
+	 public void setJerseyNum(int num )
+	 {
+		 this.jerseyNum = num ;
+	 }
 	 public void setTeam(Team team)
 	{
 		this.teamID = team;
 	}
-	 
+	
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }

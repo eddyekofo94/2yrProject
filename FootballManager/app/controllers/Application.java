@@ -443,8 +443,13 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		{
 			if(players.get(i).getPlayerID()== id)
 			{
+<<<<<<< HEAD
 				players.get(i).setPlayerName(player.playerName);
 				players.get(i).setJerseyNum(player.jerseyNum);
+=======
+				players.get(i).setPlayerName(player.getPlayerName());
+				players.get(i).setJerseyNum(player.getJerseyNum());
+>>>>>>> 328ff12d324a10e8c205576c85f320add94743f5
 				players.get(i).setAtkVal(player.getAtkVal());
 				players.get(i).setDefVal(player.getDefVal());
 				players.get(i).setMidVal(player.getMidVal());
@@ -489,5 +494,21 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
         return redirect("/");
     }
+	
+	  public Result addTeam(){
+        Form<Team> addTeamForm = Form.form(Team.class);
+        return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
+    }
+	
+	public Result addTeamSubmit(){
+		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+		Team newTeam;
+		newTeam = newTeamForm.get();
+		newTeam.setTeamScore(0);
+		newTeam.save();
+		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		return redirect("/admin");
+	}
+	
 
 }
