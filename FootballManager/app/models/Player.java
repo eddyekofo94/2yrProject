@@ -6,6 +6,7 @@ import javax.persistence.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+
 import com.avaje.ebean.*;
 import com.avaje.ebean.Model;
 
@@ -36,6 +37,7 @@ public class Player extends Model{
      public boolean injury;
      public double salary;
      public double transferValue;
+	 
      
      //constants for getTrained and getInjured methods
      
@@ -44,6 +46,16 @@ public class Player extends Model{
      
      //Default constructor
      public Player(){
+		 
+		 
+		 this.attVal = 0;
+		 this.defVal =0;
+		 this.midFVal = 0;
+		 this.gkVal =0;
+		 this.injury = false;
+		 this.salary = 0;
+		 this.transferValue = 0;
+		
          
      }  
      //Overloaded constructor 
@@ -72,6 +84,10 @@ public class Player extends Model{
      public Team getTeamID(){
          return teamID;
      }
+	 public void setTeam(Team team)
+	{
+		this.teamID = team;
+	}
 	 
 	 public Long getTID(){
 		 return teamID.getTeamID();
@@ -137,5 +153,9 @@ public class Player extends Model{
    public Long getPosition()
    {
 	 return position.getPositionID();  
+   }
+   public void setPosition(Position position)
+   {
+	   this.position = position;
    }
 }

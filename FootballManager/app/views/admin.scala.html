@@ -1,0 +1,11 @@
+@(user: models.users.User)
+@main("Admin",user){
+<div class="actions">
+
+    @helper.form(action = routes.Application.addPlayer()) {
+    <p>
+        <input class="btn-sm btn-primary" type="submit" value="Add a Player">
+    </p>
+    }
+
+}

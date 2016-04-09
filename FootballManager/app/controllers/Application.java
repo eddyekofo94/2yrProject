@@ -12,7 +12,7 @@ import models.users.*;
 import controllers.security.*;
 
 import play.db.*;
-import java.util.*;
+
 
 
 
@@ -65,6 +65,7 @@ generateFixtures();
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
 
+
 Collections.sort(fixture);
 
 return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
@@ -112,7 +113,10 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
 
 		     for(Team t : Team.<Team>findAll()) {
+				 if(t.getTeamID() != 0)
+				 {
 		     teams.add(t);
+				 }
 
 		}
 
@@ -176,7 +180,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 	public void startLeague(List<models.Team> teams)
 	{
 
-	for(int i = 0;i < teams.size();i++)
+	for(int i = 1;i < teams.size();i++)
 	{
 	models.LeagueTable league = new models.LeagueTable(teams.get(i).getTeamID());
 	league.addTeam();
@@ -392,12 +396,18 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     }
     public Result addPlayerSubmit(){
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
+		Player newPlayer;
 
         if(newPlayerForm.hasErrors()){
             return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")),newPlayerForm));
 
         }
-        newPlayerForm.get().save();
+		
+        newPlayer =newPlayerForm.get();
+		newPlayer.setPosition(Position.getPositionNone());
+		newPlayer.setTeam(Team.getTeamDefault());
+		PlayerCtrl.genPlayerStat(newPlayer);
+		newPlayer.save();
         flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
 
         return redirect("/");

@@ -58,18 +58,18 @@ public class MatchCtrl extends Controller {
 				{
 					teamScore += players.get(i).getGkVal();
 				}
-				
+				//defender position
 				if(players.get(i).getPosition() == 2) 
 				{
 					teamScore += players.get(i).getDefVal();
 				}
-				
+				//midfield position
 				if(players.get(i).getPosition() == 3) 
 				{
 					teamScore += players.get(i).getMidVal();
 				}
 				
-				
+				//attacker position
 				if(players.get(i).getPosition() == 4) 
 				{
 					teamScore += players.get(i).getAtkVal();

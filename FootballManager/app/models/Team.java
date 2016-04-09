@@ -78,7 +78,24 @@ import models.users.*;
     public int getTeamScore() {
         return teamScore;
     }
+	
+	
 	public void setTeamScore(int teamScore) {
         this.teamScore = teamScore;
     }
+	
+	public static Team getTeamDefault(){
+		List<Team> transfer;
+		transfer = Team.find.all();
+		Team team = null;
+		for(int i = 0 ; i < transfer.size();i++)
+		{
+			if(transfer.get(i).getTeamID() == 0)
+			{
+				team = transfer.get(i);
+			}
+		}
+		
+		return team;
+	}
 }
