@@ -23,6 +23,7 @@
                                     <th>Atck</th>
                                     <th>Health</th>
                                     <th>Delete</th>
+									<th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,10 +44,16 @@
 		@helper.form(action = routes.Application.delPlayer(p.playerID)) {
             <input class="btn-xs btn-danger" type="submit" value="Delete Player" ></a>
         </td>
+		
 
-
-    </tr>
+   
                                     }
+									<td>
+		@helper.form(action = routes.Application.editPlayer(p.playerID)) {
+            <input class="btn-xs btn-danger" type="submit" value="Edit Player" ></a>
+        </td>
+		}
+			 </tr>						
 }
 
     </tbody>
