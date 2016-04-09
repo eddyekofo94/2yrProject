@@ -1,0 +1,23 @@
+@(user: models.users.User)
+@main("Admin",user){
+
+
+<div class="actions">
+<h3>Player Admin options</h3>
+ <div class="col-md-6">
+      
+    @helper.form(action = routes.Application.addPlayer()) {
+    <p>
+        <input class="btn-sm btn-primary" type="submit" value="Add a Player">
+    </p>
+	
+	
+    }
+	   @helper.form(action = routes.Application.deletePlayer()) {
+    <p>
+        <input class="btn-sm btn-primary" type="submit" value="delete a Player">
+    </p>
+}
+</div>
+  </div>
+}

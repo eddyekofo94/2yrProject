@@ -25,7 +25,7 @@ import models.*;
          List<Player> players = Player.findAll();
          for(Player p : players ){
              if(p.playerID == pID){
-                for(int i=0; i<positions.size();i++){
+                for(int i=0; i < positions.size();i++){
                     if(positions.get(i).position.equals(position)){
                         p.position = positions.get(i);
                     }
@@ -256,6 +256,15 @@ import models.*;
       	}
      
      }
+	 
+	 public static void genPlayerStat(Player player)
+	 {
+		  Random rand = new Random();
+		player.setGkVal(rand.nextInt(10)+1);
+      	player.setDefVal(rand.nextInt(10)+1);
+      	player.setMidVal(rand.nextInt(10)+1);
+      	player.setAtkVal(rand.nextInt(10)+1);
+	 }
      
        public Result genStats() {
 

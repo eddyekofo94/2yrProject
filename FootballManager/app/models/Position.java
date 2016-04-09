@@ -45,4 +45,19 @@ public class Position extends Model{
          return Position.find.all();
         
      }
+	 
+	 public Long getPositionID()
+	 {
+		 return id;
+	 }
+	 
+	 public static Position getPositionNone()
+	 {
+		 List<Position> none = Position.find.all();
+		 
+		 return none.get(0);
+		 
+	 }
+	 
+	
 }

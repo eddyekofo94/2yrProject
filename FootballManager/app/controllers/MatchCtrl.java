@@ -1,7 +1,7 @@
 package controllers;
 
 import java.util.*;
-
+import models.*;
 import models.users.User;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -43,6 +43,45 @@ public class MatchCtrl extends Controller {
 
         return redirect("/fixtures");
     }
+	
+	public void calcTeamScore(Team team)
+	{
+		int teamScore = 0;
+		 List<Player> players = Player.findAll();
+		 
+		 for(int i = 0;i < players.size();i++)
+		 {
+			 if(team.getTeamID() == players.get(i).getTID())
+			 {
+				 //GoalKeeper position
+				if(players.get(i).getPosition() == 1) 
+				{
+					teamScore += players.get(i).getGkVal();
+				}
+				//defender position
+				if(players.get(i).getPosition() == 2) 
+				{
+					teamScore += players.get(i).getDefVal();
+				}
+				//midfield position
+				if(players.get(i).getPosition() == 3) 
+				{
+					teamScore += players.get(i).getMidVal();
+				}
+				
+				//attacker position
+				if(players.get(i).getPosition() == 4) 
+				{
+					teamScore += players.get(i).getAtkVal();
+				}
+			 }
+			 
+		 }
+		 
+		 team.setTeamScore(teamScore);
+         
+         team.save();		 
+	}
 
     public  void playMatch(){
         List<models.Fixtures> weekFixtures = new ArrayList();
@@ -67,6 +106,8 @@ public class MatchCtrl extends Controller {
                 }
 
             }
+			calcTeamScore(teamsPlaying.get(homeTeamIndex));
+			calcTeamScore(teamsPlaying.get(awayTeamIndex));
             Match m1 = new Match(teamsPlaying.get(homeTeamIndex).getTeamScore(),teamsPlaying.get(awayTeamIndex).getTeamScore());
             m1.calcMatch();
             scores = m1.getScores();

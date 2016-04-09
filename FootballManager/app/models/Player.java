@@ -6,6 +6,7 @@ import javax.persistence.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+
 import com.avaje.ebean.*;
 import com.avaje.ebean.Model;
 
@@ -36,6 +37,7 @@ public class Player extends Model{
      public boolean injury;
      public double salary;
      public double transferValue;
+	 
      
      //constants for getTrained and getInjured methods
      
@@ -44,6 +46,16 @@ public class Player extends Model{
      
      //Default constructor
      public Player(){
+		 
+		 
+		 this.attVal = 0;
+		 this.defVal =0;
+		 this.midFVal = 0;
+		 this.gkVal =0;
+		 this.injury = false;
+		 this.salary = 0;
+		 this.transferValue = 0;
+		
          
      }  
      //Overloaded constructor 
@@ -68,10 +80,20 @@ public class Player extends Model{
          return Player.find.all();
         
      }
-     
+     public Long getPlayerID(){
+		 return playerID;
+	 }
      public Team getTeamID(){
          return teamID;
      }
+	 public void setTeam(Team team)
+	{
+		this.teamID = team;
+	}
+	 
+	 public Long getTID(){
+		 return teamID.getTeamID();
+	 }
      
      
      public static Map<String,String> options(){
@@ -83,25 +105,59 @@ public class Player extends Model{
         }
         return options;
     }
-          public void setGkVal(int gkVal)
+	
+	
+    public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
      }
      
-       public void setDefVal(int defVal)
+    public void setDefVal(int defVal)
      {
      this.defVal = defVal;
      }
      
      
-        public void setMidVal(int midVal)
+    public void setMidVal(int midVal)
      {
      this.midFVal = midVal;
      }
      
-           public void setAtkVal(int atkVal)
+    
+	public void setAtkVal(int atkVal)
      {
      this.attVal = atkVal;
      }
+	 
     
-}   
+     public int getGkVal()
+     {
+     return this.gkVal;
+     }
+     
+    public int getDefVal()
+     {
+      return this.defVal;
+     }
+     
+     
+    public int getMidVal()
+     {
+     return this.midFVal;
+     }
+     
+    
+	public int getAtkVal()
+     {
+      return this.attVal;
+     }
+    
+   public Long getPosition()
+   {
+	 return position.getPositionID();  
+   }
+   public void setPosition(Position position)
+   {
+	   this.position = position;
+   }
+}
