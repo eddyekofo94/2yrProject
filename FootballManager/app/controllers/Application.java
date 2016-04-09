@@ -489,5 +489,21 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
         return redirect("/");
     }
+	
+	  public Result addTeam(){
+        Form<Team> addTeamForm = Form.form(Team.class);
+        return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
+    }
+	
+	public Result addTeamSubmit(){
+		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+		Team newTeam;
+		newTeam = newTeamForm.get();
+		newTeam.setTeamScore(0);
+		newTeam.save();
+		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		return redirect("/admin");
+	}
+	
 
 }
