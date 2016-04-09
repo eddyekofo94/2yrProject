@@ -72,6 +72,10 @@ public class Player extends Model{
      public Team getTeamID(){
          return teamID;
      }
+	 
+	 public Long getTID(){
+		 return teamID.getTeamID();
+	 }
      
      
      public static Map<String,String> options(){
@@ -83,25 +87,55 @@ public class Player extends Model{
         }
         return options;
     }
-          public void setGkVal(int gkVal)
+	
+	
+    public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
      }
      
-       public void setDefVal(int defVal)
+    public void setDefVal(int defVal)
      {
      this.defVal = defVal;
      }
      
      
-        public void setMidVal(int midVal)
+    public void setMidVal(int midVal)
      {
      this.midFVal = midVal;
      }
      
-           public void setAtkVal(int atkVal)
+    
+	public void setAtkVal(int atkVal)
      {
      this.attVal = atkVal;
      }
+	 
     
-}   
+     public int getGkVal()
+     {
+     return this.gkVal;
+     }
+     
+    public int getDefVal()
+     {
+      return this.defVal;
+     }
+     
+     
+    public int getMidVal()
+     {
+     return this.midFVal;
+     }
+     
+    
+	public int getAtkVal()
+     {
+      return this.attVal;
+     }
+    
+   public Long getPosition()
+   {
+	 return position.getPositionID();  
+   }
+}

@@ -25,7 +25,7 @@ import models.*;
          List<Player> players = Player.findAll();
          for(Player p : players ){
              if(p.playerID == pID){
-                for(int i=0; i<positions.size();i++){
+                for(int i=0; i < positions.size();i++){
                     if(positions.get(i).position.equals(position)){
                         p.position = positions.get(i);
                     }

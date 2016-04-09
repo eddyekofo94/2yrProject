@@ -78,4 +78,7 @@ import models.users.*;
     public int getTeamScore() {
         return teamScore;
     }
+	public void setTeamScore(int teamScore) {
+        this.teamScore = teamScore;
+    }
 }
