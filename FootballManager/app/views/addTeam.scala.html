@@ -1,0 +1,30 @@
+@(user: models.users.User,addTeamForm: Form[models.Team])
+
+@import helper._
+
+@main("New Player",user) {
+    <h3> Add a new Player</h3>
+
+    @form(action = routes.Application.addTeamSubmit(), 'class -> "form-horizontal", 'role->"form"){
+    @inputText(addTeamForm("TeamName"),'_label -> "TeamName")
+    
+ 
+
+   
+
+    <div class="actions">
+        <input type="submit" value="Add Player" class="btn primary">
+        <a href="@routes.Application.index()">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+
+
+
+
+     </div>
+
+
+
+    }
+}
+

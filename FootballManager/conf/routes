@@ -37,6 +37,10 @@ POST   /delPlayer	            controllers.Application.delPlayer(id: Long)
 
 POST   /editPlayer	            controllers.Application.editPlayer(id: Long)
 POST /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
+
+GET     /addTeam                 controllers.Application.addTeam()
+POST    /addTeamSubmit            controllers.Application.addTeamSubmit()
+
 #Register
 GET     /register                               controllers.Application.register
 
