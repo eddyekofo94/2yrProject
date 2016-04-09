@@ -406,6 +406,59 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		 return redirect("/delPlayer");
 	}
 	
+		
+		public Result editPlayer(Long playerID)
+		{
+		List<Player> player = Player.find.all();
+		
+		
+		for(int i = 0 ; i < player.size();i++)
+		{
+			if(player.get(i).getPlayerID()== playerID)
+			{
+			Form<Player> editPlayerForm = Form.form(Player.class).fill(player.get(i));
+			 return ok(editPlayer.render(User.getLoggedIn(session().get("loginName")),editPlayerForm, player.get(i)));
+				
+			}
+			
+		}
+		 return redirect("/delPlayer");
+		 
+		}
+		
+		
+	public  Result submitEditPlayer(Long id)
+	{
+		Form<Player> editPlayerForm = Form.form(Player.class).bindFromRequest();
+		List<Player> players = Player.find.all();
+		Player player;
+		 if(editPlayerForm.hasErrors()){
+            return redirect("/");
+
+        }
+		
+		player = editPlayerForm.get();
+		
+		for(int i = 0;i < players.size();i++)
+		{
+			if(players.get(i).getPlayerID()== id)
+			{
+				players.get(i).setPlayerName(player.getPlayerName());
+				players.get(i).setJerseyNum(player.getJerseyNum());
+				players.get(i).setAttVal(player.getAttVal());
+				players.get(i).setDefVal(player.getDefVal());
+				players.get(i).setMidVal(player.getMidVal());
+				players.get(i).setGkVal(player.getGkVal());
+				players.get(i).update();
+			}
+			
+		}
+		return redirect("/admin");
+	}
+	
+	
+	
+	
 	public Result deletePlayer()
 	{
 		 List<Player> players = new ArrayList<Player>();

@@ -1,0 +1,46 @@
+@(user: models.users.User,editPlayerForm: Form[models.Player],player: models.Player)
+
+@import helper._
+
+@main("New Player",user) {
+    <h3> Edit a Player</h3>
+
+    @form(action = routes.Application.submitEditPlayer(player.playerID), 'class -> "form-horizontal", 'role->"form"){
+    @inputText(editPlayerForm("playerName"),'_label -> "Name")
+    @inputText(editPlayerForm("jerseyNum"),'_label -> "Jersey Number")
+   <!-- @inputText(editPlayerForm("s"),'_label -> "Position")-->
+
+    @inputText(editPlayerForm("attVal"),'_label -> "Attack Stat")
+	@inputText(editPlayerForm("midFVal"),'_label -> "Midfield Stat")
+	@inputText(editPlayerForm("defVal"),'_label -> "Defence Stat")
+	@inputText(editPlayerForm("gkVal"),'_label -> "GoalKeeper Stat")
+    @inputText(editPlayerForm("health"),'_label -> "Health")
+
+    <!--@inputText(editPlayerForm("injury"),'_label -> "Injury Status (boolean true or false)")-->
+
+			
+
+    <div class="actions">
+        <input type="submit" value="Edit Player" class="btn primary">
+        <a href="\admin">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+
+
+
+
+     </div>
+
+
+
+    }
+}
+
+
+this.jerseyNum = jerseyNum;
+         this.playerName = playerName;
+         this.position = position;
+         this.attVal = attVal;
+         this.defVal = defVal;
+         this.midFVal = midFVal;
+         this.gkVal = gkVal;
