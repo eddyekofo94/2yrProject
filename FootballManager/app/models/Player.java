@@ -80,7 +80,9 @@ public class Player extends Model{
          return Player.find.all();
         
      }
-     
+     public Long getPlayerID(){
+		 return playerID;
+	 }
      public Team getTeamID(){
          return teamID;
      }

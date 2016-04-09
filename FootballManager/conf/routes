@@ -32,6 +32,8 @@ POST    /transferPlayerSubmit/:id             controllers.Application.transferPl
 #Add a player
 GET     /addPlayer                 controllers.Application.addPlayer()
 POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+GET     /delPlayer                  controllers.Application.deletePlayer()
+POST   /delPlayer	            controllers.Application.delPlayer(id: Long)
 #Register
 GET     /register                               controllers.Application.register
 

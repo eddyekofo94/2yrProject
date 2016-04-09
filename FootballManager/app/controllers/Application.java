@@ -390,6 +390,30 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
         return redirect("/squad/0");
     }
+	
+	public Result delPlayer(Long playerID)
+	{
+		List<Player> player = Player.find.all();
+		Player playerToDelete;
+		for(int i = 0 ; i < player.size();i++)
+		{
+			if(player.get(i).getPlayerID()== playerID)
+			{
+			 player.get(i).delete();
+				
+			}
+		}
+		 return redirect("/delPlayer");
+	}
+	
+	public Result deletePlayer()
+	{
+		 List<Player> players = new ArrayList<Player>();
+       
+            players = Player.findAll();
+		
+		return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
+	}
      public Result addPlayer(){
         Form<Player> addPlayerForm = Form.form(Player.class);
         return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")),addPlayerForm));
