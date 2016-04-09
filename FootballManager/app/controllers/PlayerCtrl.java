@@ -31,8 +31,8 @@ import models.*;
                     }
                 }
              }
-             flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
              p.save();
+             flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
          }
          return redirect("/squad/0");
      }

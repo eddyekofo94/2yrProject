@@ -443,9 +443,9 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		{
 			if(players.get(i).getPlayerID()== id)
 			{
-				players.get(i).setPlayerName(player.getPlayerName());
-				players.get(i).setJerseyNum(player.getJerseyNum());
-				players.get(i).setAttVal(player.getAttVal());
+				players.get(i).setPlayerName(player.playerName);
+				players.get(i).setJerseyNum(player.jerseyNum);
+				players.get(i).setAtkVal(player.getAtkVal());
 				players.get(i).setDefVal(player.getDefVal());
 				players.get(i).setMidVal(player.getMidVal());
 				players.get(i).setGkVal(player.getGkVal());

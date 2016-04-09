@@ -94,17 +94,14 @@ public class Player extends Model{
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }
+     public void setPlayerName(String name){
+         this.playerName = name;
+     }
+     public void setJerseyNum(int number){
+         this.jerseyNum = number;
+     }
      
-     
-     public static Map<String,String> options(){
-        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
-        for(Player p: Player.find.orderBy("playerID").findList()){
-            if(p.teamID == null){
-                options.put(p.playerID.toString(), p.playerName.toString());
-            }    
-        }
-        return options;
-    }
+    
 	
 	
     public void setGkVal(int gkVal)
@@ -160,4 +157,13 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+    public static Map<String,String> options(){
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Player p: Player.find.orderBy("playerID").findList()){
+            if(p.teamID == null){
+                options.put(p.playerID.toString(), p.playerName.toString());
+            }    
+        }
+        return options;
+    }
 }
