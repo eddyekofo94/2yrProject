@@ -60,6 +60,10 @@ POST     /editTeamSubmit                controllers.Application.editTeamSubmit(i
 
 #POST   /manageTeam						controllers.Application.editTeam(id: Long)
 
+
+GET      /addUserAdmin 						controllers.AdminCtrl.addUserAdmin()
+POST    /adminUserSubmit 					controllers.AdminCtrl.registerFormSubmit()
+
 #Register
 GET     /register                               controllers.Application.register
 
