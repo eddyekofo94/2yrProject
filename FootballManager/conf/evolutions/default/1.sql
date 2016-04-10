@@ -52,6 +52,7 @@ create table user (
   name                      varchar(255),
   loginname                 varchar(255),
   password                  varchar(255),
+  bankaccount               integer,
   constraint pk_user primary key (userid))
 ;
 

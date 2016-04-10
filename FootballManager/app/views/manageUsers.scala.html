@@ -1,0 +1,65 @@
+@(user: models.users.User,users: List[models.users.User])
+
+@import helper._
+
+@main("Manage Team",user) {
+
+    <!-- /.row -->
+            <div class="row">
+        
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            This is all the Users in the Database
+                        </div>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+								
+                                    <th>User ID
+                                    <th>Name</th>
+                                    <th>Login name</th>
+                                    <th>Delete</th>
+									<th>Edit</th>
+									
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for(t <- users){
+                                    <td>@t.userid</td>  
+                                    <td>@t.name</td>
+                                    <td>@t.loginname</td>
+                                    
+
+      
+        <div class="col-md-6">
+        </div>
+        <td>
+		@helper.form(action = routes.AdminCtrl.delUser(t.userid)) {
+            <input class="btn-xs btn-danger" type="submit" value="Delete User" ></a>
+        </td>
+		
+
+   
+                                    }
+									<td>
+		@helper.form(action = routes.AdminCtrl.editUser(t.userid)) {
+            <input class="btn-xs btn-danger" type="submit" value="Edit User!!" ></a>
+        </td>
+		}
+		
+		
+			 </tr>						
+}
+
+    </tbody>
+    </table>
+    <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+}

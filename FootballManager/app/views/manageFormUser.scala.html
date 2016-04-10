@@ -1,0 +1,29 @@
+@(user: models.users.User,manageUserForm: Form[models.users.User],users: models.users.User)
+
+@import helper._
+
+@main("Manage Users",user) {
+    <h3>Manage Users</h3>
+
+    @form(action = routes.AdminCtrl.submitEditUser(users.userid), 'class -> "form-horizontal", 'role->"form"){
+	@inputText(manageUserForm("userid"),'_label -> "User Id")
+    @inputText(manageUserForm("name"),'_label -> "Name")
+	@inputText(manageUserForm("loginname"),'_label -> "Login Name")
+    @inputText(manageUserForm("password"),'_label -> "Password")
+	
+    
+	
+   
+
+    <div class="actions">
+        <input type="submit" value="update User" class="btn primary">
+        <a href="\admin">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+
+
+
+
+     </div>
+	 }
+	 }
