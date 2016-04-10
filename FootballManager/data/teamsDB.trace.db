@@ -1,3 +1,21 @@
 04-09 20:51:20 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
 select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-187]
+04-10 19:43:45 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-10 19:43:45 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USERID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USERID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-10 20:32:18 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: ATT_VAL INTEGER)"; SQL statement:
+UPDATE "PUBLIC"."PLAYER" SET "PLAYER_ID"=? ,"JERSEY_NUM"=? ,"PLAYER_NAME"=? ,"POSITION_ID"=? ,"ATT_VAL"=? ,"DEF_VAL"=? ,"MID_FVAL"=? ,"GK_VAL"=? ,"HEALTH"=? ,"TEAM_ID_TEAM_ID"=? ,"INJURY"=? ,"SALARY"=? ,"TRANSFER_VALUE"=?  WHERE "PLAYER_ID"=? [22018-187]
+04-10 20:32:18 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: ATT_VAL INTEGER)"; SQL statement:
+UPDATE "PUBLIC"."PLAYER" SET "PLAYER_ID"=? ,"JERSEY_NUM"=? ,"PLAYER_NAME"=? ,"POSITION_ID"=? ,"ATT_VAL"=? ,"DEF_VAL"=? ,"MID_FVAL"=? ,"GK_VAL"=? ,"HEALTH"=? ,"TEAM_ID_TEAM_ID"=? ,"INJURY"=? ,"SALARY"=? ,"TRANSFER_VALUE"=?  WHERE "PLAYER_ID"=? [22018-187]
+04-10 22:19:36 jdbc[814]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: PLAYER_ID BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-10 22:19:36 jdbc[814]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: PLAYER_ID BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]

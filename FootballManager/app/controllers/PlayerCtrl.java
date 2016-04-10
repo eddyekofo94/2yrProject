@@ -11,38 +11,67 @@ import play.*;
 import views.html.*;
 import models.*;
  public class PlayerCtrl extends Controller {
+     // The amount of times a user can train per match
+     int numberOfTraining = 3;
+     //variable to check if numberOfTraining = 0
+     final int minTrainingTest = 0;
       //injury health value once reached player is injured
       final int INJURY_LEVEL =4;
       //Max value for health
       final int MAX_HEALTH = 10;
       //Max attribute value
       final int MAX_VALUE = 10;
+      //Max amount of players per team
+     private final int MAX_PLAYERS = 15;
+     //Max amount of players on the field
+     private final int MAX_ON_FIELD = 11;
+     // maximum amount of subsitutes
+     private final int MAX_SUBS = 4;
  //random number generator
      Random ranNum = new Random();
+     
+     public int getNumOfTrain(){
+         return this.numberOfTraining;
+     }
+     public void reSetNumberOfTraining(){
+         List<Player> players = Player.findAll();
+         numberOfTraining = 3;
+         for(Player player : players ){
+            player.usedTraining = true;
+         }
+     }
      
      public Result setPosition(String position, Long pID){        
          List<Position> positions = Position.findAll();
          List<Player> players = Player.findAll();
          for(Player p : players ){
              if(p.playerID == pID){
+             if(position != "sub" && p.teamID.onFieldCount < MAX_ON_FIELD){
                 for(int i=0; i < positions.size();i++){
                     if(positions.get(i).position.equals(position)){
                         p.setPosition(positions.get(i));
                         p.update();
                   }
                 }
+               }else if(position == "sub" && p.teamID.onFieldCount < MAX_SUBS){
+                  for(int i=0; i < positions.size();i++){
+                    if(positions.get(i).position.equals(position)){
+                        p.setPosition(positions.get(i));
+                        p.update();
+                  }
+                } 
+               }else{
+                   flash("Sorry too many subs or players on the field");
+                   return redirect("/squad/0");
+               }
              }
-<<<<<<< HEAD
              p.save();
              flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
-=======
-             flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
-             
->>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
          }
          return redirect("/squad/0");
      }
   public Result getTrained(String position, Long pID){
+      if(numberOfTraining > minTrainingTest){
          //train value earned to be added to position value
          int randomTrainVal = ranNum.nextInt(5)+1;
          List<Player> players = Player.findAll();
@@ -69,11 +98,21 @@ import models.*;
 
                     flash(p.playerName+" trained");
                     }
+                    numberOfTraining = numberOfTraining -1;
              }
              p.update();
          }
          
-         return redirect("/squad/0");  
+     }else{
+         List<Player> players = Player.findAll();
+         for(Player p : players ){
+             if(p.playerID == pID){
+             p.setUsedTraining(true);
+            }  
+         } 
+     }
+         
+     return redirect("/squad/0");  
      }
      
      public boolean getInjured(int health, Player player){
@@ -115,6 +154,7 @@ import models.*;
              }                                            
      }
     public void setPositionVal(int trainVal, String position, Player player){
+        
           if(position.equals("Goalkeeper")){
                   player.setGkVal(player.gkVal + trainVal);
                  
@@ -127,7 +167,8 @@ import models.*;
              }
              else{
                   player.setAtkVal(player.attVal + trainVal);
-             }  
+             }
+        
      }
      
    public void deductHealth(int healthLose, Player player){

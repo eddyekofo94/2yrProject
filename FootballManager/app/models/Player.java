@@ -37,6 +37,9 @@ public class Player extends Model{
      public boolean injury;
      public double salary;
      public double transferValue;
+     @Transient
+     //used all the training allowed per match
+     public boolean usedTraining;
 	 
      
      //constants for getTrained and getInjured methods
@@ -111,30 +114,6 @@ public class Player extends Model{
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }
-     public void setPlayerName(String name){
-         this.playerName = name;
-     }
-     public void setJerseyNum(int number){
-         this.jerseyNum = number;
-     }
-     
-<<<<<<< HEAD
-    
-=======
-     
-     public static Map<String,String> options(){
-         final int TEAM_ID_NOT_ASSIGNED = 0;
-        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
-        for(Player p: Player.find.orderBy("playerID").findList()){
-            if(p.getTID() == TEAM_ID_NOT_ASSIGNED){
-                options.put(p.playerID.toString(), p.playerName.toString());
-            }    
-        }
-        return options;
-    }
->>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
-	
-	
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
@@ -188,12 +167,16 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+   public void setUsedTraining(boolean b){
+       this.usedTraining = b;
+   }
     public static Map<String,String> options(){
+        String noTeam = "none";
         LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
         for(Player p: Player.find.orderBy("playerID").findList()){
-            if(p.teamID == null){
+       
                 options.put(p.playerID.toString(), p.playerName.toString());
-            }    
+             
         }
         return options;
     }
