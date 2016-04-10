@@ -16,7 +16,7 @@
                             <thead>
                                 <tr>
 								
-                                    
+                                    <th>team ID
                                     <th>Team Name</th>
                                     <th>Team Score</th>
                                     <th>Delete</th>
@@ -25,7 +25,7 @@
                             </thead>
                             <tbody>
                                 @for(t <- teams){
-                                
+                                     <td>@t.teamID</td>
                                     <td>@t.teamName</td>
                                     <td>@t.getTeamScore()</td>
                                     
@@ -43,7 +43,7 @@
                                     }
 									<td>
 		@helper.form(action = routes.Application.editTeam(t.teamID)) {
-            <input class="btn-xs btn-danger" type="submit" value="Edit Team" ></a>
+            <input class="btn-xs btn-danger" type="submit" value="Edit Team!!" ></a>
         </td>
 		}
 			 </tr>						

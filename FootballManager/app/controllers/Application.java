@@ -532,23 +532,54 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		 return redirect("/manageTeam");
 	}
 	
-	  public Result editTeam(Long teamid)
+	  public Result editTeam(Long teamID)
 	  {
 		  
-        Form<Team> manageTeamForm = Form.form(Team.class);
+        ;
 		List<Team> team = Team.find.all();
-		Team teamToEdit = null;
+		
 		for(int i = 0 ; i < team.size();i++)
 		{
-			if(team.get(i).getTeamID() == teamid)
+			if(team.get(i).getTeamID() == teamID)
 			{
-				teamToEdit = team.get(i);
+				
+				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
+				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm,team.get(i)));
 			}
+			
+			
 		}
 		
-        return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm.fill(teamToEdit)));
+       return redirect("/");
     }
-	
+	public Result editTeamSubmit(Long id){
+		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
+		 List<Team> team = Team.find.all();
+		Team editTeam;
+		 if( manageTeamForm.hasErrors()){
+            return redirect("/");
+
+        }
+		editTeam = manageTeamForm.get();
+		for(int i = 0;i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == id)
+			{
+				team.get(i).setTeamName(editTeam.getTeamName());
+				team.get(i).setuserid(editTeam.getuserid());
+				team.get(i).setTeamScore(0);
+				team.get(i).update();
+			}
+			
+         
+         
+		}
+         		
+		
+		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		return redirect("/admin");
+	}
+
 public Result manageTeamSubmit(){
 		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
 		Team newTeam;
