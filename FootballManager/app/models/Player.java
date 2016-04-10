@@ -114,6 +114,33 @@ public class Player extends Model{
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }
+<<<<<<< HEAD
+=======
+     public void setPlayerName(String name){
+         this.playerName = name;
+     }
+     public void setJerseyNum(int number){
+         this.jerseyNum = number;
+     }
+     
+<<<<<<< HEAD
+    
+=======
+     
+     public static Map<String,String> options(){
+         final int TEAM_ID_NOT_ASSIGNED = 0;
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Player p: Player.find.orderBy("playerID").findList()){
+            if(p.teamID.getTeamID() == TEAM_ID_NOT_ASSIGNED){
+                options.put(p.playerID.toString(), p.playerName.toString());
+            }    
+        }
+        return options;
+    }
+>>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
+	
+	
+>>>>>>> master
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;

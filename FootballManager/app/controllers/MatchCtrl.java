@@ -108,6 +108,7 @@ public class MatchCtrl extends Controller {
             }
 			calcTeamScore(teamsPlaying.get(homeTeamIndex));
 			calcTeamScore(teamsPlaying.get(awayTeamIndex));
+			
             Match m1 = new Match(teamsPlaying.get(homeTeamIndex).getTeamScore(),teamsPlaying.get(awayTeamIndex).getTeamScore());
             m1.calcMatch();
             scores = m1.getScores();
