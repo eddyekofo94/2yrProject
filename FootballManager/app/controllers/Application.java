@@ -347,24 +347,47 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
         return ok(playerDB.render(User.getLoggedIn(session().get("loginName")),positions, players));
     }
 
-    public Result transferPlayer(Long position,Long id) {
-        Form<Player> transferPlayerForm = Form.form(Player.class);
-        List<Position> positions = Position.find.where().orderBy("position asc").findList();
+  //  public Result transferPlayer(Long position,Long id) {
+  //      Form<Player> transferPlayerForm = Form.form(Player.class);
+  //      List<Position> positions = Position.find.where().orderBy("position asc").findList();
         // get the list of team attributes
-        List<Player> players = new ArrayList<Player>();
-        if(position == 0){
-            players = Player.findAll();
-        }
-        else{
-            for(int i = 0; i< positions.size();i++){
-                if(positions.get(i).id == position){
-                    players = positions.get(i).players;
-                    break;
-                }
-            }
-        }
-        return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),positions, players,transferPlayerForm,id));
-    }
+  //      List<Player> players = new ArrayList<Player>();
+    //    if(position == 0){
+    //        players = Player.findAll();
+     //   }
+      //  else{
+       //     for(int i = 0; i< positions.size();i++){
+        //        if(positions.get(i).id == position){
+         //           players = positions.get(i).players;
+         //           break;
+         //       }
+         //   }
+        //}
+        //return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),positions, players,transferPlayerForm,id));
+    //}
+	
+	public Result transferPlayer(Long id) {
+		
+		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
+		List<Player> players = Player.findAll();
+		Team transfer = Team.getTeamDefault();
+		 
+		Long ids = transfer.getTeamID();
+		
+		for(int i = 0 ; i < players.size();i++)
+		{
+			if(id == players.get(i).getPlayerID())
+			{
+				
+				players.get(i).setTeamID(transfer);
+				
+			}
+			
+		}
+		
+		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm,ids));
+		
+	}
 
     public Result transferPlayerSubmit(Long id){
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();

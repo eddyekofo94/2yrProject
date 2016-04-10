@@ -117,7 +117,7 @@ public class Player extends Model{
          final int TEAM_ID_NOT_ASSIGNED = 0;
         LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
         for(Player p: Player.find.orderBy("playerID").findList()){
-            if(p.getTID() == TEAM_ID_NOT_ASSIGNED){
+            if(p.teamID.getTeamID() == TEAM_ID_NOT_ASSIGNED){
                 options.put(p.playerID.toString(), p.playerName.toString());
             }    
         }

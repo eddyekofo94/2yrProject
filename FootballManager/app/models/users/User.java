@@ -20,6 +20,8 @@ import models.*;
 // This user type is user
 @DiscriminatorValue("user")
 
+
+
 public class User extends Model {
  @OneToOne(mappedBy="userid", cascade = CascadeType.ALL)
     @Id
@@ -49,6 +51,8 @@ public class User extends Model {
 		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
     //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
     public String password;
+	
+	
 
 
 
@@ -56,11 +60,13 @@ public class User extends Model {
     public User() {
     }
     // Constructor to initialise object
-    public User(Long userid,  String name, String loginname,String password) {
+    public User(Long userid,  String name, String loginname,String password)
+	{
         this.userid = userid;
         this.password = password;
         this.name = name;
         this.loginname = loginname;
+		
     }
 public static List<User> findAll(){
 
@@ -133,5 +139,6 @@ public void setPassword(String password)
 		this.loginname = loginName;
 		
 	}
+	
 
 }
