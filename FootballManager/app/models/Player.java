@@ -90,7 +90,7 @@ public class Player extends Model{
 	 {
 		 return playerName;
 	 }
-	 public void setPlayerName(String platerName)
+	 public void setPlayerName(String playerName)
 	 {
 		 this.playerName = playerName;
 	 }

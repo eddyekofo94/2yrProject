@@ -474,13 +474,13 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
     public Result addPlayerSubmit(){
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
 		Player newPlayer;
-
+		
         if(newPlayerForm.hasErrors()){
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")),newPlayerForm));
+	return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")),newPlayerForm));
 
         }
-		
-        newPlayer =newPlayerForm.get();
+		newPlayer = newPlayerForm.get();
+        
 		newPlayer.setPosition(Position.getPositionNone());
 		newPlayer.setTeam(Team.getTeamDefault());
 		PlayerCtrl.genPlayerStat(newPlayer);
@@ -504,6 +504,17 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
 		return redirect("/admin");
 	}
-	
-
+	  public Result manageTeam(){
+        Form<Team> manageTeamForm = Form.form(Team.class);
+        return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm));
+    }
+public Result manageTeamSubmit(){
+		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+		Team newTeam;
+		newTeam = newTeamForm.get();
+		newTeam.setTeamScore(0);
+		newTeam.save();
+		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		return redirect("/admin");
+	}
 }

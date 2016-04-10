@@ -41,6 +41,9 @@ POST /submitEditPlayer          controllers.Application.submitEditPlayer(id: Lon
 GET     /addTeam                 controllers.Application.addTeam()
 POST    /addTeamSubmit            controllers.Application.addTeamSubmit()
 
+GET     /addTeam                 controllers.Application.manageTeam()
+POST    /addTeamSubmit            controllers.Application.manageTeamSubmit()
+
 #Register
 GET     /register                               controllers.Application.register
 

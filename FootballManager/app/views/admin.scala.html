@@ -22,7 +22,15 @@
 <h3> Team Admin options</h3>
     @helper.form(action = routes.Application.addTeam()) {
     <p>
-        <input class="btn-sm btn-primary" type="submit" value="Add a Team      ">
+        <input class="btn-sm btn-primary" type="submit" value="Add a Team     ">
+    </p>
+	
+	
+    }
+	
+    @helper.form(action = routes.Application.manageTeam()) {
+    <p>
+        <input class="btn-sm btn-primary" type="submit" value="Manage Team">
     </p>
 	
 	
