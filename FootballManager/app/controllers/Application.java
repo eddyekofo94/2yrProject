@@ -403,7 +403,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 				
 			}
 		}
-		 return redirect("/delPlayer");
+		 return redirect("/playerDB/0");
 	}
 	
 		

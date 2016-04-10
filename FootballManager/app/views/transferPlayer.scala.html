@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                                 @for(p <- players){
-                                @if(p.teamID == null){
+                                @if(p.getTID() == 0){
                                 <tr>
                                     <td>@p.jerseyNum</td>
                                     <td>@p.playerName</td>

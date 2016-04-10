@@ -48,9 +48,13 @@
         <div class="col-md-6">
         </div>
         <td>
-            <a href="#" class="btn-xs btn-danger" onclick="return confirmDel();"><span
-                        class="glyphicon glyphicon-trash"></span></a>
+            <a href="@routes.Application.editPlayer(p.playerID)" ><input class="btn-xs btn-danger" type="submit" value="Edit Player"></a>
         </td>
+         <td>
+		@helper.form(action = routes.Application.delPlayer(p.playerID)) {
+            <a><input class="btn-xs btn-danger" type="submit" value="Delete Player" onclick="return confirmDel();" ></a>
+        </td>
+		}
 
 
     </tr>
@@ -61,7 +65,11 @@
     </table>
     <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
+     @helper.form(action = routes.Application.addPlayer()) {
+    <p>
+        <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
+    </p>
+	}
     </div>
     <!-- /.col-lg-12 -->
     </div>

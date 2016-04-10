@@ -35,7 +35,7 @@ POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
 GET     /delPlayer                  controllers.Application.deletePlayer()
 POST   /delPlayer	            controllers.Application.delPlayer(id: Long)
 
-POST   /editPlayer	            controllers.Application.editPlayer(id: Long)
+GET   /editPlayer/:id	            controllers.Application.editPlayer(id: Long)
 POST /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
 
 GET     /addTeam                 controllers.Application.addTeam()
