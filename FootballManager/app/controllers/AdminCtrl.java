@@ -121,75 +121,13 @@ public class AdminCtrl extends Controller
        return redirect("/");
     }
 	
-		public Result editPassword(Long userid)
-	  {
-		  
-        
-		List<User> user = User.find.all();
 		
-		for(int i = 0 ; i < user.size();i++)
-		{
-			if(user.get(i).getid() == userid)
-			{
-				
-				Form<User> managePasswordForm = Form.form(User.class).fill(user.get(i));
-				 return ok(editPassword.render(User.getLoggedIn(session().get("loginName")),managePasswordForm,user.get(i)));
-			}
-			
-			
-		}
-		
-       return redirect("/");
-    }
-	
-	public Result submitEditPassword(Long id){
-		 Form manageUserForm = Form.form().bindFromRequest();
-		 List<User> user= User.find.all();
-		User editUser = user.get(0);
-		editUser.password = manageUserForm.password;
-		
-		 if( manageUserForm.hasErrors()){
-            return redirect("/admin");
-
-        }
-		editUser = manageUserForm.get();
-		
-		for(int i = 0;i < user.size();i++)
-		{
-			if(user.get(i).getid() == id)
-			{
-				CalcSHA cs = new CalcSHA();
-				String md = cs.calcPassword(editUser.password);
-				editUser.password = md;
-				user.get(i).password = editUser.password ;
-				user.get(i).update();
-				
-				
-         
-
-        
-     
-		
-        
-			}
-			
-         
-         
-		}
-         		
-		
-		flash("Success", "user"+manageUserForm.get().name+" has been updated");
-		return redirect("/admin");
-}
 	
 	public Result submitEditUser(Long id){
 		 Form<User> manageUserForm = Form.form(User.class).bindFromRequest();
 		 List<User> user= User.find.all();
 		User editUser;
-		 if( manageUserForm.hasErrors()){
-            return redirect("/");
-
-        }
+		
 		editUser = manageUserForm.get();
 		for(int i = 0;i < user.size();i++)
 		{
@@ -198,7 +136,16 @@ public class AdminCtrl extends Controller
 				
 				
 				user.get(i).setName(editUser.getName());
+				user.get(i).setLoginName(editUser.getLoginName());
 				//user.get(i).setPassword(editUser.getPassword());
+				if(user.get(i).password !=  editUser.password)
+				{
+					
+				CalcSHA cs = new CalcSHA();
+				String md = cs.calcPassword(editUser.password);
+				
+				user.get(i).setPassword(md);
+				}
 				user.get(i).update();
 			}
 			

@@ -68,8 +68,7 @@ GET    /manageUsers							controllers.AdminCtrl.manageUsers()
 POST    /delUser                         controllers.AdminCtrl.delUser(id: Long)
 POST     /editUser                    controllers.AdminCtrl.editUser(id: Long)
 POST   /submitEditUser          controllers.AdminCtrl.submitEditUser(id: Long)
-POST     /editPassword                   controllers.AdminCtrl.editPassword(id: Long)
-POST   /submitEditPassword          controllers.AdminCtrl.submitEditPassword(id: Long)
+
 
 
 #Register

@@ -128,5 +128,10 @@ public void setPassword(String password)
 	{
 		return loginname;
 	}
+	public void setLoginName(String loginName)
+	{
+		this.loginname = loginName;
+		
+	}
 
 }
