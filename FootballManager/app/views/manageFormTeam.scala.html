@@ -1,0 +1,27 @@
+@(user: models.users.User,manageTeamForm: Form[models.Team])
+
+@import helper._
+
+@main("Manage Team",user) {
+    <h3>Manage a Team</h3>
+
+    @form(action = routes.Application.manageTeamSubmit(), 'class -> "form-horizontal", 'role->"form"){
+    @inputText(manageTeamForm("TeamName"),'_label -> "Team Name")
+     @inputText(manageTeamForm("userid"),'_label -> "User Id")
+	@inputText(manageTeamForm("MAX_PLAYERS"),'_label -> "Max Players")
+	@inputText(manageTeamForm("MAX_ON_FIELD"),'_label -> "Max On Field")
+	@inputText(manageTeamForm("MAX_SUBS"),'_label -> "Max On Field")
+   
+
+    <div class="actions">
+        <input type="submit" value="update Team" class="btn primary">
+        <a href="@routes.Application.index()">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+
+
+
+
+     </div>
+	 }
+	 }

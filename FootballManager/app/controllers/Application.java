@@ -467,10 +467,15 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		
 		return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
 	}
+	
+	
+	
      public Result addPlayer(){
         Form<Player> addPlayerForm = Form.form(Player.class);
         return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")),addPlayerForm));
     }
+	
+	
     public Result addPlayerSubmit(){
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
 		Player newPlayer;
@@ -504,10 +509,46 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
 		return redirect("/admin");
 	}
-	  public Result manageTeam(){
+	
+	public Result manageTeam()
+	{
+		List<Team> team = Team.find.all();
+		Form<Team> manageTeamForm = Form.form(Team.class);
+        return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),team));
+	}
+	
+	public Result delTeam(Long teamID)
+	{
+		List<Team> team = Team.find.all();
+		Team TeamToDelete;
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamID)
+			{
+			 team.get(i).delete();
+				
+			}
+		}
+		 return redirect("/manageTeam");
+	}
+	
+	  public Result editTeam(Long teamid)
+	  {
+		  
         Form<Team> manageTeamForm = Form.form(Team.class);
-        return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm));
+		List<Team> team = Team.find.all();
+		Team teamToEdit = null;
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamid)
+			{
+				teamToEdit = team.get(i);
+			}
+		}
+		
+        return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm.fill(teamToEdit)));
     }
+	
 public Result manageTeamSubmit(){
 		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
 		Team newTeam;

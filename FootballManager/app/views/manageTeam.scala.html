@@ -1,27 +1,62 @@
-@(user: models.users.User,manageTeamForm: Form[models.Team])
+@(user: models.users.User,teams: List[models.Team])
 
 @import helper._
 
 @main("Manage Team",user) {
-    <h3> Add a new Player</h3>
 
-    @form(action = routes.Application.manageTeamSubmit(), 'class -> "form-horizontal", 'role->"form"){
-    @inputText(manageTeamForm("TeamName"),'_label -> "Team Name")
-     @inputText(manageTeamForm("userid"),'_label -> "User Id")
-	@inputText(manageTeamForm("MAX_PLAYERS"),'_label -> "Max Players")
-	@inputText(manageTeamForm("MAX_ON_FIELD"),'_label -> "Max On Field")
-	@inputText(manageTeamForm("MAX_SUBS"),'_label -> "Max On Field")
+    <!-- /.row -->
+            <div class="row">
+        
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            This is all the Teams in the Database
+                        </div>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+								
+                                    
+                                    <th>Team Name</th>
+                                    <th>Team Score</th>
+                                    <th>Delete</th>
+									<th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for(t <- teams){
+                                
+                                    <td>@t.teamName</td>
+                                    <td>@t.getTeamScore()</td>
+                                    
+
+      
+        <div class="col-md-6">
+        </div>
+        <td>
+		@helper.form(action = routes.Application.delTeam(t.teamID)) {
+            <input class="btn-xs btn-danger" type="submit" value="Delete Team" ></a>
+        </td>
+		
+
    
+                                    }
+									<td>
+		@helper.form(action = routes.Application.editTeam(t.teamID)) {
+            <input class="btn-xs btn-danger" type="submit" value="Edit Team" ></a>
+        </td>
+		}
+			 </tr>						
+}
 
-    <div class="actions">
-        <input type="submit" value="Add Team" class="btn primary">
-        <a href="@routes.Application.index()">
-            <button class="btn btn-warning">Cancel</button>
-         </a>
+    </tbody>
+    </table>
+    <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 
-
-
-
-     </div>
-	 }
-	 }
+}

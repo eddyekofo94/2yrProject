@@ -2,8 +2,8 @@
 
 @import helper._
 
-@main("New Player",user) {
-    <h3> Add a new Player</h3>
+@main("New Team",user) {
+    <h3> Add a new Team</h3>
 
     @form(action = routes.Application.addTeamSubmit(), 'class -> "form-horizontal", 'role->"form"){
     @inputText(addTeamForm("TeamName"),'_label -> "TeamName")

@@ -36,13 +36,17 @@ GET     /delPlayer                  controllers.Application.deletePlayer()
 POST   /delPlayer	            controllers.Application.delPlayer(id: Long)
 
 POST   /editPlayer	            controllers.Application.editPlayer(id: Long)
-POST /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
+POST   /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
 
 GET     /addTeam                 controllers.Application.addTeam()
 POST    /addTeamSubmit            controllers.Application.addTeamSubmit()
 
-GET     /addTeam                 controllers.Application.manageTeam()
-POST    /addTeamSubmit            controllers.Application.manageTeamSubmit()
+GET     /manageTeam                 controllers.Application.manageTeam()
+POST    /manageTeamSubmit            controllers.Application.manageTeamSubmit()
+
+POST    /delTeam                         controllers.Application.delTeam(id: Long)
+GET     /editTeam                 controllers.Application.delTeam(id: Long)
+POST   /manageTeam						controllers.Application.editTeam(id: Long)
 
 #Register
 GET     /register                               controllers.Application.register
