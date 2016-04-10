@@ -1,4 +1,4 @@
-@(user: models.users.User,positions: List[models.Position], players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
+@(user: models.users.User, players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
 
 @import helper._
 
@@ -9,10 +9,8 @@
                 <div class="col-md-2">
       <div class="list-group">
 				<!-- Start of For loop - For each c in categories add a link -->
-				<a href="@routes.Application.transferPlayer(0,id)" class="list-group-item">All Positions</a>
-				@for(p <- positions) {
-          <a href="@routes.Application.transferPlayer(p.id,id)" class="list-group-item">@p.position</a>
-				}
+				
+				
       </div>
   </div>
                 <div class="col-lg-10">

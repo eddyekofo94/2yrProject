@@ -5,6 +5,7 @@ import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.List;
+import models.*;
 
 //https://www.playframework.com/documentation/2.2.x/JavaGuide4
 
@@ -18,6 +19,8 @@ import java.util.List;
 @DiscriminatorColumn(name = "userType")
 // This user type is user
 @DiscriminatorValue("user")
+
+
 
 public class User extends Model {
  @OneToOne(mappedBy="userid", cascade = CascadeType.ALL)
@@ -48,6 +51,8 @@ public class User extends Model {
 		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
     //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
     public String password;
+	
+	
 
 
 
@@ -55,11 +60,13 @@ public class User extends Model {
     public User() {
     }
     // Constructor to initialise object
-    public User(Long userid,  String name, String loginname,String password) {
+    public User(Long userid,  String name, String loginname,String password)
+	{
         this.userid = userid;
         this.password = password;
         this.name = name;
         this.loginname = loginname;
+		
     }
 public static List<User> findAll(){
 
@@ -95,7 +102,16 @@ public static List<User> findAll(){
     {
         return this.userid;
     }
-
+	
+	
+	public String getPassword()
+	{
+		return password;
+	}
+public void setPassword(String password)
+{
+    this.password = password;
+}
     // Get the user type - from the discriminator value
     // http://stackoverflow.com/questions/3005383/how-to-get-the-discriminatorvalue-at-run-time
     // http://stackoverflow.com/questions/541749/how-to-determine-an-objects-class-in-java
@@ -105,9 +121,24 @@ public static List<User> findAll(){
         return val == null ? null : val.value();
     }
 	
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
 	public String getLoginName()
 	{
 		return loginname;
 	}
+	public void setLoginName(String loginName)
+	{
+		this.loginname = loginName;
+		
+	}
+	
 
 }

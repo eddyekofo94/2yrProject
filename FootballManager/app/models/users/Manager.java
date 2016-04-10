@@ -26,9 +26,11 @@ public class Manager extends User {
  //   @OneToOne(mappedBy="manager", cascade = CascadeType.ALL)
    // public Team team;
 
-
+public int bankaccount;
+	
 
     public Manager() {
+		
 
     }
 
@@ -38,11 +40,13 @@ public class Manager extends User {
 //        this.password = password;
 //        this.name = name;
 //        this.loginname = loginname;
+			
     }
 	
 	public Manager(User user)
 	{
 		super(user.userid,user.name,user.loginname,user.password);
+		this.bankaccount = 80000;
 	}
 
 //    public static Finder<String, User> find = new Finder<String, User>(String.class, User.class); //Not Ure
@@ -64,10 +68,10 @@ public class Manager extends User {
             // Find user by id and return object
             return find.byId(id);
     }
-public Long getUserid()
-{
-   return  super.getid();
-}
+//public Long getUserid()
+//{
+ //  return  super.getid();
+//}
 
     // Check if a user is logged in (by id - email address)
 //    public static User getLoggedIn(String id) {
@@ -90,4 +94,17 @@ public Long getUserid()
 //      else
 //          return find.byId(id);
 //   }
+public int getBankaccount()
+	{
+		return this.bankaccount;
+	}
+	public void updateBankaccount(int ammount)
+	{
+		if(this.bankaccount-ammount >= 0)
+		{
+			this.bankaccount -= ammount;
+		}
+		
+	}
+	
 }
