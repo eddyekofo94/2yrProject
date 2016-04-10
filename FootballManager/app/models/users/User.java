@@ -5,6 +5,7 @@ import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.List;
+import models.*;
 
 //https://www.playframework.com/documentation/2.2.x/JavaGuide4
 
@@ -95,7 +96,16 @@ public static List<User> findAll(){
     {
         return this.userid;
     }
-
+	
+	
+	public String getPassword()
+	{
+		return password;
+	}
+public void setPassword(String password)
+{
+    this.password = password;
+}
     // Get the user type - from the discriminator value
     // http://stackoverflow.com/questions/3005383/how-to-get-the-discriminatorvalue-at-run-time
     // http://stackoverflow.com/questions/541749/how-to-determine-an-objects-class-in-java
@@ -104,6 +114,15 @@ public static List<User> findAll(){
         DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
         return val == null ? null : val.value();
     }
+	
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 	
 	public String getLoginName()
 	{

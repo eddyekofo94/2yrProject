@@ -535,7 +535,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 	  public Result editTeam(Long teamID)
 	  {
 		  
-        ;
+        
 		List<Team> team = Team.find.all();
 		
 		for(int i = 0 ; i < team.size();i++)

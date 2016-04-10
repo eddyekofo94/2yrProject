@@ -64,10 +64,10 @@ public class Manager extends User {
             // Find user by id and return object
             return find.byId(id);
     }
-public Long getUserid()
-{
-   return  super.getid();
-}
+//public Long getUserid()
+//{
+ //  return  super.getid();
+//}
 
     // Check if a user is logged in (by id - email address)
 //    public static User getLoggedIn(String id) {
