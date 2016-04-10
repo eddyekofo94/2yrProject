@@ -40,9 +40,6 @@ create table position (
 
 create table team (
   team_id                   bigint not null,
-  max_players               integer,
-  max_on_field              integer,
-  max_subs                  integer,
   userid                    bigint,
   team_name                 varchar(255),
   team_score                integer,
