@@ -27,12 +27,13 @@ import models.*;
              if(p.playerID == pID){
                 for(int i=0; i < positions.size();i++){
                     if(positions.get(i).position.equals(position)){
-                        p.position = positions.get(i);
-                    }
+                        p.setPosition(positions.get(i));
+                        p.update();
+                  }
                 }
              }
              flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
-             p.save();
+             
          }
          return redirect("/squad/0");
      }
@@ -45,27 +46,28 @@ import models.*;
                 if(playerMaxed(position,p) == true || p.injury == true){
                     
                     flash(p.playerName+" already fully trained in this position "+position);
-                }
+                   }
                 else if(randomTrainVal <= 2){
                     flash( "Unable to train this "+p.playerName+" this time!");
-                    
-                }
+                    }
                 else if(randomTrainVal <= 4){
                     addTrainVal(position,randomTrainVal,p);
                     deductHealth(ranNum.nextInt(2),p);;
                     p.injury = getInjured(p.health,p);
-                    p.save();
-                flash(p.playerName+" trained");
-                }
+                    
+                    flash(p.playerName+" trained");
+               }
                 else{
                     addTrainVal(position,randomTrainVal,p);
                     deductHealth(ranNum.nextInt(3),p);
                     p.injury = getInjured(p.health,p);
-                    p.save();
+
                     flash(p.playerName+" trained");
-                }
+                    }
              }
+             p.update();
          }
+         
          return redirect("/squad/0");  
      }
      
@@ -109,16 +111,17 @@ import models.*;
      }
     public void setPositionVal(int trainVal, String position, Player player){
           if(position.equals("Goalkeeper")){
-                  player.gkVal+=trainVal;
+                  player.setGkVal(player.gkVal + trainVal);
+                 
              }
              else if(position.equals("Defense")){
-                  player.defVal+=trainVal;
+                  player.setDefVal(player.defVal + trainVal);
              }
               else if(position.equals("Midfield")){
-                  player.midFVal+=trainVal;
+                  player.setMidVal(player.midFVal + trainVal);
              }
              else{
-                  player.attVal+=trainVal;
+                  player.setAtkVal(player.attVal + trainVal);
              }  
      }
      
