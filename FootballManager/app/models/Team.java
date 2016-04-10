@@ -15,9 +15,11 @@ import models.users.*;
 
 @Entity
  public class Team extends Model{
-
+	@Transient
      private final int MAX_PLAYERS = 15;
+	 @Transient
      private final int MAX_ON_FIELD = 11;
+	 @Transient
      private final int MAX_SUBS = 4;
 
      @Id
@@ -70,14 +72,27 @@ import models.users.*;
      public Long getTeamID(){
          return teamID;
      }
+	 public String getTeamName()
+	 {
+		 return teamName;
+	 }
+	 public void setTeamName(String teamName)
+	 {
+		 this.teamName = teamName;
+	 }
 
      public Long getuserid(){
           return userid;
       }
+	  
+	  public void setuserid(Long userid){
+		  this.userid = userid;
+	  }
 
     public int getTeamScore() {
         return teamScore;
     }
+	
 	
 	
 	public void setTeamScore(int teamScore) {

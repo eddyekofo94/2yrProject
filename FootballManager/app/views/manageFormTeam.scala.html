@@ -1,0 +1,25 @@
+@(user: models.users.User,manageTeamForm: Form[models.Team],team: models.Team)
+
+@import helper._
+
+@main("Manage Team",user) {
+    <h3>Manage a Team</h3>
+
+    @form(action = routes.Application.editTeamSubmit(team.teamID), 'class -> "form-horizontal", 'role->"form"){
+    @inputText(manageTeamForm("teamName"),'_label -> "Team Name")
+     @inputText(manageTeamForm("userid"),'_label -> "User Id")
+	
+   
+
+    <div class="actions">
+        <input type="submit" value="update Team" class="btn primary">
+        <a href="@routes.Application.index()">
+            <button class="btn btn-warning">Cancel</button>
+         </a>
+
+
+
+
+     </div>
+	 }
+	 }

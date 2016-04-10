@@ -104,5 +104,10 @@ public static List<User> findAll(){
         DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
         return val == null ? null : val.value();
     }
+	
+	public String getLoginName()
+	{
+		return loginname;
+	}
 
 }

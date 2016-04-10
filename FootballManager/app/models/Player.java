@@ -90,7 +90,7 @@ public class Player extends Model{
 	 {
 		 return playerName;
 	 }
-	 public void setPlayerName(String platerName)
+	 public void setPlayerName(String playerName)
 	 {
 		 this.playerName = playerName;
 	 }
@@ -118,7 +118,21 @@ public class Player extends Model{
          this.jerseyNum = number;
      }
      
+<<<<<<< HEAD
     
+=======
+     
+     public static Map<String,String> options(){
+         final int TEAM_ID_NOT_ASSIGNED = 0;
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Player p: Player.find.orderBy("playerID").findList()){
+            if(p.getTID() == TEAM_ID_NOT_ASSIGNED){
+                options.put(p.playerID.toString(), p.playerName.toString());
+            }    
+        }
+        return options;
+    }
+>>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
 	
 	
     public void setGkVal(int gkVal)
