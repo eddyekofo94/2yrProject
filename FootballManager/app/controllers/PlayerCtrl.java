@@ -65,6 +65,7 @@ import models.*;
                     flash(p.playerName+" trained");
                     }
              }
+			 p.calcTransValue();
              p.update();
          }
          
@@ -93,6 +94,7 @@ import models.*;
                  setPositionVal((trainVal-overMaxVal),position,player);
              }
          }
+		 
      }
      public int getPositionVal(String position, Player player){
          
@@ -235,6 +237,7 @@ import models.*;
       			         players.get(j).setDefVal(rand.nextInt(10)+1);
       			         players.get(j).setMidVal(rand.nextInt(3)+1+6);
       			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+						 
       				}
       				else if((count >=10)&&(count <= 11))
       				{
@@ -249,8 +252,10 @@ import models.*;
       			         players.get(j).setDefVal(rand.nextInt(10)+1);
       			         players.get(j).setMidVal(rand.nextInt(10)+1);
       			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+						 
       				}
       				count++;
+					players.get(j).calcTransValue();
       				players.get(j).save();
       				
       			}
@@ -267,6 +272,8 @@ import models.*;
       	player.setDefVal(rand.nextInt(10)+1);
       	player.setMidVal(rand.nextInt(10)+1);
       	player.setAtkVal(rand.nextInt(10)+1);
+		player.calcTransValue();
+		
 	 }
      
        public Result genStats() {
@@ -275,7 +282,8 @@ import models.*;
 
         return redirect("/squad/0");
     }
-     }
+	
+
  
- 
- 
+ }
+    

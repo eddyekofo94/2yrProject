@@ -33,10 +33,10 @@ public class Application extends Controller {
         return ok(index.render(User.getLoggedIn(session().get("loginname"))));
     }
 // Authenticate user needs to be added start of each method to be secured
-@Security.Authenticated(Secured.class)
+//@Security.Authenticated(Secured.class)
 // Authorise user (check if user)
 //needs to be configed to admin and manager.
-@With(CheckIfCustomer.class)
+//@With(CheckIfCustomer.class)
     public Result fixtures() {
 
 List<Fixtures> fixture = Fixtures.findAll();

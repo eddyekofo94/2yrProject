@@ -38,6 +38,9 @@ public class Player extends Model{
      public double salary;
      public int transferValue;
 	 
+	 @Transient
+    private  final int TRANSFER_VALUE_WEIGHT = 1000	;
+	 
      
      //constants for getTrained and getInjured methods
      
@@ -186,4 +189,21 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+   	public void calcTransValue()
+	{
+		int totalValue = 0;
+	 
+	  
+	  
+	     
+      
+      	totalValue += this.gkVal;
+		totalValue += this.defVal;
+		totalValue += this.midFVal;
+		totalValue += this.attVal;
+		this.transferValue = totalValue*TRANSFER_VALUE_WEIGHT;
+		
+		
+		
+    }
 }
