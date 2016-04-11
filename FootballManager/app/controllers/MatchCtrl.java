@@ -84,6 +84,7 @@ public class MatchCtrl extends Controller {
 	}
 
     public  void playMatch(){
+        PlayerCtrl.reSetNumberOfTraining();
         List<models.Fixtures> weekFixtures = new ArrayList();
         List<models.Team> teamsPlaying = new ArrayList<>();
 //populate this weeks Fixtures

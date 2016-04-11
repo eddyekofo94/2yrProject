@@ -98,20 +98,22 @@
                             <li>
                                 <a href="@routes.Application.leagueTable()"><i class="fa fa-table fa-fw"></i> League Table</a>
                             </li>
-
-                            <li>
-                                <a href="@routes.Application.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
-
-                                <!-- /.nav-second-level -->
-                            </li>
-                            @if(user.getUserType().equalsIgnoreCase("admin")){
-                            <li>
-                                <a href="@routes.Application.playerDB(0)">Players Database</a></li>
                             <li>
                                 <a href="@routes.Application.fixtures()"><i class="fa fa-bar-chart-o fa-fw"></i> Fixtures</a>
 
                                 <!-- /.nav-second-level -->
                             </li>
+                                    
+                            <li>
+                                <a href="@routes.Application.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
+
+                                <!-- /.nav-second-level -->
+                            </li>
+                            
+                            @if(user.getUserType().equalsIgnoreCase("admin")){
+                            <li>
+                                <a href="@routes.Application.playerDB(0)">Players Database</a></li>
+                            
                 
                             <li>
                                 <a href="@routes.AdminCtrl.admin()"><i class="fa fa-table fa-fw"></i> Admin</a>
