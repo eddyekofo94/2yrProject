@@ -379,7 +379,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 			if(id == players.get(i).getPlayerID())
 			{
 				
-				players.get(i).setTeamID(transfer);
+				players.get(i).setTeam(transfer);
 				
 			}
 			
