@@ -370,7 +370,10 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		
 		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
 		List<Player> players = Player.findAll();
+		List<User> managerList = Manager.find.all();
+		Manager owner;
 		Team transfer = Team.getTeamDefault();
+		Team userTeam;
 		 
 		Long ids = transfer.getTeamID();
 		
@@ -378,9 +381,22 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		{
 			if(id == players.get(i).getPlayerID())
 			{
+				userTeam=players.get(i).getTeamID();
 				
+				for(int j = 0 ; j < managerList.size();j++)
+				{
+					if(managerList.get(j).getid() == userTeam.getuserid())
+					{
+						owner = (Manager)managerList.get(j);
+				owner.setBankaccount(players.get(i).getTransferValue());
 				players.get(i).setTeam(transfer);
 				
+				
+						
+					}
+					managerList.get(i).update();
+				}
+				players.get(i).update();
 			}
 			
 		}

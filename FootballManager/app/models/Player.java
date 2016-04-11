@@ -36,7 +36,7 @@ public class Player extends Model{
      public Team teamID;
      public boolean injury;
      public double salary;
-     public double transferValue;
+     public int transferValue;
 	 
      
      //constants for getTrained and getInjured methods
@@ -124,7 +124,15 @@ public class Player extends Model{
         return options;
     }
 	
+	public int getTransferValue()
+	{
+		return this.transferValue;
+	}
 	
+	public void setTransferValue(int transferValue)
+	{
+		this.transferValue = transferValue;
+	}
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;

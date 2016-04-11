@@ -100,11 +100,14 @@ public int getBankaccount()
 	}
 	public void updateBankaccount(int ammount)
 	{
-		if(this.bankaccount-ammount >= 0)
-		{
-			this.bankaccount -= ammount;
-		}
 		
+			this.bankaccount -= ammount;
+		
+		
+	}
+	public void setBankaccount(int ammount)
+	{
+		this.bankaccount += ammount;
 	}
 	
 }
