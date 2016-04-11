@@ -4,7 +4,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
-
+import models.users.*;
 import play.*;
 
 
@@ -283,7 +283,54 @@ import models.*;
         return redirect("/squad/0");
     }
 	
-
+public Result buyPlayer(Long id, Long userid) {
+		
+		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
+		List<Player> players = Player.findAll();
+		List<Team> teamList = Team.findAll();
+		List<User> userList = Manager.findAll();
+		Manager owner = null;
+		Team transfer = Team.getTeamDefault();
+		Team userTeam ;
+		 
+		for(int k = 0 ; k < userList.size();k++)
+		{
+			if(userid == userList.get(k).getid())
+			{
+				owner = (Manager)userList.get(k);
+			}
+		}
+		
+		for(int i = 0 ; i < players.size();i++)
+		{
+			if(id == players.get(i).getPlayerID())
+			{
+				
+				
+				for(int j = 0 ; j < teamList.size();j++)
+				{
+					if(teamList.get(j).getTeamID() == owner.getid())
+					{
+						userTeam = teamList.get(j);
+						
+						if(owner.getBankaccount() >= players.get(i).getTransferValue())
+						{
+						players.get(i).setTeam(userTeam);
+						owner.updateBankaccount(players.get(i).getTransferValue());
+						}
+				
+						
+					}
+					owner.update();
+				}
+				players.get(i).update();
+			}
+			
+		}
+		
+		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm, transfer.getTeamID()));
+		
+	}
  
  }
     
