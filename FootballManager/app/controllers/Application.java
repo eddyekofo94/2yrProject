@@ -25,8 +25,10 @@ public class Application extends Controller {
 
         return ok(index.render(User.getLoggedIn(session().get("loginname"))));
     }
+
     // Authenticate user needs to be added start of each method to be secured
     @Security.Authenticated(Secured.class)
+
     public Result fixtures() {
 
 List<Fixtures> fixture = Fixtures.findAll();
@@ -281,7 +283,10 @@ List<Team> teams = Team.findAll();
 		
 		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
 		List<Player> players = Player.findAll();
+		List<User> managerList = Manager.find.all();
+		Manager owner;
 		Team transfer = Team.getTeamDefault();
+		Team userTeam;
 		 
 		Long ids = transfer.getTeamID();
 		
@@ -289,14 +294,27 @@ List<Team> teams = Team.findAll();
 		{
 			if(id == players.get(i).getPlayerID())
 			{
+				userTeam=players.get(i).getTeamID();
 				
-				players.get(i).setTeamID(transfer);
+				for(int j = 0 ; j < managerList.size();j++)
+				{
+					if(managerList.get(j).getid() == userTeam.getUserID())
+					{
+						owner = (Manager)managerList.get(j);
+				owner.setBankaccount(players.get(i).getTransferValue());
+				players.get(i).setTeam(transfer);
 				
+				
+						
+					}
+					managerList.get(i).update();
+				}
+				players.get(i).update();
 			}
 			
 		}
 		
-		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm,ids));
+		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginname")),players,transferPlayerForm,ids));
 		
 	}
     //Insures user is logged in before allowing access

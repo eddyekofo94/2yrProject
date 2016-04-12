@@ -28,6 +28,7 @@ GET     /playerDB/:position            controllers.Application.playerDB(position
 #Transfer Player
 
 GET     /transferPlayer/:id                     controllers.Application.transferPlayer(id:Long)
+GET     /buyPlayer/:id                     controllers.PlayerCtrl.buyPlayer(id:Long,user: Long)
 POST    /transferPlayerSubmit/:id             controllers.Application.transferPlayerSubmit(id: Long)
 
 
