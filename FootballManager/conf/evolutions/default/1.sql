@@ -28,7 +28,7 @@ create table player (
   team_id_team_id           bigint,
   injury                    boolean,
   salary                    double,
-  transfer_value            double,
+  transfer_value            integer,
   constraint pk_player primary key (player_id))
 ;
 

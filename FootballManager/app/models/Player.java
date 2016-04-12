@@ -36,8 +36,13 @@ public class Player extends Model{
      public Team teamID;
      public boolean injury;
      public double salary;
-     public double transferValue;
-     
+
+     public int transferValue;
+	 
+	 @Transient
+    private  final int TRANSFER_VALUE_WEIGHT = 1000	;
+	 
+
      
      //constants for getTrained and getInjured methods
      
@@ -127,6 +132,18 @@ public class Player extends Model{
         }
         return options;
     }
+
+	
+	public int getTransferValue()
+	{
+		return this.transferValue;
+	}
+	
+	public void setTransferValue(int transferValue)
+	{
+		this.transferValue = transferValue;
+	}
+
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
@@ -180,7 +197,27 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+
+   	public void calcTransValue()
+	{
+		int totalValue = 0;
+	 
+	  
+	  
+	     
+      
+      	totalValue += this.gkVal;
+		totalValue += this.defVal;
+		totalValue += this.midFVal;
+		totalValue += this.attVal;
+		this.transferValue = totalValue*TRANSFER_VALUE_WEIGHT;
+		
+		
+		
+    }
+
    /*public void setUsedTraining(boolean b){
        this.usedTraining = b;
    }*/
+
 }

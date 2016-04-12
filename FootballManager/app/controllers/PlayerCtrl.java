@@ -4,7 +4,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
-
+import models.users.*;
 import play.*;
 
 
@@ -119,6 +119,7 @@ import models.*;
                     }
                     
              }
+			 p.calcTransValue();
              p.update();
          }
          
@@ -151,6 +152,7 @@ import models.*;
                  setPositionVal((trainVal-overMaxVal),position,player);
              }
          }
+		 
      }
      public int getPositionVal(String position, Player player){
          
@@ -295,6 +297,7 @@ import models.*;
       			         players.get(j).setDefVal(rand.nextInt(10)+1);
       			         players.get(j).setMidVal(rand.nextInt(3)+1+6);
       			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+						 
       				}
       				else if((count >=10)&&(count <= 11))
       				{
@@ -309,8 +312,10 @@ import models.*;
       			         players.get(j).setDefVal(rand.nextInt(10)+1);
       			         players.get(j).setMidVal(rand.nextInt(10)+1);
       			         players.get(j).setAtkVal(rand.nextInt(10)+1);
+						 
       				}
       				count++;
+					players.get(j).calcTransValue();
       				players.get(j).save();
       				
       			}
@@ -327,6 +332,8 @@ import models.*;
       	player.setDefVal(rand.nextInt(10)+1);
       	player.setMidVal(rand.nextInt(10)+1);
       	player.setAtkVal(rand.nextInt(10)+1);
+		player.calcTransValue();
+		
 	 }
      
        public Result genStats() {
@@ -335,6 +342,58 @@ import models.*;
 
         return redirect("/squad/0");
     }
+
+	
+public Result buyPlayer(Long id, Long userid) {
+		
+		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
+		List<Player> players = Player.findAll();
+		List<Team> teamList = Team.findAll();
+		List<User> userList = Manager.findAll();
+		Manager owner ;
+		Team transfer = Team.getTeamDefault();
+		Team userTeam ;
+		 
+		for(int k = 0 ; k < userList.size();k++)
+		{
+			if(userid == userList.get(k).getid())
+			{
+				owner = (Manager)userList.get(k);
+				for(int i = 0 ; i < players.size();i++)
+		{
+			if(id == players.get(i).getPlayerID())
+			{
+				
+				
+				for(int j = 0 ; j < teamList.size();j++)
+				{
+					if(teamList.get(j).getTeamID() == owner.getid())
+					{
+						userTeam = teamList.get(j);
+						
+						if(owner.getBankaccount() >= players.get(i).getTransferValue())
+						{
+						players.get(i).setTeam(userTeam);
+						owner.updateBankaccount(players.get(i).getTransferValue());
+						}
+				
+						
+					}
+					owner.update();
+				}
+				players.get(i).update();
+			}
+			
+		}
+			}
+		}
+		
+		
+		
+		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm, transfer.getTeamID()));
+		
+	}
+
     public Long getPositionID(String position){
         long defaultValue = 0;
         List<Position> positions = Position.findAll();
@@ -346,6 +405,7 @@ import models.*;
        return defaultValue;
     }
  }
+
  
  
- 
+    
