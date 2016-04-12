@@ -11,65 +11,123 @@ import play.*;
 import views.html.*;
 import models.*;
  public class PlayerCtrl extends Controller {
-      //injury health value once reached player is injured
-      final int INJURY_LEVEL =4;
-      //Max value for health
-      final int MAX_HEALTH = 10;
-      //Max attribute value
-      final int MAX_VALUE = 10;
- //random number generator
-     Random ranNum = new Random();
+     // The amount of times a user can train per match
+     static int numberOfTraining = 3;
+     //variable to check if numberOfTraining = 0
+     final int minTrainingTest = 0;
+     //injury health value once reached player is injured
+     final int INJURY_LEVEL =4;
+     //Max value for health
+     final int MAX_HEALTH = 10;
+     //Max attribute value
+     final int MAX_VALUE = 10;
+     //Max amount of players per team
+     private final int MAX_PLAYERS = 15;
+     //Max amount of players on field
+     private final int MAX_ON_FIELD = 11;
+     //Max amount of goalkeepers/goalkeeper position ID
+     private final int MAX_GOALKEEPER = 1;
      
-     public Result setPosition(String position, Long pID){        
-         List<Position> positions = Position.findAll();
+    //random number generator
+     Random ranNum = new Random();
+ 
+    //returns the number of times a user has trained per match (max three times) 
+     public int getNumOfTrain(){
+         return this.numberOfTraining;
+     }
+     //resets number of times a user has trained when a match is played to three
+     public static void reSetNumberOfTraining(){
          List<Player> players = Player.findAll();
-         for(Player p : players ){
-             if(p.playerID == pID){
+         numberOfTraining = 3;
+     }
+     //sets the position of a player specified by the user
+     public Result setPosition(String position, Long pID){        
+         int countOnField = 0; //a count of the players on the field
+         List<Position> positions = Position.findAll(); //creates a list of positions
+         List<Player> players = Player.findAll(); //creates a list of players
+         
+         for(Player p : players){//loops through all the players in the list
+             if(p.position.id != getPositionID("Sub")){ //position of player not equal to a sub add 1 to countOnField
+                 countOnField ++;
+             }
+         }
+         for(Player p : players ){ //loops through all the players in the list
+             if(position.equals("Goalkeeper") && p.getPosition() == MAX_GOALKEEPER){//insures each team only has one goalkeeper on the field
+                 flash("error3","already have a goalkeeper");
+                 return redirect("/squad/1");//returns to squad page and flashes an apropriate error messages
+             }
+             else if(countOnField == MAX_ON_FIELD && getPositionID(position)!=5 ){//checks if there are too may players on the field max 11
+                 flash("error4","too many on field");
+                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
+             }
+             else{
+                 if(p.playerID == pID){
+             
                 for(int i=0; i < positions.size();i++){
                     if(positions.get(i).position.equals(position)){
                         p.setPosition(positions.get(i));
                         p.update();
-                  }
+                    }
                 }
-             }
-             flash("Success", "Player "+ p.playerName+" has changed position to "+ position);
+               
+                  for(int i=0; i < positions.size();i++){
+                    if(positions.get(i).position.equals(position)){
+                        p.setPosition(positions.get(i));
+                        p.update();
+                    }
+                } 
+                flash("Success2", "Player has changed position to ");
+                return redirect("/squad/5");
+                }
              
+             }
          }
-         return redirect("/squad/0");
+         return redirect("/squad/4");
      }
   public Result getTrained(String position, Long pID){
+      //if(numberOfTraining >= minTrainingTest){
          //train value earned to be added to position value
          int randomTrainVal = ranNum.nextInt(5)+1;
          List<Player> players = Player.findAll();
          for(Player p : players ){
              if(p.playerID == pID){
-                if(playerMaxed(position,p) == true || p.injury == true){
-                    
-                    flash(p.playerName+" already fully trained in this position "+position);
+                if(playerMaxed(position,p) == true){
+                    flash("error1","error1");
+                    return redirect("/squad/20");
                    }
                 else if(randomTrainVal <= 2){
-                    flash( "Unable to train this "+p.playerName+" this time!");
+                    flash("error2","error2");
+                    return redirect("/squad/0");
                     }
                 else if(randomTrainVal <= 4){
                     addTrainVal(position,randomTrainVal,p);
                     deductHealth(ranNum.nextInt(2),p);;
                     p.injury = getInjured(p.health,p);
-                    
-                    flash(p.playerName+" trained");
+                    numberOfTraining = numberOfTraining -1;
+                    p.update();
+                    flash("success","success");
+                    return redirect("/squad/0");
                }
                 else{
                     addTrainVal(position,randomTrainVal,p);
                     deductHealth(ranNum.nextInt(3),p);
                     p.injury = getInjured(p.health,p);
-
-                    flash(p.playerName+" trained");
+                    numberOfTraining = numberOfTraining -1;
+                    p.update();
+                    flash("success","success");
+                    return redirect("/squad/0");
                     }
+                    
              }
 			 p.calcTransValue();
              p.update();
          }
          
-         return redirect("/squad/0");  
+     /*}else{
+         flash("error","error");   
+     return redirect("/squad/0");
+     } */
+     return redirect("/squad/0");  
      }
      
      public boolean getInjured(int health, Player player){
@@ -112,6 +170,7 @@ import models.*;
              }                                            
      }
     public void setPositionVal(int trainVal, String position, Player player){
+        
           if(position.equals("Goalkeeper")){
                   player.setGkVal(player.gkVal + trainVal);
                  
@@ -124,7 +183,8 @@ import models.*;
              }
              else{
                   player.setAtkVal(player.attVal + trainVal);
-             }  
+             }
+        
      }
      
    public void deductHealth(int healthLose, Player player){
@@ -149,21 +209,21 @@ import models.*;
      public boolean playerMaxed(String position, Player player){
         
          if(player.position.equals("Goalkeeper")){
-                  if(player.gkVal == MAX_VALUE){
+                  if(player.getGkVal() == MAX_VALUE){
                       return true;
              }
              else if(player.position.equals("Defense")){
-                   if(player.defVal == MAX_VALUE){
+                   if(player.getDefVal() == MAX_VALUE){
                       return true;
                 }
              }
               else if(player.position.equals("Midfield")){
-                   if(player.midFVal == MAX_VALUE){
+                   if(player.getMidVal() == MAX_VALUE){
                       return true;
                 }
              }
              else if(player.position.equals("Striker")){
-                  if(player.attVal == MAX_VALUE){
+                  if(player.getAtkVal() == MAX_VALUE){
                       return true;
                 }
              }
@@ -282,6 +342,7 @@ import models.*;
 
         return redirect("/squad/0");
     }
+
 	
 public Result buyPlayer(Long id, Long userid) {
 		
@@ -331,6 +392,19 @@ public Result buyPlayer(Long id, Long userid) {
 		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm, transfer.getTeamID()));
 		
 	}
+
+    public Long getPositionID(String position){
+        long defaultValue = 0;
+        List<Position> positions = Position.findAll();
+        for(Position p : positions){
+            if(position.equals(p.position)){
+                return p.id;
+            }
+       }
+       return defaultValue;
+    }
+ }
+
  
  }
     

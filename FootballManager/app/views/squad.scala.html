@@ -1,14 +1,34 @@
-@(positions: List[models.Position], players: List[models.Player],team: models.Team, user: models.users.User)
+@(user: models.users.User,positions: List[models.Position], players: List[models.Player],team: models.Team)
 @main("Squad",user) {
 
     <!-- /.row -->
     <div class="row">
+        @if(user == null){
+            adfasfa
+        }
+        @if(flash.containsKey("success")) { <!--Flashes if player gets trained -->
+           <h5 class="alert alert-success">Player trained!</h5>
+        }
+        @if(flash.containsKey("success2")) { <!--Flashes if players position gets trained -->
+           <h5 class="alert alert-success">Player position changed!</h5>
+        }
+        @if(flash.containsKey("error")){<!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">Sorry you have used all your training for this match!</h5>
+        }
+        @if(flash.containsKey("error1")){
+            <h5 class="alert alert-danger">Sorry this player cannot be trained!</h5>
+        }
+        @if(flash.containsKey("error2")){
+            <h5 class="alert alert-danger">Sorry this player cannot be trained at this time!</h5>
+        }
+        @if(flash.containsKey("error3")){
+            <h5 class="alert alert-danger">Sorry you already have a GoalKeeper please change his position first!</h5>
+        }
         <div class="col-md-2">
+            
+            
             <div class="list-group">
-                    <!-- Start of For loop - For each c in categories add a link -->
                 <a href="@routes.Application.squad(0)" class="list-group-item">All Positions </a>
-
-
                 @for(p <- positions) {
 
           <a href="@routes.Application.squad(p.id)" class="list-group-item">@p.position</a>
@@ -18,21 +38,20 @@
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            is your current squad
+                            This is your current squad.
                         </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Jersey Number</th>
                                     <th>Player Name</th>
-                                    <th> team id</th>
                                     <th>GK</th>
                                     <th>Def</th>
                                     <th>Mid</th>
                                     <th>Atck</th>
                                     <th>Health</th>
                                     <th>Injured</th>
-                                    <th>Training</th>
+                                    <th>Training</th> 
                                     <th>Position</th>
                                     <th>Transfer</th>
                                 </tr>
@@ -42,11 +61,10 @@
 
 
                                     @for(player <- players ){
-                                    @if(1 == 1){
+                                    @if(1==1){ <!--Checks that players shown are in the users team player.teamID.getuserid()== user.getid()-->
                                     <tr>
                                         <td>@player.jerseyNum</td>
                                         <td>@player.playerName</td>
-                                        <td>@player.teamID</td>
                                         <td>@player.gkVal</td>
                                         <td>@player.defVal</td>
                                         <td>@player.midFVal</td>
@@ -57,7 +75,8 @@
                                             }else{
                                             No
                                             }
-                                        <th>
+                                            <th>
+                                        @if(player.injury == false ){ 
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
@@ -66,6 +85,10 @@
                     <li><a href="@routes.PlayerCtrl.getTrained("Midfield",player.playerID)">Midfield</a></li>
                     <li><a href="@routes.PlayerCtrl.getTrained("Striker",player.playerID)">Striker</a></li>
                 </ul>
+            
+            }else {
+            This player in injured
+            }
             </th>
             <th class="position">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position

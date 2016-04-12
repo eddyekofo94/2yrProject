@@ -65,11 +65,11 @@
     <!-- /.panel-body -->
     </div>
 
-    @form(action = routes.Application.transferPlayerSubmit(id), 'class -> "form-horizontal", 'role->"form"){
+   @form(action = routes.Application.transferPlayerSubmit(id), 'class -> "form-horizontal", 'role->"form"){
 
    <!-- @inputText(transferPlayerForm("teamID"),'_label -> "Team ID")-->
    @select(
-   transferPlayerForm("player.teamID"),
+   transferPlayerForm("player"),
    options(Player.options),
    '_label -> "Player", '_dfault -> "--Choose a Player --",
    '_showConstraints -> false, 'class -> "form-control"

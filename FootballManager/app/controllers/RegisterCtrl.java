@@ -57,10 +57,15 @@ public class RegisterCtrl extends Controller {
         Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
-        //if (newRegisterForm.hasErrors()) {
-            // Display the form again
-            //return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
-        //}
+        if (newRegisterForm.hasErrors()) {
+            //Display the form again
+            return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+        }
+        else if(loginnameUsed(newRegisterForm.get().loginname) == true){
+            flash("error","Login name is already used please try again!");
+             return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+        }
+        else{
 
 
 
@@ -79,7 +84,20 @@ public class RegisterCtrl extends Controller {
 
         flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
 
+        
+        }
         return redirect("/squad/0");
     }
 
+    //Check if login name is taken
+    public boolean loginnameUsed(String name){
+        boolean taken = false;
+        List<User> users = User.findAll();
+        for(int i = 0;i < users.size(); i++){
+            if(users.get(i).loginname.equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

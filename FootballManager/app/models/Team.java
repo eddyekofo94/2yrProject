@@ -15,19 +15,14 @@ import models.users.*;
 
 @Entity
  public class Team extends Model{
-	@Transient
-     private final int MAX_PLAYERS = 15;
-	 @Transient
-     private final int MAX_ON_FIELD = 11;
-	 @Transient
-     private final int MAX_SUBS = 4;
+	
 
      @Id
      @OneToOne(mappedBy = "teamID")
      public Long teamID;
 
      @OneToOne
-     public Long userid;
+     public Long userID;
 
      @Constraints.Required
      public String teamName;
@@ -35,8 +30,11 @@ import models.users.*;
      private int teamScore;
      @ManyToMany(mappedBy = "tList")
      public List<Fixtures> flist = new ArrayList<Fixtures>();
+
      @Transient
-    Long userID;
+     public int onFieldCount = 0;
+     @Transient
+     public int offFieldCount = 0;
 
      public ArrayList <Team> teamList = new ArrayList<>();
 
@@ -82,12 +80,12 @@ import models.users.*;
 		 this.teamName = teamName;
 	 }
 
-     public Long getuserid(){
-          return userid;
+     public Long getUserID(){
+          return userID;
       }
 	  
-	  public void setuserid(Long userid){
-		  this.userid = userid;
+	  public void setUserID(Long id){
+		  this.userID = id;
 	  }
 
     public int getTeamScore() {

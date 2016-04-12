@@ -1,4 +1,4 @@
-@(fixtures : List[models.Fixtures],team: List[models.Team],user: models.users.User)
+@(user: models.users.User,fixtures : List[models.Fixtures],team: List[models.Team])
 @import helper._
 @main("Fixtures",user) {
 
@@ -103,24 +103,24 @@
 <!-- /.row -->
 
 
-<!--Fixture upload input-->
-<label>Generate Fixtures</label>
+    @if(user.getUserType().equals("admin")){
+        <label>Generate Fixtures</label>
 
 
-<!-- add a submit button -->
-<div class="actions">
+        <!-- add a submit button -->
+        <div class="actions">
 
-    @helper.form(action = routes.Application.upload) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Generate Fixtures">
-    </p>
-    }
+            @helper.form(action = routes.Application.upload) {
+            <p>
+                <input class="btn-sm btn-primary" type="submit" value="Generate Fixtures">
+            </p>
+            }
 
-    @helper.form(action = routes.MatchCtrl.Match) {
-        <p>
-            <input class="btn-sm btn-primary" type="submit" value="Play Weeks Match">
-        </p>
-    }
-</div>
-
+            @helper.form(action = routes.MatchCtrl.Match) {
+                <p>
+                    <input class="btn-sm btn-primary" type="submit" value="Play Weeks Match">
+                </p>
+            }
+        </div>
+        }
     }

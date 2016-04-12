@@ -1,4 +1,5 @@
 package controllers;
+
 import java.util.*;
 import play.mvc.Controller;
 import play.mvc.*;
@@ -6,19 +7,11 @@ import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
 import java.sql.*;
-
 import models.users.Login;
 import models.users.*;
 import controllers.security.*;
-
 import play.db.*;
-
-
-
-
 import views.html.*;
-
-
 import models.*;
 
 public class Application extends Controller {
@@ -32,19 +25,19 @@ public class Application extends Controller {
 
         return ok(index.render(User.getLoggedIn(session().get("loginname"))));
     }
-// Authenticate user needs to be added start of each method to be secured
-//@Security.Authenticated(Secured.class)
-// Authorise user (check if user)
-//needs to be configed to admin and manager.
-//@With(CheckIfCustomer.class)
+
+    // Authenticate user needs to be added start of each method to be secured
+    @Security.Authenticated(Secured.class)
+
     public Result fixtures() {
 
 List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
         Collections.sort(fixture);
-        return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
+        return ok(fixtures.render(User.getLoggedIn(session().get("loginname")),fixture,teams));
     }
-
+    // Authenticate user needs to be added start of each method to be secured
+    @Security.Authenticated(Secured.class)
     public Result leagueTable() {
     List<Fixtures> fixture = Fixtures.findAll();
 List<Team> teams = Team.findAll();
@@ -54,52 +47,35 @@ List<Team> teams = Team.findAll();
 
 
 
-        return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
+        return ok(views.html.leagueTable.render(User.getLoggedIn(session().get("loginname")),fixture,teams,models.LeagueTable.getLeague()));
     }
 
-
+    // Authenticate user needs to be added start of each method to be secured
+    @Security.Authenticated(Secured.class)
     public Result upload(){
+        generateFixtures();
+        List<Fixtures> fixture = Fixtures.findAll();
+        List<Team> teams = Team.findAll();
+        Collections.sort(fixture);
+        return ok(fixtures.render(User.getLoggedIn(session().get("loginname")),fixture,teams));
+    }
+    // Authenticate user needs to be added start of each method to be secured
+    @Security.Authenticated(Secured.class)
+    public Result LeagueUpdate(){
+        updateLeague();
+        List<Fixtures> fixture = Fixtures.findAll();
+        List < Team > teams = Team.findAll();
+        return ok(views.html.leagueTable.render(User.getLoggedIn(session().get("loginname")),fixture,teams,models.LeagueTable.getLeague()));
+    }
 
-generateFixtures();
+    public static void generateFixtures(){
+        //the following statment is destructive and needs validation and admin only .
+        for(Fixtures f : Fixtures.<Fixtures>findAll()) {
+            f.delete();
+        }
+        MatchCtrl.setCurWeek(1);
 
-List<Fixtures> fixture = Fixtures.findAll();
-List<Team> teams = Team.findAll();
-
-
-Collections.sort(fixture);
-
-return ok(fixtures.render(fixture,teams, User.getLoggedIn(session().get("loginName"))));
-}
-
-public Result LeagueUpdate(){
-updateLeague();
-List<Fixtures> fixture = Fixtures.findAll();
-
-
-
-            List < Team > teams = Team.findAll();
-return ok(views.html.leagueTable.render(fixture,teams,models.LeagueTable.getLeague(), User.getLoggedIn(session().get("loginName"))));
-
-}
-
- public static void generateFixtures(){
-
-
-//the following statment is destructive and needs validation and admin only .
-
-for(Fixtures f : Fixtures.<Fixtures>findAll()) {
-    f.delete();
-}
-     MatchCtrl.setCurWeek(1);
-
-
-
-
-
-
- //to here
-
-
+         //to here
 
 		ArrayList<models.Team> teams = new ArrayList() ;
 		int count = 1;
@@ -109,23 +85,16 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		int aScore=0;
 		models.Fixtures f1 ;
 
-
-
-
-		     for(Team t : Team.<Team>findAll()) {
-				 if(t.getTeamID() != 0)
-				 {
-		     teams.add(t);
-				 }
-
+		 for(Team t : Team.<Team>findAll()) {
+		     if(t.getTeamID() != 0)
+			{
+		      teams.add(t);
+		    }
 		}
-
 
 		models.Fixtures[] weekFixtures = new models.Fixtures[teams.size()];
 
-
 		ArrayList<models.Fixtures> fixtures = new ArrayList();
-
 		for(int i = 0;i < teams.size();i++)
 		{
 			for(int j = count; j < teams.size();j++)
@@ -139,141 +108,114 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 				 	f1.tList.add(teams.get(i));
 				 	f1.tList.add(teams.get(j));
 				 	f1.save();
-
-
-				//System.out.println("week"+week+"Home Team: "+teams[j]+"Score"+hScore +"vs"+"Away Team "+"Score"+aScore+teams[i]);
-
-
-
-				f1=new models.Fixtures(id,"bing",(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
-
+				    f1=new models.Fixtures(id,"bing",(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
 				 	teams.get(i).flist.add(f1);
 				 	teams.get(j).flist.add(f1);
 				 	f1.tList.add(teams.get(i));
 				 	f1.tList.add(teams.get(j));
-
 				 	f1.save();
 
-
-
-
-
-
-				if(week == ((teams.size()+1)))
-				{
-				week=1;
-				}
-				else
-				{
-				week++;
-				}
-
-			}
+                    if(week == ((teams.size()+1)))
+                    {
+                    week=1;
+                    }
+                    else
+                    {
+                    week++;
+                    }
+			 }    
 
 			count++;
 			id++;
 		}
 
-		}
-
-
-	public void startLeague(List<models.Team> teams)
-	{
-
-	for(int i = 1;i < teams.size();i++)
-	{
-	models.LeagueTable league = new models.LeagueTable(teams.get(i).getTeamID());
-	league.addTeam();
 	}
 
-	}
-    public void updateLeague()
-    {
-    Long homeTeamID;
-    Long awayTeamID;
-    int homeScore;
-    int awayScore;
+    
+	public void startLeague(List<models.Team> teams){
 
-    int homePts;
-    int homeGoalDifference;
-
-
-     int awayPts;
-    int awayGoalDifference;
-
-
-
-
-    	List<Fixtures> fixtureCurrent = new ArrayList();
-
-
-        for(int l =0; l < models.LeagueTable.getLeague().size();l++)
+        for(int i = 1;i < teams.size();i++)
         {
-            models.LeagueTable.getLeague().get(l).resetLeague();
+        models.LeagueTable league = new models.LeagueTable(teams.get(i).getTeamID());
+        league.addTeam();
         }
 
-   	 for(Fixtures f : Fixtures.<Fixtures>findAll()) {
-    	fixtureCurrent.add(f);
-   	 }
+     }
+     
+     public void updateLeague()
+     {
+        Long homeTeamID;
+        Long awayTeamID;
+        int homeScore;
+        int awayScore;
 
+        int homePts;
+        int homeGoalDifference;
 
-   	 for(int i = 0 ; i < fixtureCurrent.size();i++)
-   	 {
-   	 if((fixtureCurrent.get(i).played )== true )
-   	 {
-   	 homeTeamID = fixtureCurrent.get(i).getHomeTeamID();
-   	 awayTeamID = fixtureCurrent.get(i).getAwayTeamID();
-   	 homeScore = fixtureCurrent.get(i).gethomeScore();
-   	 awayScore = fixtureCurrent.get(i).getawayScore();
+        int awayPts;
+        int awayGoalDifference;
 
+            List<Fixtures> fixtureCurrent = new ArrayList();
 
+            for(int l =0; l < models.LeagueTable.getLeague().size();l++)
+            {
+                models.LeagueTable.getLeague().get(l).resetLeague();
+            }
 
-   	 homeGoalDifference = homeScore- awayScore;
-   	 awayGoalDifference = awayScore - homeScore;
+        for(Fixtures f : Fixtures.<Fixtures>findAll()) {
+            fixtureCurrent.add(f);
+        }
 
-   	 if(homeScore > awayScore)
-   	 {
-   	 homePts = 2;
-   	 awayPts = 0;
+        for(int i = 0 ; i < fixtureCurrent.size();i++)
+        {
+            if((fixtureCurrent.get(i).played )== true )
+            {
+            homeTeamID = fixtureCurrent.get(i).getHomeTeamID();
+            awayTeamID = fixtureCurrent.get(i).getAwayTeamID();
+            homeScore = fixtureCurrent.get(i).gethomeScore();
+            awayScore = fixtureCurrent.get(i).getawayScore();
 
-   	 models.LeagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
-   	 models.LeagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
+            homeGoalDifference = homeScore- awayScore;
+            awayGoalDifference = awayScore - homeScore;
 
-   	 fixtureCurrent.get(i).save();
-   	 }
-   	 else if (homeScore < awayScore)
-   	 {
-   	 awayPts = 2;
-   	 homePts = 0;
-   	 models.LeagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
-   	 models.LeagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
+                if(homeScore > awayScore)
+                {
+                    homePts = 2;
+                    awayPts = 0;
 
-   	 fixtureCurrent.get(i).save();
-   	 }
-   	 else{
-   	 awayPts = 0;
-   	 homePts = 0;
-   	 models.LeagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
-   	 models.LeagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
+                    models.LeagueTable.updateLeague(homeTeamID,1,0,0,homeGoalDifference,3);
+                    models.LeagueTable.updateLeague(awayTeamID,0,1,0,awayGoalDifference,0);
 
-   	 fixtureCurrent.get(i).save();
-   	 }
-   	 }
-   	 else
-   	 {
-   	 break;
-   	 }
+                    fixtureCurrent.get(i).save();
+                }
+                else if (homeScore < awayScore)
+                {
+                    awayPts = 2;
+                    homePts = 0;
+                    models.LeagueTable.updateLeague(homeTeamID,0,1,0,homeGoalDifference,0);
+                    models.LeagueTable.updateLeague(awayTeamID,1,0,0,awayGoalDifference,3);
 
+                    fixtureCurrent.get(i).save();
+                }
+                else{
+                    awayPts = 0;
+                    homePts = 0;
+                    models.LeagueTable.updateLeague(homeTeamID,0,0,1,homeGoalDifference,1);
+                    models.LeagueTable.updateLeague(awayTeamID,0,0,1,awayGoalDifference,1);
+                    fixtureCurrent.get(i).save();
+                }
+            }
+        else
+        {
+        break;
+        }
 
-
-
-
-
-
-   	 }
+        }
 
     }
-
+    //Insures user is manager before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfManager.class)
     public Result squad(Long position) {
 
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -282,7 +224,6 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
         List<Team> teams = Team.findAll();
         List<User> users = User.findAll();
         Team team = new Team();
-
 
         if(position == 0){
             players = Player.findAll();
@@ -294,28 +235,14 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
                 }
             }
         }
-
-        return ok(squad.render(positions, players,team, User.getLoggedIn(session().get("loginName"))));
+        return ok(squad.render(User.getLoggedIn(session().get("loginname")),positions, players,team));
     }
 
     public Result login() {
 
-        return ok(login.render(Form.form(Login.class),User.getLoggedIn(session().get("loginName"))));
+        return ok(login.render(Form.form(Login.class),User.getLoggedIn(session().get("loginname"))));
     }
 
-
-    // public Result authenticate(){
-    //     Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
-
-    //     if(loginForm.hasErrors()){
-    //         return badRequest(login.render(loginForm,User.getLoggedIn(session().get("loginName"))));
-    //     }
-    //     else{
-    //         session().clear();
-    //         session("userid", loginForm.get().userid);
-    //         return redirect(routes.Application.index());
-    //     }
-    // }
 
     public Result register() {
 
@@ -327,7 +254,10 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
         return ok("user registered");
     }
-
+    
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
     public Result playerDB(Long position) {
 
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -347,25 +277,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
         return ok(playerDB.render(User.getLoggedIn(session().get("loginName")),positions, players));
     }
 
-  //  public Result transferPlayer(Long position,Long id) {
-  //      Form<Player> transferPlayerForm = Form.form(Player.class);
-  //      List<Position> positions = Position.find.where().orderBy("position asc").findList();
-        // get the list of team attributes
-  //      List<Player> players = new ArrayList<Player>();
-    //    if(position == 0){
-    //        players = Player.findAll();
-     //   }
-      //  else{
-       //     for(int i = 0; i< positions.size();i++){
-        //        if(positions.get(i).id == position){
-         //           players = positions.get(i).players;
-         //           break;
-         //       }
-         //   }
-        //}
-        //return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),positions, players,transferPlayerForm,id));
-    //}
-	
+    //Insures user is logged in before allowing access
+	@Security.Authenticated(Secured.class)
 	public Result transferPlayer(Long id) {
 		
 		Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
@@ -404,7 +317,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm,ids));
 		
 	}
-
+    //Insures user is logged in before allowing access
+	@Security.Authenticated(Secured.class)
     public Result transferPlayerSubmit(Long id){
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -422,14 +336,17 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             }
         }
         Player p = transferPlayerForm.get();
-        p.teamID = players.get(pID).getTeamID();
+        //p.teamID = user.teamID;
 
         p.update();
         flash("Success", "Player "+ transferPlayerForm.get().playerName+" has added to your team");
 
         return redirect("/squad/0");
     }
-	
+    
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result delPlayer(Long playerID)
 	{
 		List<Player> player = Player.find.all();
@@ -445,9 +362,11 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		 return redirect("/playerDB/0");
 	}
 	
-		
-		public Result editPlayer(Long playerID)
-		{
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result editPlayer(Long playerID)
+	{
 		List<Player> player = Player.find.all();
 		
 		
@@ -461,11 +380,13 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 			}
 			
 		}
-		 return redirect("/delPlayer");
+		return redirect("/delPlayer");
 		 
-		}
+	}
 		
-		
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)	
 	public  Result submitEditPlayer(Long id)
 	{
 		Form<Player> editPlayerForm = Form.form(Player.class).bindFromRequest();
@@ -482,6 +403,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		{
 			if(players.get(i).getPlayerID()== id)
 			{
+				players.get(i).setPlayerName(player.playerName);
+				players.get(i).setJerseyNum(player.jerseyNum);
 				players.get(i).setPlayerName(player.getPlayerName());
 				players.get(i).setJerseyNum(player.getJerseyNum());
 				players.get(i).setAtkVal(player.getAtkVal());
@@ -497,7 +420,9 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 	
 	
 	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result deletePlayer()
 	{
 		 List<Player> players = new ArrayList<Player>();
@@ -508,13 +433,17 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 	}
 	
 	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
      public Result addPlayer(){
         Form<Player> addPlayerForm = Form.form(Player.class);
         return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")),addPlayerForm));
     }
 	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
     public Result addPlayerSubmit(){
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
 		Player newPlayer;
@@ -533,12 +462,16 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 
         return redirect("/");
     }
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	  public Result addTeam(){
         Form<Team> addTeamForm = Form.form(Team.class);
         return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
     }
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result addTeamSubmit(){
 		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
 		Team newTeam;
@@ -555,7 +488,9 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		Form<Team> manageTeamForm = Form.form(Team.class);
         return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),team));
 	}
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result delTeam(Long teamID)
 	{
 		List<Team> team = Team.find.all();
@@ -570,34 +505,32 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		}
 		 return redirect("/manageTeam");
 	}
-	
-	  public Result editTeam(Long teamID)
-	  {
-		  
-        
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result editTeam(Long teamID)
+	{	 
 		List<Team> team = Team.find.all();
-		
 		for(int i = 0 ; i < team.size();i++)
 		{
 			if(team.get(i).getTeamID() == teamID)
-			{
-				
+			{	
 				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
 				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm,team.get(i)));
-			}
-			
-			
+			}		
 		}
 		
        return redirect("/");
     }
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result editTeamSubmit(Long id){
 		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
 		 List<Team> team = Team.find.all();
 		Team editTeam;
 		 if( manageTeamForm.hasErrors()){
             return redirect("/");
-
         }
 		editTeam = manageTeamForm.get();
 		for(int i = 0;i < team.size();i++)
@@ -605,7 +538,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 			if(team.get(i).getTeamID() == id)
 			{
 				team.get(i).setTeamName(editTeam.getTeamName());
-				team.get(i).setuserid(editTeam.getuserid());
+				team.get(i).setUserID(editTeam.getUserID());
 				team.get(i).setTeamScore(0);
 				team.get(i).update();
 			}
@@ -618,14 +551,16 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
 		return redirect("/admin");
 	}
-
-public Result manageTeamSubmit(){
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+    public Result manageTeamSubmit(){
 		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
 		Team newTeam;
 		newTeam = newTeamForm.get();
 		newTeam.setTeamScore(0);
 		newTeam.save();
-		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		flash("SuccessTeam", "Team"+newTeamForm.get().teamName+" has been created");
 		return redirect("/admin");
 	}
 }

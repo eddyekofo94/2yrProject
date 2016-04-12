@@ -9,6 +9,8 @@ import play.mvc.Controller;
 			import play.*;
 import play.mvc.*;
 import play.data.*;
+
+import java.util.*;
 			
 
 // Import required classes
@@ -35,6 +37,7 @@ import play.data.*;
                         // If errors, show the form again
                         return badRequest(login.render(loginForm, User.getLoggedIn(session().get("loginname"))));
                     }
+                    
                     else {
             // SuperUser Logged in sucessfully
             // Clear the existing session
@@ -53,7 +56,7 @@ import play.data.*;
             return redirect(controllers.routes.Application.index());
         }
     }
-
+    
     public Result logout() {
         session().clear();
         flash("success", "You've been logged out");

@@ -36,11 +36,16 @@ public class Player extends Model{
      public Team teamID;
      public boolean injury;
      public double salary;
+<<<<<<< HEAD
      public int transferValue;
 	 
 	 @Transient
     private  final int TRANSFER_VALUE_WEIGHT = 1000	;
 	 
+=======
+     public double transferValue;
+     
+>>>>>>> master
      
      //constants for getTrained and getInjured methods
      
@@ -110,11 +115,15 @@ public class Player extends Model{
 	{
 		this.teamID = team;
 	}
+    public void setTeamID(Team team)
+	{
+		this.teamID = team;
+	}
 	
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }
-     
+
      
      public static Map<String,String> options(){
          final int TEAM_ID_NOT_ASSIGNED = 0;
@@ -126,6 +135,7 @@ public class Player extends Model{
         }
         return options;
     }
+
 	
 	public int getTransferValue()
 	{
@@ -136,6 +146,7 @@ public class Player extends Model{
 	{
 		this.transferValue = transferValue;
 	}
+
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
@@ -189,6 +200,7 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+
    	public void calcTransValue()
 	{
 		int totalValue = 0;
@@ -206,4 +218,9 @@ public class Player extends Model{
 		
 		
     }
+
+   /*public void setUsedTraining(boolean b){
+       this.usedTraining = b;
+   }*/
+
 }

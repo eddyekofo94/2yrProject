@@ -47,6 +47,10 @@
         </th>
         <div class="col-md-6">
         </div>
+                <td>
+            <a href="@routes.Application.editPlayer(p.playerID)" class="btn-xs btn-danger">
+                <span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
         <td>
             <a href="@routes.Application.editPlayer(p.playerID)" ><input class="btn-xs btn-danger" type="submit" value="Edit Player"></a>
         </td>
@@ -65,11 +69,18 @@
     </table>
     <!-- /.panel-body -->
     </div>
+<<<<<<< HEAD
+        <div>
+        <a href="@routes.Application.addPlayer()">
+                <span class="btn btn-primary">Add a Player</span></a>
+    </div>
+=======
      @helper.form(action = routes.Application.addPlayer()) {
     <p>
         <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
     </p>
 	}
+>>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
     </div>
     <!-- /.col-lg-12 -->
     </div>
