@@ -63,7 +63,10 @@
                 <a class="navbar-brand" href="@routes.Application.index()">Football Manager</a>
             </div>
             <!-- /.navbar-header -->
-
+            @if(user.getUserType().equalsIgnoreCase("manager")){  
+                @user = user.asInstanceOf[Manager]
+                Bank Balance: €@user.getBankaccount();
+                }
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -71,8 +74,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
+
                         <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Help</a>
                         </li>
 						<li><a href="\login"><i class="fa fa-info-circle fa-fw"></i> Login</a>
@@ -81,11 +83,11 @@
                         <li><a href="\logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
+                
                 </li>
-                <!-- /.dropdown -->
+                
             </ul>
-            <!-- /.navbar-top-links -->
+          
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -101,15 +103,15 @@
                             <li>
                                 <a href="@routes.Application.fixtures()"><i class="fa fa-bar-chart-o fa-fw"></i> Fixtures</a>
 
-                                <!-- /.nav-second-level -->
+                            
                             </li>
-                                    
+                              @if(user.getUserType().equalsIgnoreCase("manager")){       
                             <li>
                                 <a href="@routes.Application.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
 
-                                <!-- /.nav-second-level -->
+                             
                             </li>
-                            
+                            }
                             @if(user.getUserType().equalsIgnoreCase("admin")){
                             <li>
                                 <a href="@routes.Application.playerDB(0)">Players Database</a></li>

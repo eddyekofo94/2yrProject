@@ -22,7 +22,7 @@ import models.users.*;
      public Long teamID;
 
      @OneToOne
-     public Long userid;
+     public Long userID;
 
      @Constraints.Required
      public String teamName;
@@ -30,8 +30,7 @@ import models.users.*;
      private int teamScore;
      @ManyToMany(mappedBy = "tList")
      public List<Fixtures> flist = new ArrayList<Fixtures>();
-     @Transient
-     Long userID;
+
      @Transient
      public int onFieldCount = 0;
      @Transient
@@ -80,12 +79,12 @@ import models.users.*;
 		 this.teamName = teamName;
 	 }
 
-     public Long getuserid(){
-          return userid;
+     public Long getUserID(){
+          return userID;
       }
 	  
-	  public void setuserid(Long userid){
-		  this.userid = userid;
+	  public void setUserID(Long id){
+		  this.userID = id;
 	  }
 
     public int getTeamScore() {

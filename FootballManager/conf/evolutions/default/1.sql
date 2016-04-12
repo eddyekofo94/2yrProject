@@ -40,7 +40,7 @@ create table position (
 
 create table team (
   team_id                   bigint not null,
-  userid                    bigint,
+  user_id                   bigint,
   team_name                 varchar(255),
   team_score                integer,
   constraint pk_team primary key (team_id))

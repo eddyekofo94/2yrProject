@@ -1,15 +1,18 @@
-@(positions: List[models.Position], players: List[models.Player],team: models.Team, user: models.users.User)
+@(user: models.users.User,positions: List[models.Position], players: List[models.Player],team: models.Team)
 @main("Squad",user) {
 
     <!-- /.row -->
     <div class="row">
-        @if(flash.containsKey("success")) {
+        @if(user == null){
+            adfasfa
+        }
+        @if(flash.containsKey("success")) { <!--Flashes if player gets trained -->
            <h5 class="alert alert-success">Player trained!</h5>
         }
-        @if(flash.containsKey("success2")) {
+        @if(flash.containsKey("success2")) { <!--Flashes if players position gets trained -->
            <h5 class="alert alert-success">Player position changed!</h5>
         }
-        @if(flash.containsKey("error")){
+        @if(flash.containsKey("error")){<!--Flashes if players position gets trained -->
             <h5 class="alert alert-danger">Sorry you have used all your training for this match!</h5>
         }
         @if(flash.containsKey("error1")){
@@ -25,10 +28,7 @@
             
             
             <div class="list-group">
-                    <!-- Start of For loop - For each c in categories add a link -->
                 <a href="@routes.Application.squad(0)" class="list-group-item">All Positions </a>
-
-
                 @for(p <- positions) {
 
           <a href="@routes.Application.squad(p.id)" class="list-group-item">@p.position</a>
@@ -45,7 +45,6 @@
                                 <tr>
                                     <th>Jersey Number</th>
                                     <th>Player Name</th>
-                                    <th> team id</th>
                                     <th>GK</th>
                                     <th>Def</th>
                                     <th>Mid</th>
@@ -62,11 +61,10 @@
 
 
                                     @for(player <- players ){
-                                    @if(player.teamID.getuserid() == user.getid()){
+                                    @if(1==1){ <!--Checks that players shown are in the users team player.teamID.getuserid()== user.getid()-->
                                     <tr>
                                         <td>@player.jerseyNum</td>
                                         <td>@player.playerName</td>
-                                        <td>@player.teamID</td>
                                         <td>@player.gkVal</td>
                                         <td>@player.defVal</td>
                                         <td>@player.midFVal</td>

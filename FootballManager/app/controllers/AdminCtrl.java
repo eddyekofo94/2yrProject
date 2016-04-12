@@ -24,25 +24,25 @@ import models.*;
 
 public class AdminCtrl extends Controller
 {
-	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result admin()
 	{
 		
 		return ok(admin.render(User.getLoggedIn(session().get("loginname"))));
 	}
 	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result addUserAdmin()
 	{
 		Form<User> registerForm = Form.form(User.class);
 		
 		return ok(addUserAdmin.render(User.getLoggedIn(session().get("loginname")),registerForm));
 	}
-	
-	
-	
-	
+    
 	    public Result registerFormSubmit() {
 
         //String saveImageMsg;
@@ -78,13 +78,17 @@ public class AdminCtrl extends Controller
         return redirect("/admin");
     }
 	
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result manageUsers()
 	{
 		List<User> userList = User.find.all();
 		return ok(manageUsers.render(User.getLoggedIn(session().get("loginname")),userList));
 	}
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result delUser(Long userid)
 	{
 		List<User> user = User.find.all();
@@ -99,7 +103,9 @@ public class AdminCtrl extends Controller
 		}
 		 return redirect("/admin");
 	}
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result editUser(Long userid)
 	  {
 		  
@@ -120,9 +126,9 @@ public class AdminCtrl extends Controller
 		
        return redirect("/");
     }
-	
-		
-	
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
 	public Result submitEditUser(Long id){
 		 Form<User> manageUserForm = Form.form(User.class).bindFromRequest();
 		 List<User> user= User.find.all();

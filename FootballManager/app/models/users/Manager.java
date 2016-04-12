@@ -19,18 +19,10 @@ import com.avaje.ebean.*;
 public class Manager extends User {
 
 
-//    @OneToOne
-//    public Long teamID;
-
-    
- //   @OneToOne(mappedBy="manager", cascade = CascadeType.ALL)
-   // public Team team;
-
-public int bankaccount;
+    public int bankaccount;
 	
 
     public Manager() {
-		
 
     }
 
@@ -68,36 +60,11 @@ public int bankaccount;
             // Find user by id and return object
             return find.byId(id);
     }
-//public Long getUserid()
-//{
- //  return  super.getid();
-//}
 
-    // Check if a user is logged in (by id - email address)
-//    public static User getLoggedIn(String id) {
-//        if (id == null)
-//            return null;
-//        else
-//            // Find user by id and return object
-//            return find.byId(id);
-//    }
-
-
-//  public static User authenticate(String suserid, String password){
-//       return find.where().eq("suserid", suserid).eq("password", password).findUnique();
-//   }
-//
-//  public static User getLoggedIn(String id){
-//     if(id == null)
-//          return null;
-//
-//      else
-//          return find.byId(id);
-//   }
-public int getBankaccount()
-	{
-		return this.bankaccount;
-	}
+    public int getBankaccount()
+        {
+            return this.bankaccount;
+        }
 	public void updateBankaccount(int ammount)
 	{
 		if(this.bankaccount-ammount >= 0)

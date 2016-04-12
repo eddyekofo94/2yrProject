@@ -15,39 +15,50 @@ import models.*;
      static int numberOfTraining = 3;
      //variable to check if numberOfTraining = 0
      final int minTrainingTest = 0;
-      //injury health value once reached player is injured
-      final int INJURY_LEVEL =4;
-      //Max value for health
-      final int MAX_HEALTH = 10;
-      //Max attribute value
-      final int MAX_VALUE = 10;
-      //Max amount of players per team
+     //injury health value once reached player is injured
+     final int INJURY_LEVEL =4;
+     //Max value for health
+     final int MAX_HEALTH = 10;
+     //Max attribute value
+     final int MAX_VALUE = 10;
+     //Max amount of players per team
      private final int MAX_PLAYERS = 15;
-     //Max amount of players on the field
+     //Max amount of players on field
      private final int MAX_ON_FIELD = 11;
-     // maximum amount of subsitutes
-     private final int MAX_SUBS = 4;
-    
- //random number generator
+     //Max amount of goalkeepers/goalkeeper position ID
+     private final int MAX_GOALKEEPER = 1;
+     
+    //random number generator
      Random ranNum = new Random();
  
-     
+    //returns the number of times a user has trained per match (max three times) 
      public int getNumOfTrain(){
          return this.numberOfTraining;
      }
+     //resets number of times a user has trained when a match is played to three
      public static void reSetNumberOfTraining(){
          List<Player> players = Player.findAll();
          numberOfTraining = 3;
-         
      }
-     
+     //sets the position of a player specified by the user
      public Result setPosition(String position, Long pID){        
-         List<Position> positions = Position.findAll();
-         List<Player> players = Player.findAll();
-         for(Player p : players ){
-             if(position.equals("Goalkeeper") && p.getPosition() == 1){
+         int countOnField = 0; //a count of the players on the field
+         List<Position> positions = Position.findAll(); //creates a list of positions
+         List<Player> players = Player.findAll(); //creates a list of players
+         
+         for(Player p : players){//loops through all the players in the list
+             if(p.position.id != getPositionID("Sub")){ //position of player not equal to a sub add 1 to countOnField
+                 countOnField ++;
+             }
+         }
+         for(Player p : players ){ //loops through all the players in the list
+             if(position.equals("Goalkeeper") && p.getPosition() == MAX_GOALKEEPER){//insures each team only has one goalkeeper on the field
                  flash("error3","already have a goalkeeper");
-                 return redirect("/squad/1");
+                 return redirect("/squad/1");//returns to squad page and flashes an apropriate error messages
+             }
+             else if(countOnField == MAX_ON_FIELD && getPositionID(position)!=5 ){//checks if there are too may players on the field max 11
+                 flash("error4","too many on field");
+                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
              }
              else{
                  if(p.playerID == pID){
@@ -205,7 +216,7 @@ import models.*;
                 }
              }
               else if(player.position.equals("Midfield")){
-                   if(player.getMidFVal() == MAX_VALUE){
+                   if(player.getMidVal() == MAX_VALUE){
                       return true;
                 }
              }
@@ -324,7 +335,17 @@ import models.*;
 
         return redirect("/squad/0");
     }
-     }
+    public Long getPositionID(String position){
+        long defaultValue = 0;
+        List<Position> positions = Position.findAll();
+        for(Position p : positions){
+            if(position.equals(p.position)){
+                return p.id;
+            }
+       }
+       return defaultValue;
+    }
+ }
  
  
  
