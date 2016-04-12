@@ -5,7 +5,7 @@
 @main("Manage Team",user) {
     <h3>Manage a Team</h3>
 
-    @form(action = routes.Application.editTeamSubmit(team.teamID), 'class -> "form-horizontal", 'role->"form"){
+    @form(action = routes.AdminCtrl.editTeamSubmit(team.teamID), 'class -> "form-horizontal", 'role->"form"){
     @inputText(manageTeamForm("teamName"),'_label -> "Team Name")
      @inputText(manageTeamForm("userid"),'_label -> "User Id")
 	

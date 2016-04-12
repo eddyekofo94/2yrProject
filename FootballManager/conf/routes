@@ -4,15 +4,15 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /fixtures                   controllers.Application.fixtures()
-GET    /upload 				controllers.Application.fixtures()
-POST    /upload 		controllers.Application.upload()
+GET     /fixtures                   controllers.LeagueCtrl.fixtures()
+GET    /upload 				controllers.LeagueCtrl.fixtures()
+POST    /upload 		controllers.LeagueCtrl.upload()
 POST    /match 		controllers.MatchCtrl.Match()
-GET   /LeagueUpdate        	controllers.Application.leagueTable()
-POST    /LeagueUpdate        	controllers.Application.LeagueUpdate()
-GET     /leagueTable                controllers.Application.leagueTable()
-GET     /squad                      controllers.Application.squad(position: Long=0)
-GET     /squad/:position            controllers.Application.squad(position: Long)
+GET   /LeagueUpdate        	controllers.LeagueCtrl.leagueTable()
+POST    /LeagueUpdate        	controllers.LeagueCtrl.LeagueUpdate()
+GET     /leagueTable                controllers.LeagueCtrl.leagueTable()
+GET     /squad                      controllers.PlayerCtrl.squad(position: Long=0)
+GET     /squad/:position            controllers.PlayerCtrl.squad(position: Long)
 # GET     /login                      controllers.Application.login()
 # POST    /login                      controllers.Application.authenticate()
 
@@ -23,47 +23,46 @@ POST        /login                     controllers.security.LoginCtrl.authentica
 GET         /logout                    controllers.security.LoginCtrl.logout()
 
 
-GET     /playerDB                     controllers.Application.playerDB(position: Long=0)
-GET     /playerDB/:position            controllers.Application.playerDB(position: Long)
+GET     /playerDB                     controllers.PlayerCtrl.playerDB(position: Long=0)
+GET     /playerDB/:position            controllers.PlayerCtrl.playerDB(position: Long)
 #Transfer Player
-
-GET     /transferPlayer/:id                     controllers.Application.transferPlayer(id:Long)
-POST    /transferPlayerSubmit/:id             controllers.Application.transferPlayerSubmit(id: Long)
+GET     /transferPlayer/:id                     controllers.PlayerCtrl.transferPlayer(id:Long)
+POST    /transferPlayerSubmit/:id             controllers.PlayerCtrl.transferPlayerSubmit(id: Long)
 
 
 #Add a player
-GET     /addPlayer                 controllers.Application.addPlayer()
-POST    /addPlayerSubmit            controllers.Application.addPlayerSubmit()
+GET     /addPlayer                 controllers.PlayerCtrl.addPlayer()
+POST    /addPlayerSubmit            controllers.PlayerCtrl.addPlayerSubmit()
 
 
 
 
-GET     /delPlayer                  controllers.Application.deletePlayer()
-POST   /delPlayer	            controllers.Application.delPlayer(id: Long)
+GET     /delPlayer                  controllers.PlayerCtrl.deletePlayer()
+POST   /delPlayer	            controllers.PlayerCtrl.delPlayer(id: Long)
 
-GET   /editPlayer/:id	            controllers.Application.editPlayer(id: Long)
-POST /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
+GET   /editPlayer/:id	            controllers.PlayerCtrl.editPlayer(id: Long)
+POST /submitEditPlayer          controllers.PlayerCtrl.submitEditPlayer(id: Long)
 
-GET     /editPlayer	            controllers.Application.editPlayer(id: Long)
-POST   /editPlayer	            controllers.Application.editPlayer(id: Long)
-POST   /submitEditPlayer          controllers.Application.submitEditPlayer(id: Long)
-
-
-GET     /addTeam                  controllers.Application.addTeam()
-POST    /addTeamSubmit            controllers.Application.addTeamSubmit()
-
-GET     /manageTeam                 controllers.Application.manageTeam()
-#POST    /manageTeamSubmit            controllers.Application.manageTeamSubmit()
-
-POST    /delTeam                         controllers.Application.delTeam(id: Long)
+GET     /editPlayer	            controllers.PlayerCtrl.editPlayer(id: Long)
+POST   /editPlayer	            controllers.PlayerCtrl.editPlayer(id: Long)
+POST   /submitEditPlayer          controllers.PlayerCtrl.submitEditPlayer(id: Long)
 
 
-GET      /editTeam/:id               controllers.Application.editTeam(id: Long)
-POST     /editTeam                controllers.Application.editTeam(id: Long)
-POST     /editTeamSubmit                controllers.Application.editTeamSubmit(id: Long)
+GET     /addTeam                  controllers.AdminCtrl.addTeam()
+POST    /addTeamSubmit            controllers.AdminCtrl.addTeamSubmit()
+
+GET     /manageTeam                 controllers.AdminCtrl.manageTeam()
+#POST    /manageTeamSubmit            controllers.AdminCtrl.manageTeamSubmit()
+
+POST    /delTeam                         controllers.AdminCtrl.delTeam(id: Long)
 
 
-#POST   /manageTeam						controllers.Application.editTeam(id: Long)
+GET      /editTeam/:id               controllers.AdminCtrl.editTeam(id: Long)
+POST     /editTeam                controllers.AdminCtrl.editTeam(id: Long)
+POST     /editTeamSubmit                controllers.AdminCtrl.editTeamSubmit(id: Long)
+
+
+#POST   /manageTeam						controllers.AdminCtrl.editTeam(id: Long)
 
 
 GET      /addUserAdmin 						controllers.AdminCtrl.addUserAdmin()
@@ -77,7 +76,7 @@ POST   /submitEditUser          controllers.AdminCtrl.submitEditUser(id: Long)
 
 
 #Register
-GET     /register                               controllers.Application.register
+GET     /register                               controllers.RegisterCtrl.register
 
 #Register User
 #GET         /registerForm                    controllers.RegisterCtrl.registerForm()
@@ -89,7 +88,7 @@ POST         /registerFormSubmit                      controllers.RegisterCtrl.r
 GET     /getTrained/:position/:player         controllers.PlayerCtrl.getTrained(position:String , player: Long)
 
 #setPosition
-GET     /setPosition/:position/:player         controllers.PlayerCtrl.setPosition(position:String , player: Long)
+GET     /setPosition/:position/:player/:user         controllers.PlayerCtrl.setPosition(position:String , player: Long, user: Long)
 
 
 #adminCtrl 

@@ -6,24 +6,20 @@ import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
 import java.sql.*;
-
 import models.users.Login;
 import models.users.*;
 import controllers.security.*;
-
 import play.db.*;
-
-
-
-
 import views.html.*;
-
-
 import models.*;
 
 
 public class AdminCtrl extends Controller
 {
+    private User getCurrentUser() {
+        User u = User.getLoggedIn(session().get("userid"));
+        return u;
+    }
 	//Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
@@ -162,5 +158,108 @@ public class AdminCtrl extends Controller
 		
 		flash("Success", "user"+manageUserForm.get().name+" has been updated");
 		return redirect("/admin");
-}
+    }
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	  public Result addTeam(){
+        Form<Team> addTeamForm = Form.form(Team.class);
+        return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
+    }
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result addTeamSubmit(){
+		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+		Team newTeam;
+		newTeam = newTeamForm.get();
+		newTeam.setTeamScore(0);
+		newTeam.save();
+		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		return redirect("/admin");
+	}
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result manageTeam()
+	{
+		List<Team> team = Team.find.all();
+		Form<Team> manageTeamForm = Form.form(Team.class);
+        return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),team));
+	}
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result delTeam(Long teamID)
+	{
+		List<Team> team = Team.find.all();
+		Team TeamToDelete;
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamID)
+			{
+			 team.get(i).delete();
+				
+			}
+		}
+		 return redirect("/manageTeam");
+	}
+	//Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result editTeam(Long teamID)
+	{	 
+		List<Team> team = Team.find.all();
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamID)
+			{	
+				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
+				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm,team.get(i)));
+			}		
+		}
+		
+       return redirect("/");
+    }
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+	public Result editTeamSubmit(Long id){
+		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
+		 List<Team> team = Team.find.all();
+		Team editTeam;
+		 if( manageTeamForm.hasErrors()){
+            return redirect("/");
+        }
+		editTeam = manageTeamForm.get();
+		for(int i = 0;i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == id)
+			{
+				team.get(i).setTeamName(editTeam.getTeamName());
+				team.get(i).setUserID(editTeam.getUserID());
+				team.get(i).setTeamScore(0);
+				team.get(i).update();
+			}
+			
+         
+         
+		}
+         		
+		
+		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		return redirect("/admin");
+	}
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+    public Result manageTeamSubmit(){
+		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+		Team newTeam;
+		newTeam = newTeamForm.get();
+		newTeam.setTeamScore(0);
+		newTeam.save();
+		flash("SuccessTeam", "Team"+newTeamForm.get().teamName+" has been created");
+		return redirect("/admin");
+	}
 }

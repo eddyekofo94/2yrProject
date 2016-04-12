@@ -1,28 +1,18 @@
 package controllers;
 
 import java.util.*;
-import models.*;
-import models.users.User;
 import play.mvc.Controller;
+import play.mvc.*;
 import play.mvc.Result;
 import play.data.*;
 import play.data.Form.*;
 import java.sql.*;
-
+import models.users.Login;
+import models.users.*;
+import controllers.security.*;
 import play.db.*;
-
-
-
-
 import views.html.*;
-
-import models.Fixtures;
-import models.Match;
-import models.Team;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import models.*;
 
 /**
  * Created by Phillip on 12/03/2016.
@@ -35,7 +25,10 @@ public class MatchCtrl extends Controller {
 
 
 
-
+private User getCurrentUser() {
+        User u = User.getLoggedIn(session().get("userid"));
+        return u;
+    }
 
     public Result Match() {
 

@@ -63,10 +63,7 @@
                 <a class="navbar-brand" href="@routes.Application.index()">Football Manager</a>
             </div>
             <!-- /.navbar-header -->
-            @if(user.getUserType().equalsIgnoreCase("manager")){  
-                @user = user.asInstanceOf[Manager]
-                Bank Balance: €@user.getBankaccount();
-                }
+         
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -98,23 +95,23 @@
                         </li>
                          @if(user !=null){
                             <li>
-                                <a href="@routes.Application.leagueTable()"><i class="fa fa-table fa-fw"></i> League Table</a>
+                                <a href="@routes.LeagueCtrl.leagueTable()"><i class="fa fa-table fa-fw"></i> League Table</a>
                             </li>
                             <li>
-                                <a href="@routes.Application.fixtures()"><i class="fa fa-bar-chart-o fa-fw"></i> Fixtures</a>
+                                <a href="@routes.LeagueCtrl.fixtures()"><i class="fa fa-bar-chart-o fa-fw"></i> Fixtures</a>
 
                             
                             </li>
                               @if(user.getUserType().equalsIgnoreCase("manager")){       
                             <li>
-                                <a href="@routes.Application.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
+                                <a href="@routes.PlayerCtrl.squad(0)"><i class="fa fa-wrench fa-fw"></i> Squad</span></a>
 
                              
                             </li>
                             }
                             @if(user.getUserType().equalsIgnoreCase("admin")){
                             <li>
-                                <a href="@routes.Application.playerDB(0)">Players Database</a></li>
+                                <a href="@routes.PlayerCtrl.playerDB(0)">Players Database</a></li>
                             
                 
                             <li>

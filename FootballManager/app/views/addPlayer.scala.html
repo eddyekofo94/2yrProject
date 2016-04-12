@@ -5,7 +5,7 @@
 @main("New Player",user) {
     <h3> Add a new Player</h3>
 
-    @form(action = routes.Application.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){
+    @form(action = routes.PlayerCtrl.addPlayerSubmit(), 'class -> "form-horizontal", 'role->"form"){
     @inputText(addPlayerForm("playerName"),'_label -> "Name")
     @inputText(addPlayerForm("jerseyNum"),'_label -> "Jersey Number")
    <!-- @inputText(addPlayerForm("s"),'_label -> "Position")-->

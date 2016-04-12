@@ -9,20 +9,20 @@
 <h3>Player Admin options</h3>
  <div class="col-md-6">
       
-    @helper.form(action = routes.Application.addPlayer()) {
+    @helper.form(action = routes.PlayerCtrl.addPlayer()) {
     <p>
         <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
     </p>
 	
 	
     }
-	   @helper.form(action = routes.Application.playerDB(0)) {
+	   @helper.form(action = routes.PlayerCtrl.playerDB(0)) {
     <p>
         <input class="btn-sm btn-primary" type="submit" value="Manage Players">
     </p>
 }
 <h3> Team Admin options</h3>
-    @helper.form(action = routes.Application.addTeam()) {
+    @helper.form(action = routes.AdminCtrl.addTeam()) {
     <p>
         <input class="btn-sm btn-primary" type="submit" value="Add a Team     ">
     </p>
@@ -30,7 +30,7 @@
 	
     }
 	
-    @helper.form(action = routes.Application.manageTeam()) {
+    @helper.form(action = routes.AdminCtrl.manageTeam()) {
     <p>
         <input class="btn-sm btn-primary" type="submit" value="Manage Team">
     </p>

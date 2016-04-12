@@ -5,7 +5,7 @@
 @main("New Player",user) {
     <h3> Edit a Player</h3>
 
-    @form(action = routes.Application.submitEditPlayer(player.playerID), 'class -> "form-horizontal", 'role->"form"){
+    @form(action = routes.PlayerCtrl.submitEditPlayer(player.playerID), 'class -> "form-horizontal", 'role->"form"){
     @inputText(editPlayerForm("playerName"),'_label -> "Name")
     @inputText(editPlayerForm("jerseyNum"),'_label -> "Jersey Number")
    <!-- @inputText(editPlayerForm("s"),'_label -> "Position")-->
