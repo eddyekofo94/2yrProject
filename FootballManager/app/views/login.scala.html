@@ -14,7 +14,12 @@
         }
         @if(flash.containsKey("error")) {
             <div class="alert alert-warning">
-            @flash.get("loginRequired")
+            Admin login required!
+            </div>
+        }
+        @if(flash.containsKey("errorM")) {
+            <div class="alert alert-warning">
+            Manager login required!
             </div>
         }
             <!-- The login form -->

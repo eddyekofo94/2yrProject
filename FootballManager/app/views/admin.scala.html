@@ -1,7 +1,9 @@
 @(user: models.users.User)
 @main("Admin",user){
 
-
+@if(flash.containsKey("successTeam")) { <!--Flashes if team is created -->
+           <h5 class="alert alert-success">Team created!</h5>
+        }
 <div class="actions">
 <h2>Admin Management Warning you can mess up a current game by using these</h2>
 <h3>Player Admin options</h3>
