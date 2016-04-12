@@ -64,7 +64,7 @@
 
     @if(user.getUserType().equals("admin")){
         <div class="actions">
-        @helper.form(action = routes.Application.LeagueUpdate()) {
+        @helper.form(action = routes.LeagueCtrl.LeagueUpdate()) {
         <p>
         <input class = "btn-sm btn-primary" type="submit" value="Update League">
         </p>
