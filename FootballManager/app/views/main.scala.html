@@ -1,5 +1,9 @@
 @(pageID: String,user: models.users.User)(content: play.twirl.api.Html)
 
+
+@import models.users.Manager;
+
+
 <!DOCTYPE html>
 <html id="@pageID">
 
@@ -63,10 +67,13 @@
                 <a class="navbar-brand" href="@routes.Application.index()">Football Manager</a>
             </div>
             <!-- /.navbar-header -->
-            @if(user.getUserType().equalsIgnoreCase("manager")){  
-                @user = user.asInstanceOf[Manager]
-                Bank Balance: €@user.getBankaccount();
-                }
+		@if(user != null){
+			@if(user.getUserType() == "manager"){
+			BANK ACCOUNT @user.asInstanceOf[Manager].getBankaccount()
+				}
+			}
+				
+				
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">

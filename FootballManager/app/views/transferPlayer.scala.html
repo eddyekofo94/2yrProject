@@ -1,8 +1,11 @@
-@(user: models.users.User, players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
+@(user: models.users.User,players: List[models.Player],transferPlayerForm: Form[models.Player],id: Long)
 
 @import helper._
 
+
+
 @main("Transfer Player",user) {
+
     <h3> Pick a new Player</h3>
     <!-- /.row -->
             <div class="row">
@@ -30,8 +33,9 @@
                                     <th>Health</th>
                                     <th>Position</th>
                                     <th>Injured</th>
-                                    <th>Salary</th>
+                                    
                                     <th>Transfer Cost</th>
+									<th>Buy player</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,8 +55,11 @@
                                         }else{
                                         No
                                         }
-                                    </th>
-                                    <th>@p.transferValue</th>
+										</th>
+										<th>@p.transferValue</th>
+                                    
+                                    
+									
                                     <th><a href="@routes.PlayerCtrl.buyPlayer(p.playerID,user.getid())" class="btn-xs btn-danger" ><span
                             class="glyphicon glyphicon-trash"></span></a></th>
                                 </tr>
@@ -65,25 +72,9 @@
     <!-- /.panel-body -->
     </div>
 
-   @form(action = routes.Application.transferPlayerSubmit(id), 'class -> "form-horizontal", 'role->"form"){
-
-   <!-- @inputText(transferPlayerForm("teamID"),'_label -> "Team ID")-->
-   @select(
-   transferPlayerForm("player"),
-   options(Player.options),
-   '_label -> "Player", '_dfault -> "--Choose a Player --",
-   '_showConstraints -> false, 'class -> "form-control"
-   )
-
-
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary">
-        <a href="@routes.Application.squad(0)">
-            <button class="btn btn-warning">Cancel</button>
-         </a>
-     </div>
 
 
 
-    }
+
+    
 }

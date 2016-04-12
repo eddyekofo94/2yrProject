@@ -350,7 +350,7 @@ public Result buyPlayer(Long id, Long userid) {
 		List<Player> players = Player.findAll();
 		List<Team> teamList = Team.findAll();
 		List<User> userList = Manager.findAll();
-		Manager owner = null;
+		Manager owner ;
 		Team transfer = Team.getTeamDefault();
 		Team userTeam ;
 		 
@@ -359,10 +359,7 @@ public Result buyPlayer(Long id, Long userid) {
 			if(userid == userList.get(k).getid())
 			{
 				owner = (Manager)userList.get(k);
-			}
-		}
-		
-		for(int i = 0 ; i < players.size();i++)
+				for(int i = 0 ; i < players.size();i++)
 		{
 			if(id == players.get(i).getPlayerID())
 			{
@@ -388,6 +385,10 @@ public Result buyPlayer(Long id, Long userid) {
 			}
 			
 		}
+			}
+		}
+		
+		
 		
 		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm, transfer.getTeamID()));
 		
@@ -406,5 +407,5 @@ public Result buyPlayer(Long id, Long userid) {
  }
 
  
- }
+ 
     

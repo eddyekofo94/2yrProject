@@ -36,16 +36,13 @@ public class Player extends Model{
      public Team teamID;
      public boolean injury;
      public double salary;
-<<<<<<< HEAD
+
      public int transferValue;
 	 
 	 @Transient
     private  final int TRANSFER_VALUE_WEIGHT = 1000	;
 	 
-=======
-     public double transferValue;
-     
->>>>>>> master
+
      
      //constants for getTrained and getInjured methods
      

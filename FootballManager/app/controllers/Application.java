@@ -298,7 +298,7 @@ List<Team> teams = Team.findAll();
 				
 				for(int j = 0 ; j < managerList.size();j++)
 				{
-					if(managerList.get(j).getid() == userTeam.getuserid())
+					if(managerList.get(j).getid() == userTeam.getUserID())
 					{
 						owner = (Manager)managerList.get(j);
 				owner.setBankaccount(players.get(i).getTransferValue());
@@ -314,7 +314,7 @@ List<Team> teams = Team.findAll();
 			
 		}
 		
-		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm,ids));
+		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginname")),players,transferPlayerForm,ids));
 		
 	}
     //Insures user is logged in before allowing access
