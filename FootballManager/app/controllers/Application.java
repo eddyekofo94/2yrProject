@@ -273,7 +273,10 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
    	 }
 
     }
-
+    @Security.Authenticated(Secured.class)
+    // Authorise user (check if user)
+    //needs to be configed to admin and manager.
+    @With(CheckIfCustomer.class)
     public Result squad(Long position) {
 
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -406,7 +409,7 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             }
         }
         Player p = transferPlayerForm.get();
-        p.teamID = players.get(pID).getTeamID();
+        //p.teamID = user.teamID;
 
         p.update();
         flash("Success", "Player "+ transferPlayerForm.get().playerName+" has added to your team");
@@ -466,6 +469,8 @@ for(Fixtures f : Fixtures.<Fixtures>findAll()) {
 		{
 			if(players.get(i).getPlayerID()== id)
 			{
+				players.get(i).setPlayerName(player.playerName);
+				players.get(i).setJerseyNum(player.jerseyNum);
 				players.get(i).setPlayerName(player.getPlayerName());
 				players.get(i).setJerseyNum(player.getJerseyNum());
 				players.get(i).setAtkVal(player.getAtkVal());

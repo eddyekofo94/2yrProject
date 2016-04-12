@@ -45,6 +45,9 @@
                                       '_help -> "Example: John Doe",
                                       '_error -> "Invalid",
                                       'class -> "form-control")
+                                      @if(flash.containsKey("error")) {
+                                      <h5 class="alert alert-danger">Login name already used please try again!</h5>
+                                      }
                                     @inputText(registerForm("loginname"),
                                       '_label -> "Login Name",
                                    

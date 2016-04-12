@@ -37,7 +37,7 @@ public class Player extends Model{
      public boolean injury;
      public double salary;
      public double transferValue;
-	 
+     
      
      //constants for getTrained and getInjured methods
      
@@ -107,11 +107,15 @@ public class Player extends Model{
 	{
 		this.teamID = team;
 	}
+    public void setTeamID(Team team)
+	{
+		this.teamID = team;
+	}
 	
 	 public Long getTID(){
 		 return teamID.getTeamID();
 	 }
-     
+
      
      public static Map<String,String> options(){
          final int TEAM_ID_NOT_ASSIGNED = 0;
@@ -123,8 +127,6 @@ public class Player extends Model{
         }
         return options;
     }
-	
-	
     public void setGkVal(int gkVal)
      {
      this.gkVal = gkVal;
@@ -178,4 +180,7 @@ public class Player extends Model{
    {
 	   this.position = position;
    }
+   /*public void setUsedTraining(boolean b){
+       this.usedTraining = b;
+   }*/
 }
