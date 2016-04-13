@@ -16,7 +16,6 @@ import models.users.*;
 import play.*;
 
 
->>>>>>> master
 import views.html.*;
 import models.*;
  public class PlayerCtrl extends Controller {

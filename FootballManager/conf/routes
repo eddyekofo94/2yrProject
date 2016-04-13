@@ -25,13 +25,9 @@ GET         /logout                    controllers.security.LoginCtrl.logout()
 GET     /playerDB                     controllers.PlayerCtrl.playerDB(position: Long=0)
 GET     /playerDB/:position            controllers.PlayerCtrl.playerDB(position: Long)
 #Transfer Player
-
 GET     /transferPlayer/:id                     controllers.PlayerCtrl.transferPlayer(id:Long)
 POST    /transferPlayerSubmit/:id             controllers.PlayerCtrl.transferPlayerSubmit(id: Long)
-
-GET     /transferPlayer/:id                     controllers.Application.transferPlayer(id:Long)
 GET     /buyPlayer/:id                     controllers.PlayerCtrl.buyPlayer(id:Long,user: Long)
-POST    /transferPlayerSubmit/:id             controllers.Application.transferPlayerSubmit(id: Long)
 
 #Add a player
 GET     /addPlayer                 controllers.PlayerCtrl.addPlayer()
