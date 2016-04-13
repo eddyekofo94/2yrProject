@@ -88,108 +88,124 @@ import models.*;
          List<Position> positions = Position.findAll(); //creates a list of positions
          //Creates a list of players
          List<Player> players = Player.findAll();
-         int onFieldCount = onFieldCount(teamID);
-         int defCount = defCount(teamID);
-         int midCount = midCount(teamID);
-         int atkCount = atkCount(teamID);
-         for(Player p : players ){ //loops through all the players in the list
-             if(onFieldCount == MAX_ON_FIELD && getPositionID(position)!=5 ){//checks if there are too may players on the field max 11
-                 flash("error4","too many on field");
-                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
-                }
-             else if(position.equals("Goalkeeper") && p.getPosition() == MAX_GOALKEEPER){//insures each team only has one goalkeeper on the field
-                 flash("error3","already have a goalkeeper");
-                 return redirect("/squad/1");//returns to squad page and flashes an apropriate error messages
-             }
-             else if(defCount == MAX_DEFENSE && position.equals("Defense")){//checks if there are too may players on the field max 11
-                 flash("error5","too many in Defense");
-                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
-             }
-             else if(midCount == MAX_MIDFIELD && position.equals("Midfield")){//checks if there are too may players on the field max 11
-                 flash("error6","too many in Midfield");
-                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
-             }  
-             else if(atkCount == MAX_STRIKER && position.equals("Striker")){//checks if there are too may players on the field max 11
-                 flash("error7","too many Strikerss");
-                 return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
-             }              
-             else{
-                 if(p.playerID == pID){
-             
-                for(int i=0; i < positions.size();i++){
-                    if(positions.get(i).position.equals(position)){
-                        p.setPosition(positions.get(i));
-                        p.update();
+        if(positionCount(getTeam(teamID),position) == false){//checks if there are too may players on the field max 11                 
+            return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
+         }             
+         else{
+            for(Player p : players ){ //loops through all the players in the list
+                
+                    if(p.playerID == pID){
+                
+                        for(int i=0; i < positions.size();i++){
+                            if(positions.get(i).position.equals(position)){
+                                p.setPosition(positions.get(i));
+                                p.update();
+                                flash("success", "Player has changed position to "+position+"!");
+                                return redirect("/squad/"+positions.get(i).getPositionID());
+                            }
+                        }               
                     }
-                }
-               
-                  for(int i=0; i < positions.size();i++){
-                    if(positions.get(i).position.equals(position)){
-                        p.setPosition(positions.get(i));
-                        p.update();
-                    }
-                } 
                 
                 }
-             
-             }
+            
          }
-         flash("Success2", "Player has changed position to ");
-         return redirect("/squad/0");
+         return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
+         
      }
 
-     public int onFieldCount(Long teamID){
-        //Creates a list of players
+    public boolean positionCount(Team team, String position){
+        boolean output = true;
+        List<Player> playerList = Player.find.all();
+        int [] posCount = {0,0,0,0,0,0};
+        int maxonfield = 11;
+        int maxTeam = 15;
+        int totalOnfield = 0;
+        int totalOnteam = 0; 
+        for(int j = 0;j <playerList.size(); j++)
+        {
+           if(team.getTeamID()== playerList.get(j).getTID())
+           {
+              if(playerList.get(j).getPosition() == 0)
+                {
+                    posCount[0] ++;
+                }
+                if(playerList.get(j).getPosition() == 1)
+                {
+                    posCount[1] ++;
+                }
+                if(playerList.get(j).getPosition() == 2)
+                {
+                    posCount[2] ++;
+                }
+                if(playerList.get(j).getPosition() == 3)
+                {
+                    posCount[3] ++;
+                }
+                if(playerList.get(j).getPosition() == 4)
+                {
+                    posCount[4] ++;
+                }
+                if(playerList.get(j).getPosition() == 5)
+                {
+                    posCount[5] ++;
+                }
 
-        
-        List<Player> players = Player.findAll();
-         countPlayers =0;
-         for(Player p : players){//loops through all the players in the list
-             if(p.position.id != getPositionID("Sub") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
-                 countPlayers ++;
-                 
-             }
-         }
-         return countPlayers;
-     }
-     public int defCount(Long teamID){
-         //Creates a list of players
-        List<Player> players = Player.findAll();
-         countPlayers = 0;
- 
-         for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Defense")&& p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
-                 countPlayers ++;                
-             }
-         }
-         return countPlayers;         
-     }
-     public int midCount(Long teamID){
-         //Creates a list of players
-        List<Player> players = Player.findAll();
-         countPlayers = 0;
-         for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Midfield") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
-                 countPlayers ++;
-                 
-             }
-         }
+            }
+        } 
 
-         return countPlayers;
-     }
-     public int atkCount(Long teamID){
-         //Creates a list of players
-        List<Player> players = Player.findAll();
-         countPlayers = 0;
-         for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Striker") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
-                 countPlayers ++;
-                 
-             }
-         }
+                if(posCount[1] >= 1 && position.equals("Goalkeeper"))
+                {
+                flash("error","Sorry you alread have a Goalkeeper!"); 
+                return false;
+                }
+                
+                if(posCount[2] >= 4 && position.equals("Defense"))
+                {
+                flash("error","Sorry you already enough players in position Defense!"); 
+                return false;
+                }
+                
+                if(posCount[3] >= 4 && position.equals("Midfield"))
+                {
+                flash("error","Sorry you already enough players in position Midfield!"); 
+                return false;
+                }
+                
+                if(posCount[4] >= 2 && position.equals("Striker"))
+                {
+                flash("error","Sorry you already enough players in position Striker!"); 
+                return false;
+                }
 
-         return countPlayers;         
-     }
+            
+           
+            totalOnfield = posCount[1]+posCount[2]+posCount[3]+posCount[4];
+            if(totalOnfield  > maxonfield)
+            {
+            flash("error","Sorry too many players on the field!");
+            return false;
+            }
+            totalOnteam = totalOnfield+ posCount[5];
+            if(totalOnteam > maxTeam)
+            {
+            flash("error","Sorry you already have enough players! If you want an new one please sell one of your players");
+            return false;
+            }
+            
+            return output;
+    }
+    
+    public Team getTeam(Long teamID){
+        Team defualtTeam = new Team();
+        List<Team> teams = Team.findAll();
+        for(Team t : teams){
+            if(t.teamID == teamID){
+                return t;
+            }
+        }
+        return defualtTeam;
+    }
+
   public Result getTrained(String position, Long pID){
       //Creates a list of players
         List<Player> players = Player.findAll();
@@ -478,6 +494,7 @@ public Result buyPlayer(Long id, Long userid) {
 						
 						if(owner.getBankaccount() >= players.get(i).getTransferValue())
 						{
+                            
 						players.get(i).setTeam(userTeam);
 						owner.updateBankaccount(players.get(i).getTransferValue());
 						}
@@ -491,12 +508,9 @@ public Result buyPlayer(Long id, Long userid) {
 			
 		}
 			}
-		}
-		
-		
-		
-		return ok(transferPlayer.render(User.getLoggedIn(session().get("loginName")),players,transferPlayerForm, transfer.getTeamID()));
-		
+		}				
+		flash("success","You have bought a player!");
+		return redirect("/squad/0");
 	}
 
 
@@ -695,9 +709,8 @@ public Result buyPlayer(Long id, Long userid) {
 		newPlayer.setTeam(Team.getTeamDefault());
 		PlayerCtrl.genPlayerStat(newPlayer);
 		newPlayer.save();
-        flash("Success", "Player "+ newPlayerForm.get().playerName+" has been created");
-
-        return redirect("/");
+        flash("success", "Player "+ newPlayerForm.get().playerName+" has been created");
+        return redirect("/playerDB");
     }
  }
 

@@ -164,18 +164,40 @@ public class AdminCtrl extends Controller
     @With(CheckIfAdmin.class)
 	  public Result addTeam(){
         Form<Team> addTeamForm = Form.form(Team.class);
+         
         return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
+    }
+    public boolean teamNameUsed(String name){
+        boolean taken = false;
+        List<Team> teams = Team.findAll();
+        for(int i = 0;i < teams.size(); i++){
+            if(teams.get(i).teamName.equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
     }
 	//Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
 	public Result addTeamSubmit(){
 		 Form<Team> newTeamForm = Form.form(Team.class).bindFromRequest();
+         // Check for errors (based on Product class annotations)
+        if (newTeamForm.hasErrors()) {
+            //Display the form again
+            return badRequest(addTeam.render(User.getLoggedIn(session().get("userID")),newTeamForm));
+        }
+        else if(teamNameUsed(newTeamForm.get().teamName) == true){
+            flash("error","Team name is already used please try again!");
+            return badRequest(addTeam.render(User.getLoggedIn(session().get("userID")),newTeamForm));
+        }
+        else{
 		Team newTeam;
 		newTeam = newTeamForm.get();
 		newTeam.setTeamScore(0);
 		newTeam.save();
-		flash("Success", "Team"+newTeamForm.get().teamName+" has been created");
+		flash("success", "Team"+newTeamForm.get().teamName+" has been created");
+        }
 		return redirect("/admin");
 	}
 	//Insures user is admin before allowing access

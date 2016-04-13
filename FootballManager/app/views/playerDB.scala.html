@@ -1,8 +1,11 @@
 @(user: models.users.User,positions: List[models.Position], players: List[models.Player])
 @main("PlayerDB",user) {
-@if(user == null){
-asdfa
-}
+        @if(flash.containsKey("success")) { <!--Flashes if player gets trained -->
+           <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")){<!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-2">
