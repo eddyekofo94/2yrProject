@@ -200,12 +200,7 @@ public class Player extends Model{
 
    	public void calcTransValue()
 	{
-		int totalValue = 0;
-	 
-	  
-	  
-	     
-      
+		int totalValue = 0;	 	  	  	          
       	totalValue += this.gkVal;
 		totalValue += this.defVal;
 		totalValue += this.midFVal;
