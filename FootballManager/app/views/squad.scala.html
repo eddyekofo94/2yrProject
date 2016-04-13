@@ -70,7 +70,7 @@
 
 
                                     @for(player <- players ){
-                                    @if(player.teamID.getUserID()== user.getid()){ <!--Checks that players shown are in the users team -->
+                                    @if(player.teamID.getUserID() == user.getid()){ <!--Checks that players shown are in the users team -->
                                     <tr>
                                         <td>@player.jerseyNum</td>
                                         <td>@player.playerName</td>
@@ -103,11 +103,11 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" >
-                    <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper",player.playerID,user.getid())">Goalkeeper</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Defense",player.playerID,user.getid())">Defense</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Midfield",player.playerID,user.getid())">Midfield</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Striker",player.playerID,user.getid())">Striker</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Sub",player.playerID,user.getid())">Sub</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper",player.playerID,player.teamID.getTeamID())">Goalkeeper</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Defense",player.playerID,player.teamID.getTeamID())">Defense</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Midfield",player.playerID,player.teamID.getTeamID())">Midfield</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Striker",player.playerID,player.teamID.getTeamID())">Striker</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Sub",player.playerID,player.teamID.getTeamID())">Sub</a></li>
                 </ul>
             </th>
             <div class="col-md-6">
