@@ -1,14 +1,16 @@
 @(user: models.users.User,positions: List[models.Position], players: List[models.Player])
 @main("PlayerDB",user) {
-
+@if(user == null){
+asdfa
+}
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-2">
       <div class="list-group">
 				<!-- Start of For loop - For each c in categories add a link -->
-				<a href="@routes.Application.playerDB(0)" class="list-group-item">All Positions</a>
+				<a href="@routes.PlayerCtrl.playerDB(0)" class="list-group-item">All Positions</a>
 				@for(p <- positions) {
-          <a href="@routes.Application.playerDB(p.id)" class="list-group-item">@p.position</a>
+          <a href="@routes.PlayerCtrl.playerDB(p.id)" class="list-group-item">@p.position</a>
 				}
       </div>
   </div>
@@ -47,15 +49,11 @@
         </th>
         <div class="col-md-6">
         </div>
-                <td>
-            <a href="@routes.Application.editPlayer(p.playerID)" class="btn-xs btn-danger">
-                <span class="glyphicon glyphicon-pencil"></span></a>
-        </td>
         <td>
-            <a href="@routes.Application.editPlayer(p.playerID)" ><input class="btn-xs btn-danger" type="submit" value="Edit Player"></a>
+            <a href="@routes.PlayerCtrl.editPlayer(p.playerID)" ><input class="btn-xs btn-danger" type="submit" value="Edit Player"></a>
         </td>
          <td>
-		@helper.form(action = routes.Application.delPlayer(p.playerID)) {
+		@helper.form(action = routes.PlayerCtrl.delPlayer(p.playerID)) {
             <a><input class="btn-xs btn-danger" type="submit" value="Delete Player" onclick="return confirmDel();" ></a>
         </td>
 		}
@@ -69,18 +67,13 @@
     </table>
     <!-- /.panel-body -->
     </div>
-<<<<<<< HEAD
         <div>
-        <a href="@routes.Application.addPlayer()">
+        <a href="@routes.PlayerCtrl.addPlayer()">
                 <span class="btn btn-primary">Add a Player</span></a>
     </div>
-=======
-     @helper.form(action = routes.Application.addPlayer()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
-    </p>
-	}
->>>>>>> 7f3f076ef74bc281cc2d88ef0581015038302b97
+
+
+
     </div>
     <!-- /.col-lg-12 -->
     </div>

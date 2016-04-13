@@ -225,6 +225,32 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-187]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 16 more
+
+04-12 19:28:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'l' (PLAYER: INJURY BOOLEAN)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:28:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'l' (PLAYER: INJURY BOOLEAN)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:28:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'i' (PLAYER: JERSEY_NUM INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:28:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'i' (PLAYER: JERSEY_NUM INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:30:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: DEF_VAL INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:30:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: DEF_VAL INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:30:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: POSITION_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-12 19:30:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: POSITION_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_ID_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+
 04-12 17:21:59 jdbc[225]: null
 org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-187]
 	at org.h2.message.DbException.get(DbException.java:179)
@@ -323,3 +349,4 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-187]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 93 more
+

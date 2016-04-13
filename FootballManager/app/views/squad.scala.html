@@ -3,9 +3,6 @@
 
     <!-- /.row -->
     <div class="row">
-        @if(user == null){
-            adfasfa
-        }
         @if(flash.containsKey("success")) { <!--Flashes if player gets trained -->
            <h5 class="alert alert-success">Player trained!</h5>
         }
@@ -24,14 +21,26 @@
         @if(flash.containsKey("error3")){
             <h5 class="alert alert-danger">Sorry you already have a GoalKeeper please change his position first!</h5>
         }
+        @if(flash.containsKey("error4")){
+            <h5 class="alert alert-danger">Sorry you already have enough players on the field!</h5>
+        }
+        @if(flash.containsKey("error5")){
+            <h5 class="alert alert-danger">Sorry you already have enough players in Defense!</h5>
+        }
+        @if(flash.containsKey("error6")){
+            <h5 class="alert alert-danger">Sorry you already have enough players in MidField!</h5>
+        }
+        @if(flash.containsKey("error7")){
+            <h5 class="alert alert-danger">Sorry you already have enough Strikers!</h5>
+        }
         <div class="col-md-2">
             
             
             <div class="list-group">
-                <a href="@routes.Application.squad(0)" class="list-group-item">All Positions </a>
+                <a href="@routes.PlayerCtrl.squad(0)" class="list-group-item">All Positions </a>
                 @for(p <- positions) {
 
-          <a href="@routes.Application.squad(p.id)" class="list-group-item">@p.position</a>
+          <a href="@routes.PlayerCtrl.squad(p.id)" class="list-group-item">@p.position</a>
 				}
       </div>
   </div>
@@ -61,7 +70,7 @@
 
 
                                     @for(player <- players ){
-                                    @if(1==1){ <!--Checks that players shown are in the users team player.teamID.getuserid()== user.getid()-->
+                                    @if(player.teamID.getUserID() == user.getid()){ <!--Checks that players shown are in the users team -->
                                     <tr>
                                         <td>@player.jerseyNum</td>
                                         <td>@player.playerName</td>
@@ -94,16 +103,17 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" >
-                    <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper",player.playerID)">Goalkeeper</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Defense",player.playerID)">Defense</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Midfield",player.playerID)">Midfield</a></li>
-                    <li><a href="@routes.PlayerCtrl.setPosition("Striker",player.playerID)">Striker</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper",player.playerID,player.teamID.getTeamID())">Goalkeeper</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Defense",player.playerID,player.teamID.getTeamID())">Defense</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Midfield",player.playerID,player.teamID.getTeamID())">Midfield</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Striker",player.playerID,player.teamID.getTeamID())">Striker</a></li>
+                    <li><a href="@routes.PlayerCtrl.setPosition("Sub",player.playerID,player.teamID.getTeamID())">Sub</a></li>
                 </ul>
             </th>
             <div class="col-md-6">
             </div>
             <td>
-                <a href="@routes.Application.transferPlayer(player.playerID)" class="btn-xs btn-danger" ><span
+                <a href="@routes.PlayerCtrl.transferPlayer(player.playerID)" class="btn-xs btn-danger" ><span
                             class="glyphicon glyphicon-trash"></span></a>
             </td>
 

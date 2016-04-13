@@ -41,7 +41,7 @@
         <div class="col-md-6">
         </div>
         <td>
-		@helper.form(action = routes.Application.delPlayer(p.playerID)) {
+		@helper.form(action = routes.PlayerCtrl.delPlayer(p.playerID)) {
             <input class="btn-xs btn-danger" type="submit" value="Delete Player" ></a>
         </td>
 		
@@ -49,7 +49,7 @@
    
                                     }
 									<td>
-		@helper.form(action = routes.Application.editPlayer(p.playerID)) {
+		@helper.form(action = routes.PlayerCtrl.editPlayer(p.playerID)) {
             <input class="btn-xs btn-danger" type="submit" value="Edit Player" ></a>
         </td>
 		}

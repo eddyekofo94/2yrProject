@@ -32,6 +32,8 @@ import java.util.List;
 
 // Import models
 import models.*;
+import models.users.User;
+import controllers.security.*;
 
 public class RegisterCtrl extends Controller {
 
