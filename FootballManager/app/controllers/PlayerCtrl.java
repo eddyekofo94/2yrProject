@@ -77,21 +77,20 @@ import models.*;
      
      
      //sets the position of a player specified by the user
-     public Result setPosition(String position, Long pID,Long userID){
-         User user = getUser(userID);        
-
+     public Result setPosition(String position, Long pID,Long teamID){
+            
          List<Position> positions = Position.findAll(); //creates a list of positions
          //Creates a list of players
          List<Player> players = Player.findAll();
-         int onFieldCount = onFieldCount(user);
-         int defCount = defCount(user);
-         int midCount = midCount(user);
-         int atkCount = atkCount(user);
+         int onFieldCount = onFieldCount(teamID);
+         int defCount = defCount(teamID);
+         int midCount = midCount(teamID);
+         int atkCount = atkCount(teamID);
          for(Player p : players ){ //loops through all the players in the list
              if(onFieldCount == MAX_ON_FIELD && getPositionID(position)!=5 ){//checks if there are too may players on the field max 11
                  flash("error4","too many on field");
                  return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
-           }
+                }
              else if(position.equals("Goalkeeper") && p.getPosition() == MAX_GOALKEEPER){//insures each team only has one goalkeeper on the field
                  flash("error3","already have a goalkeeper");
                  return redirect("/squad/1");//returns to squad page and flashes an apropriate error messages
@@ -132,56 +131,57 @@ import models.*;
          flash("Success2", "Player has changed position to ");
          return redirect("/squad/0");
      }
-     public User getUser(Long id){
-         User user = new User();
-         List<User> users = User.findAll();
-         for(User u : users){
-             user = u;
-         }
-         return user;
-     }
-     public int onFieldCount(User user){
+
+     public int onFieldCount(Long teamID){
         //Creates a list of players
+
+        
         List<Player> players = Player.findAll();
          countPlayers =0;
          for(Player p : players){//loops through all the players in the list
-             if(p.position.id != getPositionID("Sub") && p.teamID.getUserID() == user.getid()){ //position of player not equal to a sub add 1 to countOnField
+             if(p.position.id != getPositionID("Sub") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
                  countPlayers ++;
+                 
              }
          }
          return countPlayers;
      }
-     public int defCount(User user){
+     public int defCount(Long teamID){
          //Creates a list of players
         List<Player> players = Player.findAll();
          countPlayers = 0;
+ 
          for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Defense") && p.teamID.getUserID() == user.getid()){ //position of player not equal to a sub add 1 to countOnField
-                 countPlayers ++;
+             if(p.position.id == getPositionID("Defense")&& p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
+                 countPlayers ++;                
              }
          }
          return countPlayers;         
      }
-     public int midCount(User user){
+     public int midCount(Long teamID){
          //Creates a list of players
         List<Player> players = Player.findAll();
          countPlayers = 0;
          for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Midfield") && p.teamID.getUserID() == user.getid()){ //position of player not equal to a sub add 1 to countOnField
+             if(p.position.id == getPositionID("Midfield") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
                  countPlayers ++;
+                 
              }
          }
+
          return countPlayers;
      }
-     public int atkCount(User user){
+     public int atkCount(Long teamID){
          //Creates a list of players
         List<Player> players = Player.findAll();
          countPlayers = 0;
          for(Player p : players){//loops through all the players in the list
-             if(p.position.id == getPositionID("Striker") && p.teamID.getUserID() == user.getid()){ //position of player not equal to a sub add 1 to countOnField
+             if(p.position.id == getPositionID("Striker") && p.teamID.getTeamID() == teamID){ //position of player not equal to a sub add 1 to countOnField
                  countPlayers ++;
+                 
              }
          }
+
          return countPlayers;         
      }
   public Result getTrained(String position, Long pID){
@@ -439,7 +439,7 @@ import models.*;
         List<Position> positions = Position.findAll();
         for(Position p : positions){
             if(p.position.equals(position)){
-                System.out.println(p.id);
+                return p.id;
             }
        }
        return value;
