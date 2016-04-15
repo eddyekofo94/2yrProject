@@ -1,4 +1,4 @@
-@(user: models.users.User,positions: List[models.Position], players: List[models.Player],team: models.Team)
+@(user: models.users.User,positions: List[models.Position], players: List[models.Player])
 @main("Squad",user) {
 
     <!-- /.row -->
@@ -24,7 +24,7 @@
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            This is your current squad.
+                            This is your current squad. You have @user.getNumOfTrain() + @user.getid()  left!
                         </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>

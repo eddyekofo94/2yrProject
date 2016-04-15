@@ -22,7 +22,7 @@ public class MatchCtrl extends Controller {
     private int homeTeamIndex;
     private int awayTeamIndex;
     private int[] scores = new int[2];
-
+    User user = this.user;
 
 
 private User getCurrentUser() {
@@ -77,7 +77,7 @@ private User getCurrentUser() {
 	}
 
     public  void playMatch(){
-        PlayerCtrl.reSetNumberOfTraining();
+        user.reSetNumberOfTraining();
         List<models.Fixtures> weekFixtures = new ArrayList();
         List<models.Team> teamsPlaying = new ArrayList<>();
 //populate this weeks Fixtures

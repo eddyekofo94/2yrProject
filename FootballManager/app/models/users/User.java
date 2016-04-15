@@ -21,7 +21,6 @@ import models.*;
 @DiscriminatorValue("user")
 
 
-
 public class User extends Model {
  @OneToOne(mappedBy="userid", cascade = CascadeType.ALL)
     @Id
@@ -50,9 +49,11 @@ public class User extends Model {
 		//@Constraints.MinLength(4)
 		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
     //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
-    public String password;
-	
-	
+    public String password;	
+	@Constraints.Required
+    // The amount of times a user can train per match
+    public int numberOfTraining;
+
 
 
 
@@ -80,7 +81,15 @@ public static List<User> findAll(){
 //
 //        return SuperUser.find.all();
 //    }
-
+//returns the number of times a user has trained per match (max three times) 
+     public int getNumOfTrain(){
+         return numberOfTraining;
+     }
+     //resets number of times a user has trained when a match is played to three
+     public void reSetNumberOfTraining(){
+         numberOfTraining = 3;
+     }
+     
     // Static method to authenticate based on username and password
     // Returns user object if found, otherwise NULL
     //public	static SuperUser authenticate(String email, String password)
