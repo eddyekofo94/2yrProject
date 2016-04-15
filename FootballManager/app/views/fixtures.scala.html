@@ -10,6 +10,12 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+   @if(flash.containsKey("success")) {
+           <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")){
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
