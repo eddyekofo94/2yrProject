@@ -33,7 +33,7 @@ public class Position extends Model{
     }
     public static Map<String,String> options(){
         LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
-        for(Position p: Position.find.orderBy("position").findList()){
+        for(Position p: Position.find.orderBy("id").findList()){
             options.put(p.id.toString(), p.position);
         }
         return options;

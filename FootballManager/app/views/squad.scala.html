@@ -24,7 +24,7 @@
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            This is your current squad. You have @user.getNumOfTrain() left!
+                            This is your current squad. You have @user.getNumOfTrain() trains left for this match!
                         </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
@@ -37,7 +37,9 @@
                                     <th>Atck</th>
                                     <th>Health</th>
                                     <th>Injured</th>
-                                    <th>Training</th> 
+                                    @if(user.getNumOfTrain() != 0){
+                                    <th>Training</th>
+                                    } 
                                     <th>Position</th>
                                     <th>Transfer</th>
                                 </tr>
@@ -62,7 +64,7 @@
                                             No
                                             }
                                             <th>
-                                        @if(player.injury == false ){ 
+                                        @if(player.injury == false || user.getNumOfTrain() != 0){ 
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
@@ -72,8 +74,8 @@
                     <li><a href="@routes.PlayerCtrl.getTrained("Striker",player.playerID,user.getid())">Striker</a></li>
                 </ul>
             
-            }else {
-            This player in injured
+            }else{
+                This player is injured!
             }
             </th>
             <th class="position">

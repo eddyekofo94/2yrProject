@@ -63,8 +63,8 @@ public class PlayerCtrl extends Controller {
     @Security.Authenticated(Secured.class)
     @With(CheckIfManager.class)
     public Result squad(Long position) {
-        List<Player> players = Player.findAll();//Creates a list of players
-        List<Position> positions = Position.find.where().orderBy("position asc").findList();//Creates a list of positions
+        List<Player> players = Player.findAll();
+        List<Position> positions = Position.find.where().orderBy("position asc").findList();
 
         if (position == 0) {
             players = Player.findAll();
@@ -80,22 +80,21 @@ public class PlayerCtrl extends Controller {
 
     //sets the position of a player specified by the user
     public Result setPosition(String position, Long pID, Long teamID) {
-        List<Position> positions = Position.findAll(); //creates a list of positions
-        //Creates a list of players
+        List<Position> positions = Position.findAll(); 
         List<Player> players = Player.findAll();
-        if (positionCount(getTeam(teamID), position) == false) {//checks if there are too may players on the field max 11                 
-            return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
+        if (positionCount(getTeam(teamID), position) == false) {            
+            return redirect("/squad/0");
         } else {
-            for (Player p : players) { //loops through all the players in the list
+            for (Player p : players) { 
 
                 if (p.playerID == pID) {//Insures the player changed matches the player selected by the user
 
-                    for (int i = 0; i < positions.size(); i++) {//loops through all the positions in the list
+                    for (int i = 0; i < positions.size(); i++) {
                         if (positions.get(i).position.equals(position)) {//Mathces the position to a position in the list to get the correct position
                             p.setPosition(positions.get(i)); // Sets the players position to the new position
                             p.update(); //update the player in the database
-                            flash("success", "Player has changed position to " + position + "!"); //return this flash message
-                            return redirect("/squad/" + positions.get(i).getPositionID());//return to the squad page showing players in the new position
+                            flash("success", "Player has changed position to " + position + "!"); 
+                            return redirect("/squad/" + positions.get(i).getPositionID());
                         }
                     }
                 }
@@ -103,106 +102,107 @@ public class PlayerCtrl extends Controller {
             }
 
         }
-        flash("error", "Player has not been changed position to " + position + "!"); //return this flash message
-        return redirect("/squad/0");//returns to squad page and flashes an apropriate error messages
+        flash("error", "Player has not been changed position to " + position + "!"); 
+        return redirect("/squad/0");
 
     }
     //Counts number of players in each position and on the field
-    public boolean positionCount(Team team, String position) {
-        boolean output = true;//Default output
+    public boolean positionCount(Team team, String position){
+        boolean output = true;
         List<Player> playerList = Player.find.all();//creates a list of players
         int[] posCount = {0, 0, 0, 0, 0, 0}; //intilizing an array of integers for the counts
         final int MAX_ON_FIELD = 11; //Max amount allowed on the field
         final int MAX_TEAM = 15; //Max amount allowed on a team
         int totalOnfield = 0; //Count total on field variable
         int totalOnteam = 0; //Count total on team variable
-        for (int j = 0; j < playerList.size(); j++) { //Loops through playerList
+        for (int j = 0; j < playerList.size(); j++) { 
             if (team.getTeamID() == playerList.get(j).getTID()) {//Makes sure player is on the users team
                 if (playerList.get(j).getPosition() == 0) {//Insure player is not assigned a position
-                    posCount[0]++; //Increases posCount for not assigned by one
+                    posCount[0]++; 
                 }
                 if (playerList.get(j).getPosition() == 1) {//Insure player is a Goalkeeper
-                    posCount[1]++;//Increases posCount for Goalkeeper by one
+                    posCount[1]++;
                 }
                 if (playerList.get(j).getPosition() == 2) {//Insure player is a Defense
-                    posCount[2]++;//Increases posCount for Defense by one
+                    posCount[2]++;
                 }
                 if (playerList.get(j).getPosition() == 3) {//Insure player is a Midfield
-                    posCount[3]++;//Increases posCount for Midfield by one
+                    posCount[3]++;
                 }
                 if (playerList.get(j).getPosition() == 4) {//Insure player is a Striker
-                    posCount[4]++;//Increases posCount for Striker by one
+                    posCount[4]++;
                 }
                 if (playerList.get(j).getPosition() == 5) {//Insure player is a Sub
-                    posCount[5]++;//Increases posCount for Sub by one
+                    posCount[5]++;
                 }
 
             }
         }
 
-        if (posCount[1] >= 1 && position.equals("Goalkeeper")) {
+        if (posCount[1] >= 1 && position.equals("Goalkeeper")) {//If Goalkeeper posCount is > 1 and position = Goalkeerer
             flash("error", "Sorry you alread have a Goalkeeper!");
             return false;
         }
 
-        if (posCount[2] >= 4 && position.equals("Defense")) {
+        else if (posCount[2] >= 4 && position.equals("Defense")) {//If Defense posCount is > 1 and position = Defense
             flash("error", "Sorry you already have enough players in position Defense!");
             return false;
         }
 
-        if (posCount[3] >= 4 && position.equals("Midfield")) {
+        else if (posCount[3] >= 4 && position.equals("Midfield")) {//If Midfield posCount is > 1 and position = Midfield
             flash("error", "Sorry you already have enough players in position Midfield!");
             return false;
         }
 
-        if (posCount[4] >= 2 && position.equals("Striker")) {
+        else if (posCount[4] >= 2 && position.equals("Striker")) {//If Striker posCount is > 1 and position = Striker
             flash("error", "Sorry you already have enough players in position Striker!");
             return false;
         }
+        else{ 
 
-        totalOnfield = posCount[1] + posCount[2] + posCount[3] + posCount[4];
-        if (totalOnfield > MAX_ON_FIELD) {
-            flash("error", "Sorry too many players on the field!");
-            return false;
-        }
-        totalOnteam = totalOnfield + posCount[5];
-        if (totalOnteam > MAX_TEAM) {
-            flash("error", "Sorry you already have enough players! If you want an new one please sell one of your players");
-            return false;
-        }
-
+            totalOnfield = posCount[1] + posCount[2] + posCount[3] + posCount[4]; //Add up all the players on the pitch 
+            if (totalOnfield > MAX_ON_FIELD) { 
+                flash("error", "Sorry too many players on the field!");
+                return false;
+            }
+            totalOnteam = totalOnfield + posCount[5]; //Adds up the amount of players on a team 
+            if (totalOnteam > MAX_TEAM) { 
+                flash("error", "Sorry you already have enough players! If you want an new one please sell one of your players");
+                return false;
+            }
+        }    
         return output;
     }
 
-    public Team getTeam(Long teamID) {
+    public Team getTeam(Long teamID) {//Gets the team that matches the ID passed in
         Team defualtTeam = new Team();
         List<Team> teams = Team.findAll();
-        for (Team t : teams) {
-            if (t.teamID == teamID) {
-                return t;
+        for (Team t : teams) { 
+            if (t.teamID == teamID) { // matches a team to the team ID passed in
+                return t; 
             }
         }
-        return defualtTeam;
+        return defualtTeam; 
     }
 
-    public Result getTrained(String position, Long pID, Long userID) {
-        User user = setUser(userID);
+    public Result getTrained(String position, Long pID, Long userID) { //Increases a players statistic for a certain position
+        User user = setUser(userID); //sets a variable of user to the one logged in
         //Creates a list of players
         List<Player> players = Player.findAll();
-        if (user.getNumOfTrain() > minTrainingTest) {
+        if (user.getNumOfTrain() > minTrainingTest) { //Checks the user still has trains left to use MAX 3
             //train value earned to be added to position value
             int randomTrainVal = ranNum.nextInt(5) + 1;
             for (Player p : players) {
                 if (p.playerID == pID) {
-                    if (playerMaxed(position, p) == true) {
+                    if (playerMaxed(position, p) == true) { //If position chosen is maxed to 10
                         flash("error", "Player is already max in position " + position);
                         return redirect("/squad/20");
-                    } else if (randomTrainVal <= 2) {
+                    } else if (randomTrainVal <= 2) { // dont train
                         user.numberOfTraining--;
                         user.update();
                         flash("error", "Sorry could not train player this time please try again");
                         return redirect("/squad/0");
-                    } else if (randomTrainVal <= 4) {
+                    } else if (randomTrainVal <= 4) { //train by small amount between 1 and 2
                         addTrainVal(position, randomTrainVal, p);
                         deductHealth(ranNum.nextInt(2), p);;
                         p.injury = getInjured(p.health, p);
@@ -211,7 +211,7 @@ public class PlayerCtrl extends Controller {
                         p.update();
                         flash("success", "Player trained!");
                         return redirect("/squad/0");
-                    } else {
+                    } else { //Train by the max amount no more than 3
                         addTrainVal(position, randomTrainVal, p);
                         deductHealth(ranNum.nextInt(3), p);
                         p.injury = getInjured(p.health, p);
@@ -228,14 +228,14 @@ public class PlayerCtrl extends Controller {
                 p.update();
             }
 
-        } else {
+        } else { //If no more trains left
             flash("error", "Sorry you have used all of your training for this match!");
             return redirect("/squad/0");
         }
         return redirect("/squad/0");
     }
 
-    public boolean getInjured(int health, Player player) {
+    public boolean getInjured(int health, Player player) {//Checks if player is injured
 
         if (player.health <= INJURY_LEVEL) {
             return true;
