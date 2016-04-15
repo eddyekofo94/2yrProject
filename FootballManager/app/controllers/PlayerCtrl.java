@@ -48,9 +48,15 @@ public class PlayerCtrl extends Controller {
     Random ranNum = new Random();
 
     //A method to find the current user of the system
-    private User getCurrentUser() {
-        User u = User.getLoggedIn(session().get("userid"));
-        return u;
+    private User setUser(Long userID) {
+        User user = this.user;
+        List<User> users = User.findAll();
+        for(User u : users){
+            if(u.getid() == userID){
+                user = u;
+            }
+        }
+        return user;
     }
 
     //Insures user is manager before allowing access
@@ -179,8 +185,8 @@ public class PlayerCtrl extends Controller {
         return defualtTeam;
     }
 
-    public Result getTrained(String position, Long pID) {
-
+    public Result getTrained(String position, Long pID, Long userID) {
+        User user = setUser(userID);
         //Creates a list of players
         List<Player> players = Player.findAll();
         if (user.getNumOfTrain() > minTrainingTest) {
