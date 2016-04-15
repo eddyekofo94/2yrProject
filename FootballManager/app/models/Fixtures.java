@@ -16,8 +16,6 @@ public class Fixtures extends Model implements Comparable<Fixtures>{
 @Id
 public long matchID;
 
-@Constraints.Required
-public String leagueName;
 
 @Constraints.Required
 public int week;
@@ -41,10 +39,9 @@ public List<Team> tList = new ArrayList<Team>();
 public Fixtures(){
 }
 
-public Fixtures(long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore)
+public Fixtures(long MatchID , int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore)
 {
 this.matchID = matchID;
-this.leagueName = leagueName;
 this.week = week;
 this.homeTeamID = homeTeamID;
 this.homeScore = homeScore;

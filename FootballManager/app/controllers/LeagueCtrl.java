@@ -94,10 +94,7 @@ public class LeagueCtrl extends Controller {
                     fixtureCurrent.get(i).save();
                 }
             }
-        else
-        {
-        break;
-        }
+        
         }
     }
 
@@ -113,24 +110,30 @@ public class LeagueCtrl extends Controller {
      // Authenticate user needs to be added start of each method to be secured
     @Security.Authenticated(Secured.class)
     public Result upload(){
+		 List<Team> teams = Team.findAll();
+		if(teams.size()%2!=0)
+        {
         generateFixtures();
-        List<Fixtures> fixture = Fixtures.findAll();
-        List<Team> teams = Team.findAll();
-        Collections.sort(fixture);
-        return ok(fixtures.render(User.getLoggedIn(session().get("loginname")),fixture,teams));
+		flash("success", "Fixtures have been generated  " ); 
+		
+		}else{
+			flash("success", "Odd number of teams please add a team  " ); 
+		}
+		return redirect("/fixtures");
+     
     }
     
     public static void generateFixtures(){
-        //the following statment is destructive and needs validation and admin only .
+        //needs locked to admin only .
         for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             f.delete();
         }
         MatchCtrl.setCurWeek(1);
 
-         //to here
-
+        
+		
 		ArrayList<models.Team> teams = new ArrayList() ;
-		int count = 1;
+		
 		long id = 2;
 		int week = 1;
 		int hScore=0;
@@ -143,24 +146,25 @@ public class LeagueCtrl extends Controller {
 		      teams.add(t);
 		    }
 		}
-
+		
+		
 		models.Fixtures[] weekFixtures = new models.Fixtures[teams.size()];
 
 		ArrayList<models.Fixtures> fixtures = new ArrayList();
 		for(int i = 0;i < teams.size();i++)
 		{
-			for(int j = count; j < teams.size();j++)
+			for(int j = i+1; j < teams.size();j++)
 			{
 
 			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
-				f1=new models.Fixtures(id,"bing",week,teams.get(i).getTeamID(),hScore,teams.get(j).getTeamID(),aScore);
+				f1=new models.Fixtures(id,week,teams.get(i).getTeamID(),hScore,teams.get(j).getTeamID(),aScore);
 
 				 	teams.get(i).flist.add(f1);
 				 	teams.get(j).flist.add(f1);
 				 	f1.tList.add(teams.get(i));
 				 	f1.tList.add(teams.get(j));
 				 	f1.save();
-				    f1=new models.Fixtures(id,"bing",(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
+				    f1=new models.Fixtures(id,(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
 				 	teams.get(i).flist.add(f1);
 				 	teams.get(j).flist.add(f1);
 				 	f1.tList.add(teams.get(i));
@@ -177,9 +181,9 @@ public class LeagueCtrl extends Controller {
                     }
 			 }    
 
-			count++;
+			
 			id++;
 		}
-
+		
 	}
 }    
