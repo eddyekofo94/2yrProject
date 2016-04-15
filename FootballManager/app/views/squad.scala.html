@@ -66,10 +66,10 @@
                 <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Training
                     <span class="caret"></span></button>
                  <ul class="dropdown-menu" >
-                   <li><a href="@routes.PlayerCtrl.getTrained("Goalkeeper",player.playerID)">Goalkeeper</a></li>
-                    <li><a href="@routes.PlayerCtrl.getTrained("Defense",player.playerID)">Defense</a></li>
-                    <li><a href="@routes.PlayerCtrl.getTrained("Midfield",player.playerID)">Midfield</a></li>
-                    <li><a href="@routes.PlayerCtrl.getTrained("Striker",player.playerID)">Striker</a></li>
+                   <li><a href="@routes.PlayerCtrl.getTrained("Goalkeeper",player.playerID,user.getid())">Goalkeeper</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Defense",player.playerID,user.getid())">Defense</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Midfield",player.playerID,user.getid())">Midfield</a></li>
+                    <li><a href="@routes.PlayerCtrl.getTrained("Striker",player.playerID,user.getid())">Striker</a></li>
                 </ul>
             
             }else {

@@ -75,7 +75,7 @@ POST         /registerFormSubmit                      controllers.RegisterCtrl.r
 #GET         /listUsers                  controllers.RegisterCtrl.listUsers()
 
 #getTrained
-GET     /getTrained/:position/:player         controllers.PlayerCtrl.getTrained(position:String , player: Long)
+GET     /getTrained/:position/:player/:user         controllers.PlayerCtrl.getTrained(position:String , player: Long, user: Long)
 
 #setPosition
 GET     /setPosition/:position/:player/:team         controllers.PlayerCtrl.setPosition(position:String , player: Long, team: Long)
