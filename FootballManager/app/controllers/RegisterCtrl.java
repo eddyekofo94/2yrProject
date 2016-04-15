@@ -50,7 +50,7 @@ public class RegisterCtrl extends Controller {
 
     // Handle the form data when a new user is submitted
     public Result registerFormSubmit() {
-
+        int numberOfTraining = 3;
         //String saveImageMsg;
 
         // Create a user form object (to hold submitted data)
@@ -77,6 +77,7 @@ public class RegisterCtrl extends Controller {
          String md = cs.calcPassword(manager.password);
 
         manager.password = md;
+        manager.numberOfTraining = numberOfTraining;
          // Team team = new Team(k,"2",3);
          // team =  user.RegisterUser(team);
          // user.save();
