@@ -3,6 +3,15 @@
     @import helper._
 
     @main("New Team", user) {
+        @if(flash.containsKey("success")) {
+            <!--Flashes if player gets added -->
+            <h5 class="alert alert-success">Team added!</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players cannot be added -->
+            <h5 class="alert alert-danger">Cannot add team</h5>
+        }
+
         <h3> Add a new Team</h3>
 
         @form(action = routes.AdminCtrl.addTeamSubmit(), 'class -> "form-horizontal", 'role -> "form") {

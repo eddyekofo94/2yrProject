@@ -1,12 +1,7 @@
 @(pageID: String, user: models.users.User)(content: play.twirl.api.Html)
-
-
     @import models.users.Manager;
-
-
 <!DOCTYPE html>
     <html id="@pageID">
-
         <head>
             <title>FootBall Manager - @pageID</title>
             <meta charset="utf-8">
@@ -37,9 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
         </head>
-
         <body>
             <div id="wrapper">
                     <!-- Navigation -->
@@ -74,12 +67,8 @@
                                 <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                 </li>
                             </ul>
-
                         </li>
-
                     </ul>
-
-
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -116,10 +105,8 @@
                     </div>
                         <!-- /.navbar-static-side -->
                 </nav>
-
                 <div id="page-wrapper">
                 @content
-
                 </div>
                     <!-- /#page-wrapper -->
             </div>
@@ -132,7 +119,5 @@
             <script src="@routes.Assets.at("bower_components/metisMenu/dist/metisMenu.min.js")"></script>
                 <!-- Custom Theme JavaScript -->
             <script src="@routes.Assets.at("dist/js/sb-admin-2.js")"></script>
-
         </body>
-
     </html>
