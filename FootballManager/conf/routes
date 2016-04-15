@@ -3,86 +3,86 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /fixtures                   controllers.LeagueCtrl.fixtures()
-GET    /upload 				controllers.LeagueCtrl.fixtures()
-POST    /upload 		controllers.LeagueCtrl.upload()
-POST    /match 		controllers.MatchCtrl.Match()
-GET   /LeagueUpdate        	controllers.LeagueCtrl.leagueTable()
-POST    /LeagueUpdate        	controllers.LeagueCtrl.LeagueUpdate()
-GET     /leagueTable                controllers.LeagueCtrl.leagueTable()
-GET     /squad                      controllers.PlayerCtrl.squad(position: Long=0)
-GET     /squad/:position            controllers.PlayerCtrl.squad(position: Long)
+GET         /                                           controllers.Application.index()
+GET         /fixtures                                   controllers.LeagueCtrl.fixtures()
+GET         /upload                                     controllers.LeagueCtrl.fixtures()
+POST        /upload                                     controllers.LeagueCtrl.upload()
+POST        /match                                      controllers.MatchCtrl.Match()
+GET         /LeagueUpdate                               controllers.LeagueCtrl.leagueTable()
+POST        /LeagueUpdate                               controllers.LeagueCtrl.LeagueUpdate()
+GET         /leagueTable                                controllers.LeagueCtrl.leagueTable()
+GET         /squad                                      controllers.PlayerCtrl.squad(position: Long=0)
+GET         /squad/:position                            controllers.PlayerCtrl.squad(position: Long)
 # GET     /login                      controllers.Application.login()
 # POST    /login                      controllers.Application.authenticate()
 
-POST    /genStats                    controllers.PlayerCtrl.genStats()
+POST        /genStats                                   controllers.PlayerCtrl.genStats()
 
-GET         /login                     controllers.security.LoginCtrl.login()
-POST        /login                     controllers.security.LoginCtrl.authenticate()
-GET         /logout                    controllers.security.LoginCtrl.logout()
+GET         /login                                      controllers.security.LoginCtrl.login()
+POST        /login                                      controllers.security.LoginCtrl.authenticate()
+GET         /logout                                     controllers.security.LoginCtrl.logout()
 
-GET     /playerDB                     controllers.PlayerCtrl.playerDB(position: Long=0)
-GET     /playerDB/:position            controllers.PlayerCtrl.playerDB(position: Long)
+GET         /playerDB                                   controllers.PlayerCtrl.playerDB(position: Long=0)
+GET         /playerDB/:position                         controllers.PlayerCtrl.playerDB(position: Long)
 #Transfer Player
-GET     /transferPlayer/:id                     controllers.PlayerCtrl.transferPlayer(id:Long)
-POST    /transferPlayerSubmit/:id             controllers.PlayerCtrl.transferPlayerSubmit(id: Long)
-GET     /buyPlayer/:id                     controllers.PlayerCtrl.buyPlayer(id:Long,user: Long)
+GET         /transferPlayer/:id                         controllers.PlayerCtrl.transferPlayer(id:Long)
+POST        /transferPlayerSubmit/:id                   controllers.PlayerCtrl.transferPlayerSubmit(id: Long)
+GET         /buyPlayer/:id                              controllers.PlayerCtrl.buyPlayer(id:Long,user: Long)
 
 #Add a player
-GET     /addPlayer                 controllers.PlayerCtrl.addPlayer()
-POST    /addPlayerSubmit            controllers.PlayerCtrl.addPlayerSubmit()
+GET         /addPlayer                                  controllers.PlayerCtrl.addPlayer()
+POST        /addPlayerSubmit                            controllers.PlayerCtrl.addPlayerSubmit()
 
-GET     /delPlayer                  controllers.PlayerCtrl.deletePlayer()
-POST   /delPlayer	            controllers.PlayerCtrl.delPlayer(id: Long)
+GET         /delPlayer                                  controllers.PlayerCtrl.deletePlayer()
+POST        /delPlayer                                  controllers.PlayerCtrl.delPlayer(id: Long)
 
-GET   /editPlayer/:id	            controllers.PlayerCtrl.editPlayer(id: Long)
-POST /submitEditPlayer          controllers.PlayerCtrl.submitEditPlayer(id: Long)
+GET         /editPlayer/:id                             controllers.PlayerCtrl.editPlayer(id: Long)
+POST        /submitEditPlayer                           controllers.PlayerCtrl.submitEditPlayer(id: Long)
 
-GET     /editPlayer	            controllers.PlayerCtrl.editPlayer(id: Long)
-POST   /editPlayer	            controllers.PlayerCtrl.editPlayer(id: Long)
-POST   /submitEditPlayer          controllers.PlayerCtrl.submitEditPlayer(id: Long)
+GET         /editPlayer                                 controllers.PlayerCtrl.editPlayer(id: Long)
+POST        /editPlayer                                 controllers.PlayerCtrl.editPlayer(id: Long)
+POST        /submitEditPlayer                           controllers.PlayerCtrl.submitEditPlayer(id: Long)
 
-GET     /addTeam                  controllers.AdminCtrl.addTeam()
-POST    /addTeamSubmit            controllers.AdminCtrl.addTeamSubmit()
+GET         /addTeam                                    controllers.AdminCtrl.addTeam()
+POST        /addTeamSubmit                              controllers.AdminCtrl.addTeamSubmit()
 
-GET     /manageTeam                 controllers.AdminCtrl.manageTeam()
+GET         /manageTeam                                 controllers.AdminCtrl.manageTeam()
 #POST    /manageTeamSubmit            controllers.AdminCtrl.manageTeamSubmit()
 
-POST    /delTeam                         controllers.AdminCtrl.delTeam(id: Long)
+POST        /delTeam                                    controllers.AdminCtrl.delTeam(id: Long)
 
-GET      /editTeam/:id               controllers.AdminCtrl.editTeam(id: Long)
-POST     /editTeam                controllers.AdminCtrl.editTeam(id: Long)
-POST     /editTeamSubmit                controllers.AdminCtrl.editTeamSubmit(id: Long)
+GET         /editTeam/:id                               controllers.AdminCtrl.editTeam(id: Long)
+POST        /editTeam                                   controllers.AdminCtrl.editTeam(id: Long)
+POST        /editTeamSubmit                             controllers.AdminCtrl.editTeamSubmit(id: Long)
 
 #POST   /manageTeam						controllers.AdminCtrl.editTeam(id: Long)
 
-GET      /addUserAdmin 						controllers.AdminCtrl.addUserAdmin()
-POST    /adminUserSubmit 					controllers.AdminCtrl.registerFormSubmit()
+GET         /addUserAdmin                               controllers.AdminCtrl.addUserAdmin()
+POST        /adminUserSubmit                            controllers.AdminCtrl.registerFormSubmit()
 
-GET    /manageUsers							controllers.AdminCtrl.manageUsers()
-POST    /delUser                         controllers.AdminCtrl.delUser(id: Long)
-POST     /editUser                    controllers.AdminCtrl.editUser(id: Long)
-POST   /submitEditUser          controllers.AdminCtrl.submitEditUser(id: Long)
+GET         /manageUsers                                controllers.AdminCtrl.manageUsers()
+POST        /delUser                                    controllers.AdminCtrl.delUser(id: Long)
+POST        /editUser                                   controllers.AdminCtrl.editUser(id: Long)
+POST        /submitEditUser                             controllers.AdminCtrl.submitEditUser(id: Long)
 
 #Register
-GET     /register                               controllers.RegisterCtrl.register
+GET         /register                                   controllers.RegisterCtrl.register
 
 #Register User
 #GET         /registerForm                    controllers.RegisterCtrl.registerForm()
-POST         /registerFormSubmit                      controllers.RegisterCtrl.registerFormSubmit()
+POST        /registerFormSubmit                         controllers.RegisterCtrl.registerFormSubmit()
 
 #GET         /listUsers                  controllers.RegisterCtrl.listUsers()
 
 #getTrained
-GET     /getTrained/:position/:player/:user         controllers.PlayerCtrl.getTrained(position:String , player: Long, user: Long)
+GET         /getTrained/:position/:player/:user         controllers.PlayerCtrl.getTrained(position:String , player: Long, user: Long)
 
 #setPosition
-GET     /setPosition/:position/:player/:team         controllers.PlayerCtrl.setPosition(position:String , player: Long, team: Long)
+GET         /setPosition/:position/:player/:team        controllers.PlayerCtrl.setPosition(position:String , player: Long, team: Long)
 
 #adminCtrl 
 								
-GET /admin  					controllers.AdminCtrl.admin()
+GET         /admin                                      controllers.AdminCtrl.admin()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                               controllers.Assets.at(path="/public", file)

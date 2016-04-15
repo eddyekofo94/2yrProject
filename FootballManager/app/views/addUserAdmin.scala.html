@@ -1,20 +1,20 @@
-@(user: models.users.User,registerForm: Form[models.users.User])
+@(user: models.users.User, registerForm: Form[models.users.User])
 
-@import helper._
+    @import helper._
 
-@main("Register",user) {
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Please enter the following details
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
+    @main("Register", user) {
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Please enter the following details
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
 
-                                @form(action = routes.AdminCtrl.registerFormSubmit()) {
+                            @form(action = routes.AdminCtrl.registerFormSubmit()) {
                                     <!--<form role="form">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">user_name</span>
@@ -39,52 +39,51 @@
 
 
                                     <!--</form>-->
-                                    @inputText(registerForm("name"),
-                                      '_label -> "Name",
-                                      '_showConstraints -> false,
-                                      '_help -> "Example: John Doe",
-                                      '_error -> "Invalid",
-                                      'class -> "form-control")
-                                    @inputText(registerForm("loginname"),
-                                      '_label -> "Login Name",
-                                   
-                                      'class -> "form-control")
-                                    @inputPassword(registerForm("password"),
-                                      '_label -> "Password",
-                                     
-                                      'class -> "form-control")
+                                @inputText(registerForm("name"),
+                                    '_label -> "Name",
+                                    '_showConstraints -> false,
+                                    '_help -> "Example: John Doe",
+                                    '_error -> "Invalid",
+                                    'class -> "form-control")
+                                @inputText(registerForm("loginname"),
+                                    '_label -> "Login Name",
+
+                                    'class -> "form-control")
+                                @inputPassword(registerForm("password"),
+                                    '_label -> "Password",
+
+                                    'class -> "form-control")
 
 
-                                        <!-- Add a submit button -->
-                                    <div class="actions">
-                                    <input type="submit" value="Submit"  class="btn btn-primary">
-                                        <a href="/admin">
+                                    <!-- Add a submit button -->
+                                <div class="actions">
+                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                    <a href="/admin">
                                         <button class="btn btn-warning">Cancel</button>
-                                        </a>
+                                    </a>
 
-                                    <!--</form>-->
+                                        <!--</form>-->
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                    <!-- /.col-lg-6 (nested) -->
 
-
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
                             </div>
                                 <!-- /.col-lg-6 (nested) -->
-
-
                         </div>
                             <!-- /.col-lg-6 (nested) -->
+
+
                     </div>
-                        <!-- /.row (nested) -->
+                        <!-- /.col-lg-6 (nested) -->
+                </div>
+                    <!-- /.row (nested) -->
                     <!-- /.panel-body -->
             </div>
                 <!-- /.panel -->
         </div>
             <!-- /.col-lg-12 -->
 
-                <!-- /.col-lg-12 -->
+            <!-- /.col-lg-12 -->
 
-        }
+    }
 
-}
+    }
