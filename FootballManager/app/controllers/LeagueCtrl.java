@@ -94,10 +94,7 @@ public class LeagueCtrl extends Controller {
                     fixtureCurrent.get(i).save();
                 }
             }
-        else
-        {
-        break;
-        }
+        
         }
     }
 
@@ -127,16 +124,16 @@ public class LeagueCtrl extends Controller {
     }
     
     public static void generateFixtures(){
-        //the following statment is destructive and needs validation and admin only .
+        //needs locked to admin only .
         for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             f.delete();
         }
         MatchCtrl.setCurWeek(1);
 
-         //to here
+        
 		
 		ArrayList<models.Team> teams = new ArrayList() ;
-		int count = 1;
+		
 		long id = 2;
 		int week = 1;
 		int hScore=0;
@@ -156,7 +153,7 @@ public class LeagueCtrl extends Controller {
 		ArrayList<models.Fixtures> fixtures = new ArrayList();
 		for(int i = 0;i < teams.size();i++)
 		{
-			for(int j = count; j < teams.size();j++)
+			for(int j = i+1; j < teams.size();j++)
 			{
 
 			//long MatchID , String leagueName, int week, long homeTeamID , int homeScore,long awayTeamID,int awayScore
@@ -184,7 +181,7 @@ public class LeagueCtrl extends Controller {
                     }
 			 }    
 
-			count++;
+			
 			id++;
 		}
 		
