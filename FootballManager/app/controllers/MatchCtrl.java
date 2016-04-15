@@ -77,7 +77,7 @@ private User getCurrentUser() {
 	}
 
     public  void playMatch(){
-        user.reSetNumberOfTraining();
+        List<User> users = User.findAll();
         List<models.Fixtures> weekFixtures = new ArrayList();
         List<models.Team> teamsPlaying = new ArrayList<>();
 //populate this weeks Fixtures
@@ -114,7 +114,10 @@ private User getCurrentUser() {
         }
         curWeek++;
 
-
+        for(User user : users){
+            user.reSetNumberOfTraining();
+            user.update();
+        }
 
 
 
