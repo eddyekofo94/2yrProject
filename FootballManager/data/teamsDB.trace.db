@@ -2349,3 +2349,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
 	at org.h2.mvstore.FileStore.open(FileStore.java:164)
 	... 91 more
+04-15 18:15:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (USER: NUMBER_OF_TRAINING INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."USER"("USERTYPE","USERID","NAME","LOGINNAME","PASSWORD","NUMBER_OF_TRAINING","BANKACCOUNT")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
+04-15 18:15:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (USER: NUMBER_OF_TRAINING INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."USER"("USERTYPE","USERID","NAME","LOGINNAME","PASSWORD","NUMBER_OF_TRAINING","BANKACCOUNT")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-187]
