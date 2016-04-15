@@ -199,6 +199,7 @@ public class PlayerCtrl extends Controller {
                         return redirect("/squad/20");
                     } else if (randomTrainVal <= 2) {
                         user.numberOfTraining--;
+                        user.update();
                         flash("error", "Sorry could not train player this time please try again");
                         return redirect("/squad/0");
                     } else if (randomTrainVal <= 4) {
@@ -206,6 +207,7 @@ public class PlayerCtrl extends Controller {
                         deductHealth(ranNum.nextInt(2), p);;
                         p.injury = getInjured(p.health, p);
                         user.numberOfTraining--;
+                        user.update();
                         p.update();
                         flash("success", "Player trained!");
                         return redirect("/squad/0");
@@ -214,12 +216,14 @@ public class PlayerCtrl extends Controller {
                         deductHealth(ranNum.nextInt(3), p);
                         p.injury = getInjured(p.health, p);
                         user.numberOfTraining--;
+                        user.update();
                         p.update();
                         flash("success", "Player trained!");
                         return redirect("/squad/0");
                     }
 
                 }
+                
                 p.calcTransValue();
                 p.update();
             }
