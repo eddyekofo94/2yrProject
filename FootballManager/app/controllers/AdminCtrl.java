@@ -160,6 +160,15 @@ public class AdminCtrl extends Controller
 		return redirect("/admin");
     }
     //Insures user is admin before allowing access
+    @Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+    public Result teamDB() {
+        //Creates a list of players
+        List<Team> teams = Team.findAll();
+        
+        return ok(teamDB.render(User.getLoggedIn(session().get("loginname")), teams));
+    }
+    //Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
 	  public Result addTeam(){
@@ -198,7 +207,7 @@ public class AdminCtrl extends Controller
 		newTeam.save();
 		flash("success", "Team"+newTeamForm.get().teamName+" has been created");
         }
-		return redirect("/admin");
+		return redirect("/teamDB");
 	}
 	//Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)

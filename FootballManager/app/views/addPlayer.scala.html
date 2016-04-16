@@ -9,7 +9,7 @@
         }
         @if(flash.containsKey("error")) {
                 <!--Flashes if players cannot be added -->
-            <h5 class="alert alert-danger">Cannot add player</h5>
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
         }
 
         <h3> Add a new Player</h3>
@@ -20,7 +20,7 @@
             @inputText(addPlayerForm("health"), '_label -> "Health")
             <div class="actions">
                 <input type="submit" value="Add Player" class="btn primary">
-                <a href="@routes.Application.index()">
+                <a href="@routes.AdminCtrl.admin()">
                     <button class="btn btn-warning">Cancel</button>
                 </a>
             </div>

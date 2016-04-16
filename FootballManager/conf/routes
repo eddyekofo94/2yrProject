@@ -21,9 +21,11 @@ POST        /genStats                                   controllers.PlayerCtrl.g
 GET         /login                                      controllers.security.LoginCtrl.login()
 POST        /login                                      controllers.security.LoginCtrl.authenticate()
 GET         /logout                                     controllers.security.LoginCtrl.logout()
-
+#Player Database view
 GET         /playerDB                                   controllers.PlayerCtrl.playerDB(position: Long=0)
 GET         /playerDB/:position                         controllers.PlayerCtrl.playerDB(position: Long)
+#Team Database view
+GET         /teamDB                                     controllers.AdminCtrl.teamDB()
 #Transfer Player
 GET         /transferPlayer/:id                         controllers.PlayerCtrl.transferPlayer(id:Long)
 POST        /transferPlayerSubmit/:id                   controllers.PlayerCtrl.transferPlayerSubmit(id: Long)

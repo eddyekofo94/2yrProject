@@ -86,7 +86,6 @@ public class PlayerCtrl extends Controller {
             return redirect("/squad/0");
         } else {
             for (Player p : players) { 
-
                 if (p.playerID == pID) {//Insures the player changed matches the player selected by the user
 
                     for (int i = 0; i < positions.size(); i++) {
@@ -222,8 +221,7 @@ public class PlayerCtrl extends Controller {
                         return redirect("/squad/0");
                     }
 
-                }
-                
+                }               
                 p.calcTransValue();
                 p.update();
             }
@@ -244,22 +242,22 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void addTrainVal(String position, int trainVal, Player player) {
+    public void addTrainVal(String position, int trainVal, Player player) {//Adds the amount gained from training
         final int MAX_VAL = 10;
         int overMaxVal;
         int positionVal = getPositionVal(position, player);
         if ((positionVal + trainVal) <= MAX_VAL) {
-            setPositionVal(trainVal, position, player);
+            setPositionVal(trainVal, position, player);//Sets the new position
         } else {
-            if ((positionVal + trainVal) > MAX_VAL) {
+            if ((positionVal + trainVal) > MAX_VAL) { //Insures value isnt greater then MAX_VAL
                 overMaxVal = (positionVal + trainVal) - MAX_VAL;
-                setPositionVal((trainVal - overMaxVal), position, player);
+                setPositionVal((trainVal - overMaxVal), position, player);//Sets the new position
             }
         }
 
     }
 
-    public int getPositionVal(String position, Player player) {
+    public int getPositionVal(String position, Player player) {//Gets the value for a players specified position
 
         if (position.equals("Goalkeeper")) {
             return player.gkVal;
@@ -272,7 +270,7 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void setPositionVal(int trainVal, String position, Player player) {
+    public void setPositionVal(int trainVal, String position, Player player) { //Sets a players position value
 
         if (position.equals("Goalkeeper")) {
             player.setGkVal(player.gkVal + trainVal);
@@ -287,7 +285,7 @@ public class PlayerCtrl extends Controller {
 
     }
 
-    public void deductHealth(int healthLose, Player player) {
+    public void deductHealth(int healthLose, Player player) { //Deducts a players health based on the amount passed in
         int negativeHealth;
         if ((player.health - healthLose) < 0) {
             negativeHealth = player.health - healthLose;
@@ -297,16 +295,16 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void playerHealthyTest(Player player) {
+    public void playerHealthyTest(Player player) {//Checks if a player is healthy to play again
 
-        if (player.health > 4 && player.health < MAX_HEALTH) {
+        if (player.health > 4) {
             player.injury = false;
         } else {
             player.injury = true;
         }
     }
 
-    public boolean playerMaxed(String position, Player player) {
+    public boolean playerMaxed(String position, Player player) { //Checks if a players postion value is maxed
 
         if (player.position.equals("Goalkeeper")) {
             if (player.getGkVal() == MAX_VALUE) {
@@ -328,7 +326,7 @@ public class PlayerCtrl extends Controller {
         return false;
     }
 
-    public boolean checkHealthMax(int health) {
+    public boolean checkHealthMax(int health) {//Checks if a players health is at the max amount
         if (health == MAX_HEALTH) {
             return true;
         } else {
@@ -336,11 +334,11 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void calculateInjuredHealthIncrease(Player player) {
+    public void calculateInjuredHealthIncrease(Player player) { //Calculates an amount to add to an injured players health 
         int healthIncrease = ranNum.nextInt(3);
         int positiveHealth;
 
-        if ((player.health + healthIncrease) > MAX_HEALTH) {
+        if ((player.health + healthIncrease) > MAX_HEALTH) {//Insures player Health doesnt go over the max
             positiveHealth = player.health + healthIncrease;
             healthIncrease = MAX_HEALTH - player.health;
             player.health += healthIncrease;
@@ -349,7 +347,7 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public static void randomStats() {
+    public static void randomStats() {//Generates random position values
         Random rand = new Random();
         int count = 0;
         //get all the teams
@@ -357,31 +355,27 @@ public class PlayerCtrl extends Controller {
         //Creates a list of players
         List<Player> players = Player.findAll();
       //for each of the teams assign all the players random stats
-
         for (int i = 0; i < teams.size(); i++) {
             for (int j = 0; j < players.size(); j++) {
-                if (teams.get(i).getTeamID() == players.get(j).getTeamID().getTeamID()) {
+                if (teams.get(i).getTeamID() == players.get(j).getTeamID().getTeamID()) {//Matchs player to the correct team
       			//11 players in team 1 gk 4 def 4 mid 2 attk guarenteed rest is random
                     //set goalkeeper
-
+                    //Insures a team has players to suit all positions
                     if (count == 0) {
                         players.get(j).setGkVal(rand.nextInt(3) + 1 + 6);
                         players.get(j).setDefVal(rand.nextInt(10) + 1);
                         players.get(j).setMidVal(rand.nextInt(10) + 1);
                         players.get(j).setAtkVal(rand.nextInt(10) + 1);
-
                     } else if ((count >= 1) && (count <= 4)) {
                         players.get(j).setGkVal(rand.nextInt(10) + 1);
                         players.get(j).setDefVal(rand.nextInt(3) + 1 + 6);
                         players.get(j).setMidVal(rand.nextInt(10) + 1);
                         players.get(j).setAtkVal(rand.nextInt(10) + 1);
-
                     } else if ((count >= 5) && (count <= 9)) {
                         players.get(j).setGkVal(rand.nextInt(10) + 1);
                         players.get(j).setDefVal(rand.nextInt(10) + 1);
                         players.get(j).setMidVal(rand.nextInt(3) + 1 + 6);
                         players.get(j).setAtkVal(rand.nextInt(10) + 1);
-
                     } else if ((count >= 10) && (count <= 11)) {
                         players.get(j).setGkVal(rand.nextInt(10) + 1);
                         players.get(j).setDefVal(rand.nextInt(10) + 1);
@@ -392,20 +386,17 @@ public class PlayerCtrl extends Controller {
                         players.get(j).setDefVal(rand.nextInt(10) + 1);
                         players.get(j).setMidVal(rand.nextInt(10) + 1);
                         players.get(j).setAtkVal(rand.nextInt(10) + 1);
-
                     }
                     count++;
                     players.get(j).calcTransValue();
                     players.get(j).save();
 
                 }
-
             }
         }
-
     }
 
-    public static void genPlayerStat(Player player) {
+    public static void genPlayerStat(Player player) {//Generate position values for only one player
         Random rand = new Random();
         player.setGkVal(rand.nextInt(10) + 1);
         player.setDefVal(rand.nextInt(10) + 1);
@@ -415,14 +406,13 @@ public class PlayerCtrl extends Controller {
 
     }
 
-    public Result genStats() {
-
+    public Result genStats() {//Generate position values for all players
         randomStats();
 
         return redirect("/playerDB");
     }
 
-    public Result buyPlayer(Long id, Long userid) {
+    public Result buyPlayer(Long id, Long userid) {//Sets a players team ID to the one he was bought for and deducts users bank balance
 
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
         List<Player> players = Player.findAll();
@@ -442,7 +432,7 @@ public class PlayerCtrl extends Controller {
                             if (teamList.get(j).getTeamID() == owner.getid()) {
                                 userTeam = teamList.get(j);
 
-                                if (owner.getBankaccount() >= players.get(i).getTransferValue()) {
+                                if (owner.getBankaccount() >= players.get(i).getTransferValue()) { //Insures user can afford player
 
                                     players.get(i).setTeam(userTeam);
                                     owner.updateBankaccount(players.get(i).getTransferValue());
@@ -459,8 +449,8 @@ public class PlayerCtrl extends Controller {
         return redirect("/squad/0");
     }
 
-    public Long getPositionID(String position) {
-        long value = 0;
+    public Long getPositionID(String position) { //Returns an positionID to match the position that was passed in
+        long value = 0; // Default position of not assigned
         List<Position> positions = Position.findAll();
         for (Position p : positions) {
             if (p.position.equals(position)) {
@@ -473,7 +463,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result playerDB(Long position) {
+    public Result playerDB(Long position) {//Renders  the playerDB page
         //Creates a list of players
         List<Player> players = Player.findAll();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -492,7 +482,7 @@ public class PlayerCtrl extends Controller {
 
     //Insures user is logged in before allowing access
     @Security.Authenticated(Secured.class)
-    public Result transferPlayer(Long id) {
+    public Result transferPlayer(Long id) { //Renders the transfer player page
         //Creates a list of players
         List<Player> players = Player.findAll();
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
@@ -516,7 +506,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is logged in before allowing access
 
     @Security.Authenticated(Secured.class)
-    public Result transferPlayerSubmit(Long id) {
+    public Result transferPlayerSubmit(Long id) { //Processes the form from the transferPlayer page and saves the result in the database
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
         //Creates a list of players
@@ -537,11 +527,18 @@ public class PlayerCtrl extends Controller {
 
         return redirect("/squad/0");
     }
-
+      //Insures user is admin before allowing access
+    @Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+    public Result deletePlayer() { //renders the deletePlayer page
+        //Creates a list of players
+        List<Player> players = Player.findAll();
+        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
+    }
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result delPlayer(Long playerID) {
+    public Result delPlayer(Long playerID) { //Removes a player from the database that the user has selected
         List<Player> player = Player.find.all();
         Player playerToDelete;
         for (int i = 0; i < player.size(); i++) {
@@ -552,10 +549,11 @@ public class PlayerCtrl extends Controller {
         return redirect("/playerDB/0");
     }
 
+
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result editPlayer(Long playerID) {
+    public Result editPlayer(Long playerID) { //Renders the edit player page if player passed not there redirects back to the playerDB
         //Creates a list of players
         List<Player> players = Player.findAll();
 
@@ -567,14 +565,14 @@ public class PlayerCtrl extends Controller {
             }
 
         }
-        return redirect("/delPlayer");
+        return redirect("/playerDB");
 
     }
 
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result submitEditPlayer(Long id) {
+    public Result submitEditPlayer(Long id) { //Processes the edit player form and saves the changes to the database
         Form<Player> editPlayerForm = Form.form(Player.class).bindFromRequest();
         //Creates a list of players
         List<Player> players = Player.findAll();
@@ -603,19 +601,12 @@ public class PlayerCtrl extends Controller {
         return redirect("/admin");
     }
 
-    //Insures user is admin before allowing access
-    @Security.Authenticated(Secured.class)
-    @With(CheckIfAdmin.class)
-    public Result deletePlayer() {
-        //Creates a list of players
-        List<Player> players = Player.findAll();
-        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
-    }
+  
 
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result addPlayer() {
+    public Result addPlayer() { //Renders the add player page
         Form<Player> addPlayerForm = Form.form(Player.class);
         return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")), addPlayerForm));
     }
@@ -623,7 +614,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result addPlayerSubmit() {
+    public Result addPlayerSubmit() { //Processes the addPlayer form and saves the new player in the database
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
         Player newPlayer;
 
@@ -631,13 +622,32 @@ public class PlayerCtrl extends Controller {
             return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
 
         }
-        newPlayer = newPlayerForm.get();
+        else if(playerNameTaken(newPlayerForm.get().playerName)==true){
+            flash("error","Player name already used!");
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+        }
+        else if(newPlayerForm.get().health > MAX_HEALTH){
+            flash("error","Player health can not be more than 10!");
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+        }
+        else{
+            newPlayer = newPlayerForm.get();
 
-        newPlayer.setPosition(Position.getPositionNone());
-        newPlayer.setTeam(Team.getTeamDefault());
-        PlayerCtrl.genPlayerStat(newPlayer);
-        newPlayer.save();
-        flash("success", "Player " + newPlayerForm.get().playerName + " has been created");
-        return redirect("/playerDB");
+            newPlayer.setPosition(Position.getPositionNone());
+            newPlayer.setTeam(Team.getTeamDefault());
+            PlayerCtrl.genPlayerStat(newPlayer);
+            newPlayer.save();
+            flash("success", "Player " + newPlayerForm.get().playerName + " has been created");
+            return redirect("/playerDB");
+        }
+    }
+    public boolean playerNameTaken(String newPlayerName){//Checks if a player name is already taken
+        List<Player> players = Player.findAll();
+        for(Player p : players){
+            if(p.getPlayerName().equals(newPlayerName)){
+                return true;
+            }
+        }
+        return false;
     }
 }
