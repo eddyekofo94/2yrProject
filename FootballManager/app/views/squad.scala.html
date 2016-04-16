@@ -10,6 +10,7 @@
                     <!--Flashes if players position gets trained -->
                 <h5 class="alert alert-danger">@flash.get("error")</h5>
             }
+            <h3> Team name: @user.getTeam().getTeamName() <a href="@routes.PlayerCtrl.editTeam(user.getTeam().getTeamID())" ><input class="btn-xs btn-danger" type="submit" value="Change Team Name"></a></h3>
             <div class="col-md-2">
                 <div class="list-group">
                     <a href="@routes.PlayerCtrl.squad(0)" class="list-group-item">All Positions </a>

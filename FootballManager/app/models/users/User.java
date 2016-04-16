@@ -111,6 +111,18 @@ public static List<User> findAll(){
     {
         return this.userid;
     }
+    public Team getTeam(){
+        Team team = new Team();
+        List<Team> teams = Team.findAll();
+        for(Team t : teams){
+            if(t.getUserID() == userid){
+               team = t;
+               System.out.println(t);
+            }
+        }
+        
+        return team;
+    }
 	
 	
 	public String getPassword()

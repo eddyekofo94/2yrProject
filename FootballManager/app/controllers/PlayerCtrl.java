@@ -650,4 +650,55 @@ public class PlayerCtrl extends Controller {
         }
         return false;
     }
+    
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+	public Result editTeam(Long teamID)//Renders a form based on the team selected by the admin
+	{	 
+		List<Team> team = Team.find.all();
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamID)
+			{	
+				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
+				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginname")),manageTeamForm,team.get(i)));
+			}		
+		}
+		
+       return redirect("/");
+    }
+     //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+	public Result editTeamNameSubmit(Long id){//Processes the
+		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
+		 List<Team> team = Team.find.all();
+		 Team editTeam;
+		 if(teamNameUsed(manageTeamForm.get().teamName) == true){//Insures two team names arent the same
+            flash("error","Team name is already used please try again!");
+            return redirect("/teamDB");
+        }
+        else{
+            editTeam = manageTeamForm.get();
+            for(int i = 0;i < team.size();i++)
+            {
+                if(team.get(i).getTeamID() == id)
+                {
+                    team.get(i).setTeamName(editTeam.getTeamName());
+                    team.get(i).update();
+                }			               
+            }       		
+        }
+		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		return redirect("/squad/0");
+	}
+    public boolean teamNameUsed(String name){//Insures two team names arent the same
+        boolean taken = false;
+        List<Team> teams = Team.findAll();
+        for(int i = 0;i < teams.size(); i++){
+            if(teams.get(i).teamName.equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
