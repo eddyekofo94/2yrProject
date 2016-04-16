@@ -12,7 +12,7 @@
                         <thead>
                             <tr>
                                 <th>team ID
-                                <th>Team Name</th>
+                            <th>Team Name</th>
                                 <th>Team Score</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
@@ -20,22 +20,23 @@
                         </thead>
                         <tbody>
                         @for(t <- teams) {
-                            <td>@t.teamID</td>
-                            <td>@t.teamName</td>
-                            <td>@t.getTeamScore()</td>
-                            <div class="col-md-6">
+                            <tr>
+                                <td>@t.teamID</td>
+                                <td>@t.teamName</td>
+                                <td>@t.getTeamScore()</td>
+                                <div class="col-md-6">
                             </div>
-                            <td>
-                            @helper.form(action = routes.AdminCtrl.delTeam(t.teamID)) {
-                                <input class="btn-xs btn-danger" type="submit" value="Delete Team" >
-                            </td>
-                            }
-                            <td>
-                            @helper.form(action = routes.AdminCtrl.editTeam(t.teamID)) {
-                                <input class="btn-xs btn-danger" type="submit" value="Edit Team!!" >
-                            </td>
-                        }
-
+                                <td>
+                                @helper.form(action = routes.AdminCtrl.delTeam(t.teamID)) {
+                                    <input class="btn-xs btn-danger" type="submit" value="Delete Team" >
+                                </td>
+                                }
+                                <td>
+                                @helper.form(action = routes.AdminCtrl.editTeam(t.teamID)) {
+                                    <input class="btn-xs btn-danger" type="submit" value="Edit Team!!" >
+                                </td>
+                                }
+                            </tr>
                         }
                         </tbody>
                     </table>
