@@ -2557,3 +2557,6 @@ INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(
 04-16 12:33:11 jdbc[75]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "'nullas' (TEAM: USER_ID BIGINT)"; SQL statement:
 INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 00:13:15 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-187]

@@ -55,7 +55,7 @@ public class RegisterCtrl extends Controller {
 
         // Create a user form object (to hold submitted data)
         // 'Bind' the object to the submitted form (this copies the filled form)
-        
+
         Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
@@ -69,10 +69,10 @@ public class RegisterCtrl extends Controller {
         }
         else{
          CalcSHA cs = new CalcSHA();
-         User manager = newRegisterForm.get();	 
+         User manager = newRegisterForm.get();
          String md = cs.calcPassword(manager.password);
         manager.password = md;
-        
+
          // Team team = new Team(k,"2",3);
          // team =  user.RegisterUser(team);
          // user.en(user.password);
@@ -81,19 +81,19 @@ public class RegisterCtrl extends Controller {
          m1.save();
 		 if(assignTeam(m1) != null)
 		 {
-		 
-        
-		 
+
+
+
 
         flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
-		
+
 		 }else{
 			 m1.delete();
 			 flash("error","No teams to Manage at the moment please try later");
 		 }
-        
+
         }
-        return redirect("/squad/0");
+        return redirect("/"); //squad/0
     }
 
     //Check if login name is taken
@@ -107,9 +107,9 @@ public class RegisterCtrl extends Controller {
         }
         return false;
     }
-	
-	//assign a null team to a user 
-	
+
+	//assign a null team to a user
+
 	public Long assignTeam(User manager)
 	{
 		Long output = null;
@@ -121,12 +121,12 @@ public class RegisterCtrl extends Controller {
 			  teams.get(0).setUserID(manager.getid());
 			teams.get(0).update();
 		return	teams.get(0).getTeamID();
-			  
+
 		    }
-		}	
-		
-		
+		}
+
+
 	return output;
-		 
+
 	}
 }
