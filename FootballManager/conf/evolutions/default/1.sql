@@ -5,7 +5,6 @@
 
 create table fixtures (
   match_id                  bigint not null,
-  league_name               varchar(255),
   week                      integer,
   home_team_id              bigint,
   away_team_id              bigint,

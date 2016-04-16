@@ -1,68 +1,69 @@
 @(user: models.users.User)
-@main("Admin",user){
+    @main("Admin", user) {
 
-@if(flash.containsKey("success")) { <!--Flashes if team is created -->
-           <h5 class="alert alert-success">@flash.get("success")</h5>
+        @if(flash.containsKey("success")) {
+            <!--Flashes if team is created -->
+            <h5 class="alert alert-success">@flash.get("success")</h5>
         }
-<div class="actions">
-<h2>Admin Management Warning you can mess up a current game by using these</h2>
-<h3>Player Admin options</h3>
- <div class="col-md-6">
-      
-    @helper.form(action = routes.PlayerCtrl.addPlayer()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
-    </p>
-	
-	
-    }
-	   @helper.form(action = routes.PlayerCtrl.playerDB(0)) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Manage Players">
-    </p>
-}
-<h3> Team Admin options</h3>
-    @helper.form(action = routes.AdminCtrl.addTeam()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Add a Team     ">
-    </p>
-	
-	
-    }
-	
-    @helper.form(action = routes.AdminCtrl.manageTeam()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Manage Team">
-    </p>
-	
-	
-    }
+        <div class="actions">
+            <h2>Admin Management Warning you can mess up a current game by using these</h2>
+            <h3>Player Admin options</h3>
+            <div class="col-md-6">
 
-<h3> User Admin options</h3>
- @helper.form(action = routes.AdminCtrl.addUserAdmin()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="Add a User">
-    </p>
-	
-	
+                @helper.form(action = routes.PlayerCtrl.addPlayer()) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Add a Player      ">
+                    </p>
+
+
+                }
+                @helper.form(action = routes.PlayerCtrl.playerDB(0)) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Manage Players">
+                    </p>
+                }
+                <h3> Team Admin options</h3>
+                @helper.form(action = routes.AdminCtrl.addTeam()) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Add a Team     ">
+                    </p>
+
+
+                }
+
+                @helper.form(action = routes.AdminCtrl.manageTeam()) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Manage Team">
+                    </p>
+
+
+                }
+
+                <h3> User Admin options</h3>
+                @helper.form(action = routes.AdminCtrl.addUserAdmin()) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Add a User">
+                    </p>
+
+
+                }
+
+                @helper.form(action = routes.AdminCtrl.manageUsers()) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="manage Users">
+                    </p>
+
+
+                }
+
+                Game functions
+                <div class="actions">
+                @helper.form(action = routes.PlayerCtrl.genStats) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Generate Stats">
+                    </p>
+                }
+                </div>
+            </div>
+        </div>
     }
-	
-	@helper.form(action = routes.AdminCtrl.manageUsers()) {
-    <p>
-        <input class="btn-sm btn-primary" type="submit" value="manage Users">
-    </p>
-	
-	
-    }
-	
-	Game functions 
-	  <div class="actions">
-     @helper.form(action = routes.PlayerCtrl.genStats) {
-     <p>
-         <input class="btn-sm btn-primary" type="submit" value="Generate Stats">
-     </p>
-     }
-     </div>
-</div>
-  </div>
-}

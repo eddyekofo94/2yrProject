@@ -1,68 +1,63 @@
-@(user: models.users.User,player: List[models.Player])
+@(user: models.users.User, player: List[models.Player])
 
-@import helper._
+    @import helper._
 
-@main("Delete Player",user) {
-    
-    <!-- /.row -->
-            <div class="row">
-        
-                <div class="col-lg-10">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            This is all the players in the Database
-                        </div>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Jersey Number</th>
-                                    <th>Player Name</th>
-                                    <th>GK</th>
-                                    <th>Def</th>
-                                    <th>Mid</th>
-                                    <th>Atck</th>
-                                    <th>Health</th>
-                                    <th>Delete</th>
-									<th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for(p <- player){
-                                <tr>
-                                    <td>@p.jerseyNum</td>
-                                    <td>@p.playerName</td>
-                                    <td>@p.gkVal</td>
-                                    <td>@p.defVal</td>
-                                    <td>@p.midFVal</td>
-                                    <td>@p.attVal</td>
-                                    <td>@p.health</td>
+    @main("Delete Player", user) {
 
-      
-        <div class="col-md-6">
+        <!-- /.row -->
+        <div class="row">
+
+            <div class="col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        This is all the players in the Database
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Jersey Number</th>
+                                <th>Player Name</th>
+                                <th>GK</th>
+                                <th>Def</th>
+                                <th>Mid</th>
+                                <th>Atck</th>
+                                <th>Health</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @for(p <- player) {
+                            <tr>
+                                <td>@p.jerseyNum</td>
+                                <td>@p.playerName</td>
+                                <td>@p.gkVal</td>
+                                <td>@p.defVal</td>
+                                <td>@p.midFVal</td>
+                                <td>@p.attVal</td>
+                                <td>@p.health</td>
+                                <div class="col-md-6">
+                                </div>
+                                <td>
+                                @helper.form(action = routes.PlayerCtrl.delPlayer(p.playerID)) {
+                                    <input class="btn-xs btn-danger" type="submit" value="Delete Player" > </a>
+                                </td>
+                                }
+                                <td>
+                                @helper.form(action = routes.PlayerCtrl.editPlayer(p.playerID)) {
+                                    <input class="btn-xs btn-danger" type="submit" value="Edit Player" > </a>
+                                </td>
+                                }
+                            </tr>
+                        }
+
+                        </tbody>
+                    </table>
+                        <!-- /.panel-body -->
+                </div>
+                    <!-- /.panel -->
+            </div>
+                <!-- /.col-lg-12 -->
         </div>
-        <td>
-		@helper.form(action = routes.PlayerCtrl.delPlayer(p.playerID)) {
-            <input class="btn-xs btn-danger" type="submit" value="Delete Player" ></a>
-        </td>
-		
-
-   
-                                    }
-									<td>
-		@helper.form(action = routes.PlayerCtrl.editPlayer(p.playerID)) {
-            <input class="btn-xs btn-danger" type="submit" value="Edit Player" ></a>
-        </td>
-		}
-			 </tr>						
-}
-
-    </tbody>
-    </table>
-    <!-- /.panel-body -->
-    </div>
-    <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-   }
+            <!-- /.row -->
+    }

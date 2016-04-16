@@ -74,6 +74,7 @@ public class RegisterCtrl extends Controller {
          CalcSHA cs = new CalcSHA();
 
          User manager = newRegisterForm.get();
+		 
          String md = cs.calcPassword(manager.password);
 
         manager.password = md;
@@ -83,10 +84,19 @@ public class RegisterCtrl extends Controller {
          // user.save();
          // user.en(user.password);
 		 Manager m1 = new Manager(manager);
-         m1.save();
+		  m1.save();
+		 if(assignTeam(m1) != null)
+		 {
+		 
+        
+		 
 
         flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
-
+		
+		 }else{
+			 m1.delete();
+			 flash("error","No teams to Manage at the moment please try later");
+		 }
         
         }
         return redirect("/squad/0");
@@ -103,4 +113,26 @@ public class RegisterCtrl extends Controller {
         }
         return false;
     }
+	
+	//assign a null team to a user 
+	
+	public Long assignTeam(User manager)
+	{
+		Long output = null;
+		ArrayList<Team> teams = new ArrayList();
+          for(Team t : Team.<Team>findAll()) {
+		     if(t.getUserID() == null)
+			{
+		      teams.add(t);
+			  teams.get(0).setUserID(manager.getid());
+			teams.get(0).update();
+		return	teams.get(0).getTeamID();
+			  
+		    }
+		}	
+		
+		
+	return output;
+		 
+	}
 }
