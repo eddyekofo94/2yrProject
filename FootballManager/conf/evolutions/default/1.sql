@@ -53,6 +53,7 @@ create table user (
   password                  varchar(255),
   number_of_training        integer,
   bankaccount               integer,
+  ready                     boolean,
   constraint pk_user primary key (userid))
 ;
 
