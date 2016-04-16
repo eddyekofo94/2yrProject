@@ -449,8 +449,8 @@ public class PlayerCtrl extends Controller {
         return redirect("/squad/0");
     }
 
-    public Long getPositionID(String position) {
-        long value = 0;
+    public Long getPositionID(String position) { //Returns an positionID to match the position that was passed in
+        long value = 0; // Default position of not assigned
         List<Position> positions = Position.findAll();
         for (Position p : positions) {
             if (p.position.equals(position)) {
@@ -463,7 +463,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result playerDB(Long position) {
+    public Result playerDB(Long position) {//Renders  the playerDB page
         //Creates a list of players
         List<Player> players = Player.findAll();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
@@ -482,7 +482,7 @@ public class PlayerCtrl extends Controller {
 
     //Insures user is logged in before allowing access
     @Security.Authenticated(Secured.class)
-    public Result transferPlayer(Long id) {
+    public Result transferPlayer(Long id) { //Renders the transfer player page
         //Creates a list of players
         List<Player> players = Player.findAll();
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
@@ -506,7 +506,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is logged in before allowing access
 
     @Security.Authenticated(Secured.class)
-    public Result transferPlayerSubmit(Long id) {
+    public Result transferPlayerSubmit(Long id) { //Processes the form from the transferPlayer page and saves the result in the database
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
         //Creates a list of players
@@ -527,11 +527,18 @@ public class PlayerCtrl extends Controller {
 
         return redirect("/squad/0");
     }
-
+      //Insures user is admin before allowing access
+    @Security.Authenticated(Secured.class)
+    @With(CheckIfAdmin.class)
+    public Result deletePlayer() { //renders the deletePlayer page
+        //Creates a list of players
+        List<Player> players = Player.findAll();
+        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
+    }
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result delPlayer(Long playerID) {
+    public Result delPlayer(Long playerID) { //Removes a player from the database that the user has selected
         List<Player> player = Player.find.all();
         Player playerToDelete;
         for (int i = 0; i < player.size(); i++) {
@@ -542,10 +549,11 @@ public class PlayerCtrl extends Controller {
         return redirect("/playerDB/0");
     }
 
+
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result editPlayer(Long playerID) {
+    public Result editPlayer(Long playerID) { //Renders the edit player page if player passed not there redirects back to the playerDB
         //Creates a list of players
         List<Player> players = Player.findAll();
 
@@ -557,14 +565,14 @@ public class PlayerCtrl extends Controller {
             }
 
         }
-        return redirect("/delPlayer");
+        return redirect("/playerDB");
 
     }
 
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result submitEditPlayer(Long id) {
+    public Result submitEditPlayer(Long id) { //Processes the edit player form and saves the changes to the database
         Form<Player> editPlayerForm = Form.form(Player.class).bindFromRequest();
         //Creates a list of players
         List<Player> players = Player.findAll();
@@ -593,19 +601,12 @@ public class PlayerCtrl extends Controller {
         return redirect("/admin");
     }
 
-    //Insures user is admin before allowing access
-    @Security.Authenticated(Secured.class)
-    @With(CheckIfAdmin.class)
-    public Result deletePlayer() {
-        //Creates a list of players
-        List<Player> players = Player.findAll();
-        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
-    }
+  
 
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result addPlayer() {
+    public Result addPlayer() { //Renders the add player page
         Form<Player> addPlayerForm = Form.form(Player.class);
         return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")), addPlayerForm));
     }
@@ -613,7 +614,7 @@ public class PlayerCtrl extends Controller {
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
-    public Result addPlayerSubmit() {
+    public Result addPlayerSubmit() { //Processes the addPlayer form and saves the new player in the database
         Form<Player> newPlayerForm = Form.form(Player.class).bindFromRequest();
         Player newPlayer;
 
@@ -621,13 +622,32 @@ public class PlayerCtrl extends Controller {
             return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
 
         }
-        newPlayer = newPlayerForm.get();
+        else if(playerNameTaken(newPlayerForm.get().playerName)==true){
+            flash("error","Player name already used!");
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+        }
+        else if(newPlayerForm.get().health > MAX_HEALTH){
+            flash("error","Player health can not be more than 10!");
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+        }
+        else{
+            newPlayer = newPlayerForm.get();
 
-        newPlayer.setPosition(Position.getPositionNone());
-        newPlayer.setTeam(Team.getTeamDefault());
-        PlayerCtrl.genPlayerStat(newPlayer);
-        newPlayer.save();
-        flash("success", "Player " + newPlayerForm.get().playerName + " has been created");
-        return redirect("/playerDB");
+            newPlayer.setPosition(Position.getPositionNone());
+            newPlayer.setTeam(Team.getTeamDefault());
+            PlayerCtrl.genPlayerStat(newPlayer);
+            newPlayer.save();
+            flash("success", "Player " + newPlayerForm.get().playerName + " has been created");
+            return redirect("/playerDB");
+        }
+    }
+    public boolean playerNameTaken(String newPlayerName){//Checks if a player name is already taken
+        List<Player> players = Player.findAll();
+        for(Player p : players){
+            if(p.getPlayerName().equals(newPlayerName)){
+                return true;
+            }
+        }
+        return false;
     }
 }
