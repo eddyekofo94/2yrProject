@@ -357,7 +357,7 @@ public class PlayerCtrl extends Controller {
       //for each of the teams assign all the players random stats
         for (int i = 0; i < teams.size(); i++) {
             for (int j = 0; j < players.size(); j++) {
-                if (teams.get(i).getTeamID() == players.get(j).getTeamID().getTeamID()) {//Matchs player to the correct team
+                if (teams.get(i).getTeamID() == players.get(j).getTeam().getTeamID()) {//Matchs player to the correct team
       			//11 players in team 1 gk 4 def 4 mid 2 attk guarenteed rest is random
                     //set goalkeeper
                     //Insures a team has players to suit all positions
@@ -493,7 +493,7 @@ public class PlayerCtrl extends Controller {
         for (int i = 0; i < players.size(); i++) {
             if (id == players.get(i).getPlayerID()) {
 
-                players.get(i).setTeamID(transfer);
+                players.get(i).setTeam(transfer);
 
             }
 
