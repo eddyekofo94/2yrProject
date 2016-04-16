@@ -205,7 +205,7 @@ public class AdminCtrl extends Controller
 		newTeam = newTeamForm.get();
 		newTeam.setTeamScore(0);
 		newTeam.save();
-		flash("success", "Team"+newTeamForm.get().teamName+" has been created");
+		flash("success", "Team "+newTeamForm.get().teamName+" has been created");
         }
 		return redirect("/teamDB");
 	}
