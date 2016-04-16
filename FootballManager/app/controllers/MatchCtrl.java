@@ -127,4 +127,54 @@ private User getCurrentUser() {
     public static void setCurWeek(int curWeek) {
         MatchCtrl.curWeek = curWeek;
     }
+	
+	public Result submitForMatch(Long userid)
+	{
+		Boolean allReady = true;
+	Manager manager;
+		List<User> managerList = Manager.findAll();
+		
+		
+		for(int k = 0;k < managerList.size();k++)
+		{
+			
+			if(managerList.get(k).getid()== userid && managerList.get(k).getUserType().equals("manager"))
+			{
+				
+				manager = (Manager)managerList.get(k);
+				manager.setReady(true);
+				manager.update();
+				
+			}
+		}
+		
+		for(int i = 0;i < managerList.size();i++)
+		{
+			if(managerList.get(i).getUserType().equals("manager"))
+			{
+				manager = (Manager)managerList.get(i);
+				if(!manager.getReady())
+				{
+				allReady = false;
+				}
+			}
+				
+		}
+		if(allReady)
+		{
+			for(int k = 0;k < managerList.size();k++)
+		{
+			
+				if(managerList.get(k).getUserType().equals("manager"))
+			{
+				manager = (Manager)managerList.get(k);
+				manager.setReady(false);
+				manager.update();
+			}
+			
+		}
+			playMatch();
+		}
+		return redirect("/fixtures");
+	}
 }

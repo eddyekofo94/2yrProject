@@ -20,9 +20,12 @@ public class Manager extends User {
 
     
     public int bankaccount;
+	public boolean ready;
 	
 
     public Manager() {
+		
+		
 
     }
 
@@ -39,6 +42,7 @@ public class Manager extends User {
 	{
 		super(user.userid,user.name,user.loginname,user.password);
 		this.bankaccount = 80000;
+		ready = false;
 	}
 
 //    public static Finder<String, User> find = new Finder<String, User>(String.class, User.class); //Not Ure
@@ -75,6 +79,15 @@ public class Manager extends User {
 	public void setBankaccount(int ammount)
 	{
 		this.bankaccount += ammount;
+	}
+	
+	public void setReady(boolean ready)
+	{
+		this.ready = ready;
+	}
+	public boolean getReady()
+	{
+		return this.ready;
 	}
 	
 }
