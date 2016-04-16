@@ -20,7 +20,7 @@ import java.util.*;
 
                 public Result login() {
                     // Pass a login form to the login view and render
-                    return ok(login.render(Form.form(Login.class), User.getLoggedIn(session().get("logginname"))));
+                    return ok(login.render(Form.form(Login.class), User.getLoggedIn(session().get("loginname"))));
                 }
 
                 // Process the user login form
