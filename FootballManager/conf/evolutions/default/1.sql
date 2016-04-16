@@ -24,7 +24,7 @@ create table player (
   mid_fval                  integer,
   gk_val                    integer,
   health                    integer,
-  team_id_team_id           bigint,
+  team_team_id              bigint,
   injury                    boolean,
   salary                    double,
   transfer_value            integer,
@@ -72,8 +72,8 @@ create sequence team_seq;
 
 alter table player add constraint fk_player_position_1 foreign key (position_id) references position (id) on delete restrict on update restrict;
 create index ix_player_position_1 on player (position_id);
-alter table player add constraint fk_player_teamID_2 foreign key (team_id_team_id) references team (team_id) on delete restrict on update restrict;
-create index ix_player_teamID_2 on player (team_id_team_id);
+alter table player add constraint fk_player_team_2 foreign key (team_team_id) references team (team_id) on delete restrict on update restrict;
+create index ix_player_team_2 on player (team_team_id);
 
 
 

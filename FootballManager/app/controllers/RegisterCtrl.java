@@ -68,15 +68,9 @@ public class RegisterCtrl extends Controller {
              return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
         }
         else{
-
-
-
          CalcSHA cs = new CalcSHA();
-
-         User manager = newRegisterForm.get();
-		 
+         User manager = newRegisterForm.get();	 
          String md = cs.calcPassword(manager.password);
-
         manager.password = md;
         manager.numberOfTraining = numberOfTraining;
          // Team team = new Team(k,"2",3);

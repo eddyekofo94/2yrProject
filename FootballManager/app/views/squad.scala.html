@@ -43,7 +43,7 @@
                         </thead>
                         <tbody>
                         @for(player <- players) {
-                            @if(player.teamID.getUserID() == user.getid()) {
+                            @if(player.team.getUserID() == user.getid()) {
                                     <!--Checks that players shown are in the users team -->
                                 <tr>
                                     <td>@player.jerseyNum</td>
@@ -81,15 +81,15 @@
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu" >
-                                            <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper", player.playerID, player.teamID.getTeamID())">
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Goalkeeper", player.playerID, player.team.getTeamID())">
                                                 Goalkeeper</a></li>
-                                            <li><a href="@routes.PlayerCtrl.setPosition("Defense", player.playerID, player.teamID.getTeamID())">
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Defense", player.playerID, player.team.getTeamID())">
                                                 Defense</a></li>
-                                            <li><a href="@routes.PlayerCtrl.setPosition("Midfield", player.playerID, player.teamID.getTeamID())">
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Midfield", player.playerID, player.team.getTeamID())">
                                                 Midfield</a></li>
-                                            <li><a href="@routes.PlayerCtrl.setPosition("Striker", player.playerID, player.teamID.getTeamID())">
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Striker", player.playerID, player.team.getTeamID())">
                                                 Striker</a></li>
-                                            <li><a href="@routes.PlayerCtrl.setPosition("Sub", player.playerID, player.teamID.getTeamID())">
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Sub", player.playerID, player.team.getTeamID())">
                                                 Sub</a></li>
                                         </ul>
                                     </th>

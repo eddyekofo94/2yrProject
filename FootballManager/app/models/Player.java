@@ -31,9 +31,9 @@ public class Player extends Model{
      @Constraints.Required
      public int gkVal; // goal keeping strength 
      @Constraints.Required
-     public int health;
+     public int health; // players health
      @ManyToOne
-     public Team teamID;
+     public Team team;
      public boolean injury;
      public double salary;
 
@@ -41,27 +41,19 @@ public class Player extends Model{
 	 
 	 @Transient
     private  final int TRANSFER_VALUE_WEIGHT = 1000	;
-	 
-
-     
-     //constants for getTrained and getInjured methods
-     
+    
      //random number generator
      Random ranNum = new Random();
      
      //Default constructor
-     public Player(){
-		 
-		 
+     public Player(){		 
 		 this.attVal = 0;
 		 this.defVal =0;
 		 this.midFVal = 0;
 		 this.gkVal =0;
 		 this.injury = false;
 		 this.salary = 0;
-		 this.transferValue = 0;
-		
-         
+		 this.transferValue = 0;		        
      }  
      //Overloaded constructor 
      public Player(Long playerID, int jerseyNum, String playerName, Position position, int attVal, int defVal,
@@ -79,54 +71,50 @@ public class Player extends Model{
      
      // Generic wuery helper for entity Computer with id Long
      public static Model.Finder<Long, Player> find = new Model.Finder<Long, Player>(Long.class, Player.class);
-     
+     //find all the players in the database and return them in a list
      public static List<Player> findAll(){
 
          return Player.find.all();
         
      }
-     public Long getPlayerID(){
+     public Long getPlayerID(){//return player id
 		 return playerID;
 	 }
-     public Team getTeamID(){
-         return teamID;
+     public Team getTeam(){//return team object
+         return team;
      }
-	 public String getPlayerName()
+	 public String getPlayerName()//returns player name
 	 {
 		 return playerName;
 	 }
-	 public void setPlayerName(String playerName)
+	 public void setPlayerName(String playerName)//Sets player name to a new name
 	 {
 		 this.playerName = playerName;
 	 }
 	 
-	 public int getJerseyNum()
+	 public int getJerseyNum()//returns players jersey number
 	 {
 		 return jerseyNum;
 	 }
-	 public void setJerseyNum(int num )
+	 public void setJerseyNum(int num )//sets player jersey number to a new number
 	 {
 		 this.jerseyNum = num ;
 	 }
-	 public void setTeam(Team team)
+	 public void setTeam(Team team)//sets player to a team
 	{
-		this.teamID = team;
-	}
-    public void setTeamID(Team team)
-	{
-		this.teamID = team;
+		this.team = team;
 	}
 	
-	 public Long getTID(){
-		 return teamID.getTeamID();
+	 public Long getTID(){//returns players team id
+		 return team.getTeamID();
 	 }
 
      
-     public static Map<String,String> options(){
+     public static Map<String,String> options(){ //returns a map list of players ordered by id
          final int TEAM_ID_NOT_ASSIGNED = 0;
         LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
         for(Player p: Player.find.orderBy("playerID").findList()){
-            if(p.teamID.getTeamID() == TEAM_ID_NOT_ASSIGNED){
+            if(p.team.getTeamID() == TEAM_ID_NOT_ASSIGNED){
                 options.put(p.playerID.toString(), p.playerName.toString());
             }    
         }
@@ -134,85 +122,77 @@ public class Player extends Model{
     }
 
 	
-	public int getTransferValue()
+	public int getTransferValue()//returns players selling value
 	{
 		return this.transferValue;
 	}
 	
-	public void setTransferValue(int transferValue)
+	public void setTransferValue(int transferValue) //sets a new transfer value
 	{
 		this.transferValue = transferValue;
 	}
 
-    public void setGkVal(int gkVal)
+    public void setGkVal(int gkVal)//sets goalkeeping value
      {
      this.gkVal = gkVal;
      }
      
-    public void setDefVal(int defVal)
+    public void setDefVal(int defVal)//sets defensive value
      {
      this.defVal = defVal;
      }
      
      
-    public void setMidVal(int midVal)
+    public void setMidVal(int midVal)//sets midfield value
      {
      this.midFVal = midVal;
      }
      
     
-	public void setAtkVal(int atkVal)
+	public void setAtkVal(int atkVal)//sets striker value
      {
      this.attVal = atkVal;
      }
 	 
     
-     public int getGkVal()
+     public int getGkVal()//returns goalkeeping value
      {
      return this.gkVal;
      }
      
-    public int getDefVal()
+    public int getDefVal()//returns defensive value
      {
       return this.defVal;
      }
      
      
-    public int getMidVal()
+    public int getMidVal()//returns midfield value
      {
      return this.midFVal;
      }
      
     
-	public int getAtkVal()
+	public int getAtkVal()//returns striker value
      {
       return this.attVal;
      }
     
-   public Long getPosition()
+   public Long getPosition()//returns player position ID
    {
 	 return position.getPositionID();  
    }
-   public void setPosition(Position position)
+   public void setPosition(Position position)//sets player position
    {
 	   this.position = position;
    }
 
-   	public void calcTransValue()
+   	public void calcTransValue() //calculates a transferValue based on there position values then multiplies by 1000
 	{
 		int totalValue = 0;	 	  	  	          
       	totalValue += this.gkVal;
 		totalValue += this.defVal;
 		totalValue += this.midFVal;
 		totalValue += this.attVal;
-		this.transferValue = totalValue*TRANSFER_VALUE_WEIGHT;
-		
-		
-		
+		this.transferValue = totalValue*TRANSFER_VALUE_WEIGHT;						
     }
-
-   /*public void setUsedTraining(boolean b){
-       this.usedTraining = b;
-   }*/
-
 }
