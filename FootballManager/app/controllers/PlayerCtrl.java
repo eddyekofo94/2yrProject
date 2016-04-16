@@ -533,7 +533,7 @@ public class PlayerCtrl extends Controller {
     public Result deletePlayer() { //renders the deletePlayer page
         //Creates a list of players
         List<Player> players = Player.findAll();
-        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
+        return ok(delPlayer.render(User.getLoggedIn(session().get("loginname")), players));
     }
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
@@ -560,7 +560,7 @@ public class PlayerCtrl extends Controller {
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getPlayerID() == playerID) {
                 Form<Player> editPlayerForm = Form.form(Player.class).fill(players.get(i));
-                return ok(editPlayer.render(User.getLoggedIn(session().get("loginName")), editPlayerForm, players.get(i)));
+                return ok(editPlayer.render(User.getLoggedIn(session().get("loginname")), editPlayerForm, players.get(i)));
 
             }
 
@@ -608,7 +608,7 @@ public class PlayerCtrl extends Controller {
     @With(CheckIfAdmin.class)
     public Result addPlayer() { //Renders the add player page
         Form<Player> addPlayerForm = Form.form(Player.class);
-        return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")), addPlayerForm));
+        return ok(addPlayer.render(User.getLoggedIn(session().get("loginname")), addPlayerForm));
     }
 
     //Insures user is admin before allowing access
@@ -619,16 +619,16 @@ public class PlayerCtrl extends Controller {
         Player newPlayer;
 
         if (newPlayerForm.hasErrors()) {
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
 
         }
         else if(playerNameTaken(newPlayerForm.get().playerName)==true){
             flash("error","Player name already used!");
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
         }
         else if(newPlayerForm.get().health > MAX_HEALTH){
             flash("error","Player health can not be more than 10!");
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
         }
         else{
             newPlayer = newPlayerForm.get();

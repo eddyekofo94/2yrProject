@@ -114,7 +114,7 @@ public class AdminCtrl extends Controller
 			{
 				
 				Form<User> manageUserForm = Form.form(User.class).fill(user.get(i));
-				 return ok(manageFormUser.render(User.getLoggedIn(session().get("loginName")),manageUserForm,user.get(i)));
+				 return ok(manageFormUser.render(User.getLoggedIn(session().get("loginname")),manageUserForm,user.get(i)));
 			}
 			
 			
@@ -174,7 +174,7 @@ public class AdminCtrl extends Controller
 	  public Result addTeam(){
         Form<Team> addTeamForm = Form.form(Team.class);
          
-        return ok(addTeam.render(User.getLoggedIn(session().get("loginName")),addTeamForm));
+        return ok(addTeam.render(User.getLoggedIn(session().get("loginname")),addTeamForm));
     }
     public boolean teamNameUsed(String name){
         boolean taken = false;
@@ -216,7 +216,7 @@ public class AdminCtrl extends Controller
 	{
 		List<Team> team = Team.find.all();
 		Form<Team> manageTeamForm = Form.form(Team.class);
-        return ok(manageTeam.render(User.getLoggedIn(session().get("loginName")),team));
+        return ok(manageTeam.render(User.getLoggedIn(session().get("loginname")),team));
 	}
 	//Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
@@ -246,7 +246,7 @@ public class AdminCtrl extends Controller
 			if(team.get(i).getTeamID() == teamID)
 			{	
 				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
-				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginName")),manageTeamForm,team.get(i)));
+				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginname")),manageTeamForm,team.get(i)));
 			}		
 		}
 		
