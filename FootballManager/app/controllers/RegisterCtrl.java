@@ -72,13 +72,13 @@ public class RegisterCtrl extends Controller {
          User manager = newRegisterForm.get();	 
          String md = cs.calcPassword(manager.password);
         manager.password = md;
-        manager.numberOfTraining = numberOfTraining;
+        
          // Team team = new Team(k,"2",3);
          // team =  user.RegisterUser(team);
-         // user.save();
          // user.en(user.password);
 		 Manager m1 = new Manager(manager);
-		  m1.save();
+		 m1.numberOfTraining = numberOfTraining;
+         m1.save();
 		 if(assignTeam(m1) != null)
 		 {
 		 

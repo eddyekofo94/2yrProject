@@ -18,7 +18,7 @@ import com.avaje.ebean.*;
 
 public class Manager extends User {
 
-
+    
     public int bankaccount;
 	
 
