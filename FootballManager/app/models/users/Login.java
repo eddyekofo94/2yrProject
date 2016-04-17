@@ -5,6 +5,11 @@ import models.*;
 public class Login {
     public String loginname;
     public String password;
+	
+	
+	public Login(){
+		
+	}
 
     public String validate() {
 
