@@ -124,7 +124,7 @@ public class AdminCtrl extends Controller
 				user.get(i).update();
 			}			                
 		}		
-		flash("Success", "user"+manageUserForm.get().name+" has been updated");
+		flash("success", "user"+manageUserForm.get().name+" has been updated");
 		return redirect("/admin");
     }
     
@@ -233,7 +233,13 @@ public class AdminCtrl extends Controller
 		 List<Team> team = Team.find.all();
 		Team editTeam;
 		 if( manageTeamForm.hasErrors()){
-            return redirect("/");
+            return badRequest(manageFormTeam.render(User.getLoggedIn(session().get("userID")),manageTeamForm,manageTeamForm.get()));
+        }
+        if(manageTeamForm.get().userID != null){
+            if(userIDFind(manageTeamForm.get().userID) == false){
+                flash("error","User ID no found!");
+                return badRequest(manageFormTeam.render(User.getLoggedIn(session().get("userID")),manageTeamForm,manageTeamForm.get()));
+            }
         }
 		editTeam = manageTeamForm.get();
 		for(int i = 0;i < team.size();i++)
@@ -246,10 +252,18 @@ public class AdminCtrl extends Controller
 				team.get(i).update();
 			}			                 
 		}        			
-		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		flash("success", "Team "+manageTeamForm.get().teamName+" has been updated");
 		return redirect("/teamDB");
 	}
-    
+    public boolean userIDFind(Long id){
+        List<User> users = User.findAll();
+        for(User u : users){
+            if(u.getid() == id && u.getUserType().equals("manager")){
+                return true;
+            }
+        }
+        return false;
+    }
     //Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
     public Result manageTeamSubmit(){
@@ -258,7 +272,7 @@ public class AdminCtrl extends Controller
 		newTeam = newTeamForm.get();
 		newTeam.setTeamScore(0);
 		newTeam.save();
-		flash("SuccessTeam", "Team"+newTeamForm.get().teamName+" has been created");
+		flash("successTeam", "Team"+newTeamForm.get().teamName+" has been created");
 		return redirect("/admin");
 	}
 }

@@ -526,7 +526,7 @@ public class PlayerCtrl extends Controller {
         }
         Player p = transferPlayerForm.get();
         p.update();
-        flash("Success", "Player " + transferPlayerForm.get().playerName + " has added to your team");
+        flash("success", "Player " + transferPlayerForm.get().playerName + " has added to your team");
 
         return redirect("/squad/0");
     }
@@ -691,7 +691,7 @@ public class PlayerCtrl extends Controller {
                 }			               
             }       		
         }
-		flash("Success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		flash("success", "Team"+manageTeamForm.get().teamName+" has been updated");
 		return redirect("/squad/0");
 	}
     public boolean teamNameUsed(String name){//Insures two team names arent the same

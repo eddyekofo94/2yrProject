@@ -3,10 +3,6 @@
     @import helper._
 
     @main("New Team", user) {
-        @if(flash.containsKey("success")) {
-            <!--Flashes if player gets added -->
-            <h5 class="alert alert-success">@flash.get("success")</h5>
-        }
         @if(flash.containsKey("error")) {
                 <!--Flashes if players cannot be added -->
             <h5 class="alert alert-danger">@flash.get("error")</h5>

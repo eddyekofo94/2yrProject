@@ -41,9 +41,7 @@ public class RegisterCtrl extends Controller {
 
     // Handle the form data when a new user is submitted
     public Result registerFormSubmit() {
-        int numberOfTraining = 3;
-        // Create a user form object (to hold submitted data)
-        // 'Bind' the object to the submitted form (this copies the filled form)      
+        int numberOfTraining = 3;    
         Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
 
         // Check for errors (based on Product class annotations)
@@ -54,28 +52,20 @@ public class RegisterCtrl extends Controller {
         else if(loginnameUsed(newRegisterForm.get().loginname) == true){
             flash("error","Login name is already used please try again!");
              return badRequest(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
-        }
-        else{
-         CalcSHA cs = new CalcSHA();  
-         User manager = newRegisterForm.get();	 
-         String md = cs.calcPassword(manager.password);
-         manager.password = md;
-		 Manager m1 = new Manager(manager);
-		 m1.numberOfTraining = numberOfTraining;
-         m1.save();
-		 if(assignTeam(m1) != null)
-		 {
-		 
-        
-		 
-
-        flash("success", "Manager " + newRegisterForm.get().name + " has been registered");
-		
-		 }else{
-			 m1.delete();
-			 flash("error","No teams to Manage at the moment please try later");
-		 }
-        
+        }else{
+            CalcSHA cs = new CalcSHA();  
+            User manager = newRegisterForm.get();	 
+            String md = cs.calcPassword(manager.password);
+            manager.password = md;
+            Manager m1 = new Manager(manager);
+            m1.numberOfTraining = numberOfTraining;
+            m1.save();
+            if(assignTeam(m1) != null){
+                 flash("success", "Manager " + newRegisterForm.get().name + " has been registered");            
+            }else{
+                m1.delete();
+                flash("error","No teams to Manage at the moment please try later");
+            }
         }
         return redirect("/squad/0");
     }
@@ -92,8 +82,7 @@ public class RegisterCtrl extends Controller {
         return false;
     }
 	
-	//assign a null team to a user 
-	
+	//assign a null team to a user 	
 	public Long assignTeam(User manager)
 	{
 		Long output = null;
