@@ -2694,3 +2694,9 @@ UPDATE "PUBLIC"."TEAM" SET "TEAM_ID"=? ,"USER_ID"=? ,"TEAM_NAME"=? ,"TEAM_SCORE"
 04-17 20:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
 UPDATE "PUBLIC"."TEAM" SET "TEAM_ID"=? ,"USER_ID"=? ,"TEAM_NAME"=? ,"TEAM_SCORE"=?  WHERE "TEAM_ID"=? [22018-187]
+04-17 20:57:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-17 20:57:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
