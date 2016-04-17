@@ -164,14 +164,14 @@ public class LeagueCtrl extends Controller {
 				 	f1.tList.add(teams.get(i));
 				 	f1.tList.add(teams.get(j));
 				 	f1.save();
-				    f1=new models.Fixtures(id,(week+teams.size()+1),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
+				    f1=new models.Fixtures(id,(week+teams.size()*2),teams.get(j).getTeamID(),hScore,teams.get(i).getTeamID(),aScore);
 				 	teams.get(i).flist.add(f1);
 				 	teams.get(j).flist.add(f1);
 				 	f1.tList.add(teams.get(i));
 				 	f1.tList.add(teams.get(j));
 				 	f1.save();
 
-                    if(week == ((teams.size()+1)))
+                    if(week == ((teams.size()*2)))
                     {
                     week=1;
                     }
