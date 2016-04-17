@@ -25,4 +25,8 @@ public class Application extends Controller {
 
         return ok(index.render(User.getLoggedIn(session().get("loginname"))));
     }
+    public Result help() {
+
+        return ok(help.render(User.getLoggedIn(session().get("loginname"))));
+    }
 }
