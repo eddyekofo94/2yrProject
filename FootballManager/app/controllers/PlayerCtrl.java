@@ -293,7 +293,7 @@ public class PlayerCtrl extends Controller {
         } else {
             player.health -= healthLose;
         }
-        player.injury = getInjured(player.getHealth(),player);
+        player.injury = getInjured(player.health,player);
     }
 
     public void playerHealthyTest(Player player) {//Checks if a player is healthy to play again
