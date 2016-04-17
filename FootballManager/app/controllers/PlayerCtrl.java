@@ -293,6 +293,7 @@ public class PlayerCtrl extends Controller {
         } else {
             player.health -= healthLose;
         }
+        player.injury = getInjured(player.getHealth(),player);
     }
 
     public void playerHealthyTest(Player player) {//Checks if a player is healthy to play again
@@ -334,7 +335,8 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void calculateInjuredHealthIncrease(Player player) { //Calculates an amount to add to an injured players health 
+   public void calculateInjuredHealthIncrease(Player player) { //Calculates an amount to add to an injured players health 
+        
         int healthIncrease = ranNum.nextInt(3);
         int positiveHealth;
 
@@ -345,6 +347,7 @@ public class PlayerCtrl extends Controller {
         } else {
             player.health += healthIncrease;
         }
+        playerHealthyTest(player);
     }
 
     public static void randomStats() {//Generates random position values

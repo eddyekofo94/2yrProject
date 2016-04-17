@@ -78,8 +78,11 @@ private User getCurrentUser() {
 
     public  void playMatch(){
         List<User> users = User.findAll();
+        List<Player> players = Player.findAll();
         List<models.Fixtures> weekFixtures = new ArrayList();
         List<models.Team> teamsPlaying = new ArrayList<>();
+        PlayerCtrl pCtrl = new PlayerCtrl();
+        Random ranNum = new Random();
 //populate this weeks Fixtures
         for (Fixtures f : Fixtures.<Fixtures>findAll()) {
             if (f.getWeek() == curWeek) {
@@ -118,11 +121,17 @@ private User getCurrentUser() {
             user.reSetNumberOfTraining();
             user.update();
         }
-
-
-
-
+        for(Player p : players){
+            if(p.injury == true){
+                pCtrl.calculateInjuredHealthIncrease(p);               
+            }
+            else{
+                pCtrl.deductHealth(ranNum.nextInt(2),p);
+            }
+            p.update();
+        }
     }
+     
 
     public static void setCurWeek(int curWeek) {
         MatchCtrl.curWeek = curWeek;
