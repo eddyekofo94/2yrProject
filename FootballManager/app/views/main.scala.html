@@ -45,13 +45,14 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="@routes.Application.index()">Football Manager</a>
+                    @if(user != null) {
+                        @if(user.getUserType() == "manager") {
+                            <a class="navbar-brand">Bank Account: €@user.asInstanceOf[Manager].getBankaccount()</a>
+                        }
+                    }
                 </div>
                     <!-- /.navbar-header -->
-                @if(user != null) {
-                    @if(user.getUserType() == "manager") {
-                        BANK ACCOUNT @user.asInstanceOf[Manager].getBankaccount()
-                }
-                }
+
                 <ul class="nav navbar-top-links navbar-right">
                         <!-- /.dropdown -->
                     <li class="dropdown">
