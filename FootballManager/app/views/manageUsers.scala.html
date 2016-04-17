@@ -3,6 +3,14 @@
     @main("Manage Team", user) {
         <!-- /.row -->
         <div class="row">
+            @if(flash.containsKey("success")) {
+            <!--Flashes if player gets trained -->
+            <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
             <div class="col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
