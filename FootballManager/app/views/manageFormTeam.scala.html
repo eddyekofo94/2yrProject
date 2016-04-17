@@ -5,9 +5,8 @@
         
         @form(action = routes.AdminCtrl.editTeamSubmit(team.teamID), 'class -> "form-horizontal", 'role -> "form") {
             @inputText(manageTeamForm("teamName"), '_label -> "Team Name")
-            @if(user.getUserType() == "admin") {
-            @inputText(manageTeamForm("userid"), '_label -> "User Id")
-            }
+            @inputText(manageTeamForm("userID"), '_label -> "User Id")
+            
             <div class="actions">
                 <input type="submit" value="update Team" class="btn primary">                
                 <a href="@routes.Application.index()">

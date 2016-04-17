@@ -1,8 +1,12 @@
 @(user: models.users.User)
     @main("Admin", user) {
         @if(flash.containsKey("success")) {
-            <!--Flashes if team is created -->
+            <!--Flashes if player gets trained -->
             <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
         }
         <div class="actions">
             <h2>Admin Management Warning you can mess up a current game by using these</h2>
