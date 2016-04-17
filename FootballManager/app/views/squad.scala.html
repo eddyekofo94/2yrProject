@@ -29,7 +29,7 @@
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Jersey Number</th>
+                                
                                 <th>Player Name</th>
                                 <th>GK</th>
                                 <th>Def</th>
@@ -43,7 +43,9 @@
                                     }
 
                                     <th>Position</th>
+									<th> Transfer value</th>
                                     <th>Transfer</th>
+									
                                 }
                             </tr>
                         </thead>
@@ -52,7 +54,7 @@
                             @if(player.team.getUserID() == user.getid()) {
                                     <!--Checks that players shown are in the users team -->
                                 <tr>
-                                    <td>@player.jerseyNum</td>
+                                   
                                     <td>@player.playerName</td>
                                     <td>@player.gkVal</td>
                                     <td>@player.defVal</td>
@@ -101,17 +103,19 @@
                                                 Sub</a></li>
                                         </ul>
                                     </th>
-
+											<td>€ @player.transferValue</td>
                                     <div class="col-md-6">
-                                    </div>
+                                    
                                     <td>
                                         <a href="@routes.PlayerCtrl.transferPlayer(player.playerID)" class="btn-xs btn-danger" ><span
                                         class="glyphicon glyphicon-transfer"></span></a>
                                     </td>
+									
                                     }
                                 </tr>
                             }
                         }
+						</div>
                         </tbody>
                     </table>
                         <!-- /.panel-body -->
