@@ -4,6 +4,7 @@
 
 # Home page
 GET         /                                           controllers.Application.index()
+GET         /help                                controllers.Application.help()
 GET         /fixtures                                   controllers.LeagueCtrl.fixtures()
 GET         /upload                                     controllers.LeagueCtrl.fixtures()
 POST        /upload                                     controllers.LeagueCtrl.upload()
