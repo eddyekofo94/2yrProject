@@ -1,4 +1,5 @@
 @(user: models.users.User, positions: List[models.Position], players: List[models.Player])
+@import models.users.Manager;
     @main("Squad", user) {
         <!-- /.row -->
         <div class="row">
@@ -35,11 +36,14 @@
                                 <th>Atck</th>
                                 <th>Health</th>
                                 <th>Injured</th>
+								@if(user.asInstanceOf[Manager].getReady() == false){
                                 @if(user.getNumOfTrain() != 0) {
                                     <th>Training</th>
                                 }
+							
                                 <th>Position</th>
                                 <th>Transfer</th>
+								}
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +64,7 @@
                                         No
                                     }
                                     <th>
+									@if(user.asInstanceOf[Manager].getReady() == false){
                                     @if(player.injury == false || user.getNumOfTrain() != 0) {
                                         <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
                                             Training
@@ -78,6 +83,7 @@
                                         This player is injured!
                                     }
                                     </th>
+									
                                     <th class="position">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle = "dropdown"> @player.position.position
                                             <span class="caret"></span></button>
@@ -94,21 +100,32 @@
                                                 Sub</a></li>
                                         </ul>
                                     </th>
+									
                                     <div class="col-md-6">
                                     </div>
                                     <td>
                                         <a href="@routes.PlayerCtrl.transferPlayer(player.playerID)" class="btn-xs btn-danger" ><span
                                         class="glyphicon glyphicon-trash"></span></a>
                                     </td>
+									}
                                 </tr>
                             }
                         }
                         </tbody>
                     </table>
                         <!-- /.panel-body -->
+						<div class="actions">
+               
                 </div>
+				
                     <!-- /.panel -->
             </div>
+			 @helper.form(action = routes.MatchCtrl.submitForMatch(user.getid())) {
+                    <p>
+                        <input class="btn-sm btn-primary" type="submit" value="Submit for match">
+                    </p>
+                }
                 <!-- /.col-lg-12 -->
         </div>
     }
+	

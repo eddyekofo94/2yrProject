@@ -8,6 +8,7 @@ GET         /fixtures                                   controllers.LeagueCtrl.f
 GET         /upload                                     controllers.LeagueCtrl.fixtures()
 POST        /upload                                     controllers.LeagueCtrl.upload()
 POST        /match                                      controllers.MatchCtrl.Match()
+POST        /submitForMatch								controllers.MatchCtrl.submitForMatch(user: Long)
 GET         /LeagueUpdate                               controllers.LeagueCtrl.leagueTable()
 POST        /LeagueUpdate                               controllers.LeagueCtrl.LeagueUpdate()
 GET         /leagueTable                                controllers.LeagueCtrl.leagueTable()
