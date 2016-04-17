@@ -2578,3 +2578,125 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-187]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 16 more
+04-17 18:54:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 18:54:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 18:56:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: TEAM_ID BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 18:56:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: TEAM_ID BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:39:10 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-187]
+04-17 20:39:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "FIXTURES_SEQ" already exists; SQL statement:
+create sequence fixtures_seq [90035-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:57)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:254)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at com.zaxxer.hikari.proxy.StatementProxy.execute(StatementProxy.java:83)
+	at com.zaxxer.hikari.proxy.StatementJavassistProxy.execute(StatementJavassistProxy.java)
+	at play.api.db.evolutions.DatabaseEvolutions.play$api$db$evolutions$DatabaseEvolutions$$execute(EvolutionsApi.scala:302)
+	at play.api.db.evolutions.DatabaseEvolutions$$anonfun$evolve$1$$anonfun$apply$5.apply(EvolutionsApi.scala:196)
+	at play.api.db.evolutions.DatabaseEvolutions$$anonfun$evolve$1$$anonfun$apply$5.apply(EvolutionsApi.scala:196)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.WrappedArray.foreach(WrappedArray.scala:35)
+	at play.api.db.evolutions.DatabaseEvolutions$$anonfun$evolve$1.apply(EvolutionsApi.scala:196)
+	at play.api.db.evolutions.DatabaseEvolutions$$anonfun$evolve$1.apply(EvolutionsApi.scala:191)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at play.api.db.evolutions.DatabaseEvolutions.evolve(EvolutionsApi.scala:191)
+	at play.api.db.evolutions.DefaultEvolutionsApi.evolve(EvolutionsApi.scala:81)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:349)
+	at play.core.DefaultWebCommands$$anonfun$handleWebCommand$1.apply(WebCommands.scala:40)
+	at play.core.DefaultWebCommands$$anonfun$handleWebCommand$1.apply(WebCommands.scala:40)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:489)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:40)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$handleWebCommand$1$$anonfun$apply$6.apply(DevServerStart.scala:188)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$handleWebCommand$1$$anonfun$apply$6.apply(DevServerStart.scala:188)
+	at scala.Option.flatMap(Option.scala:171)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$handleWebCommand$1.apply(DevServerStart.scala:188)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$handleWebCommand$1.apply(DevServerStart.scala:188)
+	at scala.Option.orElse(Option.scala:289)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.handleWebCommand(DevServerStart.scala:187)
+	at play.core.server.Server$$anonfun$getHandlerFor$1.apply(Server.scala:55)
+	at play.core.server.Server$$anonfun$getHandlerFor$1.apply(Server.scala:55)
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:125)
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:125)
+	at scala.util.control.Exception$Catch.apply(Exception.scala:103)
+	at scala.util.control.Exception$Catch.either(Exception.scala:125)
+	at play.core.server.Server$class.getHandlerFor(Server.scala:55)
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:33)
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$8.apply(PlayDefaultUpstreamHandler.scala:132)
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$8.apply(PlayDefaultUpstreamHandler.scala:132)
+	at scala.util.Either.fold(Either.scala:99)
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:120)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+04-17 20:42:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:42:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:43:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:43:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:43:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:43:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-17 20:43:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."TEAM" SET "TEAM_ID"=? ,"USER_ID"=? ,"TEAM_NAME"=? ,"TEAM_SCORE"=?  WHERE "TEAM_ID"=? [22018-187]
+04-17 20:43:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (TEAM: USER_ID BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."TEAM" SET "TEAM_ID"=? ,"USER_ID"=? ,"TEAM_NAME"=? ,"TEAM_SCORE"=?  WHERE "TEAM_ID"=? [22018-187]
+04-17 20:57:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
+04-17 20:57:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (PLAYER: TEAM_TEAM_ID BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."PLAYER"("PLAYER_ID","JERSEY_NUM","PLAYER_NAME","POSITION_ID","ATT_VAL","DEF_VAL","MID_FVAL","GK_VAL","HEALTH","TEAM_TEAM_ID","INJURY","SALARY","TRANSFER_VALUE")VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13) [22018-187]
