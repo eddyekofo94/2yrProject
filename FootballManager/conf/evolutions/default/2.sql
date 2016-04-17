@@ -1,5 +1,6 @@
 # --- !Ups
-Insert into User(usertype,userid,name,loginname,password) values ('admin',0,'admin','admin','393151a09f5345add5e41c8d5f01fe378d2c18655dbc2adab92ceb6bb71bf290');
+Insert into User(usertype,userid,name,loginname,password,NUMBER_OF_TRAINING) values ('admin',0,'admin','admin','393151a09f5345add5e41c8d5f01fe378d2c18655dbc2adab92ceb6bb71bf290',0);
+
 INSERT into POSITION(id,POSITION ) VALUES(0,'None');
 INSERT into POSITION(id,POSITION ) VALUES(1,'Goalkeeper');
 INSERT into POSITION(id,POSITION ) VALUES(2,'Defense');
@@ -7,7 +8,7 @@ INSERT into POSITION(id,POSITION ) VALUES(3,'Midfield');
 INSERT into POSITION(id,POSITION ) VALUES(4,'Striker');
 INSERT into POSITION(id,POSITION ) VALUES(5,'Sub');
 
-INSERT into TEAM (TEAM_ID,USER_ID,team_name,team_score) VALUES ( 0,null,'Transfer market',0);
+INSERT into TEAM (TEAM_ID,USER_ID,team_name,team_score) VALUES ( 0,0,'Transfer market',0);
 INSERT into TEAM (TEAM_ID,USER_ID,team_name,team_score) VALUES (1,null,'Liverpool',0);
 INSERT into TEAM (TEAM_ID,USER_ID,team_name,team_score) VALUES (2,null,'Manchester United',0);
 INSERT into TEAM (TEAM_ID,USER_ID,team_name,team_score) VALUES (3,null,'Everton',0);
@@ -122,8 +123,9 @@ INSERT into PLAYER (PLAYER_ID,jersey_num,player_name,position_id,att_val,def_val
 INSERT into PLAYER (PLAYER_ID,jersey_num,player_name,position_id,att_val,def_val,MID_FVAL,gk_val,health,TEAM_TEAM_ID,injury,salary,transfer_value) VALUES (114,72,'Otto Wallis',0,6,8,3,4,10,6,False,6431,4315);
 
 # --- !Downs
-
-
+Delete from User where userid = 0;
+Delete from FIXTURES_TEAM ;
+DELETE FROM FIXTURES;
 DELETE FROM PLAYER;
 DELETE FROM TEAM;
 DELETE FROM POSITION;
