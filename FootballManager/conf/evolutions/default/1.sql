@@ -1,5 +1,4 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
+
 
 # --- !Ups
 
@@ -63,13 +62,13 @@ create table fixtures_team (
   team_team_id                   bigint not null,
   constraint pk_fixtures_team primary key (fixtures_match_id, team_team_id))
 ;
-create sequence fixtures_seq;
+create sequence fixtures_seq ;
 
-create sequence player_seq;
+create sequence player_seq start with 200;
 
 create sequence position_seq;
 
-create sequence team_seq;
+create sequence team_seq start with 6;
 
 alter table player add constraint fk_player_position_1 foreign key (position_id) references position (id) on delete restrict on update restrict;
 create index ix_player_position_1 on player (position_id);
