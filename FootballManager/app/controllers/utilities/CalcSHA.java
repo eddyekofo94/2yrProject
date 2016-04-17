@@ -14,7 +14,8 @@ import java.security.MessageDigest;
 public class CalcSHA {
 
     public String calcPassword(String password) {
-
+		String salt = "blue fluffy cheese";
+		password = password + salt;
         String output = "";
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
