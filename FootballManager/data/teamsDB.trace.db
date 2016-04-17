@@ -2557,3 +2557,24 @@ INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(
 04-16 12:33:11 jdbc[75]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "'nullas' (TEAM: USER_ID BIGINT)"; SQL statement:
 INSERT INTO "PUBLIC"."TEAM"("TEAM_ID","USER_ID","TEAM_NAME","TEAM_SCORE")VALUES(?,?,?,?) -- (?1, ?2, ?3, ?4) [22018-187]
+04-16 16:34:51 jdbc[165]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-187]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:174)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:119)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:92)
+	at org.h2.Driver.connect(Driver.java:72)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:92)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:98)
+	at com.zaxxer.hikari.pool.BaseHikariPool.addConnection(BaseHikariPool.java:438)
+	at com.zaxxer.hikari.pool.BaseHikariPool$1.run(BaseHikariPool.java:413)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 16 more

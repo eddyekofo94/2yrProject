@@ -61,11 +61,14 @@
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Help</a>
                             </li>
+                            @if(user == null){
                             <li><a href="/login"><i class="fa fa-sign-in fa-fw"></i> Login</a>
                             </li>
+                            }else{
                             <li class="divider"></li>
                             <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
+                            }
                         </ul>
                     </li>
                 </ul>
