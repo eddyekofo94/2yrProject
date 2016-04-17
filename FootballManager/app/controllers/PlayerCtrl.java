@@ -293,6 +293,7 @@ public class PlayerCtrl extends Controller {
         } else {
             player.health -= healthLose;
         }
+        player.injury = getInjured(player.health,player);
     }
 
     public void playerHealthyTest(Player player) {//Checks if a player is healthy to play again
@@ -334,7 +335,8 @@ public class PlayerCtrl extends Controller {
         }
     }
 
-    public void calculateInjuredHealthIncrease(Player player) { //Calculates an amount to add to an injured players health 
+   public void calculateInjuredHealthIncrease(Player player) { //Calculates an amount to add to an injured players health 
+        
         int healthIncrease = ranNum.nextInt(3);
         int positiveHealth;
 
@@ -345,6 +347,7 @@ public class PlayerCtrl extends Controller {
         } else {
             player.health += healthIncrease;
         }
+        playerHealthyTest(player);
     }
 
     public static void randomStats() {//Generates random position values
@@ -523,7 +526,7 @@ public class PlayerCtrl extends Controller {
         }
         Player p = transferPlayerForm.get();
         p.update();
-        flash("Success", "Player " + transferPlayerForm.get().playerName + " has added to your team");
+        flash("success", "Player " + transferPlayerForm.get().playerName + " has added to your team");
 
         return redirect("/squad/0");
     }
@@ -533,7 +536,7 @@ public class PlayerCtrl extends Controller {
     public Result deletePlayer() { //renders the deletePlayer page
         //Creates a list of players
         List<Player> players = Player.findAll();
-        return ok(delPlayer.render(User.getLoggedIn(session().get("loginName")), players));
+        return ok(delPlayer.render(User.getLoggedIn(session().get("loginname")), players));
     }
     //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
@@ -560,7 +563,7 @@ public class PlayerCtrl extends Controller {
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getPlayerID() == playerID) {
                 Form<Player> editPlayerForm = Form.form(Player.class).fill(players.get(i));
-                return ok(editPlayer.render(User.getLoggedIn(session().get("loginName")), editPlayerForm, players.get(i)));
+                return ok(editPlayer.render(User.getLoggedIn(session().get("loginname")), editPlayerForm, players.get(i)));
 
             }
 
@@ -608,7 +611,7 @@ public class PlayerCtrl extends Controller {
     @With(CheckIfAdmin.class)
     public Result addPlayer() { //Renders the add player page
         Form<Player> addPlayerForm = Form.form(Player.class);
-        return ok(addPlayer.render(User.getLoggedIn(session().get("loginName")), addPlayerForm));
+        return ok(addPlayer.render(User.getLoggedIn(session().get("loginname")), addPlayerForm));
     }
 
     //Insures user is admin before allowing access
@@ -619,16 +622,16 @@ public class PlayerCtrl extends Controller {
         Player newPlayer;
 
         if (newPlayerForm.hasErrors()) {
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
 
         }
         else if(playerNameTaken(newPlayerForm.get().playerName)==true){
             flash("error","Player name already used!");
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
         }
         else if(newPlayerForm.get().health > MAX_HEALTH){
             flash("error","Player health can not be more than 10!");
-            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginName")), newPlayerForm));
+            return badRequest(addPlayer.render(User.getLoggedIn(session().get("loginname")), newPlayerForm));
         }
         else{
             newPlayer = newPlayerForm.get();
@@ -645,6 +648,57 @@ public class PlayerCtrl extends Controller {
         List<Player> players = Player.findAll();
         for(Player p : players){
             if(p.getPlayerName().equals(newPlayerName)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+	public Result editTeam(Long teamID)//Renders a form based on the team selected by the admin
+	{	 
+		List<Team> team = Team.find.all();
+		for(int i = 0 ; i < team.size();i++)
+		{
+			if(team.get(i).getTeamID() == teamID)
+			{	
+				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
+				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginname")),manageTeamForm,team.get(i)));
+			}		
+		}
+		
+       return redirect("/");
+    }
+     //Insures user is admin before allowing access
+	@Security.Authenticated(Secured.class)
+	public Result editTeamNameSubmit(Long id){//Processes the
+		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
+		 List<Team> team = Team.find.all();
+		 Team editTeam;
+		 if(teamNameUsed(manageTeamForm.get().teamName) == true){//Insures two team names arent the same
+            flash("error","Team name is already used please try again!");
+            return redirect("/teamDB");
+        }
+        else{
+            editTeam = manageTeamForm.get();
+            for(int i = 0;i < team.size();i++)
+            {
+                if(team.get(i).getTeamID() == id)
+                {
+                    team.get(i).setTeamName(editTeam.getTeamName());
+                    team.get(i).update();
+                }			               
+            }       		
+        }
+		flash("success", "Team"+manageTeamForm.get().teamName+" has been updated");
+		return redirect("/squad/0");
+	}
+    public boolean teamNameUsed(String name){//Insures two team names arent the same
+        boolean taken = false;
+        List<Team> teams = Team.findAll();
+        for(int i = 0;i < teams.size(); i++){
+            if(teams.get(i).teamName.equalsIgnoreCase(name)){
                 return true;
             }
         }

@@ -3,6 +3,14 @@
     @main("Manage Team", user) {
         <!-- /.row -->
         <div class="row">
+            @if(flash.containsKey("success")) {
+            <!--Flashes if player gets trained -->
+            <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
             <div class="col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -20,24 +28,23 @@
                         </thead>
                         <tbody>
                         @for(t <- teams) {
-                            <tr>
-                                <td>@t.teamID</td>
-                                <td>@t.teamName</td>
-                                <td>@t.getTeamScore()</td>
-                                <div class="col-md-6">
-                            </div>
-                                <td>
-                                @helper.form(action = routes.AdminCtrl.delTeam(t.teamID)) {
-                                    <input class="btn-xs btn-danger" type="submit" value="Delete Team" >
-                                </td>
-                                }
-                                <td>
-                                @helper.form(action = routes.AdminCtrl.editTeam(t.teamID)) {
-                                    <input class="btn-xs btn-danger" type="submit" value="Edit Team!!" >
-                                </td>
-                                }
-                            </tr>
+                        <tr>
+                            <td>@t.teamID</td>
+                            <td>@t.teamName</td>
+                            <td>@t.getTeamScore()</td>
+                            <td>
+                            @helper.form(action = routes.AdminCtrl.delTeam(t.teamID)) {
+                                <input class="btn-xs btn-danger" type="submit" value="Delete Team" >
+                            </td>
+                            }
+                            <td>
+                            @helper.form(action = routes.AdminCtrl.editTeam(t.teamID)) {
+                                <input class="btn-xs btn-danger" type="submit" value="Edit Team!!" >
+                            </td>
+                            }
+
                         }
+                        </tr>
                         </tbody>
                     </table>
                         <!-- /.panel-body -->

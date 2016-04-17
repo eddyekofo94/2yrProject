@@ -12,16 +12,14 @@
                 @form.globalError.message
                 </p>
             }
-            @if(flash.containsKey("error")) {
-                <div class="alert alert-warning">
-                    Admin login required!
-                </div>
-            }
-            @if(flash.containsKey("errorM")) {
-                <div class="alert alert-warning">
-                    Manager login required!
-                </div>
-            }
+            @if(flash.containsKey("success")) {
+            <!--Flashes if player gets trained -->
+            <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
                 <!-- The login form -->
             @helper.form(action = controllers.security.routes.LoginCtrl.authenticate) {
 

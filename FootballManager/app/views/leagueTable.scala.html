@@ -2,6 +2,14 @@
     @main("League Table", user) {
         <div class="row">
             <div class="col-lg-12">
+                @if(flash.containsKey("success")) {
+            <!--Flashes if player gets trained -->
+            <h5 class="alert alert-success">@flash.get("success")</h5>
+        }
+        @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+            <h5 class="alert alert-danger">@flash.get("error")</h5>
+        }
                 <h1 class="page-header">League Table</h1>
             </div>
                 <!-- /.col-lg-12 -->
