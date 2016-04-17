@@ -488,16 +488,39 @@ public class PlayerCtrl extends Controller {
     public Result transferPlayer(Long id) { //Renders the transfer player page
         //Creates a list of players
         List<Player> players = Player.findAll();
+		List<User> managerList = User.findAll();
+		List<Team> teamList = Team.findAll();
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
+		
         Team transfer = Team.getTeamDefault();
+		Manager manager;
+		
+		
+		
 
         Long ids = transfer.getTeamID();
 
         for (int i = 0; i < players.size(); i++) {
             if (id == players.get(i).getPlayerID()) {
-
-                players.get(i).setTeam(transfer);
-
+				
+				for(int k = 0 ; k < managerList.size();k++)
+				{
+					if(players.get(i).getTID() == teamList.get(k).getTeamID())
+					{
+						for(int j = 0 ; j < managerList.size(); j++)
+						{
+							if(teamList.get(k).getUserID() == managerList.get(k).getid())
+							{
+								manager= (Manager)managerList.get(k);
+								manager.setBankaccount(players.get(i).getTransferValue());
+								manager.update();
+								players.get(i).setTeam(transfer);
+								players.get(i).update();
+							}
+						}
+					}
+                
+				}
             }
 
         }
