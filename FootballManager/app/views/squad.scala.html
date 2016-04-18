@@ -1,6 +1,10 @@
 @(user: models.users.User, positions: List[models.Position], players: List[models.Player])
     @import models.users.Manager;
     @main("Squad", user) {
+      <!-- <div class="panel-heading">
+          Squad <a href="/help#squad"><i class="fa fa-info-circle fa-fw"></i></a>
+      </div> -->
+
         <!-- /.row -->
         <div class="row">
             @if(flash.containsKey("success")) {
@@ -12,7 +16,11 @@
                 <h5 class="alert alert-danger">@flash.get("error")</h5>
             }
             <h3>
-                Team name: @user.getTeam().getTeamName() <a href="@routes.PlayerCtrl.editTeam(user.getTeam().getTeamID())" ><input class="btn-xs btn-danger" type="submit" value="Change Team Name"></a></h3>
+                Team name: @user.getTeam().getTeamName()
+                <a href="@routes.PlayerCtrl.editTeam(user.getTeam().getTeamID())" >
+                  <input class="btn-xs btn-danger" type="submit" value="Change Team Name"></a>
+                </h3>
+
             <div class="col-md-2">
                 <div class="list-group">
                     <a href="@routes.PlayerCtrl.squad(0)" class="list-group-item">All Positions </a>
@@ -25,11 +33,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         This is your current squad. You have @user.getNumOfTrain() trains left for this match!
+                        <a href="/help#squad"><i class="fa fa-info-circle fa-fw pull-right"></i></a>
                     </div>
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                
+
                                 <th>Player Name</th>
                                 <th>GK</th>
                                 <th>Def</th>
@@ -45,7 +54,7 @@
                                     <th>Position</th>
 									<th> Transfer value</th>
                                     <th>Transfer</th>
-									
+
                                 }
                             </tr>
                         </thead>
@@ -54,7 +63,7 @@
                             @if(player.team.getUserID() == user.getid()) {
                                     <!--Checks that players shown are in the users team -->
                                 <tr>
-                                   
+
                                     <td>@player.playerName</td>
                                     <td>@player.gkVal</td>
                                     <td>@player.defVal</td>
@@ -105,12 +114,12 @@
                                     </th>
 											<td>€ @player.transferValue</td>
                                     <div class="col-md-6">
-                                    
+
                                     <td>
                                         <a href="@routes.PlayerCtrl.transferPlayer(player.playerID)" class="btn-xs btn-danger" ><span
                                         class="glyphicon glyphicon-transfer"></span></a>
                                     </td>
-									
+
                                     }
                                 </tr>
                             }
@@ -133,4 +142,3 @@
                     <!-- /.col-lg-12 -->
             </div>
     }
-	

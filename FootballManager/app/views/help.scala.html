@@ -4,13 +4,13 @@
 @main("Help", user) {
 
 <h2>Contents</h2>
-<ul>
+<!-- <ul>
   <li>	About this game</li>
 <ul>
   <li>Intended audience</li>
   <li>Requirements to play Football Manager</li>
 </ul>
-<li>Rules of the game.</li>
+<li>Rules of the game.</li> -->
 <li>Using Football Manager</li>
 <ul>
 <li>Register</li>
@@ -35,41 +35,9 @@
  The term "you" or "your" refers to the user or viewer of our website.
  </font>
 </h6>
-<h3>About this Game</h3>
-<h4>Intended Audience</h4>
-<p>
-  FootballManager is a FREE online football simulator for dozens of players from the whole world.
-  Once in, you take charge of your own team, buy and sell players,
-  train your players to improve in the areas you wish to focus on, play matches and ultimately win the league.
-</p>
-<p>
-  FootballManager is the most action-packed football manager game of them all,
-  with 1 league match (and training sessions) per week. challenge anyone at anytime, express your management prowess and become the best.
-  From the above description the audience for this football simulator is intended for all genders and ages.
-  Join now, and check it out for yourself,
-  it doesn't cost a dime unless you want it to anyway, and you'll be up and playing in a couple of minutes!
-</p>
-</h2>Requirements to play Football Manager</h2>
-<p>If you are reading this you are full capable of playing this amazing game!</p>
-<h3>Rules of the game</h3>
-<p>
-  By accessing FootballManager you agree to abide to the following rules.
-  Failure to abide to these rules can result in your account being deleted, suspended,
-  warned, or any other action that may be deemed appropriate.
-</p>
-<p>
-These rules are in place as a guideline, if you carry out an action that is deemed to give you an unfair advantage we
-will investigate this fully and appropriate consequences will be put in place.
-</p>
-<p>
-<li>You are only allowed to own ONE account on FootballManager regardless of which world it is in. </li>
-<li>Do not login to another account other than your own.</li>
-<li>Do not create an account with an abusive manager name.</li>
-<li>Do not exploit any technical bugs to gain an advantage. If you spot a Technical Issue you should CONTACT US HERE!.</li>
-</p>
 <h3>Using Football Manager</h3>
 <div id="register">
-<h4>Register</h4>
+<h4>Register <a href="/register"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
 <h6>
   <font color="red">
     *Note that all of the passwords stored in our database are hashed using the SHA-256 algorithm for authentication and security assurance.
@@ -83,13 +51,13 @@ Private information like name and addresses are only used for purposes of identi
 </p>
 </div>
 <div id="login">
-<h4>Login</h4>
+<h4>Login <a href="/login"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
 <p>
-To login please enter your login name & password. If not yet previously registered with us please click <a href="/register">here</a>.
+To login please enter your login name & password. If not yet previously registered with FootballManager please click <a href="/register">here</a>.
 </p>
 </div>
 <div id="squad">
-<h4>Squad</h4>
+<h4>Squad <a href="/squad"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
 
 <li>Transfer Market</li>
 <p>
@@ -118,9 +86,14 @@ If a player’s health statistic is low due to participation in many games and t
 This injury occurs for a certain day/week depending on the severity of the injury.
 </p>
 </div>
-<h4>League</h4>
+<div id="league">
+<h4>League <a href="/leagueTable"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
+<p>
+  The league table shows in ascending the team with the most points, if  points are equal
+  the team with a better goal difference gets the benefit of the both.
+</p>
 <div id="fixtures">
-<li>Fixtures</li>
+<li>Fixtures <a href="/fixtures"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></li>
   <p>
     Fixtures are generated randomnly once a week. Each team plays each other twice in a league, therefore the bigger the league the more fixtures generated.
   </p>
@@ -130,5 +103,5 @@ This injury occurs for a certain day/week depending on the severity of the injur
   Submit team, maximum 11 players on the pitch, 4-4-2 formation, any player can be in any position player.
 </p>
 
-
+</div>
 }
