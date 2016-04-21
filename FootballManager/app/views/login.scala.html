@@ -4,8 +4,12 @@
 @(form: Form[models.users.Login], user: models.users.User)
 
     @main("Login Required", user) {
+      <div class="col-xs-12">
+        <a href="/help#login"><i class="fa fa-info-circle fa-fw pull-center"></i></a>
         <div class="col-xs-4">
-            <h3>Sign in</h3>
+            <h3>
+              Sign in
+            </h3>
                 <!-- Display login errors if they exist -->
             @if(form.hasGlobalErrors) {
                 <p class="alert alert-warning">
@@ -36,4 +40,5 @@
                 </div>
             }
         </div>
+      </div>
     }
