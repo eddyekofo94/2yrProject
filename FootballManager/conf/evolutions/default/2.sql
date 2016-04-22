@@ -1,7 +1,7 @@
 # --- !Ups
 Insert into User(usertype,userid,name,loginname,password,NUMBER_OF_TRAINING) values ('admin',0,'admin','admin','393151a09f5345add5e41c8d5f01fe378d2c18655dbc2adab92ceb6bb71bf290',0);
 
-INSERT into POSITION(id,POSITION ) VALUES(0,'None');
+INSERT into POSITION(id,POSITION ) VALUES(0,'Not Assigned');
 INSERT into POSITION(id,POSITION ) VALUES(1,'Goalkeeper');
 INSERT into POSITION(id,POSITION ) VALUES(2,'Defense');
 INSERT into POSITION(id,POSITION ) VALUES(3,'Midfield');
