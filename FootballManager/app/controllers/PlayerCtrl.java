@@ -29,6 +29,8 @@ public class PlayerCtrl extends Controller {
     final int MAX_HEALTH = 10;
     //Max attribute value
     final int MAX_VALUE = 10;
+    //Minimum training value
+    final int MIN_TRAIN_VALUE = 1;
     //Max amount of players per team
     private final int MAX_PLAYERS = 15;
     //Max amount of players on field
@@ -66,8 +68,15 @@ public class PlayerCtrl extends Controller {
         List<Player> players = Player.findAll();
         List<Position> positions = Position.find.where().orderBy("position asc").findList();
 
-        if (position == 0) {
-            players = Player.findAll();
+        if (position == 0) { 
+            for (int i = 0; i < positions.size(); i++) {
+                if (positions.get(i).id == position) {
+                    players = positions.get(i).players;
+                }
+            }       
+        }
+        else if (position == 6) {
+           players = Player.findAll(); 
         } else {
             for (int i = 0; i < positions.size(); i++) {
                 if (positions.get(i).id == position) {
@@ -83,7 +92,7 @@ public class PlayerCtrl extends Controller {
         List<Position> positions = Position.findAll(); 
         List<Player> players = Player.findAll();
         if (positionCount(getTeam(teamID), position) == false) {            
-            return redirect("/squad/0");
+            return redirect("/squad/6");
         } else {
             for (Player p : players) { 
                 if (p.playerID == pID) {//Insures the player changed matches the player selected by the user
@@ -93,7 +102,7 @@ public class PlayerCtrl extends Controller {
                             p.setPosition(positions.get(i)); // Sets the players position to the new position
                             p.update(); //update the player in the database
                             flash("success", "Player has changed position to " + position + "!"); 
-                            return redirect("/squad/" + positions.get(i).getPositionID());
+                            return redirect("/squad/6");
                         }
                     }
                 }
@@ -102,7 +111,7 @@ public class PlayerCtrl extends Controller {
 
         }
         flash("error", "Player has not been changed position to " + position + "!"); 
-        return redirect("/squad/0");
+        return redirect("/squad/6");
 
     }
     //Counts number of players in each position and on the field
@@ -157,6 +166,10 @@ public class PlayerCtrl extends Controller {
             flash("error", "Sorry you already have enough players in position Striker!");
             return false;
         }
+        else if (posCount[5] >= 4 && position.equals("Sub")) {//If Striker posCount is > 1 and position = Striker
+            flash("error", "Sorry you already have enough players in position sub!");
+            return false;
+        }
         else{ 
 
             totalOnfield = posCount[1] + posCount[2] + posCount[3] + posCount[4]; //Add up all the players on the pitch 
@@ -197,19 +210,17 @@ public class PlayerCtrl extends Controller {
                         flash("error", "Player is already max in position " + position);
                         return redirect("/squad/20");
                     } else if (randomTrainVal <= 2) { // dont train
-                        user.numberOfTraining--;
-                        user.update();
                         flash("error", "Sorry could not train player this time please try again");
-                        return redirect("/squad/0");
+                        return redirect("/squad/6");
                     } else if (randomTrainVal <= 4) { //train by small amount between 1 and 2
                         addTrainVal(position, randomTrainVal, p);
-                        deductHealth(ranNum.nextInt(2), p);;
+                        deductHealth(MIN_TRAIN_VALUE, p);;
                         p.injury = getInjured(p.health, p);
                         user.numberOfTraining--;
                         user.update();
                         p.update();
                         flash("success", "Player trained!");
-                        return redirect("/squad/0");
+                        return redirect("/squad/6");
                     } else { //Train by the max amount no more than 3
                         addTrainVal(position, randomTrainVal, p);
                         deductHealth(ranNum.nextInt(3), p);
@@ -218,7 +229,7 @@ public class PlayerCtrl extends Controller {
                         user.update();
                         p.update();
                         flash("success", "Player trained!");
-                        return redirect("/squad/0");
+                        return redirect("/squad/6");
                     }
 
                 }               
@@ -228,9 +239,9 @@ public class PlayerCtrl extends Controller {
 
         } else { //If no more trains left
             flash("error", "Sorry you have used all of your training for this match!");
-            return redirect("/squad/0");
+            return redirect("/squad/6");
         }
-        return redirect("/squad/0");
+        return redirect("/squad/6");
     }
 
     public boolean getInjured(int health, Player player) {//Checks if player is injured
@@ -449,7 +460,7 @@ public class PlayerCtrl extends Controller {
             }
         }
         flash("success", "You have bought a player!");
-        return redirect("/squad/0");
+        return redirect("/squad/6");
     }
 
     public Long getPositionID(String position) { //Returns an positionID to match the position that was passed in
@@ -493,40 +504,32 @@ public class PlayerCtrl extends Controller {
         Form<Player> transferPlayerForm = Form.form(Player.class).bindFromRequest();
 		
         Team transfer = Team.getTeamDefault();
-		Manager manager;
-		
-		
-		
-
-        Long ids = transfer.getTeamID();
-
-        for (int i = 0; i < players.size(); i++) {
-            if (id == players.get(i).getPlayerID()) {
+		Manager manager;	
 				
+        Long ids = transfer.getTeamID();
+        for (int i = 0; i < players.size(); i++) {
+            if (id == players.get(i).getPlayerID()) {				
 				for(int k = 0 ; k < managerList.size();k++)
 				{
 					if(players.get(i).getTID() == teamList.get(k).getTeamID())
 					{
 						for(int j = 0 ; j < managerList.size(); j++)
 						{
-							if(teamList.get(k).getUserID() == managerList.get(k).getid())
+							if(teamList.get(k).getUserID() == managerList.get(j).getid())
 							{
 								manager= (Manager)managerList.get(k);
 								manager.setBankaccount(players.get(i).getTransferValue());
 								manager.update();
+                                System.out.println("updated");
 								players.get(i).setTeam(transfer);
 								players.get(i).update();
 							}
 						}
-					}
-                
+					}               
 				}
             }
-
         }
-
         return ok(transferPlayer.render(User.getLoggedIn(session().get("loginname")), players, transferPlayerForm, ids));
-
     }
 
     //Insures user is logged in before allowing access
@@ -538,7 +541,7 @@ public class PlayerCtrl extends Controller {
         //Creates a list of players
         List<Player> players = Player.findAll();
         if (transferPlayerForm.hasErrors()) {
-            return redirect("/squad/0");
+            return redirect("/squad/6");
 
         }
         int pID = 0;
@@ -551,7 +554,7 @@ public class PlayerCtrl extends Controller {
         p.update();
         flash("success", "Player " + transferPlayerForm.get().playerName + " has added to your team");
 
-        return redirect("/squad/0");
+        return redirect("/squad/6");
     }
       //Insures user is admin before allowing access
     @Security.Authenticated(Secured.class)
@@ -677,45 +680,48 @@ public class PlayerCtrl extends Controller {
         return false;
     }
     
-    //Insures user is admin before allowing access
 	@Security.Authenticated(Secured.class)
-	public Result editTeam(Long teamID)//Renders a form based on the team selected by the admin
+	public Result editTeamName(Long teamID)//Renders a form based on the team selected by the admin
 	{	 
 		List<Team> team = Team.find.all();
 		for(int i = 0 ; i < team.size();i++)
 		{
 			if(team.get(i).getTeamID() == teamID)
 			{	
-				Form<Team> manageTeamForm = Form.form(Team.class).fill(team.get(i));
-				 return ok(manageFormTeam.render(User.getLoggedIn(session().get("loginname")),manageTeamForm,team.get(i)));
+				Form<Team> changeTeamNameForm = Form.form(Team.class).fill(team.get(i));
+				 return ok(editTeamName.render(User.getLoggedIn(session().get("loginname")),changeTeamNameForm,team.get(i)));
 			}		
 		}
 		
        return redirect("/");
     }
-     //Insures user is admin before allowing access
+
 	@Security.Authenticated(Secured.class)
 	public Result editTeamNameSubmit(Long id){//Processes the
-		 Form<Team> manageTeamForm = Form.form(Team.class).bindFromRequest();
+		 Form<Team> changeTeamNameForm = Form.form(Team.class).bindFromRequest();
 		 List<Team> team = Team.find.all();
 		 Team editTeam;
-		 if(teamNameUsed(manageTeamForm.get().teamName) == true){//Insures two team names arent the same
-            flash("error","Team name is already used please try again!");
-            return redirect("/teamDB");
-        }
-        else{
-            editTeam = manageTeamForm.get();
-            for(int i = 0;i < team.size();i++)
-            {
-                if(team.get(i).getTeamID() == id)
-                {
+         for(int i = 0;i < team.size();i++)
+         {
+             if(team.get(i).getTeamID() == id)
+             {
+                if(team.get(i).teamName.equals(changeTeamNameForm.get().teamName)){//Checks if name stays the same
+                    flash("success", "Team "+changeTeamNameForm.get().teamName+" has been updated");
+                    return redirect("/squad/6");
+                }
+                else if(teamNameUsed(changeTeamNameForm.get().teamName) == true){//Insures two team names arent the same
+                    flash("error","Team name is already used please try again!");
+                    return redirect("/editTeamName/"+id);
+                }
+                else{
+                    editTeam = changeTeamNameForm.get();                                          
                     team.get(i).setTeamName(editTeam.getTeamName());
                     team.get(i).update();
                 }			               
             }       		
         }
-		flash("success", "Team"+manageTeamForm.get().teamName+" has been updated");
-		return redirect("/squad/0");
+		flash("success", "Team "+changeTeamNameForm.get().teamName+" has been updated");
+		return redirect("/squad/6");
 	}
     public boolean teamNameUsed(String name){//Insures two team names arent the same
         boolean taken = false;

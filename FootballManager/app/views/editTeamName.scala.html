@@ -1,8 +1,11 @@
 @(user: models.users.User, manageTeamForm: Form[models.Team], team: models.Team)
     @import helper._
     @main("Edit Team Name", user) {
-        <h3>Manage a Team</h3>
-        
+        <h3>Change Team Name</h3>
+            @if(flash.containsKey("error")) {
+                <!--Flashes if players position gets trained -->
+                <h5 class="alert alert-danger">@flash.get("error")</h5>
+            }
         @form(action = routes.PlayerCtrl.editTeamNameSubmit(team.teamID), 'class -> "form-horizontal", 'role -> "form") {
             @inputText(manageTeamForm("teamName"), '_label -> "Team Name")
 

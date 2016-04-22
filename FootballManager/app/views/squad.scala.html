@@ -17,14 +17,15 @@
             }
             <h3>
                 Team name: @user.getTeam().getTeamName()
-                <a href="@routes.PlayerCtrl.editTeam(user.getTeam().getTeamID())" >
+                <a href="@routes.PlayerCtrl.editTeamName(user.getTeam().getTeamID())" >
                   <input class="btn-xs btn-danger" type="submit" value="Change Team Name"></a>
                 </h3>
 
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="@routes.PlayerCtrl.squad(0)" class="list-group-item">All Positions </a>
+                    <a href="@routes.PlayerCtrl.squad(6)" class="list-group-item">All Positions </a>
                     @for(p <- positions) {
+                        
                         <a href="@routes.PlayerCtrl.squad(p.id)" class="list-group-item">@p.position</a>
                     }
                 </div>
@@ -110,6 +111,8 @@
                                                 Striker</a></li>
                                             <li><a href="@routes.PlayerCtrl.setPosition("Sub", player.playerID, player.team.getTeamID())">
                                                 Sub</a></li>
+                                            <li><a href="@routes.PlayerCtrl.setPosition("Not Assigned", player.playerID, player.team.getTeamID())">
+                                                Not Assigned</a></li>    
                                         </ul>
                                     </th>
 											<td>€ @player.transferValue</td>
