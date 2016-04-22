@@ -50,7 +50,7 @@ POST        /submitEditPlayer                           controllers.PlayerCtrl.s
 GET         /addTeam                                    controllers.AdminCtrl.addTeam()
 POST        /addTeamSubmit                              controllers.AdminCtrl.addTeamSubmit()
 
-GET         /editTeamName/:team                         controllers.PlayerCtrl.editTeam(team: Long)
+GET         /editTeamName/:team                         controllers.PlayerCtrl.editTeamName(team: Long)
 POST        /editTeamNameSubmit                         controllers.PlayerCtrl.editTeamNameSubmit(id: Long)
 GET         /manageTeam                                 controllers.AdminCtrl.manageTeam()
 #POST    /manageTeamSubmit                              controllers.AdminCtrl.manageTeamSubmit()
