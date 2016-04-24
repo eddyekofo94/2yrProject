@@ -124,7 +124,7 @@ public class LeagueCtrl extends Controller {
     }
     
     public static void generateFixtures(){
-        //needs locked to admin only .
+       
         for(Fixtures f : Fixtures.<Fixtures>findAll()) {
             f.delete();
         }
