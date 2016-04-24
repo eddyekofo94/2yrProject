@@ -183,7 +183,12 @@ private User getCurrentUser() {
 			
 		}
 			playMatch();
+			return redirect("/fixtures");
 		}
-		return redirect("/fixtures");
+		else {
+			flash("success", "Awaiting managers");
+			return redirect("/squad");
+		}
+		
 	}
 }
