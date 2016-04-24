@@ -440,13 +440,11 @@ public class PlayerCtrl extends Controller {
                 owner = (Manager) userList.get(k);
                 for (int i = 0; i < players.size(); i++) {
                     if (id == players.get(i).getPlayerID()) {
-
                         for (int j = 0; j < teamList.size(); j++) {
-                            if (teamList.get(j).getTeamID() == owner.getid()) {
+                            if (teamList.get(j).getUserID() == owner.getid()) {
                                 userTeam = teamList.get(j);
-
                                 if (owner.getBankaccount() >= players.get(i).getTransferValue()) { //Insures user can afford player
-
+                                 
                                     players.get(i).setTeam(userTeam);
                                     owner.updateBankaccount(players.get(i).getTransferValue());
                                 }
