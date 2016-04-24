@@ -95,7 +95,7 @@ public class PlayerCtrl extends Controller {
             return redirect("/squad/6");
         } else {
             for (Player p : players) { 
-                if (p.playerID == pID) {//Insures the player changed matches the player selected by the user
+                if ((p.playerID == pID) && (p.getInjury() == false)) {//Insures the player changed matches the player selected by the user
 
                     for (int i = 0; i < positions.size(); i++) {
                         if (positions.get(i).position.equals(position)) {//Mathces the position to a position in the list to get the correct position
@@ -145,9 +145,10 @@ public class PlayerCtrl extends Controller {
                 if (playerList.get(j).getPosition() == 5) {//Insure player is a Sub
                     posCount[5]++;
                 
-
+				}
             }
         }
+	
 
         if (posCount[1] >= 1 && position.equals("Goalkeeper")) {//If Goalkeeper posCount is > 1 and position = Goalkeerer
             flash("error", "Sorry you alread have a Goalkeeper!");
@@ -250,6 +251,7 @@ public class PlayerCtrl extends Controller {
     public boolean getInjured(int health, Player player) {//Checks if player is injured
 
         if (player.health <= INJURY_LEVEL) {
+			player.setPosition(Position.getPositionNone());
             return true;
         } else {
             return false;
