@@ -4,7 +4,10 @@
 
     @main("New Player", user) {
         <h3> Edit a Player</h3>
-
+        @if(flash.containsKey("error")) {
+                    <!--Flashes if players position gets trained -->
+                <h5 class="alert alert-danger">@flash.get("error")</h5>
+            }
         @form(action = routes.PlayerCtrl.submitEditPlayer(player.playerID), 'class -> "form-horizontal", 'role -> "form") {
             @inputText(editPlayerForm("playerName"), '_label -> "Name")
             @inputText(editPlayerForm("jerseyNum"), '_label -> "Jersey Number")
@@ -23,18 +26,8 @@
                 <a href="/admin">
                     <button class="btn btn-warning">Cancel</button>
                 </a>
-
-
             </div>
 
 
         }
     }
-
-    this.jerseyNum = jerseyNum;
-    this.playerName = playerName;
-    this.position = position;
-    this.attVal = attVal;
-    this.defVal = defVal;
-    this.midFVal = midFVal;
-    this.gkVal = gkVal;

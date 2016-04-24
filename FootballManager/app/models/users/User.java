@@ -117,7 +117,6 @@ public static List<User> findAll(){
         for(Team t : teams){
             if(t.getUserID() == userid){
                team = t;
-               System.out.println(t);
             }
         }
         

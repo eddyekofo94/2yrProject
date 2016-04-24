@@ -10,24 +10,52 @@
         }
         <div class="banner1">
 
-            <h1>Welcome to football manager</h1>
-            <p> FOOTBALL MANAGER 2016 Football Manager is the most realistic, in-depth and immersive football management simulation available
-                – it’s the closest thing to doing the job for real. Taking control of any squad from your hearts desire, you decide
-                who plays and who sits on the bench, deal with and solve player problems. You're in total control of starting eleven,
-                preparing players and pitch-side instructions as you follow the match live with the acclaimed 3D match engine. Package
-                includes Football Manager Touch for PC, Mac and Linux and network multiplayer options.
+            <h1>Welcome to FootballManager</h1>
+            @if(user == null) {
 
+                <a href="/login"><i class="fa fa-sign-in fa-fw "></i>Login</a>
+                <a href="/register">Register<i class="fa fa-pencil fa-fw"></i></a>
+
+            }
+            <h3>About this Game</h3>
+            <p>
+              FootballManager is a FREE online football simulator for dozens of players around world.
+              Once in, you take charge of your own team, buy and sell players,
+              train your players to improve in the areas you wish to focus on, play matches and ultimately win the league.
             </p>
-        </div>
-
-        <div class="content">
+            <p>
+              FootballManager is the most action-packed football manager game of them all,
+              with 1 league match (and training sessions) per week. challenge anyone at anytime, express your management prowess and become the best.
+              From the above description the audience for this football simulator is intended for all genders and ages.
+              Join now, and check it out for yourself,
+              it doesn't cost a dime unless you want it to anyway, and you'll be up and playing in a couple of minutes!
+            </p>
+            </h2>Requirements to play Football Manager</h2>
+            <p>If you are reading this you are full capable of playing this amazing game!</p>
+            <h3>Rules of the game</h3>
+            <p>
+              By accessing FootballManager you agree to abide to the following rules.
+              Failure to abide to these rules can result in your account being deleted, suspended,
+              warned, or any other action that may be deemed appropriate.
+            </p>
+            <p>
+            These rules are in place as a guideline, if you carry out an action that is deemed to give you an unfair advantage we
+            will investigate this fully and appropriate consequences will be put in place.
+            </p>
+            <p>
+            <ul>
+            <li>You are only allowed to own ONE account on FootballManager regardless of which world it is in. </li>
+            <li>Do not login to another account other than your own.</li>
+            <li>Do not create an account with an abusive manager name.</li>
+            <li>Do not exploit any technical bugs to gain an advantage. If you spot a Technical Issue you should CONTACT US HERE!.</li>
+            </p>
+            <ul>
             <li>Easy to get started</li>
             <li>No pay-to-win features</li>
             <li>Large active soccer community</li>
-            @if(user == null) {
-                <a href="/login"><i class="fa fa-sign-in fa-fw"></i>Login</a>
-                <br>
-                <a href="/register">Register<i class="fa fa-pencil fa-fw"></i></a>
-            }
+          </ul>
+          </ul>
+          </div>
+
         </div>
     }

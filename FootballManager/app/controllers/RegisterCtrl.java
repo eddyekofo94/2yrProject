@@ -67,7 +67,7 @@ public class RegisterCtrl extends Controller {
                 flash("error","No teams to Manage at the moment please try later");
             }
         }
-        return redirect("/squad/0");
+        return redirect("/squad/6");
     }
 
     //Check if login name is taken
