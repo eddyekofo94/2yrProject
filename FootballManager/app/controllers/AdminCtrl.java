@@ -39,25 +39,28 @@ public class AdminCtrl extends Controller
 	}
     
 	    public Result registerFormSubmit() { //Process the registration of a user and saves it to the database
+            RegisterCtrl reg = new RegisterCtrl();
+            Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
 
-        Form<User> newRegisterForm = Form.form(User.class).bindFromRequest();
+            //Check for errors (based on User class annotations)
+            if (newRegisterForm.hasErrors()) {
+                return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+            } 
+            if(reg.loginnameUsed(newRegisterForm.get().loginname) == true){
+                flash("error","login name "+newRegisterForm.get().loginname+" is already used");
+                return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
+            }
+            CalcSHA cs = new CalcSHA(); //creates an object of the class that encrypts the password for the new user
+            User admin = newRegisterForm.get();
+            String md = cs.calcPassword(admin.password); //encrypts the password
 
-        //Check for errors (based on User class annotations)
-        if (newRegisterForm.hasErrors()) {
-            return ok(register.render(User.getLoggedIn(session().get("userID")),newRegisterForm));
-        }
+            admin.password = md; //sets the users password to the encrypted version
+            Administrator a1 = new Administrator(admin);
+            a1.save();
 
-         CalcSHA cs = new CalcSHA(); //creates an object of the class that encrypts the password for the new user
-         User admin = newRegisterForm.get();
-         String md = cs.calcPassword(admin.password); //encrypts the password
+            flash("success", "Admin " + newRegisterForm.get().name + " has been registered");
 
-         admin.password = md; //sets the users password to the encrypted version
-		 Administrator a1 = new Administrator(admin);
-         a1.save();
-
-        flash("success", "Admin " + newRegisterForm.get().name + " has been registered");
-
-        return redirect("/admin");
+            return redirect("/admin");
     }
 	
 	//Insures user is admin before allowing access
@@ -256,26 +259,46 @@ public class AdminCtrl extends Controller
 			if(team.get(i).getTeamID() == id)
 			{
                 if(manageTeamForm.get().teamName.equals(team.get(i).getTeamName())){
-                    team.get(i).setTeamName(editTeam.getTeamName());
-                    team.get(i).setUserID(editTeam.getUserID());
-                    team.get(i).setTeamScore(0);
-                    team.get(i).update();
+                    if(userTeamAssigned(editTeam.getUserID()) == true){
+                        flash("error","User already has a team Assigned!");
+                        return redirect("/editTeam/"+id);
+                    }else{
+                        team.get(i).setTeamName(editTeam.getTeamName());
+                        team.get(i).setUserID(editTeam.getUserID());
+                        team.get(i).setTeamScore(0);
+                        team.get(i).update();
+                    }
                 }
                 else if(teamNameUsed(manageTeamForm.get().teamName) == true){
                     flash("error","Team name "+manageTeamForm.get().teamName+" is already in use");
                     return redirect("/editTeam/"+id);
                 }
-                else{
-                    team.get(i).setTeamName(editTeam.getTeamName());
-                    team.get(i).setUserID(editTeam.getUserID());
-                    team.get(i).setTeamScore(0);
-                    team.get(i).update();
+                else{        
+                    System.out.println("2");
+                    if(userTeamAssigned(editTeam.getUserID()) == true){
+                        flash("error","User already has a team Assigned!");
+                        return redirect("/editTeam/"+id);
+                    }else{
+                        team.get(i).setTeamName(editTeam.getTeamName());                   
+                        team.get(i).setUserID(editTeam.getUserID());                    
+                        team.get(i).setTeamScore(0);
+                        team.get(i).update();
+                    }
                 }
 			}			                 
 		}        			
 		flash("success", "Team "+manageTeamForm.get().teamName+" has been updated");
 		return redirect("/teamDB");
 	}
+    public boolean userTeamAssigned(Long id){
+        List<Team> teams = Team.findAll();
+        for(int i = 0; i < teams.size(); i++){            
+            if(teams.get(i).getUserID() == id){
+                return true;
+            }
+        }
+        return false;
+     }
     public boolean userIDFind(Long id){
         List<User> users = User.findAll();
         for(User u : users){
