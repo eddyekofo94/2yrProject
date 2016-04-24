@@ -103,6 +103,7 @@ public class AdminCtrl extends Controller
 	@Security.Authenticated(Secured.class)
     @With(CheckIfAdmin.class)
 	public Result submitEditUser(Long id){ //Processes the form submitted from the editUser Page
+        RegisterCtrl reg = new RegisterCtrl();//used to call a method to check if a login name is used
 	    Form<User> manageUserForm = Form.form(User.class).bindFromRequest();
 	    List<User> user= User.find.all();
 		User editUser;
@@ -111,10 +112,16 @@ public class AdminCtrl extends Controller
 		for(int i = 0;i < user.size();i++)
 		{
 			if(user.get(i).getid() == id)
-			{								
+			{	
+                							
 				user.get(i).setName(editUser.getName());
-				user.get(i).setLoginName(editUser.getLoginName());
-				//user.get(i).setPassword(editUser.getPassword());
+                if(reg.loginnameUsed(manageUserForm.get().loginname) == true ){
+                    flash("error","Login name is already used");
+                    return badRequest(manageFormUser.render(User.getLoggedIn(session().get("loginname")),manageUserForm,user.get(i)));
+                }else{
+				    user.get(i).setLoginName(editUser.getLoginName());
+                }
+
 				if(user.get(i).password !=  editUser.password)//if there is a new password encrypt it and save it
 				{					
                     CalcSHA cs = new CalcSHA();
@@ -124,7 +131,7 @@ public class AdminCtrl extends Controller
 				user.get(i).update();
 			}			                
 		}		
-		flash("success", "user"+manageUserForm.get().name+" has been updated");
+		flash("success", "User "+manageUserForm.get().name+" has been updated");
 		return redirect("/admin");
     }
     
@@ -151,6 +158,7 @@ public class AdminCtrl extends Controller
         List<Team> teams = Team.findAll();
         for(int i = 0;i < teams.size(); i++){
             if(teams.get(i).teamName.equalsIgnoreCase(name)){
+                System.out.println("2");
                 return true;
             }
         }
@@ -238,18 +246,31 @@ public class AdminCtrl extends Controller
         if(manageTeamForm.get().userID != null){
             if(userIDFind(manageTeamForm.get().userID) == false){
                 flash("error","User ID no found!");
-                return badRequest(manageFormTeam.render(User.getLoggedIn(session().get("userID")),manageTeamForm,manageTeamForm.get()));
+                return redirect("/editTeam/"+id);
             }
         }
+        
 		editTeam = manageTeamForm.get();
 		for(int i = 0;i < team.size();i++)
 		{
 			if(team.get(i).getTeamID() == id)
 			{
-				team.get(i).setTeamName(editTeam.getTeamName());
-				team.get(i).setUserID(editTeam.getUserID());
-				team.get(i).setTeamScore(0);
-				team.get(i).update();
+                if(manageTeamForm.get().teamName.equals(team.get(i).getTeamName())){
+                    team.get(i).setTeamName(editTeam.getTeamName());
+                    team.get(i).setUserID(editTeam.getUserID());
+                    team.get(i).setTeamScore(0);
+                    team.get(i).update();
+                }
+                else if(teamNameUsed(manageTeamForm.get().teamName) == true){
+                    flash("error","Team name "+manageTeamForm.get().teamName+" is already in use");
+                    return redirect("/editTeam/"+id);
+                }
+                else{
+                    team.get(i).setTeamName(editTeam.getTeamName());
+                    team.get(i).setUserID(editTeam.getUserID());
+                    team.get(i).setTeamScore(0);
+                    team.get(i).update();
+                }
 			}			                 
 		}        			
 		flash("success", "Team "+manageTeamForm.get().teamName+" has been updated");
@@ -272,7 +293,7 @@ public class AdminCtrl extends Controller
 		newTeam = newTeamForm.get();
 		newTeam.setTeamScore(0);
 		newTeam.save();
-		flash("successTeam", "Team"+newTeamForm.get().teamName+" has been created");
+		flash("success", "Team "+newTeamForm.get().teamName+" has been created");
 		return redirect("/admin");
 	}
 }

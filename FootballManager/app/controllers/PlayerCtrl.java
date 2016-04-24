@@ -317,7 +317,6 @@ public class PlayerCtrl extends Controller {
     }
 
     public boolean playerMaxed(String position, Player player) { //Checks if a players postion value is maxed
-
         if (player.position.equals("Goalkeeper")) {
             if (player.getGkVal() == MAX_VALUE) {
                 return true;
@@ -605,27 +604,41 @@ public class PlayerCtrl extends Controller {
         Form<Player> editPlayerForm = Form.form(Player.class).bindFromRequest();
         //Creates a list of players
         List<Player> players = Player.findAll();
-        Player player;
+        Player player = editPlayerForm.get();
         if (editPlayerForm.hasErrors()) {
-            return redirect("/");
-
+            return redirect("/editPlayer/"+id);
         }
-
-        player = editPlayerForm.get();
-
+               
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getPlayerID() == id) {
-                players.get(i).setPlayerName(player.playerName);
-                players.get(i).setJerseyNum(player.jerseyNum);
-                players.get(i).setPlayerName(player.getPlayerName());
-                players.get(i).setJerseyNum(player.getJerseyNum());
-                players.get(i).setAtkVal(player.getAtkVal());
-                players.get(i).setDefVal(player.getDefVal());
-                players.get(i).setMidVal(player.getMidVal());
-                players.get(i).setGkVal(player.getGkVal());
-                players.get(i).update();
+                if (players.get(i).getPlayerID() == id) {
+                    if(player.getAtkVal() > MAX_VALUE){
+                        flash("error","Max position value is 10");
+                        return redirect("/editPlayer/"+id);
+                    }
+                    else if(player.getDefVal() > MAX_VALUE){
+                        flash("error","Max position value is 10");
+                        return redirect("/editPlayer/"+id);
+                    }
+                    else if(player.getMidVal() > MAX_VALUE){
+                        flash("error","Max position value is 10");
+                        return redirect("/editPlayer/"+id);
+                    }
+                    else if(player.getGkVal() > MAX_VALUE){
+                        flash("error","Max position value is 10");
+                        return redirect("/editPlayer/"+id);
+                    }
+                    else{
+                        players.get(i).setPlayerName(player.playerName);
+                        players.get(i).setJerseyNum(player.jerseyNum);
+                        players.get(i).setPlayerName(player.getPlayerName());
+                        players.get(i).setJerseyNum(player.getJerseyNum());
+                        players.get(i).setAtkVal(player.getAtkVal());
+                        players.get(i).setDefVal(player.getDefVal());
+                        players.get(i).setMidVal(player.getMidVal());
+                        players.get(i).setGkVal(player.getGkVal());
+                        players.get(i).update();
+                }
             }
-
         }
         return redirect("/admin");
     }
