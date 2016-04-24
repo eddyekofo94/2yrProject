@@ -116,23 +116,30 @@ public class AdminCtrl extends Controller
 		{
 			if(user.get(i).getid() == id)
 			{	
-                							
-				user.get(i).setName(editUser.getName());
-                if(reg.loginnameUsed(manageUserForm.get().loginname) == true ){
+                if(editUser.getLoginName().equals(user.get(i).getLoginName())){                     
+                    user.get(i).setLoginName(editUser.getLoginName());             
+                    if(user.get(i).password !=  editUser.password)//if there is a new password encrypt it and save it
+                    {					
+                        CalcSHA cs = new CalcSHA();
+                        String md = cs.calcPassword(editUser.password);               
+                        user.get(i).setPassword(md);
+                    }
+				    user.get(i).update();					
+                }
+                else if(reg.loginnameUsed(manageUserForm.get().loginname) == true ){
                     flash("error","Login name is already used");
                     return badRequest(manageFormUser.render(User.getLoggedIn(session().get("loginname")),manageUserForm,user.get(i)));
-                }else{
-				    user.get(i).setLoginName(editUser.getLoginName());
-                }
-
-				if(user.get(i).password !=  editUser.password)//if there is a new password encrypt it and save it
-				{					
-                    CalcSHA cs = new CalcSHA();
-                    String md = cs.calcPassword(editUser.password);               
-                    user.get(i).setPassword(md);
-				}
-				user.get(i).update();
-			}			                
+                }else{                   
+				   user.get(i).setLoginName(editUser.getLoginName());               
+                    if(user.get(i).password !=  editUser.password)//if there is a new password encrypt it and save it
+                    {					
+                        CalcSHA cs = new CalcSHA();
+                        String md = cs.calcPassword(editUser.password);               
+                        user.get(i).setPassword(md);
+                    }
+				user.get(i).update();	
+			}
+           }			                
 		}		
 		flash("success", "User "+manageUserForm.get().name+" has been updated");
 		return redirect("/admin");
@@ -259,7 +266,13 @@ public class AdminCtrl extends Controller
 			if(team.get(i).getTeamID() == id)
 			{
                 if(manageTeamForm.get().teamName.equals(team.get(i).getTeamName())){
-                    if(userTeamAssigned(editTeam.getUserID()) == true){
+                    if(editTeam.getUserID() == team.get(i).getUserID()){
+                        team.get(i).setTeamName(editTeam.getTeamName());                   
+                        team.get(i).setUserID(editTeam.getUserID());                    
+                        team.get(i).setTeamScore(0);
+                        team.get(i).update();
+                    }
+                    else if(userTeamAssigned(editTeam.getUserID()) == true){
                         flash("error","User already has a team Assigned!");
                         return redirect("/editTeam/"+id);
                     }else{
@@ -273,9 +286,14 @@ public class AdminCtrl extends Controller
                     flash("error","Team name "+manageTeamForm.get().teamName+" is already in use");
                     return redirect("/editTeam/"+id);
                 }
-                else{        
-                    System.out.println("2");
-                    if(userTeamAssigned(editTeam.getUserID()) == true){
+                else{                   
+                    if(editTeam.getUserID() == team.get(i).getUserID()){
+                        team.get(i).setTeamName(editTeam.getTeamName());                   
+                        team.get(i).setUserID(editTeam.getUserID());                    
+                        team.get(i).setTeamScore(0);
+                        team.get(i).update();
+                    }
+                    else if(userTeamAssigned(editTeam.getUserID()) == true){
                         flash("error","User already has a team Assigned!");
                         return redirect("/editTeam/"+id);
                     }else{
