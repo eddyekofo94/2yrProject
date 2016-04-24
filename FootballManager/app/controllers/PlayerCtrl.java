@@ -212,7 +212,7 @@ public class PlayerCtrl extends Controller {
                     } else if (randomTrainVal <= 2) { // dont train
                         flash("error", "Sorry could not train player this time please try again");
                         return redirect("/squad/6");
-                    } else if (randomTrainVal <= 4) { //train by small amount between 1 and 2
+                    } else if (randomTrainVal < 4) { //train by small amount between 1 and 2
                         addTrainVal(position, randomTrainVal, p);
                         deductHealth(MIN_TRAIN_VALUE, p);;
                         p.injury = getInjured(p.health, p);
