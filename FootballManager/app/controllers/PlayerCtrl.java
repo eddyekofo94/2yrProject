@@ -203,7 +203,7 @@ public class PlayerCtrl extends Controller {
         List<Player> players = Player.findAll();
         if (user.getNumOfTrain() > minTrainingTest) { //Checks the user still has trains left to use MAX 3
             //train value earned to be added to position value
-            int randomTrainVal = ranNum.nextInt(5) + 1;
+            int randomTrainVal = ranNum.nextInt(3) + 1;
             for (Player p : players) {
                 if (p.playerID == pID) {
                     if (playerMaxed(position, p) == true) { //If position chosen is maxed to 10

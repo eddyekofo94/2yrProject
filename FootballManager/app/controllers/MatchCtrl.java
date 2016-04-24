@@ -184,6 +184,7 @@ private User getCurrentUser() {
 		}
 			playMatch();
 		}
+        flash("success","You have submitted your team for this weeks fixtures!");
 		return redirect("/fixtures");
 	}
 }
