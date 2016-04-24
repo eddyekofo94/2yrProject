@@ -2,8 +2,11 @@
     @import helper._
     @main("Manage Users", user) {
         <h3>Manage Users</h3>
+        @if(flash.containsKey("error")) {
+                    <!--Flashes if players position gets trained -->
+                <h5 class="alert alert-danger">@flash.get("error")</h5>
+            }
         @form(action = routes.AdminCtrl.submitEditUser(users.userid), 'class -> "form-horizontal", 'role -> "form") {
-            @inputText(manageUserForm("userid"), '_label -> "User Id")
             @inputText(manageUserForm("name"), '_label -> "Name")
             @inputText(manageUserForm("loginname"), '_label -> "Login Name")
             @inputText(manageUserForm("password"), '_label -> "Password")
