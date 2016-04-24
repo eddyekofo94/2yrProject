@@ -206,7 +206,7 @@ public class PlayerCtrl extends Controller {
         List<Player> players = Player.findAll();
         if (user.getNumOfTrain() > minTrainingTest) { //Checks the user still has trains left to use MAX 3
             //train value earned to be added to position value
-            int randomTrainVal = ranNum.nextInt(5) + 1;
+            int randomTrainVal = ranNum.nextInt(3) + 1;
             for (Player p : players) {
                 if (p.playerID == pID) {
                     if (playerMaxed(position, p) == true) { //If position chosen is maxed to 10
@@ -215,7 +215,7 @@ public class PlayerCtrl extends Controller {
                     } else if (randomTrainVal <= 2) { // dont train
                         flash("error", "Sorry could not train player this time please try again");
                         return redirect("/squad/6");
-                    } else if (randomTrainVal <= 4) { //train by small amount between 1 and 2
+                    } else if (randomTrainVal < 4) { //train by small amount between 1 and 2
                         addTrainVal(position, randomTrainVal, p);
                         deductHealth(MIN_TRAIN_VALUE, p);;
                         p.injury = getInjured(p.health, p);
