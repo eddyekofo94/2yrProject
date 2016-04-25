@@ -120,7 +120,7 @@ public class PlayerCtrl extends Controller {
         List<Player> playerList = Player.find.all();//creates a list of players
         int[] posCount = {0, 0, 0, 0, 0, 0,0}; //intilizing an array of integers for the counts
         final int MAX_ON_FIELD = 11; //Max amount allowed on the field
-        final int MAX_TEAM = 15; //Max amount allowed on a team
+        final int MAX_TEAM = 20; //Max amount allowed on a team
         int totalOnfield = 0; //Count total on field variable
         int totalOnteam = 0; //Count total on team variable
 		boolean playerInjured ;
