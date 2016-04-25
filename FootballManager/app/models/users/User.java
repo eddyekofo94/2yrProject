@@ -32,23 +32,19 @@ public class User extends Model {
     //public String userid;
 
     @Constraints.Required
-		@Constraints.MaxLength(15)
-    @Constraints.MinLength(4)
+		// @Constraints.MaxLength(15)
+    // @Constraints.MinLength(4)
     public String name;
 
 
     @Constraints.Required
-		@Constraints.MaxLength(15)
-   @Constraints.MinLength(4)
-		//Minimum 8 characters at least 1 Alphabet and 1 Number:
-	//	@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
+	// 	@Constraints.MaxLength(15)
+  //  @Constraints.MinLength(4)
     public String loginname;
 
 		@Constraints.Required
 		@Constraints.MaxLength(15)
 		@Constraints.MinLength(4)
-		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
-    //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
     public String password;
 	@Constraints.Required
     // The amount of times a user can train per match
