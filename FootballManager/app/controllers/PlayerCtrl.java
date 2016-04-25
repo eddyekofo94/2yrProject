@@ -631,6 +631,10 @@ public class PlayerCtrl extends Controller {
                         flash("error","Max position value is 10");
                         return redirect("/editPlayer/"+id);
                     }
+                    else if(player.health > MAX_HEALTH){
+                        flash("error","Max health is 10");
+                        return redirect("/editPlayer/"+id);
+                    }
                     else{
                         players.get(i).setPlayerName(player.playerName);
                         players.get(i).setJerseyNum(player.jerseyNum);
