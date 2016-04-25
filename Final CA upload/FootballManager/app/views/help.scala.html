@@ -1,0 +1,107 @@
+@(user: models.users.User)
+@import helper._
+
+@main("Help", user) {
+
+<h2>Contents</h2>
+<!-- <ul>
+  <li>	About this game</li>
+<ul>
+  <li>Intended audience</li>
+  <li>Requirements to play Football Manager</li>
+</ul>
+<li>Rules of the game.</li> -->
+<li>Using Football Manager</li>
+<ul>
+<li>Register</li>
+<li>Login</li>
+<li>Squad</li>
+<ul>
+<li>Transfer Market</li>
+<li>Training</li>
+<li>Health statistics</li>
+<li>Injuries</li>
+</ul>
+<li>League</li>
+<ul>
+<li>Fixtures</li>
+<li>Play Match</li>
+</ul>
+
+
+<h6>
+  <font color="red">
+  *In these terms the terms "FootballManager" or "us" or "we" or "our" refers to the owner of the website.
+ The term "you" or "your" refers to the user or viewer of our website.
+ </font>
+</h6>
+<h3>Using Football Manager</h3>
+<div id="register">
+<h4>Register <a href="/register"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
+<h6>
+  <font color="red">
+    *Note that all of the passwords stored in our database are hashed using the SHA-256 algorithm for authentication and security assurance.
+</font>
+</h6>
+<p>
+When you sign up for a FootballManager account, we ask you for personal information
+(such as your name, email address and an account password).
+We never share or give out your registered information that is regarded as private.
+Private information like name and addresses are only used for purposes of identification.
+</p>
+</div>
+<div id="login">
+<h4>Login <a href="/login"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
+<p>
+To login please enter your login name & password. If not yet previously registered with FootballManager please click <a href="/register">here</a>.
+</p>
+</div>
+<div id="squad">
+<h4>Squad <a href="/squad"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
+
+<li>Transfer Market</li>
+<p>
+In modern football buying and selling players is the key to maintain a strong squad that wins titles.
+This feature is to take your FootballManager experience from ordinary to full of engagement and excitement.
+Each Manager has a bank on which their money is stored, from this bank account purchase of player can be made,
+also when player has been sold the money goes there.
+</p>
+<li>Training</li>
+<p>
+The manager may train his/her player individually on a daily basis.
+Training is a useful feature to improve a player’s ability,
+yet this may cause fatigue, which oft lead to injuries.
+</p>
+<li>Health Statistics</li>
+<p>
+To ensure FootballManager maintains a fun and real life aspect to the game,
+each player on each squad has an indicator which indicates their stamina, fatigue level.
+Keeping check of each player’s health stats will help the manager prevent injuries and reduce chances of winning a game.
+</p>
+<li>Injuries</li>
+<p>
+Injuries are a part of every sport.
+FootballManager has decided to include this vital feature also.
+If a player’s health statistic is low due to participation in many games and training they will become venerable to injury.
+This injury occurs for a certain day/week depending on the severity of the injury.
+</p>
+</div>
+<div id="league">
+<h4>League <a href="/leagueTable"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></h4>
+<p>
+  The league table shows in ascending the team with the most points, if  points are equal
+  the team with a better goal difference gets the benefit of the both.
+</p>
+<div id="fixtures">
+<li>Fixtures <a href="/fixtures"><i class="glyphicon glyphicon-circle-arrow-left"></i></a></li>
+  <p>
+    Fixtures are generated randomnly once a week. Each team plays each other twice in a league, therefore the bigger the league the more fixtures generated.
+  </p>
+</div>
+<li>Play Match</li>
+<p>
+  Submit team, maximum 11 players on the pitch, 4-4-2 formation, any player can be in any position player.
+</p>
+
+</div>
+}
