@@ -168,7 +168,6 @@ public class AdminCtrl extends Controller
         List<Team> teams = Team.findAll();
         for(int i = 0;i < teams.size(); i++){
             if(teams.get(i).teamName.equalsIgnoreCase(name)){
-                System.out.println("2");
                 return true;
             }
         }

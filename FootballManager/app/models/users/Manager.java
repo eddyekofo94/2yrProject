@@ -41,7 +41,7 @@ public class Manager extends User {
 	public Manager(User user)
 	{
 		super(user.userid,user.name,user.loginname,user.password);
-		this.bankaccount = 80000;
+		this.bankaccount = 8000;
 		ready = false;
 	}
 
