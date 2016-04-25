@@ -32,24 +32,24 @@ public class User extends Model {
     //public String userid;
 
     @Constraints.Required
-		//@Constraints.MaxLength(15)
-    //@Constraints.MinLength(4)
+		@Constraints.MaxLength(15)
+    @Constraints.MinLength(4)
     public String name;
 
-    
+
     @Constraints.Required
-	//	@Constraints.MaxLength(15)
-   // @Constraints.MinLength(4)
+		@Constraints.MaxLength(15)
+   @Constraints.MinLength(4)
 		//Minimum 8 characters at least 1 Alphabet and 1 Number:
 	//	@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     public String loginname;
 
 		@Constraints.Required
-		//@Constraints.MaxLength(15)
-		//@Constraints.MinLength(4)
+		@Constraints.MaxLength(15)
+		@Constraints.MinLength(4)
 		//Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character:
     //@Constraints.Pattern(value = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")
-    public String password;	
+    public String password;
 	@Constraints.Required
     // The amount of times a user can train per match
     public int numberOfTraining;
@@ -67,7 +67,7 @@ public class User extends Model {
         this.password = password;
         this.name = name;
         this.loginname = loginname;
-		
+
     }
 public static List<User> findAll(){
 
@@ -81,7 +81,7 @@ public static List<User> findAll(){
 //
 //        return SuperUser.find.all();
 //    }
-//returns the number of times a user has trained per match (max three times) 
+//returns the number of times a user has trained per match (max three times)
      public int getNumOfTrain(){
          return numberOfTraining;
      }
@@ -89,7 +89,7 @@ public static List<User> findAll(){
      public void reSetNumberOfTraining(){
          numberOfTraining = 3;
      }
-     
+
     // Static method to authenticate based on username and password
     // Returns user object if found, otherwise NULL
     //public	static SuperUser authenticate(String email, String password)
@@ -119,11 +119,11 @@ public static List<User> findAll(){
                team = t;
             }
         }
-        
+
         return team;
     }
-	
-	
+
+
 	public String getPassword()
 	{
 		return password;
@@ -140,7 +140,7 @@ public void setPassword(String password)
         DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
         return val == null ? null : val.value();
     }
-	
+
 	public String getName()
 	{
 		return name;
@@ -149,7 +149,7 @@ public void setPassword(String password)
 	{
 		this.name = name;
 	}
-	
+
 	public String getLoginName()
 	{
 		return loginname;
@@ -157,8 +157,8 @@ public void setPassword(String password)
 	public void setLoginName(String loginName)
 	{
 		this.loginname = loginName;
-		
+
 	}
-	
+
 
 }
