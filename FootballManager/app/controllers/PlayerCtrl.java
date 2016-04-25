@@ -118,7 +118,7 @@ public class PlayerCtrl extends Controller {
     public boolean positionCount(Team team, String position){
         boolean output = true;
         List<Player> playerList = Player.find.all();//creates a list of players
-        int[] posCount = {0, 0, 0, 0, 0, 0}; //intilizing an array of integers for the counts
+        int[] posCount = {0, 0, 0, 0, 0, 0,0}; //intilizing an array of integers for the counts
         final int MAX_ON_FIELD = 11; //Max amount allowed on the field
         final int MAX_TEAM = 15; //Max amount allowed on a team
         int totalOnfield = 0; //Count total on field variable
@@ -146,6 +146,7 @@ public class PlayerCtrl extends Controller {
                     posCount[5]++;
                 
 				}
+
             }
         }
 	
@@ -181,8 +182,8 @@ public class PlayerCtrl extends Controller {
                 flash("error", "Sorry too many players on the field!");
                 return false;
             }
-            totalOnteam = totalOnfield + posCount[5]; //Adds up the amount of players on a team 
-            if (totalOnteam > MAX_TEAM) { 
+            totalOnteam = totalOnfield + posCount[5] + posCount[0]; //Adds up the amount of players on a team 
+            if (totalOnteam >= MAX_TEAM) { 
                 flash("error", "Sorry you already have enough players! If you want an new one please sell one of your players");
                 return false;
             }
@@ -448,6 +449,9 @@ public class PlayerCtrl extends Controller {
                         for (int j = 0; j < teamList.size(); j++) {
                             if (teamList.get(j).getUserID() == owner.getid()) {
                                 userTeam = teamList.get(j);
+                                if(positionCount(userTeam,"sub") == false){
+                                    return redirect("/squad/6");
+                                }
                                 if (owner.getBankaccount() >= players.get(i).getTransferValue()) { //Insures user can afford player
                                  
                                     players.get(i).setTeam(userTeam);
@@ -509,7 +513,6 @@ public class PlayerCtrl extends Controller {
 		Manager manager;	
 				
         Long ids = transfer.getTeamID();
-		 System.out.println("here");
         for (int i = 0; i < players.size(); i++) {
             if (id == players.get(i).getPlayerID()) {				
 				for(int k = 0 ; k < managerList.size();k++)
@@ -523,7 +526,6 @@ public class PlayerCtrl extends Controller {
 								manager= (Manager)managerList.get(k);
 								manager.setBankaccount(players.get(i).getTransferValue());
 								manager.update();
-                                System.out.println("updated");
 								players.get(i).setTeam(transfer);
 								players.get(i).update();
 							}
