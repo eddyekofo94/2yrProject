@@ -15,12 +15,11 @@
                     <!--Flashes if players position gets trained -->
                 <h5 class="alert alert-danger">@flash.get("error")</h5>
             }
-            @inputText(addTeamForm("TeamName"), '_label -> "TeamName")
-            <div class="actions">
+            @inputText(addTeamForm("TeamName"), '_label -> "Team Name")
+            
+			  <div class="actions">
                 <input type="submit" value="Add Team" class="btn primary">
-                <a href="@routes.Application.index()">
-                    <button class="btn btn-warning">Cancel</button>
-                </a>
+                
             </div>
         }
     }

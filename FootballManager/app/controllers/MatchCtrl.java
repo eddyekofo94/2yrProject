@@ -183,8 +183,14 @@ private User getCurrentUser() {
 			
 		}
 			playMatch();
+			return redirect("/fixtures");
 		}
-        flash("success","You have submitted your team for this weeks fixtures!");
-		return redirect("/fixtures");
+
+		else {
+			flash("success", "Awaiting managers");
+			return redirect("/squad");
+		}
+		
+
 	}
 }

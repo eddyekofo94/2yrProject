@@ -33,8 +33,8 @@ public class Match {
 
     public void calcMatch()
     {
-        homeTeamRand = rand.nextInt((10))+homeTeamScore;
-        awayTeamRand = rand.nextInt((10))+awayTeamScore;
+        homeTeamRand = rand.nextInt((5))+homeTeamScore;
+        awayTeamRand = rand.nextInt((5))+awayTeamScore;
         //check if the two numbers are the same if so it is a draw
         if(homeTeamRand == awayTeamRand )
         {

@@ -95,7 +95,7 @@ public class PlayerCtrl extends Controller {
             return redirect("/squad/6");
         } else {
             for (Player p : players) { 
-                if (p.playerID == pID) {//Insures the player changed matches the player selected by the user
+                if ((p.playerID == pID) && (p.getInjury() == false)) {//Insures the player changed matches the player selected by the user
 
                     for (int i = 0; i < positions.size(); i++) {
                         if (positions.get(i).position.equals(position)) {//Mathces the position to a position in the list to get the correct position
@@ -123,10 +123,12 @@ public class PlayerCtrl extends Controller {
         final int MAX_TEAM = 15; //Max amount allowed on a team
         int totalOnfield = 0; //Count total on field variable
         int totalOnteam = 0; //Count total on team variable
+		boolean playerInjured ;
         for (int j = 0; j < playerList.size(); j++) { 
             if (team.getTeamID() == playerList.get(j).getTID()) {//Makes sure player is on the users team
                 if (playerList.get(j).getPosition() == 0) {//Insure player is not assigned a position
                     posCount[0]++; 
+					
                 }
                 if (playerList.get(j).getPosition() == 1) {//Insure player is a Goalkeeper
                     posCount[1]++;
@@ -142,10 +144,11 @@ public class PlayerCtrl extends Controller {
                 }
                 if (playerList.get(j).getPosition() == 5) {//Insure player is a Sub
                     posCount[5]++;
-                }
-
+                
+				}
             }
         }
+	
 
         if (posCount[1] >= 1 && position.equals("Goalkeeper")) {//If Goalkeeper posCount is > 1 and position = Goalkeerer
             flash("error", "Sorry you alread have a Goalkeeper!");
@@ -170,6 +173,7 @@ public class PlayerCtrl extends Controller {
             flash("error", "Sorry you already have enough players in position sub!");
             return false;
         }
+		
         else{ 
 
             totalOnfield = posCount[1] + posCount[2] + posCount[3] + posCount[4]; //Add up all the players on the pitch 
@@ -247,6 +251,7 @@ public class PlayerCtrl extends Controller {
     public boolean getInjured(int health, Player player) {//Checks if player is injured
 
         if (player.health <= INJURY_LEVEL) {
+			player.setPosition(Position.getPositionNone());
             return true;
         } else {
             return false;
@@ -504,6 +509,7 @@ public class PlayerCtrl extends Controller {
 		Manager manager;	
 				
         Long ids = transfer.getTeamID();
+		 System.out.println("here");
         for (int i = 0; i < players.size(); i++) {
             if (id == players.get(i).getPlayerID()) {				
 				for(int k = 0 ; k < managerList.size();k++)

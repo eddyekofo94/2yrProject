@@ -108,7 +108,10 @@ public class Player extends Model{
 	 public Long getTID(){//returns players team id
 		 return team.getTeamID();
 	 }
-
+public boolean getInjury()
+{
+	return this.injury;
+}
      
      public static Map<String,String> options(){ //returns a map list of players ordered by id
          final int TEAM_ID_NOT_ASSIGNED = 0;
