@@ -1,0 +1,31 @@
+@(user: models.users.User, editPlayerForm: Form[models.Player], player: models.Player)
+
+    @import helper._
+
+    @main("New Player", user) {
+        <h3> Edit a Player</h3>
+        @if(flash.containsKey("error")) {
+                    <!--Flashes if players position gets trained -->
+                <h5 class="alert alert-danger">@flash.get("error")</h5>
+            }
+        @form(action = routes.PlayerCtrl.submitEditPlayer(player.playerID), 'class -> "form-horizontal", 'role -> "form") {
+            @inputText(editPlayerForm("playerName"), '_label -> "Name")
+            @inputText(editPlayerForm("jerseyNum"), '_label -> "Jersey Number")
+                <!-- @inputText(editPlayerForm("s"), '_label -> "Position")-->
+
+            @inputText(editPlayerForm("attVal"), '_label -> "Attack Stat")
+            @inputText(editPlayerForm("midFVal"), '_label -> "Midfield Stat")
+            @inputText(editPlayerForm("defVal"), '_label -> "Defence Stat")
+            @inputText(editPlayerForm("gkVal"), '_label -> "GoalKeeper Stat")
+            @inputText(editPlayerForm("health"), '_label -> "Health")
+
+                <!-- @inputText(editPlayerForm("injury"), '_label -> "Injury Status (boolean true or false)")-->
+
+            <div class="actions">
+                <input type="submit" value="Edit Player" class="btn primary">
+
+            </div>
+
+
+        }
+    }
